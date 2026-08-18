@@ -1,0 +1,486 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "meta": {
+    "brand": "Collibra",
+    "tokens_version": "1.1.0",
+    "brand_guidelines_version": "2026.07",
+    "source_artifacts": [
+      "Collibra_Brand_Guidelines.pdf (2026.07)",
+      "Collibra brand presentation reference, ppt/theme/theme1.xml"
+    ],
+    "evidence_labels": {
+      "MEASURED": "Read directly from a source artifact.",
+      "DERIVED": "Computed or normalized from measured data.",
+      "OPEN": "No approved value is available. Do not use it as a default."
+    }
+  },
+  "brand": {
+    "color": {
+      "primary": {
+        "navy": {
+          "id": "brand.color.primary.navy",
+          "value": "#002B40",
+          "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.16. Primary dark for headings and dark section backgrounds."
+        },
+        "lime": {
+          "id": "brand.color.primary.lime",
+          "value": "#72BF00",
+          "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.16. Primary accent for CTA fills, eyebrow ticks, and rules."
+        }
+      },
+      "accent": {
+        "forest": {
+          "id": "brand.color.accent.forest",
+          "value": "#03755F",
+          "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.16. Secondary accent for links on light surfaces, tags, and charts."
+        },
+        "light_forest": {
+          "id": "brand.color.accent.light_forest",
+          "value": "#B6D8D1",
+          "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.16. Soft panel and tag-pill fill."
+        }
+      },
+      "neutral": {
+        "charcoal": {
+          "id": "brand.color.neutral.charcoal",
+          "value": "#4B4B4B",
+          "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.16. Body and eyebrow text on light surfaces."
+        },
+        "cloud": {
+          "id": "brand.color.neutral.cloud",
+          "value": "#DFE6E8",
+          "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.16. Body text on dark surfaces and hairlines."
+        },
+        "light_cloud": {
+          "id": "brand.color.neutral.light_cloud",
+          "value": "#F0F2F3",
+          "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.16. Light section and card background."
+        },
+        "white": {
+          "id": "brand.color.neutral.white",
+          "value": "#FFFFFF",
+          "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.16. Light background and text on dark surfaces."
+        },
+        "black": {
+          "id": "brand.color.neutral.black",
+          "value": "#000000",
+          "source": "MEASURED: Collibra 2026 PPTX theme, dk1 slot."
+        }
+      },
+      "ramp": {
+        "navy": {
+          "100": {
+            "id": "brand.color.ramp.navy.100",
+            "value": "#002B40",
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17."
+          },
+          "80": {
+            "id": "brand.color.ramp.navy.80",
+            "value": "#33557F",
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17."
+          },
+          "60": {
+            "id": "brand.color.ramp.navy.60",
+            "value": "#66809F",
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17."
+          },
+          "40": {
+            "id": "brand.color.ramp.navy.40",
+            "value": "#99AABF",
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17."
+          }
+        },
+        "lime": {
+          "100": {
+            "id": "brand.color.ramp.lime.100",
+            "value": "#72BF00",
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17."
+          },
+          "80": {
+            "id": "brand.color.ramp.lime.80",
+            "value": "#8ECC33",
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17."
+          },
+          "60": {
+            "id": "brand.color.ramp.lime.60",
+            "value": "#AAD966",
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17."
+          },
+          "40": {
+            "id": "brand.color.ramp.lime.40",
+            "value": "#C7E599",
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17."
+          }
+        },
+        "forest": {
+          "100": {
+            "id": "brand.color.ramp.forest.100",
+            "value": "#03755F",
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17."
+          },
+          "80": {
+            "id": "brand.color.ramp.forest.80",
+            "value": "#33917F",
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17."
+          },
+          "60": {
+            "id": "brand.color.ramp.forest.60",
+            "value": "#66AC9F",
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17."
+          },
+          "40": {
+            "id": "brand.color.ramp.forest.40",
+            "value": "#98C8BF",
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17."
+          }
+        },
+        "light_forest": {
+          "100": {
+            "id": "brand.color.ramp.light_forest.100",
+            "value": "#B6D8D1",
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17."
+          },
+          "80": {
+            "id": "brand.color.ramp.light_forest.80",
+            "value": "#C5E0DA",
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17."
+          },
+          "60": {
+            "id": "brand.color.ramp.light_forest.60",
+            "value": "#D3E8E3",
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17."
+          },
+          "40": {
+            "id": "brand.color.ramp.light_forest.40",
+            "value": "#E2EFED",
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17."
+          }
+        },
+        "charcoal": {
+          "100": {
+            "id": "brand.color.ramp.charcoal.100",
+            "value": "#4B4B4B",
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17."
+          },
+          "80": {
+            "id": "brand.color.ramp.charcoal.80",
+            "value": "#6E6E6E",
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17."
+          },
+          "60": {
+            "id": "brand.color.ramp.charcoal.60",
+            "value": "#868686",
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17."
+          },
+          "40": {
+            "id": "brand.color.ramp.charcoal.40",
+            "value": "#AEAEAE",
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17."
+          }
+        }
+      },
+      "theme": {
+        "followed_link": {
+          "id": "brand.color.theme.followed_link",
+          "value": "#0097A7",
+          "source": "OPEN, MEASURED: Collibra 2026 PPTX theme, folHlink slot. It is outside the published palette and needs a brand-team ruling."
+        }
+      },
+      "usage": {
+        "ramp": {
+          "id": "brand.color.usage.ramp",
+          "value": "illustration-data-visualization-only",
+          "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.17. Do not use ramp steps for body text without a contrast check."
+        },
+        "gradient": {
+          "id": "brand.color.usage.gradient",
+          "value": "flat-navy-or-approved-raster-only",
+          "source": "OPEN: Collibra Brand Guidelines 2026.07, p.18 shows gradients without published stop values. Use navy as the flat fallback until stops are supplied."
+        }
+      }
+    },
+    "type": {
+      "family": {
+        "display": {
+          "id": "brand.type.family.display",
+          "value": "Neue Haas Grotesk Display",
+          "source": "MEASURED: Collibra Brand Guidelines 2026.07, pp.22-23. Use for assets, web, and creative work, except presentations."
+        },
+        "presentation": {
+          "id": "brand.type.family.presentation",
+          "value": "Arial",
+          "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.22. Use for Slides and PowerPoint presentations."
+        },
+        "mono": {
+          "id": "brand.type.family.mono",
+          "value": "Roboto Mono",
+          "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.23. Use only for all-caps eyebrows and tags."
+        }
+      },
+      "weight": {
+        "regular": {
+          "id": "brand.type.weight.regular",
+          "value": "regular",
+          "source": "MEASURED: Collibra 2026 PPTX font-size census. Used by subtitle, body, and caption styles."
+        },
+        "bold": {
+          "id": "brand.type.weight.bold",
+          "value": "bold",
+          "source": "MEASURED: Collibra 2026 PPTX font-size census. Used by display and title styles."
+        }
+      },
+      "scale": {
+        "web": {
+          "hero": {
+            "id": "brand.type.scale.web.hero",
+            "value": {
+              "font": "Neue Haas Light",
+              "size_px": 60,
+              "line_height_px": 68
+            },
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.22. Web and creative only."
+          },
+          "title_50": {
+            "id": "brand.type.scale.web.title_50",
+            "value": {
+              "font": "Neue Haas Roman",
+              "size_px": 50,
+              "line_height_px": 58
+            },
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.22. Web and creative only."
+          },
+          "title_42": {
+            "id": "brand.type.scale.web.title_42",
+            "value": {
+              "font": "Neue Haas Roman",
+              "size_px": 42,
+              "line_height_px": 50
+            },
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.22. Web and creative only."
+          },
+          "title_36": {
+            "id": "brand.type.scale.web.title_36",
+            "value": {
+              "font": "Neue Haas Roman",
+              "size_px": 36,
+              "line_height_px": 44
+            },
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.22. Web and creative only."
+          },
+          "title_30": {
+            "id": "brand.type.scale.web.title_30",
+            "value": {
+              "font": "Neue Haas Roman",
+              "size_px": 30,
+              "line_height_px": 38
+            },
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.22. Web and creative only."
+          },
+          "title_24": {
+            "id": "brand.type.scale.web.title_24",
+            "value": {
+              "font": "Neue Haas Roman",
+              "size_px": 24,
+              "line_height_px": 32
+            },
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.22. Web and creative only."
+          },
+          "body_large": {
+            "id": "brand.type.scale.web.body_large",
+            "value": {
+              "font": "Neue Haas Roman",
+              "size_px": 22,
+              "line_height_px": 32
+            },
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.22. Web and creative only."
+          },
+          "body": {
+            "id": "brand.type.scale.web.body",
+            "value": {
+              "font": "Neue Haas Roman",
+              "size_px": 18,
+              "line_height_px": 28
+            },
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.22. Web and creative only."
+          },
+          "body_mobile": {
+            "id": "brand.type.scale.web.body_mobile",
+            "value": {
+              "font": "Neue Haas Roman",
+              "size_px": 14,
+              "line_height_px": 24
+            },
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.22. Web and creative only."
+          },
+          "label": {
+            "id": "brand.type.scale.web.label",
+            "value": {
+              "font": "Neue Haas Medium",
+              "size_px": 14,
+              "line_height_px": 18
+            },
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.22. Web and creative only."
+          },
+          "cta": {
+            "id": "brand.type.scale.web.cta",
+            "value": {
+              "font": "Neue Haas Medium",
+              "size_px": 14,
+              "line_height_px": 18
+            },
+            "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.22. Web and creative only."
+          }
+        },
+        "slides": {
+          "display": {
+            "id": "brand.type.scale.slides.display",
+            "value": {
+              "size_pt": 48,
+              "weight": "bold"
+            },
+            "source": "MEASURED: Collibra 2026 PPTX font-size census. Cover and hero statement."
+          },
+          "title": {
+            "id": "brand.type.scale.slides.title",
+            "value": {
+              "size_pt": 37,
+              "weight": "bold"
+            },
+            "source": "MEASURED: Collibra 2026 PPTX font-size census. Section and slide title."
+          },
+          "subtitle": {
+            "id": "brand.type.scale.slides.subtitle",
+            "value": {
+              "size_pt": 20,
+              "weight": "regular"
+            },
+            "source": "MEASURED: Collibra 2026 PPTX font-size census. Deck subtitle and kicker."
+          },
+          "body_large": {
+            "id": "brand.type.scale.slides.body_large",
+            "value": {
+              "size_pt": 16,
+              "weight": "regular"
+            },
+            "source": "MEASURED: Collibra 2026 PPTX font-size census. Lead paragraph and callout."
+          },
+          "body": {
+            "id": "brand.type.scale.slides.body",
+            "value": {
+              "size_pt": 13,
+              "weight": "regular"
+            },
+            "source": "MEASURED: Collibra 2026 PPTX font-size census. Default body."
+          },
+          "body_small": {
+            "id": "brand.type.scale.slides.body_small",
+            "value": {
+              "size_pt": 11,
+              "weight": "regular"
+            },
+            "source": "MEASURED: Collibra 2026 PPTX font-size census. Dense tables and secondary detail."
+          },
+          "caption": {
+            "id": "brand.type.scale.slides.caption",
+            "value": {
+              "size_pt": 10,
+              "weight": "regular"
+            },
+            "source": "MEASURED: Collibra 2026 PPTX font-size census. Footnotes, sources, and page furniture."
+          },
+          "eyebrow": {
+            "id": "brand.type.scale.slides.eyebrow",
+            "value": {
+              "size_pt": 10,
+              "weight": "regular",
+              "family": "Roboto Mono"
+            },
+            "source": "MEASURED: Collibra 2026 PPTX font-size census. All-caps eyebrow with a lime tick."
+          }
+        }
+      },
+      "line_spacing": {
+        "default": {
+          "id": "brand.type.line_spacing.default",
+          "value": "115%",
+          "source": "MEASURED: 85 of 87 explicitly spaced paragraphs in the Collibra 2026 PPTX."
+        },
+        "tight": {
+          "id": "brand.type.line_spacing.tight",
+          "value": "100%",
+          "source": "MEASURED: Collibra 2026 PPTX font-size census."
+        }
+      },
+      "letter_spacing": {
+        "headline_advisory": {
+          "id": "brand.type.letter_spacing.headline_advisory",
+          "value": "0.02em",
+          "source": "DERIVED, OPEN: Collibra Brand Guidelines 2026.07, p.22 has conflicting labels. Confirm with the brand team before web use."
+        },
+        "body_advisory": {
+          "id": "brand.type.letter_spacing.body_advisory",
+          "value": "0.05em",
+          "source": "DERIVED, OPEN: Collibra Brand Guidelines 2026.07, p.22 has conflicting labels. Confirm with the brand team before web use."
+        }
+      }
+    },
+    "space": {
+      "scale": {
+        "id": "brand.space.scale",
+        "value": null,
+        "source": "OPEN: The doc-suite records no approved Collibra spacing scale. Do not create or use numeric spacing defaults until the brand team supplies them."
+      }
+    },
+    "radius": {
+      "scale": {
+        "id": "brand.radius.scale",
+        "value": "4px",
+        "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.34. \"A 4px (0.25rem) corner radius is applied to many, if not all, UI components in this design system. Especially elements that act as containers to content.\" Single value, not a scale -- the source publishes one radius, not a ramp."
+      }
+    },
+    "accessibility": {
+      "contrast": {
+        "body_text_minimum": {
+          "id": "brand.accessibility.contrast.body_text_minimum",
+          "value": 4.5,
+          "source": "MEASURED: Collibra Brand Guidelines 2026.07, pp.19-20. WCAG 2.0 AA."
+        },
+        "large_or_bold_text_minimum": {
+          "id": "brand.accessibility.contrast.large_or_bold_text_minimum",
+          "value": 3.0,
+          "source": "MEASURED: Collibra Brand Guidelines 2026.07, pp.19-20. WCAG 2.0 AA."
+        },
+        "known_failing_foreground": {
+          "id": "brand.accessibility.contrast.known_failing_foreground",
+          "value": "#33557F",
+          "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.19 negative example."
+        },
+        "known_failing_background": {
+          "id": "brand.accessibility.contrast.known_failing_background",
+          "value": "#002B40",
+          "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.19 negative example."
+        },
+        "known_failing_ratio": {
+          "id": "brand.accessibility.contrast.known_failing_ratio",
+          "value": 1.9,
+          "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.19 negative example."
+        },
+        "known_passing_foreground": {
+          "id": "brand.accessibility.contrast.known_passing_foreground",
+          "value": "#72BF00",
+          "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.19 positive example."
+        },
+        "known_passing_background": {
+          "id": "brand.accessibility.contrast.known_passing_background",
+          "value": "#002B40",
+          "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.19 positive example."
+        },
+        "known_passing_ratio": {
+          "id": "brand.accessibility.contrast.known_passing_ratio",
+          "value": 6.5,
+          "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.19 positive example."
+        }
+      }
+    }
+  }
+}

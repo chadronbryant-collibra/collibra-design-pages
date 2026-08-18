@@ -1,0 +1,444 @@
+{
+  "schema_version": 1,
+  "catalog_version": "0.1.0",
+  "area_id": "area.design.visual",
+  "status": "active",
+  "title": "Collibra visual capability catalog",
+  "implementation_boundary": "This is a framework-neutral visual contract. Products and document producers own the implementation, asset files, export settings, and medium-specific validation.",
+  "source_policy": "Use measured token values and cited source artifacts. When the source does not publish a value or asset, keep the capability open instead of guessing.",
+  "principles": [
+    "Make the hierarchy visible before adding decoration.",
+    "Use the approved palette by semantic role, then verify contrast in the actual context.",
+    "Treat typography, spacing, shape, imagery, and motion as communication tools rather than polish layers.",
+    "Translate the system across products and media without pretending that one implementation is universal.",
+    "Show uncertainty, provenance, and status in text and structure; never make color carry the meaning alone.",
+    "Prefer a small, adoptable visual language over a large catalog nobody can maintain."
+  ],
+  "foundations": [
+    {
+      "id": "visual.foundation.palette",
+      "name": "Color palette and semantic roles",
+      "maturity": "defined",
+      "purpose": "Provide the approved brand palette and the role-based references used by UI, UX, documents, and visual communication.",
+      "contract": "Consume color through tokens. Use primary navy and lime for primary brand expression, forest and light forest for supporting roles, and neutrals for readable surfaces and text. Ramp steps are for illustration and data visualization only unless a contrast check proves another use safe.",
+      "token_refs": [
+        "brand.color.primary.navy",
+        "brand.color.primary.lime",
+        "brand.color.accent.forest",
+        "brand.color.accent.light_forest",
+        "brand.color.neutral.charcoal",
+        "brand.color.neutral.cloud",
+        "brand.color.neutral.light_cloud",
+        "brand.color.neutral.white",
+        "brand.color.ramp.navy.100",
+        "brand.color.ramp.lime.100",
+        "brand.color.ramp.forest.100"
+      ],
+      "source_refs": [
+        "tokens/PROVENANCE.md",
+        "tokens/collibra.tokens.json"
+      ],
+      "open_questions": []
+    },
+    {
+      "id": "visual.foundation.typography",
+      "name": "Typography and type hierarchy",
+      "maturity": "defined",
+      "purpose": "Give every surface a readable, recognizable hierarchy that can be translated to web, presentations, and document outputs.",
+      "contract": "Use the published display family for web and creative work, Arial for presentations, and Roboto Mono only for all-caps eyebrows and tags. Use the measured web and slide scales by medium; do not silently substitute a scale from another medium.",
+      "token_refs": [
+        "brand.type.family.display",
+        "brand.type.family.presentation",
+        "brand.type.family.mono",
+        "brand.type.scale.web.hero",
+        "brand.type.scale.web.title_50",
+        "brand.type.scale.web.title_42",
+        "brand.type.scale.web.title_36",
+        "brand.type.scale.web.title_30",
+        "brand.type.scale.web.title_24",
+        "brand.type.scale.web.body_large",
+        "brand.type.scale.web.body",
+        "brand.type.scale.web.body_mobile",
+        "brand.type.scale.web.label",
+        "brand.type.scale.web.cta",
+        "brand.type.scale.slides.display",
+        "brand.type.scale.slides.title",
+        "brand.type.scale.slides.subtitle",
+        "brand.type.scale.slides.body_large",
+        "brand.type.scale.slides.body",
+        "brand.type.scale.slides.body_small",
+        "brand.type.scale.slides.caption",
+        "brand.type.scale.slides.eyebrow"
+      ],
+      "source_refs": [
+        "tokens/PROVENANCE.md",
+        "tokens/collibra.tokens.json"
+      ],
+      "open_questions": [
+        "Confirm the conflicting headline and body letter-spacing labels with the brand team before treating them as web defaults."
+      ]
+    },
+    {
+      "id": "visual.foundation.contrast",
+      "name": "Contrast and accessible color use",
+      "maturity": "defined",
+      "purpose": "Make readable, perceivable communication the default across component states, diagrams, charts, and branded surfaces.",
+      "contract": "Meet the published WCAG AA thresholds for body and large or bold text. Test the foreground, background, state, and size in the actual composition. Preserve a non-color cue for status, selection, error, and difference.",
+      "token_refs": [
+        "brand.accessibility.contrast.body_text_minimum",
+        "brand.accessibility.contrast.large_or_bold_text_minimum",
+        "brand.accessibility.contrast.known_failing_foreground",
+        "brand.accessibility.contrast.known_failing_background",
+        "brand.accessibility.contrast.known_passing_foreground",
+        "brand.accessibility.contrast.known_passing_background"
+      ],
+      "source_refs": [
+        "tokens/PROVENANCE.md",
+        "tokens/collibra.tokens.json"
+      ],
+      "open_questions": []
+    },
+    {
+      "id": "visual.foundation.shape",
+      "name": "Surface and corner treatment",
+      "maturity": "defined",
+      "purpose": "Keep containers, panels, controls, and cards visually related without introducing an unapproved radius ramp.",
+      "contract": "Use the single published radius token for container-like elements when the medium supports it. Treat radius as a role, not an opportunity to add arbitrary shape variation.",
+      "token_refs": [
+        "brand.radius.scale"
+      ],
+      "source_refs": [
+        "tokens/PROVENANCE.md",
+        "tokens/collibra.tokens.json"
+      ],
+      "open_questions": []
+    },
+    {
+      "id": "visual.foundation.spacing",
+      "name": "Spacing and composition rhythm",
+      "maturity": "open",
+      "purpose": "Define repeatable relationships between content, controls, regions, and visual landmarks once an approved scale exists.",
+      "contract": "Do not invent or publish a numeric Collibra spacing scale here. Consumers may use their product or medium layout system, but they must document the mapping and preserve hierarchy until the brand source supplies an approved scale.",
+      "token_refs": [
+        "brand.space.scale"
+      ],
+      "source_refs": [
+        "tokens/PROVENANCE.md",
+        "tokens/collibra.tokens.json"
+      ],
+      "open_questions": [
+        "Obtain and approve a general spacing scale that covers web, product UI, and document composition."
+      ]
+    },
+    {
+      "id": "visual.foundation.gradients",
+      "name": "Gradients and tonal fields",
+      "maturity": "open",
+      "purpose": "Give teams a safe decision path for gradient-led brand compositions without fabricating unpublished stops.",
+      "contract": "Use flat navy or an approved raster asset while gradient stop values remain unpublished. A consumer may not derive a default gradient from the palette ramps and call it official.",
+      "token_refs": [
+        "brand.color.usage.gradient",
+        "brand.color.primary.navy"
+      ],
+      "source_refs": [
+        "tokens/PROVENANCE.md",
+        "tokens/collibra.tokens.json"
+      ],
+      "open_questions": [
+        "Publish gradient stop values, direction guidance, and medium-specific fallback rules."
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "visual.logo",
+      "name": "Logo and mark usage",
+      "maturity": "open",
+      "purpose": "Protect the Collibra mark, clear space, lockups, sizing, and export behavior wherever the brand is identified.",
+      "contract": "Use only approved logo assets from the brand-owned asset source. Keep logo files outside this standards repo until an asset license, owner, and versioned distribution path are recorded.",
+      "token_refs": [
+        "brand.color.primary.navy",
+        "brand.color.primary.lime"
+      ],
+      "source_refs": [
+        "tokens/PROVENANCE.md",
+        "Collibra asset and source register"
+      ],
+      "open_questions": [
+        "Identify the approved logo package and record its owner, license, variants, clear-space rules, and distribution path."
+      ]
+    },
+    {
+      "id": "visual.color-application",
+      "name": "Color application",
+      "maturity": "defined",
+      "purpose": "Turn the palette into a legible hierarchy of surfaces, text, actions, links, tags, charts, and illustration accents.",
+      "contract": "Start from semantic role, check contrast, and keep ramp values out of text and controls unless the use is explicitly tested and approved.",
+      "token_refs": [
+        "brand.color.primary.navy",
+        "brand.color.primary.lime",
+        "brand.color.accent.forest",
+        "brand.color.neutral.charcoal",
+        "brand.accessibility.contrast.body_text_minimum"
+      ],
+      "source_refs": [
+        "visual.foundation.palette",
+        "visual.foundation.contrast",
+        "tokens/PROVENANCE.md"
+      ],
+      "open_questions": []
+    },
+    {
+      "id": "visual.typography",
+      "name": "Type pairing and hierarchy",
+      "maturity": "defined",
+      "purpose": "Make the reading order, action hierarchy, metadata, and brand voice visible through type rather than decoration.",
+      "contract": "Select a medium-specific scale, pair it with the correct family, keep the line length readable, and do not use the mono family as general body copy.",
+      "token_refs": [
+        "brand.type.family.display",
+        "brand.type.family.presentation",
+        "brand.type.family.mono",
+        "brand.type.scale.web.body",
+        "brand.type.scale.slides.body"
+      ],
+      "source_refs": [
+        "visual.foundation.typography",
+        "tokens/PROVENANCE.md"
+      ],
+      "open_questions": [
+        "Confirm font licensing and runtime delivery expectations for products that cannot ship the published display family."
+      ]
+    },
+    {
+      "id": "visual.iconography",
+      "name": "Iconography",
+      "maturity": "open",
+      "purpose": "Create a coherent supporting language for navigation, status, action, and object concepts.",
+      "contract": "Use a single consumer-owned icon set per product surface, pair unfamiliar icons with visible text, and preserve accessible names and non-color cues. Do not imply that a consumer icon set is the Collibra master set.",
+      "token_refs": [
+        "brand.color.primary.navy",
+        "brand.color.neutral.charcoal",
+        "brand.radius.scale"
+      ],
+      "source_refs": [
+        "ui/components.json",
+        "visual.foundation.contrast"
+      ],
+      "open_questions": [
+        "Select and govern an approved icon family with stroke, fill, optical-size, licensing, and export rules."
+      ]
+    },
+    {
+      "id": "visual.illustration",
+      "name": "Illustration and graphic motifs",
+      "maturity": "open",
+      "purpose": "Give campaigns, empty states, education, and explanatory surfaces a recognizable visual vocabulary.",
+      "contract": "Use the approved palette and role hierarchy. Keep any motif library versioned with source files, usage rights, alt-text guidance, and a review owner.",
+      "token_refs": [
+        "brand.color.ramp.navy.100",
+        "brand.color.ramp.lime.100",
+        "brand.color.ramp.forest.100",
+        "brand.color.usage.ramp"
+      ],
+      "source_refs": [
+        "visual.foundation.palette",
+        "tokens/PROVENANCE.md"
+      ],
+      "open_questions": [
+        "Gather the approved illustration library and document motif, composition, accessibility, and asset provenance rules."
+      ]
+    },
+    {
+      "id": "visual.imagery",
+      "name": "Photography and imagery",
+      "maturity": "open",
+      "purpose": "Set expectations for subject, crop, treatment, captioning, alt text, and rights when photography or editorial imagery is used.",
+      "contract": "No image becomes a shared standard without a rights record, source, alt-text treatment, crop guidance, and a named owner. Avoid filling this gap with stock examples that look official.",
+      "token_refs": [
+        "brand.color.primary.navy",
+        "brand.color.neutral.white"
+      ],
+      "source_refs": [
+        "Collibra asset and source register"
+      ],
+      "open_questions": [
+        "Identify the approved image library, rights policy, editorial treatment, and accessibility expectations."
+      ]
+    },
+    {
+      "id": "visual.diagram",
+      "name": "Diagram and information graphics",
+      "maturity": "proposed",
+      "purpose": "Make systems, relationships, decisions, and process states understandable without turning every diagram into a one-off composition.",
+      "contract": "Use semantic shapes, directional language, a visible legend, readable labels, source notes, and a non-color distinction for important states. Keep the diagram's claim no broader than its evidence.",
+      "token_refs": [
+        "brand.color.primary.navy",
+        "brand.color.primary.lime",
+        "brand.color.accent.forest",
+        "brand.accessibility.contrast.body_text_minimum",
+        "brand.radius.scale"
+      ],
+      "source_refs": [
+        "visual.foundation.palette",
+        "visual.foundation.contrast",
+        "ux/patterns.json"
+      ],
+      "open_questions": [
+        "Define an approved diagram grammar for entities, boundaries, events, decisions, and uncertainty."
+      ]
+    },
+    {
+      "id": "visual.data-visualization",
+      "name": "Data visualization",
+      "maturity": "proposed",
+      "purpose": "Help people compare, inspect, and decide from data while preserving meaning, scale, provenance, and uncertainty.",
+      "contract": "Use ramp values for visual encoding only after contrast and distinguishability checks. Label axes and units, provide a text or table alternative when needed, and make source and time context inspectable.",
+      "token_refs": [
+        "brand.color.ramp.navy.100",
+        "brand.color.ramp.lime.100",
+        "brand.color.ramp.forest.100",
+        "brand.accessibility.contrast.body_text_minimum"
+      ],
+      "source_refs": [
+        "visual.foundation.palette",
+        "visual.foundation.contrast",
+        "ui/components.json",
+        "ux/patterns.json"
+      ],
+      "open_questions": [
+        "Define chart families, color sequencing, annotation conventions, and minimum data-label requirements."
+      ]
+    },
+    {
+      "id": "visual.motion",
+      "name": "Motion and transition",
+      "maturity": "open",
+      "purpose": "Use movement to explain change, continuity, progress, and feedback without distracting from the task or excluding users.",
+      "contract": "Motion must have a communication purpose, respect reduced-motion preferences, avoid implying progress that is not measured, and keep all state changes available without animation.",
+      "token_refs": [
+        "brand.color.primary.navy",
+        "brand.radius.scale"
+      ],
+      "source_refs": [
+        "ux/patterns.json",
+        "visual.foundation.contrast"
+      ],
+      "open_questions": [
+        "Define motion principles, timing tokens, reduced-motion behavior, and product-specific exceptions."
+      ]
+    },
+    {
+      "id": "visual.surface-and-shape",
+      "name": "Surfaces, borders, and shape",
+      "maturity": "defined",
+      "purpose": "Create clear grouping and depth using approved surfaces, hairlines, and the published corner treatment.",
+      "contract": "Use neutral surfaces for reading and role-based accents for emphasis. Use the single radius token for container-like elements and do not add a shadow or border solely for ornament.",
+      "token_refs": [
+        "brand.color.neutral.white",
+        "brand.color.neutral.light_cloud",
+        "brand.color.neutral.cloud",
+        "brand.radius.scale"
+      ],
+      "source_refs": [
+        "visual.foundation.shape",
+        "tokens/PROVENANCE.md"
+      ],
+      "open_questions": [
+        "Confirm shadow, border, elevation, and panel treatments for product and document contexts."
+      ]
+    },
+    {
+      "id": "visual.accessibility",
+      "name": "Visual accessibility",
+      "maturity": "defined",
+      "purpose": "Make visual communication perceivable, operable, and understandable across contrast, type, focus, motion, and non-color cues.",
+      "contract": "Use the tokenized contrast thresholds, preserve readable type hierarchy, maintain visible focus, provide alternatives to color and motion, and test the final medium rather than trusting a token pairing in isolation.",
+      "token_refs": [
+        "brand.accessibility.contrast.body_text_minimum",
+        "brand.accessibility.contrast.large_or_bold_text_minimum",
+        "brand.type.scale.web.body",
+        "brand.type.scale.slides.body"
+      ],
+      "source_refs": [
+        "visual.foundation.contrast",
+        "ui/components.json",
+        "ux/patterns.json",
+        "tokens/PROVENANCE.md"
+      ],
+      "open_questions": []
+    },
+    {
+      "id": "visual.asset-governance",
+      "name": "Asset provenance and lifecycle",
+      "maturity": "defined",
+      "purpose": "Make shared visual assets trustworthy, findable, reviewable, and removable when their source or rights change.",
+      "contract": "Every shared asset needs an owner, source, license or usage authority, version, review date, alt-text or accessibility treatment, and a clear deprecation path. This repo records contracts and references; it does not become an ungoverned asset dump.",
+      "token_refs": [],
+      "source_refs": [
+        "tokens/PROVENANCE.md",
+        "Collibra asset and source register"
+      ],
+      "open_questions": []
+    },
+    {
+      "id": "visual.medium-translation",
+      "name": "Cross-medium translation",
+      "maturity": "proposed",
+      "purpose": "Keep the brand recognizable as a composition moves between product UI, web, presentations, documents, and data outputs.",
+      "contract": "Start with the canonical token and semantic role, then select the medium-specific type scale, layout system, export constraints, and accessibility check. Record any exception instead of silently forking the standard.",
+      "token_refs": [
+        "brand.type.scale.web.body",
+        "brand.type.scale.slides.body",
+        "brand.color.primary.navy",
+        "brand.radius.scale"
+      ],
+      "source_refs": [
+        "visual.foundation.typography",
+        "visual.foundation.palette",
+        "tokens/PROVENANCE.md"
+      ],
+      "open_questions": [
+        "Document the approved translation matrix for product UI, web, Slides, Docs, Sheets, and exported PDF."
+      ]
+    },
+    {
+      "id": "visual.responsive-composition",
+      "name": "Responsive composition",
+      "maturity": "open",
+      "purpose": "Preserve hierarchy, task actions, and readable content as a composition changes viewport, density, or medium.",
+      "contract": "Use consumer-owned layout and spacing rules until the shared scale is approved. Test the smallest supported viewport and the densest supported content; never let decoration displace the primary task.",
+      "token_refs": [
+        "brand.space.scale",
+        "brand.type.scale.web.body",
+        "brand.type.scale.web.body_mobile"
+      ],
+      "source_refs": [
+        "visual.foundation.spacing",
+        "ux/patterns.json"
+      ],
+      "open_questions": [
+        "Approve shared responsive breakpoints or a medium-neutral composition rule set."
+      ]
+    },
+    {
+      "id": "visual.theming",
+      "name": "Theme and mode translation",
+      "maturity": "deferred",
+      "purpose": "Define how the Collibra visual language adapts to product themes or light and dark modes without inventing unapproved palette roles.",
+      "contract": "Do not publish a dark-mode or alternate-theme mapping until foreground, surface, status, chart, focus, and disabled roles are measured and approved. Consumers may keep the product theme separate and document the boundary.",
+      "token_refs": [
+        "brand.color.primary.navy",
+        "brand.color.primary.lime",
+        "brand.accessibility.contrast.body_text_minimum"
+      ],
+      "source_refs": [
+        "visual.foundation.palette",
+        "visual.foundation.contrast",
+        "tokens/PROVENANCE.md"
+      ],
+      "open_questions": [
+        "Decide whether the shared suite owns a mode mapping or only owns light-theme brand primitives."
+      ]
+    }
+  ]
+}
