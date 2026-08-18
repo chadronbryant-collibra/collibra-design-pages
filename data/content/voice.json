@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "catalog_version": "0.1.0",
+  "area_id": "area.design.content",
+  "status": "active",
+  "title": "Collibra content and voice contract",
+  "implementation_boundary": "This is a source-grounded writing and UX-content contract. Product teams own the final copy, audience context, localization, legal review, and content measurement.",
+  "source_policy": "Use the cited Collibra brand and content guidance as the authority. Preserve facts, label uncertainty, and keep product-specific terminology in the consuming glossary.",
+  "voice_pillars": [
+    {
+      "id": "voice.respectfully-direct",
+      "name": "Respectfully direct",
+      "contract": "Say the clear thing first, then add the nuance or reason that helps the reader act.",
+      "avoid": [
+        "corporate fog",
+        "bland filler",
+        "excessive optimism",
+        "commands without context"
+      ],
+      "source": "Collibra content guidance · voice and mojo"
+    },
+    {
+      "id": "voice.wise",
+      "name": "Wise",
+      "contract": "Use informed judgment, credible specifics, and a long view; do not trade accuracy for speed or cleverness.",
+      "avoid": [
+        "glib certainty",
+        "shortcuts that hide tradeoffs",
+        "claims without evidence"
+      ],
+      "source": "Collibra content guidance · voice and mojo"
+    },
+    {
+      "id": "voice.clever-punchy",
+      "name": "Clever and punchy",
+      "contract": "Keep the language interesting and memorable with a wink or knowing nod when it helps, while letting the work stay serious.",
+      "avoid": [
+        "earnest clutter",
+        "reserved mush",
+        "over-the-top jokes",
+        "performative cleverness"
+      ],
+      "source": "Collibra content guidance · voice and mojo"
+    }
+  ],
+  "writing_goals": [
+    {
+      "id": "content.goal.empower",
+      "name": "Empower",
+      "contract": "Give the reader enough clarity and agency to choose a next step.",
+      "source": "Collibra content guidance · writing goals"
+    },
+    {
+      "id": "content.goal.educate",
+      "name": "Educate",
+      "contract": "Explain the idea or consequence the reader needs, without burying the point in exposition.",
+      "source": "Collibra content guidance · writing goals"
+    },
+    {
+      "id": "content.goal.guide",
+      "name": "Guide",
+      "contract": "Make the path, decision, or recovery action visible at the moment it matters.",
+      "source": "Collibra content guidance · writing goals"
+    },
+    {
+      "id": "content.goal.truth",
+      "name": "Speak the truth",
+      "contract": "Name what is known, unknown, proposed, blocked, or incomplete without smoothing away the distinction.",
+      "source": "Collibra content guidance · writing goals"
+    }
+  ],
+  "style_rules": [
+    {
+      "id": "content.style.active-voice",
+      "name": "Prefer active voice",
+      "rule": "Put the actor and action where the reader can find them.",
+      "use_when": "Instructions, status, decisions, and explanations need a clear owner.",
+      "avoid": "Passive phrasing that hides who acts or what changed.",
+      "source": "Collibra content guidance · style tips"
+    },
+    {
+      "id": "content.style.plain-english",
+      "name": "Use plain English",
+      "rule": "Choose the simplest structure and words that preserve the real meaning.",
+      "use_when": "The reader needs to understand a product, process, or decision quickly.",
+      "avoid": "Jargon, inflated nouns, and layout that looks impressive but slows comprehension.",
+      "source": "Collibra content guidance · style tips"
+    },
+    {
+      "id": "content.style.positive-when-true",
+      "name": "Frame positively when facts allow",
+      "rule": "Describe the useful next state or action without hiding a limitation or risk.",
+      "use_when": "A constructive framing can help the reader move forward.",
+      "avoid": "Spin, false reassurance, or positive wording that contradicts the evidence.",
+      "source": "Collibra content guidance · style tips"
+    },
+    {
+      "id": "content.style.we-pronoun",
+      "name": "Use we in running text",
+      "rule": "Use we when the team or company is the real actor, unless a product or legal name is required.",
+      "use_when": "Guidance, collaboration, and shared commitments need a human owner.",
+      "avoid": "Repeated institutional references that make the writing feel distant.",
+      "source": "Collibra content guidance · style tips"
+    },
+    {
+      "id": "content.style.no-fabrication",
+      "name": "Do not fabricate",
+      "rule": "Do not invent evidence, source authority, progress, capability, certainty, or completion.",
+      "use_when": "A detail is missing, changing, or not yet verified.",
+      "avoid": "Plausible defaults presented as approved truth.",
+      "source": "Collibra content guidance · non-negotiables"
+    }
+  ],
+  "ui_content_rules": [
+    {
+      "id": "content.ui.action-labels",
+      "name": "Action labels",
+      "contract": "Lead with a verb, name the result when useful, and reserve one primary action for the context.",
+      "examples": [
+        "Save changes",
+        "Review sources",
+        "Apply classification",
+        "Retry request"
+      ],
+      "source": "ui/components.json"
+    },
+    {
+      "id": "content.ui.state-language",
+      "name": "State language",
+      "contract": "Distinguish loading, complete, partial, failed, canceled, blocked, proposed, and confirmed states in text.",
+      "examples": [
+        "Still working",
+        "Partially complete",
+        "Needs review",
+        "Not available"
+      ],
+      "source": "ux/patterns.json"
+    },
+    {
+      "id": "content.ui.ai-boundary",
+      "name": "AI boundary language",
+      "contract": "Label generated content, show sources and uncertainty when they affect use, and name the human decision before a durable change.",
+      "examples": [
+        "Generated suggestion",
+        "Sources used",
+        "Needs your review",
+        "Apply change"
+      ],
+      "source": "ux/patterns.json"
+    },
+    {
+      "id": "content.ui.error-recovery",
+      "name": "Error and recovery language",
+      "contract": "Say what failed, preserve the user's work, and offer the smallest safe next action without inventing a cause.",
+      "examples": [
+        "We could not load the sources",
+        "Your draft is still here",
+        "Try again",
+        "Contact an administrator"
+      ],
+      "source": "ux/patterns.json"
+    },
+    {
+      "id": "content.ui.accessible-names",
+      "name": "Accessible names",
+      "contract": "Give controls, icons, status changes, and regions names that describe the action or state rather than the visual shape alone.",
+      "examples": [
+        "Open filters",
+        "Copy link",
+        "Close dialog",
+        "3 sources used"
+      ],
+      "source": "ui/components.json"
+    }
+  ],
+  "terminology": [
+    {
+      "id": "term.collibrians",
+      "preferred": "Collibrians",
+      "avoid": [
+        "employees",
+        "staff"
+      ],
+      "when": "Referring to people who work at Collibra in general running text.",
+      "source": "Collibra content guidance · style tips"
+    },
+    {
+      "id": "term.user",
+      "preferred": "user",
+      "avoid": [
+        "end user",
+        "the human"
+      ],
+      "when": "Referring to a person using the product, unless a more specific role is known.",
+      "source": "Collibra content guidance · style tips"
+    },
+    {
+      "id": "term.generated",
+      "preferred": "generated suggestion",
+      "avoid": [
+        "answer"
+      ],
+      "when": "Describing AI-produced content that still requires review or source inspection.",
+      "source": "content.ui.ai-boundary"
+    }
+  ],
+  "content_gates": [
+    {
+      "id": "content.gate.audience",
+      "question": "Can the intended reader tell what this is for and what they can do next?",
+      "failure_action": "Rewrite the opening and action path before polishing the prose.",
+      "source": "Collibra content guidance · writing goals"
+    },
+    {
+      "id": "content.gate.evidence",
+      "question": "Does every material claim have an appropriate source or an explicit uncertainty label?",
+      "failure_action": "Add the source, narrow the claim, or label it proposed, open, partial, or unknown.",
+      "source": "Collibra content guidance · non-negotiables"
+    },
+    {
+      "id": "content.gate.action",
+      "question": "Are the primary action, state, consequence, and recovery path understandable in the actual context?",
+      "failure_action": "Replace generic labels and expose the relevant state or next safe action.",
+      "source": "ui/components.json"
+    },
+    {
+      "id": "content.gate.voice",
+      "question": "Is the writing direct, wise, and interesting without becoming corporate, glib, or over-performed?",
+      "failure_action": "Cut filler, restore the fact pattern, and keep one human reason for the reader to care.",
+      "source": "Collibra content guidance · voice and mojo"
+    },
+    {
+      "id": "content.gate.human-review",
+      "question": "If the content changes a durable record or material decision, is the human review boundary explicit?",
+      "failure_action": "Separate suggestion from confirmed change and require an explicit review action.",
+      "source": "ux/patterns.json"
+    }
+  ]
+}

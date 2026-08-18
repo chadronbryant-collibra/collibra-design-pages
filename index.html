@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en" data-source-root="data/">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="An explorable atlas of the Collibra design suite." />
+    <title>Collibra design suite — atlas</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" data-site-header>
+      <div class="site-header__inner">
+        <a class="wordmark" href="#overview" aria-label="Collibra design suite home">
+          <span class="wordmark__tick" aria-hidden="true"></span>
+          <span>Collibra<span class="wordmark__suffix"> design suite</span></span>
+        </a>
+        <nav class="site-nav" aria-label="Suite sections">
+          <a href="#system-map">Atlas</a>
+          <a href="#foundations">Foundations</a>
+          <a href="#catalog">Explorer</a>
+          <a href="#adoption">Adoption</a>
+          <a href="#provenance">Evidence</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero section" id="overview" aria-labelledby="hero-title">
+        <div class="hero__eyebrow eyebrow">COLLIBRA / DESIGN ATLAS</div>
+        <div class="hero__grid">
+          <div>
+            <h1 id="hero-title">Make the right thing easier to see.</h1>
+            <p class="hero__lede">
+              An explorable reference for the foundations, UI contracts, UX patterns,
+              visual capabilities, and content guidance that make Collibra experiences
+              recognizable, useful, and trustworthy.
+            </p>
+            <div class="hero__actions" aria-label="Primary actions">
+              <a class="button button--primary" href="#system-map">Enter the atlas</a>
+              <a class="button button--secondary" href="#catalog">Inspect a contract</a>
+            </div>
+          </div>
+          <aside class="hero-card" aria-label="Suite status">
+            <div class="hero-card__label eyebrow">THE CURRENT BUILD</div>
+            <p class="hero-card__statement">A source-grounded system with enough room to grow.</p>
+            <div class="hero-card__rule" aria-hidden="true"></div>
+            <p class="hero-card__note">The atlas reads the canonical catalogs at runtime. Every open decision stays visible instead of becoming a guess.</p>
+            <div class="hero-card__meta"><span class="live-dot" aria-hidden="true"></span><span>Live catalog view</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section--compact" aria-labelledby="summary-title">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">AT A GLANCE</div>
+            <h2 id="summary-title">A suite with visible edges.</h2>
+          </div>
+          <p class="section-heading__description">Defined guidance is usable today. Proposed, open, and deferred work stays labeled.</p>
+        </div>
+        <div class="summary-grid" id="summary-grid" aria-live="polite">
+          <div class="loading-card">Loading the suite counts…</div>
+        </div>
+        <div class="maturity-panel" aria-labelledby="maturity-title">
+          <div class="maturity-panel__intro">
+            <div class="eyebrow" id="maturity-title">MATURITY SIGNAL</div>
+            <p>The atlas distinguishes adoption-ready guidance from the questions still waiting for source or owner input.</p>
+          </div>
+          <div class="maturity-rail" id="maturity-rail" aria-live="polite">
+            <div class="loading-card">Loading maturity…</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--dark system-map-section" id="system-map" aria-labelledby="system-map-title">
+        <div class="section-heading section-heading--dark">
+          <div>
+            <div class="eyebrow eyebrow--lime">THE ATLAS</div>
+            <h2 id="system-map-title">One system. Five lenses. No mystery layer.</h2>
+          </div>
+          <p class="section-heading__description">Start with the layer you need, then follow it into the contract, evidence, and adoption path.</p>
+        </div>
+        <div class="system-map" id="system-map-visual" aria-label="Interactive map of the Collibra design suite">
+          <div class="system-map__canvas" id="system-map-canvas">
+            <svg class="system-map__connectors" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+              <path d="M50 50 L18 22 M50 50 L82 22 M50 50 L13 75 M50 50 L87 75 M50 50 L50 10" />
+            </svg>
+            <div class="map-core" aria-hidden="true">
+              <span class="map-core__tick"></span>
+              <span class="map-core__label">COLLIBRA<br />DESIGN SUITE</span>
+            </div>
+          </div>
+          <div class="system-map__list" id="system-map-list" aria-label="Suite layers">
+            <div class="loading-card loading-card--dark">Loading suite layers…</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--dark" id="foundations" aria-labelledby="foundations-title">
+        <div class="section-heading section-heading--dark">
+          <div>
+            <div class="eyebrow eyebrow--lime">FOUNDATION LAYER</div>
+            <h2 id="foundations-title">The details that should not drift.</h2>
+          </div>
+          <p class="section-heading__description">Color, type, contrast, and shape come from the token source. Open values remain open.</p>
+        </div>
+        <div class="foundation-layout">
+          <div>
+            <h3 class="subheading">Palette roles</h3>
+            <div class="swatch-grid" id="swatch-grid" aria-live="polite">
+              <div class="loading-card loading-card--dark">Loading palette…</div>
+            </div>
+          </div>
+          <div class="type-panel">
+            <div class="type-panel__header">
+              <div>
+                <h3 class="subheading">Type specimens</h3>
+                <p>Measured scales stay tied to their medium.</p>
+              </div>
+              <span class="pill pill--dark" id="radius-status">Radius: loading</span>
+            </div>
+            <div class="type-list" id="type-list" aria-live="polite">
+              <div class="loading-card loading-card--dark">Loading type…</div>
+            </div>
+          </div>
+        </div>
+        <div class="foundation-signals" id="foundation-signals" aria-live="polite">
+          <div class="loading-card loading-card--dark">Loading foundation signals…</div>
+        </div>
+      </section>
+
+      <section class="section" id="catalog" aria-labelledby="catalog-title">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">CONTRACT EXPLORER</div>
+            <h2 id="catalog-title">Move from the map to the meaning.</h2>
+          </div>
+          <p class="section-heading__description">Search by task, capability, or stable id. Select a contract to inspect its purpose, behavior, evidence, and open questions.</p>
+        </div>
+        <div class="catalog-toolbar" aria-label="Catalog filters">
+          <label class="field-label" for="catalog-search">Search the suite
+            <input id="catalog-search" type="search" placeholder="Try “review”, “voice”, or “visual.accessibility”" autocomplete="off" />
+          </label>
+          <label class="field-label" for="catalog-area">Area
+            <select id="catalog-area">
+              <option value="all">All areas</option>
+              <option value="foundations">Foundations</option>
+              <option value="ui">UI</option>
+              <option value="ux">UX</option>
+              <option value="visual">Visual</option>
+              <option value="content">Content</option>
+            </select>
+          </label>
+          <label class="field-label" for="catalog-maturity">Maturity
+            <select id="catalog-maturity">
+              <option value="all">All maturity</option>
+              <option value="defined">Defined</option>
+              <option value="proposed">Proposed</option>
+              <option value="open">Open</option>
+              <option value="deferred">Deferred</option>
+            </select>
+          </label>
+        </div>
+        <p class="catalog-count" id="catalog-count" aria-live="polite">Loading catalog…</p>
+        <div class="explorer-layout">
+          <div class="catalog-grid" id="catalog-grid" aria-live="polite">
+            <div class="loading-card">Loading capabilities…</div>
+          </div>
+          <aside class="detail-panel" id="detail-panel" aria-labelledby="detail-title" aria-live="polite">
+            <div class="detail-panel__empty">
+              <div class="detail-panel__mark" aria-hidden="true">+</div>
+              <h3 id="detail-title">Choose a contract.</h3>
+              <p>Select any card to open its purpose, behavior, maturity, and source trail here.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section--pale" id="adoption" aria-labelledby="adoption-title">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">ADOPTION PATH</div>
+            <h2 id="adoption-title">From intent to shipped surface.</h2>
+          </div>
+          <p class="section-heading__description">The suite is not a gallery. It is a practical path for turning a user task into a tested, source-grounded experience.</p>
+        </div>
+        <div class="journey-grid" id="journey-grid" aria-live="polite">
+          <div class="loading-card">Loading adoption path…</div>
+        </div>
+      </section>
+
+      <section class="section section--pale" id="principles" aria-labelledby="principles-title">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">DESIGN POINT OF VIEW</div>
+            <h2 id="principles-title">Make the system feel like a good collaborator.</h2>
+          </div>
+          <p class="section-heading__description">Direct when the answer is clear. Wise when context matters. Clever enough to stay human.</p>
+        </div>
+        <div class="principles-layout" id="principles-grid" aria-live="polite">
+          <div class="loading-card">Loading principles…</div>
+        </div>
+      </section>
+
+      <section class="section section--dark" id="provenance" aria-labelledby="provenance-title">
+        <div class="section-heading section-heading--dark">
+          <div>
+            <div class="eyebrow eyebrow--lime">PROVENANCE</div>
+            <h2 id="provenance-title">Trust is a feature of the interface.</h2>
+          </div>
+          <p class="section-heading__description">Every area carries its source, its boundary, and its unfinished questions.</p>
+        </div>
+        <div class="provenance-grid" id="provenance-grid" aria-live="polite">
+          <div class="loading-card loading-card--dark">Loading provenance…</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <p><span class="wordmark__tick" aria-hidden="true"></span> Collibra design suite</p>
+        <p class="site-footer__meta">Pages-ready reference surface · canonical catalogs remain the source of truth</p>
+      </div>
+    </footer>
+
+    <noscript>
+      <div class="noscript-message">This atlas needs JavaScript to load its canonical catalogs. Read the JSON and generated Markdown files in the repository directly.</div>
+    </noscript>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
