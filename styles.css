@@ -1489,16 +1489,25 @@ input::placeholder {
   gap: 0.9rem;
 }
 
-.voice-columns {
+.voice-lanes {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1.5rem, 4vw, 3rem);
+  gap: clamp(3rem, 7vw, 5.5rem);
+}
+
+.voice-lane {
+  min-width: 0;
+}
+
+.voice-lane + .voice-lane {
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  border-top: 1px solid var(--hairline);
 }
 
 .tone-grid,
 .medium-grid {
   display: grid;
-  gap: 0.7rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
 }
 
 .voice-card,
@@ -1558,7 +1567,9 @@ input::placeholder {
 
 .tone-card,
 .medium-card {
-  display: grid;
+  display: flex;
+  min-height: 15rem;
+  flex-direction: column;
   gap: 0.6rem;
 }
 
@@ -1665,14 +1676,15 @@ input::placeholder {
 }
 
 @media (max-width: 60rem) {
-  .voice-grid {
+  .voice-grid,
+  .tone-grid,
+  .medium-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 48rem) {
-  .reader-lens,
-  .voice-columns {
+  .reader-lens {
     grid-template-columns: 1fr;
   }
 
@@ -1692,7 +1704,9 @@ input::placeholder {
   }
 
   .reader-lens__questions,
-  .voice-grid {
+  .voice-grid,
+  .tone-grid,
+  .medium-grid {
     grid-template-columns: 1fr;
   }
 }
