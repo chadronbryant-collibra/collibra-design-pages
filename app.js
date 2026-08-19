@@ -100,7 +100,7 @@ function renderSummary() {
     [state.ui.components.length, "UI contracts", "ui"],
     [state.ux.patterns.length, "UX patterns", "ux"],
     [state.visual.capabilities.length, "visual capabilities", "visual"],
-    [state.content.style_rules.length + state.content.ui_content_rules.length, "content rules", "content"],
+    [state.content.audience_personas.length + state.content.tone_modes.length + state.content.mediums.length, "voice & audience guides", "content"],
   ];
   metrics.forEach(([count, label, kind]) => {
     const card = node("div", `summary-card summary-card--${kind}`);
@@ -111,10 +111,8 @@ function renderSummary() {
 
   const maturity = ["defined", "proposed", "open", "deferred"].map((value) => [
     value,
-    state.visual.foundations.concat(state.visual.capabilities).filter((record) => record.maturity === value).length
-      + state.ui.components.filter((record) => record.maturity === value).length
-      + state.ux.patterns.filter((record) => record.maturity === value).length
-      + (value === "defined" ? state.content.voice_pillars.length + state.content.writing_goals.length + state.content.style_rules.length + state.content.ui_content_rules.length + state.content.content_gates.length : 0),
+    state.records.filter((record) => record.maturity === value).length
+      + tokenEntries(state.tokens).filter((record) => record.maturity === value).length,
   ]);
   const total = maturity.reduce((sum, [, count]) => sum + count, 0);
   const rail = $("#maturity-rail");
@@ -139,7 +137,7 @@ function layerDefinitions() {
     { id: "ui", label: "UI", kicker: "Make it operable", count: state.ui.components.length, description: "Components with states, semantics, accessibility, content, and safety.", className: "ui" },
     { id: "ux", label: "UX", kicker: "Make it make sense", count: state.ux.patterns.length, description: "Flows for orientation, review, recovery, AI, and durable decisions.", className: "ux" },
     { id: "visual", label: "Visual", kicker: "Make it recognizable", count: state.visual.capabilities.length, description: "Assets, composition, diagrams, data, motion, and cross-medium translation.", className: "visual" },
-    { id: "content", label: "Content", kicker: "Make it understood", count: state.content.voice_pillars.length + state.content.style_rules.length + state.content.ui_content_rules.length + state.content.content_gates.length, description: "Voice, UI language, terminology, truth, and human-review gates.", className: "content" },
+    { id: "content", label: "Content", kicker: "Make it understood", count: contentRecords().length, description: "Voice, audience, medium, plain language, and human-review guidance.", className: "content" },
   ];
 }
 
@@ -271,6 +269,23 @@ function contentRecords() {
     area: "content", areaLabel: "Content · gate", id: record.id, name: "Content gate", maturity: "defined",
     purpose: record.question, contract: record.failure_action, tags: ["gate"], source: record.source, raw: record,
   }));
+  state.content.tone_modes.forEach((record) => records.push({
+    area: "content", areaLabel: "Content · tone", id: record.id, name: record.name, maturity: record.maturity,
+    purpose: record.use_when, contract: `Sounds like: ${record.sound}`, tags: [...record.channels, "tone"], source: record.source, raw: record,
+  }));
+  state.content.audience_personas.forEach((record) => records.push({
+    area: "content", areaLabel: "Content · persona", id: record.id, name: record.name, maturity: record.maturity,
+    purpose: record.job_to_be_done, contract: `Voice shift: ${record.voice_shift}`, tags: [...record.channels, "audience"], source: record.source, raw: record,
+  }));
+  state.content.mediums.forEach((record) => records.push({
+    area: "content", areaLabel: "Content · medium", id: record.id, name: record.name, maturity: record.maturity,
+    purpose: record.reader_need, contract: `Structure: ${record.structure.join(" → ")}`, tags: [...record.tone_modes, "medium"], source: record.source, raw: record,
+  }));
+  const lens = state.content.plain_language_lens;
+  records.push({
+    area: "content", areaLabel: "Content · plain language", id: lens.id, name: lens.name, maturity: "defined",
+    purpose: lens.contract, contract: `Reader-first example: ${lens.example.reader_first}`, tags: ["plain language", "translation"], source: lens.source, raw: lens,
+  });
   return records;
 }
 
@@ -312,20 +327,32 @@ function renderDetail() {
   const header = node("div", "detail-panel__header");
   header.append(node("span", "catalog-card__area", record.areaLabel), statusPill(record.maturity));
   panel.append(header);
-  panel.append(node("span", "detail-panel__id", record.id));
   panel.append(node("h3", null, record.name));
   panel.append(node("p", "detail-panel__purpose", record.purpose));
   const contract = node("div", "detail-panel__contract");
-  contract.append(node("h4", null, "Contract"), node("p", null, record.contract));
+  contract.append(node("h4", null, "Build or use it this way"), node("p", null, record.contract));
   panel.append(contract);
   addTags(panel, record.tags);
   const raw = record.raw || {};
+  const technical = node("details", "detail-panel__technical");
+  technical.append(node("summary", null, "Show design contract id"));
+  technical.append(node("code", "detail-panel__id", record.id));
+  panel.append(technical);
+  addList(panel, "Reader questions", raw.questions);
+  addList(panel, "Translation steps", raw.translation_steps);
+  addList(panel, "Needs", raw.needs);
+  addList(panel, "Use this when", raw.use_when ? [raw.use_when] : null);
+  addList(panel, "Sounds like", raw.sound ? [raw.sound] : null);
+  addList(panel, "Structure", raw.structure);
+  addList(panel, "Channels", raw.channels);
+  addList(panel, "Good moves", raw.do);
   addList(panel, "States", raw.states);
   addList(panel, "Flow", raw.flow);
   addList(panel, "Accessibility", raw.accessibility);
   addList(panel, "Safety", raw.safety);
+  addList(panel, "Avoid", raw.avoid);
   addList(panel, "Open questions", raw.open_questions);
-  panel.append(node("p", "detail-panel__source", `Source: ${record.source}`));
+  panel.append(node("p", "detail-panel__source", `Evidence trail: ${record.source}`));
 }
 
 function renderCatalog() {
@@ -347,11 +374,12 @@ function renderCatalog() {
       card.dataset.recordId = record.id;
       const top = node("div", "catalog-card__topline");
       top.append(node("span", "catalog-card__area", record.areaLabel), statusPill(record.maturity));
-      card.append(top, node("span", "catalog-card__id", record.id), node("h3", null, record.name), node("p", null, record.purpose));
+      card.append(top, node("h3", null, record.name));
+      card.append(node("span", "catalog-card__plain-label", "In plain English"), node("p", null, record.purpose));
       if (record.contract) card.append(node("p", "catalog-card__contract", record.contract));
-      card.append(node("span", "source-line", `Source: ${record.source}`));
+      card.append(node("span", "source-line", `Evidence: ${record.source}`));
       addTags(card, record.tags);
-      const inspect = node("button", "card-link", record.id === state.selectedId ? "Inspected" : "Inspect contract");
+      const inspect = node("button", "card-link", record.id === state.selectedId ? "Open in detail" : "Open guidance");
       inspect.type = "button";
       inspect.setAttribute("aria-pressed", String(record.id === state.selectedId));
       inspect.addEventListener("click", () => {
@@ -363,7 +391,59 @@ function renderCatalog() {
       grid.append(card);
     });
   }
-  setText("#catalog-count", `${filtered.length} of ${state.records.length} contracts shown`);
+  setText("#catalog-count", `${filtered.length} of ${state.records.length} guides shown`);
+}
+
+function renderVoices() {
+  const lens = state.content.reader_lens;
+  const lensPanel = $("#reader-lens");
+  lensPanel.replaceChildren();
+  const lensCopy = node("div", "reader-lens__copy");
+  lensCopy.append(node("div", "eyebrow", "The reader lens"));
+  lensCopy.append(node("h3", null, lens.name));
+  lensCopy.append(node("p", null, lens.contract));
+  lensPanel.append(lensCopy);
+  const lensQuestions = node("div", "reader-lens__questions");
+  addList(lensQuestions, "Ask before you write", lens.questions, "voice-card__list");
+  addList(lensQuestions, "Translate in this order", lens.translation_steps, "voice-card__list");
+  lensPanel.append(lensQuestions);
+
+  const personaGrid = $("#persona-grid");
+  personaGrid.replaceChildren();
+  state.content.audience_personas.forEach((persona) => {
+    const card = node("article", "voice-card");
+    const header = node("div", "voice-card__header");
+    header.append(node("span", "eyebrow", "Audience"), statusPill(persona.maturity));
+    card.append(header, node("h4", null, persona.name), node("p", "voice-card__audience", persona.audience));
+    card.append(node("p", "voice-card__job", persona.job_to_be_done));
+    card.append(node("p", "voice-card__tone", persona.voice_shift));
+    addList(card, "They need", persona.needs, "voice-card__list");
+    addTags(card, persona.channels);
+    personaGrid.append(card);
+  });
+
+  const toneGrid = $("#tone-grid");
+  toneGrid.replaceChildren();
+  state.content.tone_modes.forEach((tone) => {
+    const card = node("article", "tone-card");
+    const header = node("div", "voice-card__header");
+    header.append(node("h4", null, tone.name), statusPill(tone.maturity));
+    card.append(header, node("p", null, tone.use_when), node("p", "tone-card__sound", tone.sound));
+    addTags(card, tone.channels);
+    toneGrid.append(card);
+  });
+
+  const mediumGrid = $("#medium-grid");
+  mediumGrid.replaceChildren();
+  state.content.mediums.forEach((medium) => {
+    const card = node("article", "medium-card");
+    const header = node("div", "voice-card__header");
+    header.append(node("h4", null, medium.name), statusPill(medium.maturity));
+    card.append(header, node("p", null, medium.reader_need));
+    addList(card, "Use this shape", medium.structure, "voice-card__list");
+    addTags(card, medium.tone_modes);
+    mediumGrid.append(card);
+  });
 }
 
 function renderJourney() {
@@ -420,7 +500,7 @@ function renderProvenance() {
 }
 
 function renderError(error) {
-  ["#summary-grid", "#maturity-rail", "#system-map-list", "#swatch-grid", "#type-list", "#foundation-signals", "#catalog-grid", "#journey-grid", "#principles-grid", "#provenance-grid"].forEach((selector) => {
+  ["#summary-grid", "#maturity-rail", "#system-map-list", "#swatch-grid", "#type-list", "#foundation-signals", "#reader-lens", "#persona-grid", "#tone-grid", "#medium-grid", "#catalog-grid", "#journey-grid", "#principles-grid", "#provenance-grid"].forEach((selector) => {
     const target = $(selector);
     if (target) target.replaceChildren(node("div", selector.includes("provenance") || selector.includes("swatch") || selector.includes("type") || selector.includes("foundation") || selector.includes("system-map") ? "error-card error-card--dark" : "error-card", `The reference data could not load: ${error.message}`));
   });
@@ -438,6 +518,7 @@ async function load() {
   state.records = makeRecords();
   renderSummary();
   renderSystemMap();
+  renderVoices();
   renderFoundations();
   renderCatalog();
   renderDetail();

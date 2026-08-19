@@ -17,6 +17,7 @@
         </a>
         <nav class="site-nav" aria-label="Suite sections">
           <a href="#system-map">Atlas</a>
+          <a href="#voices">Voice</a>
           <a href="#foundations">Foundations</a>
           <a href="#catalog">Explorer</a>
           <a href="#adoption">Adoption</a>
@@ -32,20 +33,19 @@
           <div>
             <h1 id="hero-title">Make the right thing easier to see.</h1>
             <p class="hero__lede">
-              An explorable reference for the foundations, UI contracts, UX patterns,
-              visual capabilities, and content guidance that make Collibra experiences
-              recognizable, useful, and trustworthy.
+              A practical reference for making Collibra experiences clear, useful, and
+              unmistakably Collibra, from the first sentence to the final state.
             </p>
             <div class="hero__actions" aria-label="Primary actions">
-              <a class="button button--primary" href="#system-map">Enter the atlas</a>
-              <a class="button button--secondary" href="#catalog">Inspect a contract</a>
+              <a class="button button--primary" href="#system-map">See the system</a>
+              <a class="button button--secondary" href="#voices">Find the right voice</a>
             </div>
           </div>
           <aside class="hero-card" aria-label="Suite status">
             <div class="hero-card__label eyebrow">THE CURRENT BUILD</div>
-            <p class="hero-card__statement">A source-grounded system with enough room to grow.</p>
+            <p class="hero-card__statement">Start with the reader. Keep the system honest.</p>
             <div class="hero-card__rule" aria-hidden="true"></div>
-            <p class="hero-card__note">The atlas reads the canonical catalogs at runtime. Every open decision stays visible instead of becoming a guess.</p>
+            <p class="hero-card__note">Use the plain-language view first. Open the design contract when you need to build, review, or make a decision.</p>
             <div class="hero-card__meta"><span class="live-dot" aria-hidden="true"></span><span>Live catalog view</span></div>
           </aside>
         </div>
@@ -55,17 +55,17 @@
         <div class="section-heading">
           <div>
             <div class="eyebrow">AT A GLANCE</div>
-            <h2 id="summary-title">A suite with visible edges.</h2>
+          <h2 id="summary-title">A system people can use.</h2>
           </div>
-          <p class="section-heading__description">Defined guidance is usable today. Proposed, open, and deferred work stays labeled.</p>
+          <p class="section-heading__description">Start with what helps today. Keep proposed, open, and deferred work visible so nobody has to guess.</p>
         </div>
         <div class="summary-grid" id="summary-grid" aria-live="polite">
           <div class="loading-card">Loading the suite counts…</div>
         </div>
         <div class="maturity-panel" aria-labelledby="maturity-title">
           <div class="maturity-panel__intro">
-            <div class="eyebrow" id="maturity-title">MATURITY SIGNAL</div>
-            <p>The atlas distinguishes adoption-ready guidance from the questions still waiting for source or owner input.</p>
+            <div class="eyebrow" id="maturity-title">READINESS AT A GLANCE</div>
+            <p>The system separates guidance we can use now from decisions that still need a source, owner, or review.</p>
           </div>
           <div class="maturity-rail" id="maturity-rail" aria-live="polite">
             <div class="loading-card">Loading maturity…</div>
@@ -77,9 +77,9 @@
         <div class="section-heading section-heading--dark">
           <div>
             <div class="eyebrow eyebrow--lime">THE ATLAS</div>
-            <h2 id="system-map-title">One system. Five lenses. No mystery layer.</h2>
+            <h2 id="system-map-title">Five ways to make a good experience.</h2>
           </div>
-          <p class="section-heading__description">Start with the layer you need, then follow it into the contract, evidence, and adoption path.</p>
+          <p class="section-heading__description">Begin with the question in front of you, then follow it to the guidance, evidence, and next step.</p>
         </div>
         <div class="system-map" id="system-map-visual" aria-label="Interactive map of the Collibra design suite">
           <div class="system-map__canvas" id="system-map-canvas">
@@ -97,11 +97,58 @@
         </div>
       </section>
 
+      <section class="section section--pale voice-section" id="voices" aria-labelledby="voices-title">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">VOICE &amp; AUDIENCE</div>
+            <h2 id="voices-title">Same voice. Different reader.</h2>
+          </div>
+          <p class="section-heading__description">The voice stays recognizable. The emphasis changes with the person, the moment, and the medium.</p>
+        </div>
+        <div class="reader-lens" id="reader-lens" aria-live="polite">
+          <div class="loading-card">Loading the reader lens…</div>
+        </div>
+        <div class="voice-section__heading">
+          <div>
+            <div class="eyebrow">WORKING PERSONAS</div>
+            <h3>Choose the reader before the tone.</h3>
+          </div>
+          <p>These are working audience models, not fictional personalities. Use them to make the next sentence more helpful.</p>
+        </div>
+        <div class="voice-grid" id="persona-grid" aria-live="polite">
+          <div class="loading-card">Loading audience personas…</div>
+        </div>
+        <div class="voice-columns">
+          <div>
+            <div class="voice-section__heading voice-section__heading--compact">
+              <div>
+                <div class="eyebrow">TONE MODES</div>
+                <h3>Let the moment set the temperature.</h3>
+              </div>
+            </div>
+            <div class="tone-grid" id="tone-grid" aria-live="polite">
+              <div class="loading-card">Loading tone modes…</div>
+            </div>
+          </div>
+          <div>
+            <div class="voice-section__heading voice-section__heading--compact">
+              <div>
+                <div class="eyebrow">MEDIUM GUIDE</div>
+                <h3>Make the format do useful work.</h3>
+              </div>
+            </div>
+            <div class="medium-grid" id="medium-grid" aria-live="polite">
+              <div class="loading-card">Loading medium guidance…</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="section section--dark" id="foundations" aria-labelledby="foundations-title">
         <div class="section-heading section-heading--dark">
           <div>
             <div class="eyebrow eyebrow--lime">FOUNDATION LAYER</div>
-            <h2 id="foundations-title">The details that should not drift.</h2>
+            <h2 id="foundations-title">The details that keep the experience recognizable.</h2>
           </div>
           <p class="section-heading__description">Color, type, contrast, and shape come from the token source. Open values remain open.</p>
         </div>
@@ -134,9 +181,9 @@
         <div class="section-heading">
           <div>
             <div class="eyebrow">CONTRACT EXPLORER</div>
-            <h2 id="catalog-title">Move from the map to the meaning.</h2>
+            <h2 id="catalog-title">Find the useful rule.</h2>
           </div>
-          <p class="section-heading__description">Search by task, capability, or stable id. Select a contract to inspect its purpose, behavior, evidence, and open questions.</p>
+          <p class="section-heading__description">Search by task, capability, or stable id. Plain-English meaning comes first; the design contract is there when you need to build or review.</p>
         </div>
         <div class="catalog-toolbar" aria-label="Catalog filters">
           <label class="field-label" for="catalog-search">Search the suite
