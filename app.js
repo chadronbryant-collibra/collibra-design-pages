@@ -14,10 +14,18 @@ const state = {
   content: null,
   records: [],
   selectedId: null,
+  catalogPage: 1,
 };
 
+const CATALOG_PAGE_SIZE = 12;
 const $ = (selector) => document.querySelector(selector);
 const DATA_ROOT = document.documentElement.dataset.sourceRoot || "../";
+
+const TAG_PREFIX_LABELS = [
+  ["brand.color.primary.", "Primary "],
+  ["brand.color.accent.", "Supporting "],
+  ["brand.color.neutral.", "Neutral "],
+];
 
 function node(tag, className, text) {
   const element = document.createElement(tag);
@@ -74,10 +82,30 @@ function statusPill(maturity) {
   return node("span", `status-pill status-pill--${maturity}`, maturity);
 }
 
+function friendlyTag(value) {
+  if (typeof value !== "string") return value;
+  const prefix = TAG_PREFIX_LABELS.find(([key]) => value.startsWith(key));
+  const label = prefix ? `${prefix[1]}${value.slice(prefix[0].length)}` : value.replace(/^brand\./, "");
+  return label
+    .replaceAll("_", " ")
+    .split(".")
+    .map((part) => part.split(" ").map((word) => {
+      const upper = word.toUpperCase();
+      if (["ai", "ui", "ux"].includes(word.toLowerCase())) return upper;
+      return word ? `${word[0].toUpperCase()}${word.slice(1)}` : word;
+    }).join(" "))
+    .join(" · ");
+}
+
 function addTags(parent, tags) {
   if (!tags?.length) return;
   const list = node("div", "tag-list");
-  tags.slice(0, 6).forEach((tag) => list.append(node("span", "tag", tag)));
+  list.setAttribute("role", "list");
+  tags.slice(0, 6).forEach((tag) => {
+    const item = node("span", "tag", friendlyTag(tag));
+    item.setAttribute("role", "listitem");
+    list.append(item);
+  });
   parent.append(list);
 }
 
@@ -147,6 +175,7 @@ function chooseArea(area) {
   if (areaControl) areaControl.value = area;
   if (searchControl) searchControl.value = "";
   state.selectedId = null;
+  state.catalogPage = 1;
   renderCatalog();
   renderDetail();
   $("#catalog")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -319,7 +348,9 @@ function renderDetail() {
   if (!record) {
     const empty = node("div", "detail-panel__empty");
     empty.append(node("div", "detail-panel__mark", "+"));
-    empty.append(node("h3", null, "Choose a contract."));
+    const emptyTitle = node("h3", null, "Choose a contract.");
+    emptyTitle.id = "detail-title";
+    empty.append(emptyTitle);
     empty.append(node("p", null, "Select any card to open its purpose, behavior, maturity, and source trail here."));
     panel.append(empty);
     return;
@@ -327,15 +358,21 @@ function renderDetail() {
   const header = node("div", "detail-panel__header");
   header.append(node("span", "catalog-card__area", record.areaLabel), statusPill(record.maturity));
   panel.append(header);
-  panel.append(node("h3", null, record.name));
+  const title = node("h3", null, record.name);
+  title.id = "detail-title";
+  panel.append(title);
   panel.append(node("p", "detail-panel__purpose", record.purpose));
   const contract = node("div", "detail-panel__contract");
   contract.append(node("h4", null, "Build or use it this way"), node("p", null, record.contract));
   panel.append(contract);
-  addTags(panel, record.tags);
+  const related = node("div", "detail-panel__related");
+  related.append(node("h4", null, "Related guidance"));
+  addTags(related, record.tags);
+  panel.append(related);
   const raw = record.raw || {};
   const technical = node("details", "detail-panel__technical");
-  technical.append(node("summary", null, "Show design contract id"));
+  technical.append(node("summary", null, "Show implementation reference"));
+  technical.append(node("p", "detail-panel__technical-note", "For designers and implementers: use this stable reference when you need to trace the guidance back to the source catalog."));
   technical.append(node("code", "detail-panel__id", record.id));
   panel.append(technical);
   addList(panel, "Reader questions", raw.questions);
@@ -355,21 +392,78 @@ function renderDetail() {
   panel.append(node("p", "detail-panel__source", `Evidence trail: ${record.source}`));
 }
 
-function renderCatalog() {
-  state.records = state.records.length ? state.records : makeRecords();
+function filteredCatalogRecords() {
   const query = $("#catalog-search").value.trim().toLowerCase();
   const area = $("#catalog-area").value;
   const maturity = $("#catalog-maturity").value;
-  const filtered = state.records.filter((record) => {
+  return state.records.filter((record) => {
     const searchable = [record.id, record.name, record.purpose, record.contract, record.areaLabel, ...(record.tags || [])].join(" ").toLowerCase();
     return (!query || searchable.includes(query)) && (area === "all" || record.area === area) && (maturity === "all" || record.maturity === maturity);
   });
+}
+
+function renderPagination(total) {
+  const row = $("#catalog-pagination-row");
+  const nav = $("#catalog-pagination");
+  if (!row || !nav) return;
+  nav.replaceChildren();
+  if (!total) {
+    row.hidden = true;
+    return;
+  }
+  row.hidden = false;
+  const pageCount = Math.ceil(total / CATALOG_PAGE_SIZE);
+  state.catalogPage = Math.min(Math.max(state.catalogPage, 1), pageCount);
+  setText("#catalog-page-status", `Page ${state.catalogPage} of ${pageCount}`);
+
+  const addPageButton = (label, page, options = {}) => {
+    const button = node("button", `catalog-pagination__button${options.control ? " catalog-pagination__button--control" : ""}`, label);
+    button.type = "button";
+    if (!options.control) button.dataset.page = String(page);
+    button.setAttribute("aria-label", options.control ? label : `Go to guide page ${page}`);
+    if (page === state.catalogPage && !options.control) button.setAttribute("aria-current", "page");
+    if (options.disabled) button.disabled = true;
+    button.addEventListener("click", () => {
+      state.catalogPage = page;
+      renderCatalog();
+      nav.querySelector(`button[data-page="${page}"]`)?.focus();
+    });
+    nav.append(button);
+  };
+
+  addPageButton("Previous", Math.max(1, state.catalogPage - 1), { control: true, disabled: state.catalogPage === 1 });
+  const pages = node("span", "catalog-pagination__pages");
+  pages.setAttribute("aria-label", "Guide pages");
+  for (let page = 1; page <= pageCount; page += 1) {
+    const button = node("button", "catalog-pagination__button", String(page));
+    button.type = "button";
+    button.dataset.page = String(page);
+    button.setAttribute("aria-label", `Go to guide page ${page}`);
+    if (page === state.catalogPage) button.setAttribute("aria-current", "page");
+    button.addEventListener("click", () => {
+      state.catalogPage = page;
+      renderCatalog();
+      nav.querySelector(`button[data-page="${page}"]`)?.focus();
+    });
+    pages.append(button);
+  }
+  nav.append(pages);
+  addPageButton("Next", Math.min(pageCount, state.catalogPage + 1), { control: true, disabled: state.catalogPage === pageCount });
+}
+
+function renderCatalog() {
+  state.records = state.records.length ? state.records : makeRecords();
+  const filtered = filteredCatalogRecords();
+  const pageCount = Math.max(1, Math.ceil(filtered.length / CATALOG_PAGE_SIZE));
+  state.catalogPage = Math.min(Math.max(state.catalogPage, 1), pageCount);
+  const pageStart = (state.catalogPage - 1) * CATALOG_PAGE_SIZE;
+  const visible = filtered.slice(pageStart, pageStart + CATALOG_PAGE_SIZE);
   const grid = $("#catalog-grid");
   grid.replaceChildren();
   if (!filtered.length) {
-    grid.append(node("div", "empty-card", "No capability matches those filters. Try a broader search or show all maturity."));
+    grid.append(node("div", "empty-card", "No guides match those filters. Try a broader search or show all maturity."));
   } else {
-    filtered.forEach((record) => {
+    visible.forEach((record) => {
       const card = node("article", `catalog-card${record.id === state.selectedId ? " catalog-card--selected" : ""}`);
       card.dataset.recordId = record.id;
       const top = node("div", "catalog-card__topline");
@@ -381,6 +475,8 @@ function renderCatalog() {
       addTags(card, record.tags);
       const inspect = node("button", "card-link", record.id === state.selectedId ? "Open in detail" : "Open guidance");
       inspect.type = "button";
+      inspect.setAttribute("aria-label", `${record.id === state.selectedId ? "Open this guidance in the detail panel" : "Open guidance"}: ${record.name}`);
+      inspect.setAttribute("aria-controls", "detail-panel");
       inspect.setAttribute("aria-pressed", String(record.id === state.selectedId));
       inspect.addEventListener("click", () => {
         state.selectedId = record.id;
@@ -391,7 +487,10 @@ function renderCatalog() {
       grid.append(card);
     });
   }
-  setText("#catalog-count", `${filtered.length} of ${state.records.length} guides shown`);
+  const first = filtered.length ? pageStart + 1 : 0;
+  const last = filtered.length ? Math.min(pageStart + CATALOG_PAGE_SIZE, filtered.length) : 0;
+  setText("#catalog-count", filtered.length ? `Showing ${first}–${last} of ${filtered.length} guides` : "Showing 0 guides");
+  renderPagination(filtered.length);
 }
 
 function renderVoices() {
@@ -505,6 +604,7 @@ function renderError(error) {
     if (target) target.replaceChildren(node("div", selector.includes("provenance") || selector.includes("swatch") || selector.includes("type") || selector.includes("foundation") || selector.includes("system-map") ? "error-card error-card--dark" : "error-card", `The reference data could not load: ${error.message}`));
   });
   setText("#catalog-count", "Reference data unavailable");
+  $("#catalog-pagination-row")?.setAttribute("hidden", "");
 }
 
 async function load() {
@@ -525,9 +625,15 @@ async function load() {
   renderJourney();
   renderPrinciples();
   renderProvenance();
+  const resetCatalogView = () => {
+    state.catalogPage = 1;
+    state.selectedId = null;
+    renderCatalog();
+    renderDetail();
+  };
   ["#catalog-search", "#catalog-area", "#catalog-maturity"].forEach((selector) => {
-    $(selector).addEventListener("input", renderCatalog);
-    $(selector).addEventListener("change", renderCatalog);
+    $(selector).addEventListener("input", resetCatalogView);
+    $(selector).addEventListener("change", resetCatalogView);
   });
 }
 

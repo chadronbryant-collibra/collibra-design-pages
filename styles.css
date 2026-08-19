@@ -44,7 +44,8 @@ a {
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
-select:focus-visible {
+select:focus-visible,
+summary:focus-visible {
   outline: 0.18rem solid var(--focus);
   outline-offset: 0.16rem;
 }
@@ -506,9 +507,13 @@ input::placeholder {
   margin: 1rem 0;
   color: var(--support);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.03em;
+}
+
+.catalog-column {
+  min-width: 0;
 }
 
 .catalog-grid {
@@ -595,14 +600,79 @@ input::placeholder {
   gap: 0.35rem;
   margin-top: auto;
   padding-top: 0.4rem;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  line-height: 1.25;
 }
 
 .tag {
   min-width: 0;
-  padding: 0.22rem 0.42rem;
+  padding: 0.32rem 0.52rem;
   border: 1px solid var(--hairline);
   border-radius: 999px;
   overflow-wrap: anywhere;
+}
+
+.catalog-pagination-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--hairline);
+}
+
+.catalog-page-status {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.86rem;
+}
+
+.catalog-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 0.35rem;
+  max-width: 100%;
+}
+
+.catalog-pagination__pages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.catalog-pagination__button {
+  display: inline-flex;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink-strong);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.catalog-pagination__button:hover:not(:disabled) {
+  border-color: var(--support);
+  color: var(--support);
+}
+
+.catalog-pagination__button[aria-current="page"] {
+  border-color: var(--surface-strong);
+  background: var(--surface-strong);
+  color: var(--on-strong);
+}
+
+.catalog-pagination__button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
 }
 
 .empty-card,
@@ -1066,6 +1136,18 @@ input::placeholder {
   align-items: start;
   justify-content: space-between;
   gap: 0.7rem;
+}
+
+.detail-panel__related {
+  margin-top: 1rem;
+}
+
+.detail-panel__related h4 {
+  margin-bottom: 0.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .detail-panel__id {
@@ -1535,17 +1617,51 @@ input::placeholder {
 }
 
 .detail-panel__technical summary {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 52%, transparent);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--on-strong) 5%, transparent);
   color: var(--accent);
   cursor: pointer;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-family: var(--font-display);
+  font-size: 0.86rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.detail-panel__technical summary:hover {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.detail-panel__technical-note {
+  margin: 0.75rem 0 0;
+  color: color-mix(in srgb, var(--on-strong) 78%, transparent);
+  font-size: 0.86rem;
+}
+
+.detail-panel .tag-list {
+  margin-top: 0.55rem;
+  padding-top: 0;
+}
+
+.detail-panel .tag {
+  border-color: color-mix(in srgb, var(--on-strong) 35%, transparent);
+  background: color-mix(in srgb, var(--on-strong) 8%, transparent);
+  color: var(--on-strong);
 }
 
 .detail-panel__technical .detail-panel__id {
   margin-top: 0.65rem;
+  padding: 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--on-strong) 22%, transparent);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--on-strong) 5%, transparent);
+  color: var(--on-strong);
+  font-size: 0.8rem;
+  line-height: 1.4;
 }
 
 @media (max-width: 60rem) {
@@ -1567,6 +1683,14 @@ input::placeholder {
 }
 
 @media (max-width: 32rem) {
+  .catalog-pagination-row {
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-pagination {
+    justify-content: start;
+  }
+
   .reader-lens__questions,
   .voice-grid {
     grid-template-columns: 1fr;
