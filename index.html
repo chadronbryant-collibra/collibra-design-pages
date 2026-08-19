@@ -180,14 +180,14 @@
       <section class="section" id="catalog" aria-labelledby="catalog-title">
         <div class="section-heading">
           <div>
-            <div class="eyebrow">CONTRACT EXPLORER</div>
+            <div class="eyebrow">GUIDE EXPLORER</div>
             <h2 id="catalog-title">Find the useful rule.</h2>
           </div>
-          <p class="section-heading__description">Search by task, capability, or stable id. Plain-English meaning comes first; the design contract is there when you need to build or review.</p>
+          <p class="section-heading__description">Browse 105 guides by the work you’re doing. Start with the plain-language meaning; open the implementation reference only when you need to build, review, or explain a decision.</p>
         </div>
-        <div class="catalog-toolbar" aria-label="Catalog filters">
-          <label class="field-label" for="catalog-search">Search the suite
-            <input id="catalog-search" type="search" placeholder="Try “review”, “voice”, or “visual.accessibility”" autocomplete="off" />
+        <div class="catalog-toolbar" role="group" aria-label="Guide filters">
+          <label class="field-label" for="catalog-search">Search the guides
+            <input id="catalog-search" type="search" placeholder="Try “review”, “voice”, or “accessibility”" autocomplete="off" />
           </label>
           <label class="field-label" for="catalog-area">Area
             <select id="catalog-area">
@@ -209,10 +209,16 @@
             </select>
           </label>
         </div>
-        <p class="catalog-count" id="catalog-count" aria-live="polite">Loading catalog…</p>
+        <p class="catalog-count" id="catalog-count" role="status" aria-live="polite">Loading catalog…</p>
         <div class="explorer-layout">
-          <div class="catalog-grid" id="catalog-grid" aria-live="polite">
-            <div class="loading-card">Loading capabilities…</div>
+          <div class="catalog-column">
+            <div class="catalog-grid" id="catalog-grid" aria-live="polite">
+              <div class="loading-card">Loading guides…</div>
+            </div>
+            <div class="catalog-pagination-row" id="catalog-pagination-row" hidden>
+              <p class="catalog-page-status" id="catalog-page-status" role="status" aria-live="polite"></p>
+              <nav class="catalog-pagination" id="catalog-pagination" aria-label="Guide pages"></nav>
+            </div>
           </div>
           <aside class="detail-panel" id="detail-panel" aria-labelledby="detail-title" aria-live="polite">
             <div class="detail-panel__empty">
