@@ -132,6 +132,7 @@ select:focus-visible {
   width: min(100% - 3rem, 76rem);
   margin: 0 auto;
   padding: clamp(4rem, 9vw, 7.5rem) 0;
+  scroll-margin-top: 6rem;
 }
 
 .section--compact {
@@ -1256,6 +1257,7 @@ input::placeholder {
   .section {
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
+    scroll-margin-top: 9.5rem;
   }
 
   h1 {
@@ -1344,6 +1346,229 @@ input::placeholder {
   }
 
   .system-map__list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.voice-section__heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin: 2.5rem 0 1.2rem;
+}
+
+.voice-section__heading h3 {
+  margin: 0.35rem 0 0;
+}
+
+.voice-section__heading > p {
+  max-width: 26rem;
+  margin: 0;
+  color: var(--ink);
+}
+
+.voice-section__heading--compact {
+  display: block;
+  margin-top: 2rem;
+}
+
+.reader-lens {
+  display: grid;
+  grid-template-columns: minmax(13rem, 0.7fr) minmax(0, 1.3fr);
+  gap: clamp(1.5rem, 5vw, 4.5rem);
+  padding: clamp(1.3rem, 3vw, 2rem);
+  border: 1px solid color-mix(in srgb, var(--support) 35%, var(--hairline));
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.reader-lens__copy h3 {
+  margin: 0.7rem 0 0.8rem;
+  font-size: clamp(1.7rem, 3vw, 2.6rem);
+}
+
+.reader-lens__copy p {
+  max-width: 28rem;
+  margin: 0;
+  color: var(--ink);
+}
+
+.reader-lens__questions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+.voice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.voice-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.tone-grid,
+.medium-grid {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.voice-card,
+.tone-card,
+.medium-card {
+  min-width: 0;
+  padding: 1.15rem;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.voice-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 18rem;
+}
+
+.voice-card__header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.7rem;
+}
+
+.voice-card__header h4,
+.tone-card h4,
+.medium-card h4 {
+  margin: 0;
+  color: var(--ink-strong);
+  font-size: 1.25rem;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.voice-card__audience {
+  margin: 0.45rem 0 0;
+  color: var(--support);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.voice-card__job {
+  margin: 1rem 0 0;
+  color: var(--ink-strong);
+  font-weight: 650;
+}
+
+.voice-card__tone,
+.tone-card__sound {
+  margin: 0.75rem 0 0;
+  padding-left: 0.7rem;
+  border-left: 0.18rem solid var(--accent);
+  color: var(--ink);
+}
+
+.tone-card,
+.medium-card {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.tone-card p,
+.medium-card p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.9rem;
+}
+
+.voice-card__list {
+  margin-top: 1rem;
+}
+
+.voice-card__list h4 {
+  margin-bottom: 0.35rem;
+  color: var(--support);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.voice-card__list ul {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0;
+  padding-left: 1rem;
+  color: var(--ink);
+  font-size: 0.84rem;
+}
+
+.voice-card__list li::marker {
+  color: var(--accent);
+}
+
+.voice-card .tag-list,
+.tone-card .tag-list,
+.medium-card .tag-list {
+  margin-top: auto;
+}
+
+.catalog-card__plain-label {
+  color: var(--support);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.detail-panel__technical {
+  margin-top: 1rem;
+  border-top: 1px solid color-mix(in srgb, var(--on-strong) 18%, transparent);
+  padding-top: 0.8rem;
+}
+
+.detail-panel__technical summary {
+  color: var(--accent);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.detail-panel__technical .detail-panel__id {
+  margin-top: 0.65rem;
+}
+
+@media (max-width: 60rem) {
+  .voice-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 48rem) {
+  .reader-lens,
+  .voice-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .voice-section__heading {
+    display: grid;
+    align-items: start;
+  }
+}
+
+@media (max-width: 32rem) {
+  .reader-lens__questions,
+  .voice-grid {
     grid-template-columns: 1fr;
   }
 }
