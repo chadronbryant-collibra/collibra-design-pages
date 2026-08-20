@@ -15,7 +15,16 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  validate:
+    name: Validate public plugin surface
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout public artifact
+        uses: actions/checkout@v4
+      - name: Validate marketplace and plugin boundary
+        run: python3 scripts/validate_public_plugin.py
   deploy:
+    needs: validate
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
