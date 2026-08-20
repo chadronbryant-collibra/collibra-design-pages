@@ -1,0 +1,698 @@
+{
+  "schema_version": 2,
+  "catalog_version": "0.2.0",
+  "area_id": "area.design.content",
+  "status": "active",
+  "title": "Collibra content and voice contract",
+  "implementation_boundary": "This is a source-grounded writing and UX-content contract. Product teams own the final copy, audience context, localization, legal review, and content measurement.",
+  "source_policy": "Use the cited Collibra brand and content guidance as the authority. Preserve facts, label uncertainty, and keep product-specific terminology in the consuming glossary.",
+  "reader_lens": {
+    "name": "Start with the reader",
+    "contract": "Keep the voice steady while changing the emphasis for the person, moment, and medium in front of you.",
+    "questions": [
+      "Who is reading this, and what do they already know?",
+      "What decision or action should feel easier after they read it?",
+      "What context, evidence, or uncertainty changes the choice?"
+    ],
+    "translation_steps": [
+      "Lead with the outcome or change the reader needs.",
+      "Name the next action in the reader's language.",
+      "Add only the context that helps the reader decide or act.",
+      "Keep evidence, limits, and human review visible when they matter.",
+      "Place the technical contract behind a useful label instead of making it the opening sentence."
+    ],
+    "source": "Collibra content guidance"
+  },
+  "voice_pillars": [
+    {
+      "id": "voice.respectfully-direct",
+      "name": "Respectfully direct",
+      "contract": "Say the clear thing first, then add the nuance or reason that helps the reader act.",
+      "avoid": [
+        "corporate fog",
+        "bland filler",
+        "excessive optimism",
+        "commands without context"
+      ],
+      "source": "Collibra content guidance · voice and mojo"
+    },
+    {
+      "id": "voice.wise",
+      "name": "Wise",
+      "contract": "Use informed judgment, credible specifics, and a long view; do not trade accuracy for speed or cleverness.",
+      "avoid": [
+        "glib certainty",
+        "shortcuts that hide tradeoffs",
+        "claims without evidence"
+      ],
+      "source": "Collibra content guidance · voice and mojo"
+    },
+    {
+      "id": "voice.clever-punchy",
+      "name": "Clever and punchy",
+      "contract": "Keep the language interesting and memorable with a wink or knowing nod when it helps, while letting the work stay serious.",
+      "avoid": [
+        "earnest clutter",
+        "reserved mush",
+        "over-the-top jokes",
+        "performative cleverness"
+      ],
+      "source": "Collibra content guidance · voice and mojo"
+    }
+  ],
+  "writing_goals": [
+    {
+      "id": "content.goal.empower",
+      "name": "Empower",
+      "contract": "Give the reader enough clarity and agency to choose a next step.",
+      "source": "Collibra content guidance · writing goals"
+    },
+    {
+      "id": "content.goal.educate",
+      "name": "Educate",
+      "contract": "Explain the idea or consequence the reader needs, without burying the point in exposition.",
+      "source": "Collibra content guidance · writing goals"
+    },
+    {
+      "id": "content.goal.guide",
+      "name": "Guide",
+      "contract": "Make the path, decision, or recovery action visible at the moment it matters.",
+      "source": "Collibra content guidance · writing goals"
+    },
+    {
+      "id": "content.goal.truth",
+      "name": "Speak the truth",
+      "contract": "Name what is known, unknown, proposed, blocked, or incomplete without smoothing away the distinction.",
+      "source": "Collibra content guidance · writing goals"
+    }
+  ],
+  "style_rules": [
+    {
+      "id": "content.style.active-voice",
+      "name": "Prefer active voice",
+      "rule": "Put the actor and action where the reader can find them.",
+      "use_when": "Instructions, status, decisions, and explanations need a clear owner.",
+      "avoid": "Passive phrasing that hides who acts or what changed.",
+      "source": "Collibra content guidance · style tips"
+    },
+    {
+      "id": "content.style.plain-english",
+      "name": "Use plain English",
+      "rule": "Choose the simplest structure and words that preserve the real meaning.",
+      "use_when": "The reader needs to understand a product, process, or decision quickly.",
+      "avoid": "Jargon, inflated nouns, and layout that looks impressive but slows comprehension.",
+      "source": "Collibra content guidance · style tips"
+    },
+    {
+      "id": "content.style.positive-when-true",
+      "name": "Frame positively when facts allow",
+      "rule": "Describe the useful next state or action without hiding a limitation or risk.",
+      "use_when": "A constructive framing can help the reader move forward.",
+      "avoid": "Spin, false reassurance, or positive wording that contradicts the evidence.",
+      "source": "Collibra content guidance · style tips"
+    },
+    {
+      "id": "content.style.we-pronoun",
+      "name": "Use we in running text",
+      "rule": "Use we when the team or company is the real actor, unless a product or legal name is required.",
+      "use_when": "Guidance, collaboration, and shared commitments need a human owner.",
+      "avoid": "Repeated institutional references that make the writing feel distant.",
+      "source": "Collibra content guidance · style tips"
+    },
+    {
+      "id": "content.style.no-fabrication",
+      "name": "Do not fabricate",
+      "rule": "Do not invent evidence, source authority, progress, capability, certainty, or completion.",
+      "use_when": "A detail is missing, changing, or not yet verified.",
+      "avoid": "Plausible defaults presented as approved truth.",
+      "source": "Collibra content guidance · non-negotiables"
+    }
+  ],
+  "ui_content_rules": [
+    {
+      "id": "content.ui.action-labels",
+      "name": "Action labels",
+      "contract": "Lead with a verb, name the result when useful, and reserve one primary action for the context.",
+      "examples": [
+        "Save changes",
+        "Review sources",
+        "Apply classification",
+        "Retry request"
+      ],
+      "source": "ui/components.json"
+    },
+    {
+      "id": "content.ui.state-language",
+      "name": "State language",
+      "contract": "Distinguish loading, complete, partial, failed, canceled, blocked, proposed, and confirmed states in text.",
+      "examples": [
+        "Still working",
+        "Partially complete",
+        "Needs review",
+        "Not available"
+      ],
+      "source": "ux/patterns.json"
+    },
+    {
+      "id": "content.ui.ai-boundary",
+      "name": "AI boundary language",
+      "contract": "Label generated content, show sources and uncertainty when they affect use, and name the human decision before a durable change.",
+      "examples": [
+        "Generated suggestion",
+        "Sources used",
+        "Needs your review",
+        "Apply change"
+      ],
+      "source": "ux/patterns.json"
+    },
+    {
+      "id": "content.ui.error-recovery",
+      "name": "Error and recovery language",
+      "contract": "Say what failed, preserve the user's work, and offer the smallest safe next action without inventing a cause.",
+      "examples": [
+        "We could not load the sources",
+        "Your draft is still here",
+        "Try again",
+        "Contact an administrator"
+      ],
+      "source": "ux/patterns.json"
+    },
+    {
+      "id": "content.ui.accessible-names",
+      "name": "Accessible names",
+      "contract": "Give controls, icons, status changes, and regions names that describe the action or state rather than the visual shape alone.",
+      "examples": [
+        "Open filters",
+        "Copy link",
+        "Close dialog",
+        "3 sources used"
+      ],
+      "source": "ui/components.json"
+    }
+  ],
+  "terminology": [
+    {
+      "id": "term.collibrians",
+      "preferred": "Collibrians",
+      "avoid": [
+        "employees",
+        "staff"
+      ],
+      "when": "Referring to people who work at Collibra in general running text.",
+      "source": "Collibra content guidance · style tips"
+    },
+    {
+      "id": "term.user",
+      "preferred": "user",
+      "avoid": [
+        "end user",
+        "the human"
+      ],
+      "when": "Referring to a person using the product, unless a more specific role is known.",
+      "source": "Collibra content guidance · style tips"
+    },
+    {
+      "id": "term.generated",
+      "preferred": "generated suggestion",
+      "avoid": [
+        "answer"
+      ],
+      "when": "Describing AI-produced content that still requires review or source inspection.",
+      "source": "content.ui.ai-boundary"
+    }
+  ],
+  "content_gates": [
+    {
+      "id": "content.gate.audience",
+      "question": "Can the intended reader tell what this is for and what they can do next?",
+      "failure_action": "Rewrite the opening and action path before polishing the prose.",
+      "source": "Collibra content guidance · writing goals"
+    },
+    {
+      "id": "content.gate.evidence",
+      "question": "Does every material claim have an appropriate source or an explicit uncertainty label?",
+      "failure_action": "Add the source, narrow the claim, or label it proposed, open, partial, or unknown.",
+      "source": "Collibra content guidance · non-negotiables"
+    },
+    {
+      "id": "content.gate.action",
+      "question": "Are the primary action, state, consequence, and recovery path understandable in the actual context?",
+      "failure_action": "Replace generic labels and expose the relevant state or next safe action.",
+      "source": "ui/components.json"
+    },
+    {
+      "id": "content.gate.voice",
+      "question": "Is the writing direct, wise, and interesting without becoming corporate, glib, or over-performed?",
+      "failure_action": "Cut filler, restore the fact pattern, and keep one human reason for the reader to care.",
+      "source": "Collibra content guidance · voice and mojo"
+    },
+    {
+      "id": "content.gate.human-review",
+      "question": "If the content changes a durable record or material decision, is the human review boundary explicit?",
+      "failure_action": "Separate suggestion from confirmed change and require an explicit review action.",
+      "source": "ux/patterns.json"
+    }
+  ],
+  "tone_modes": [
+    {
+      "id": "tone.aligned-purposeful",
+      "name": "Aligned and purposeful",
+      "use_when": "The reader needs the reason, direction, and shared outcome behind a message.",
+      "sound": "Clear, confident, and connected to the work that matters.",
+      "avoid": [
+        "strategy fog",
+        "grand claims without a next step",
+        "language that assumes agreement"
+      ],
+      "channels": [
+        "email",
+        "slide deck",
+        "long-form guide"
+      ],
+      "source": "Collibra communications guidance",
+      "maturity": "defined"
+    },
+    {
+      "id": "tone.action-oriented",
+      "name": "Action-oriented",
+      "use_when": "The reader needs to know what changed, what to do, and when to do it.",
+      "sound": "Direct, useful, and specific about the next safe move.",
+      "avoid": [
+        "buried calls to action",
+        "false urgency",
+        "instructions without context"
+      ],
+      "channels": [
+        "product UI",
+        "chat",
+        "email"
+      ],
+      "source": "Collibra communications guidance",
+      "maturity": "defined"
+    },
+    {
+      "id": "tone.trust-building",
+      "name": "Trust-building",
+      "use_when": "The subject is sensitive, uncertain, or likely to raise questions.",
+      "sound": "Transparent about what is known, what is changing, and where help exists.",
+      "avoid": [
+        "reassurance that outruns the facts",
+        "hidden tradeoffs",
+        "blame"
+      ],
+      "channels": [
+        "email",
+        "long-form guide",
+        "product UI"
+      ],
+      "source": "Collibra communications guidance",
+      "maturity": "defined"
+    },
+    {
+      "id": "tone.inclusive-approachable",
+      "name": "Inclusive and approachable",
+      "use_when": "The message serves a broad audience or asks people to participate.",
+      "sound": "Warm, welcoming, complete, and easy to enter without insider knowledge.",
+      "avoid": [
+        "casual slang",
+        "assumed context",
+        "language that labels people by a problem"
+      ],
+      "channels": [
+        "chat",
+        "email",
+        "long-form guide"
+      ],
+      "source": "Collibra people-team voice guidance",
+      "maturity": "defined"
+    },
+    {
+      "id": "tone.teaching-wise",
+      "name": "Teaching and wise",
+      "use_when": "The reader is learning a complex idea or needs to weigh a tradeoff.",
+      "sound": "Plain, patient, precise, and honest about the edges of the answer.",
+      "avoid": [
+        "jargon as a shortcut",
+        "expert performance",
+        "certainty without evidence"
+      ],
+      "channels": [
+        "long-form guide",
+        "slide deck",
+        "product UI"
+      ],
+      "source": "Collibra content guidance",
+      "maturity": "defined"
+    },
+    {
+      "id": "tone.confident-approachable",
+      "name": "Confident and approachable",
+      "use_when": "The reader needs a clear view of Collibra's value without internal shorthand.",
+      "sound": "Authoritative, insightful, human, and specific about the benefit.",
+      "avoid": [
+        "corporate fog",
+        "glib promises",
+        "internal process language"
+      ],
+      "channels": [
+        "public web",
+        "slide deck",
+        "long-form guide"
+      ],
+      "source": "Collibra content guidance",
+      "maturity": "defined"
+    }
+  ],
+  "audience_personas": [
+    {
+      "id": "persona.collibrian",
+      "name": "The Collibrian",
+      "audience": "A broad internal audience",
+      "job_to_be_done": "Understand what changed and what it means for their work.",
+      "needs": [
+        "relevance first",
+        "a plain next step",
+        "honest context"
+      ],
+      "voice_shift": "Warm, inclusive, clear, and supportive.",
+      "do": [
+        "say why this matters",
+        "name who needs to act",
+        "make help visible"
+      ],
+      "avoid": [
+        "insider shorthand",
+        "assumptions about prior context",
+        "casual slang"
+      ],
+      "channels": [
+        "email",
+        "chat",
+        "long-form guide"
+      ],
+      "source": "Collibra people-team voice guidance",
+      "maturity": "proposed"
+    },
+    {
+      "id": "persona.change-navigator",
+      "name": "The change navigator",
+      "audience": "People, communications, and change partners",
+      "job_to_be_done": "Help a group move through a change with clarity and trust.",
+      "needs": [
+        "the reason for change",
+        "what is different",
+        "where to get help"
+      ],
+      "voice_shift": "Purposeful, transparent, and considerate of the reader's real day.",
+      "do": [
+        "connect the change to a shared outcome",
+        "separate facts from what is still being worked out",
+        "give people a way to respond"
+      ],
+      "avoid": [
+        "overpromising",
+        "process language as the headline",
+        "making people decode the impact"
+      ],
+      "channels": [
+        "email",
+        "chat",
+        "long-form guide",
+        "slide deck"
+      ],
+      "source": "Collibra communications guidance",
+      "maturity": "proposed"
+    },
+    {
+      "id": "persona.decision-maker",
+      "name": "The decision-maker",
+      "audience": "Leaders, managers, and accountable owners",
+      "job_to_be_done": "Make a confident choice with the right evidence and tradeoffs in view.",
+      "needs": [
+        "the decision in one sentence",
+        "material implications",
+        "options and ownership"
+      ],
+      "voice_shift": "Concise, candid, evidence-led, and ready to name a recommendation.",
+      "do": [
+        "lead with the choice",
+        "show the consequence",
+        "call out the open decision"
+      ],
+      "avoid": [
+        "long setup before the ask",
+        "false consensus",
+        "detail without a decision path"
+      ],
+      "channels": [
+        "slide deck",
+        "email",
+        "long-form guide"
+      ],
+      "source": "Collibra communications guidance",
+      "maturity": "proposed"
+    },
+    {
+      "id": "persona.builder",
+      "name": "The builder",
+      "audience": "Product, design, engineering, and content teams",
+      "job_to_be_done": "Turn a user need into a consistent, accessible experience.",
+      "needs": [
+        "the user outcome",
+        "states and constraints",
+        "a reusable contract"
+      ],
+      "voice_shift": "Practical, precise, and plain about what the system does and does not promise.",
+      "do": [
+        "name the user task before the component",
+        "make states visible",
+        "link decisions to evidence"
+      ],
+      "avoid": [
+        "implementation jargon as the user story",
+        "happy-path-only guidance",
+        "invented defaults"
+      ],
+      "channels": [
+        "product UI",
+        "long-form guide",
+        "slide deck"
+      ],
+      "source": "Collibra content guidance",
+      "maturity": "proposed"
+    },
+    {
+      "id": "persona.data-steward",
+      "name": "The data steward",
+      "audience": "Governance, data, and business teams",
+      "job_to_be_done": "Understand a definition, its evidence, and the decision it supports.",
+      "needs": [
+        "precise terms",
+        "source and confidence",
+        "a clear consequence"
+      ],
+      "voice_shift": "Wise and rigorous, with every important term explained in context.",
+      "do": [
+        "define the term before using it",
+        "show provenance",
+        "make uncertainty actionable"
+      ],
+      "avoid": [
+        "vague authority",
+        "synonym cycling",
+        "precision that hides the point"
+      ],
+      "channels": [
+        "product UI",
+        "long-form guide",
+        "slide deck"
+      ],
+      "source": "Collibra content guidance",
+      "maturity": "proposed"
+    },
+    {
+      "id": "persona.customer",
+      "name": "The customer",
+      "audience": "Customers, prospects, and public readers",
+      "job_to_be_done": "See the useful outcome, understand the proof, and choose a next step.",
+      "needs": [
+        "a recognizable problem",
+        "a concrete benefit",
+        "a trustworthy path forward"
+      ],
+      "voice_shift": "Confident, insightful, approachable, and free of internal shorthand.",
+      "do": [
+        "start with the reader's problem",
+        "use specific proof",
+        "make the next step proportionate"
+      ],
+      "avoid": [
+        "internal acronyms",
+        "claims without evidence",
+        "hype that makes the reader work"
+      ],
+      "channels": [
+        "public web",
+        "slide deck",
+        "long-form guide"
+      ],
+      "source": "Collibra content guidance",
+      "maturity": "proposed"
+    }
+  ],
+  "mediums": [
+    {
+      "id": "medium.product-ui",
+      "name": "Product UI",
+      "reader_need": "Decide or act while attention is limited.",
+      "structure": [
+        "state the current status",
+        "name the action",
+        "show consequence or recovery"
+      ],
+      "tone_modes": [
+        "tone.action-oriented",
+        "tone.trust-building"
+      ],
+      "avoid": [
+        "paragraphs where a label will do",
+        "unexplained system terms",
+        "hidden recovery"
+      ],
+      "source": "ui/components.json and ux/patterns.json",
+      "maturity": "defined"
+    },
+    {
+      "id": "medium.slide-deck",
+      "name": "Slide deck",
+      "reader_need": "Follow a story, make a decision, or remember the point in the room.",
+      "structure": [
+        "one idea per slide",
+        "headline the conclusion",
+        "use evidence to support the choice"
+      ],
+      "tone_modes": [
+        "tone.aligned-purposeful",
+        "tone.teaching-wise",
+        "tone.confident-approachable"
+      ],
+      "avoid": [
+        "dense paragraphs",
+        "unlabeled charts",
+        "decorative certainty"
+      ],
+      "source": "Collibra slide-template guidance",
+      "maturity": "defined"
+    },
+    {
+      "id": "medium.email",
+      "name": "Email",
+      "reader_need": "Know what changed, why it matters, and what to do next.",
+      "structure": [
+        "lead with the change",
+        "give the reason",
+        "make the action and timing clear"
+      ],
+      "tone_modes": [
+        "tone.aligned-purposeful",
+        "tone.action-oriented",
+        "tone.trust-building"
+      ],
+      "avoid": [
+        "a subject line that hides the point",
+        "long context before the ask",
+        "unbounded urgency"
+      ],
+      "source": "Collibra communications guidance",
+      "maturity": "defined"
+    },
+    {
+      "id": "medium.chat",
+      "name": "Chat",
+      "reader_need": "Orient quickly and know whether to act, reply, or keep moving.",
+      "structure": [
+        "give the headline",
+        "use short chunks",
+        "link to the durable source"
+      ],
+      "tone_modes": [
+        "tone.action-oriented",
+        "tone.inclusive-approachable"
+      ],
+      "avoid": [
+        "performative casualness",
+        "context that only lives in the thread",
+        "unclear ownership"
+      ],
+      "source": "Collibra people-team voice guidance",
+      "maturity": "defined"
+    },
+    {
+      "id": "medium.long-form-guide",
+      "name": "Long-form guide",
+      "reader_need": "Learn, compare, and return to a trusted explanation.",
+      "structure": [
+        "orient the reader",
+        "layer detail progressively",
+        "close with decisions and sources"
+      ],
+      "tone_modes": [
+        "tone.teaching-wise",
+        "tone.trust-building",
+        "tone.inclusive-approachable"
+      ],
+      "avoid": [
+        "a wall of equal-weight detail",
+        "unexplained exceptions",
+        "sources separated from the claim"
+      ],
+      "source": "Collibra content guidance",
+      "maturity": "defined"
+    },
+    {
+      "id": "medium.public-web",
+      "name": "Public web",
+      "reader_need": "Understand the value without needing internal context.",
+      "structure": [
+        "name the problem",
+        "show the useful outcome",
+        "offer credible proof and a next step"
+      ],
+      "tone_modes": [
+        "tone.confident-approachable",
+        "tone.teaching-wise"
+      ],
+      "avoid": [
+        "internal names",
+        "unsupported superlatives",
+        "a clever line that replaces the explanation"
+      ],
+      "source": "Collibra content guidance",
+      "maturity": "proposed"
+    }
+  ],
+  "plain_language_lens": {
+    "id": "content.lens.plain-language",
+    "name": "Make the contract readable",
+    "contract": "A reader should understand the useful meaning before they need to understand the implementation detail.",
+    "questions": [
+      "Could a new reader explain the point in their own words?",
+      "Does the first sentence name the outcome instead of the system structure?",
+      "Have we kept the evidence and limits that change the decision?",
+      "Is the technical detail available under a label that tells the reader why it is there?"
+    ],
+    "translation_steps": [
+      "Replace the noun stack with an actor and an action.",
+      "Name the reader benefit before the mechanism.",
+      "Split one dense sentence into the smallest useful sequence.",
+      "Keep the exact term when it carries governance meaning, then explain it once.",
+      "Read the result aloud and remove anything that makes the reader translate twice."
+    ],
+    "example": {
+      "technical": "The component exposes a source-grounded content contract for downstream consumers.",
+      "reader_first": "Teams can reuse the same content rules instead of rewriting them from scratch.",
+      "why_it_works": "The reader-first version names the actor and benefit before the implementation detail."
+    },
+    "source": "Collibra content guidance and Collibra design practice"
+  }
+}
