@@ -46,6 +46,10 @@ contains the plugin root, not the marketplace repository.
 
 - Browse the 105 guides in the explorer.
 - Use the plain-language explanation before opening the implementation reference.
+- Start the work-memory section with five jobs: Capture, Current, History,
+  Knowledge, and Recall. Improve is the loop around them, not a sixth job.
+- Read the optional Context Engine panel as a derived infrastructure boundary,
+  not a live memory service or a storage commitment.
 - Visit the voice section to see how audience, tone, and medium change the way a message should land.
 - Use the adoption path when you are turning a user task into a tested surface.
 
