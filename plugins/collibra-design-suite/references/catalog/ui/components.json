@@ -1,0 +1,1360 @@
+{
+  "schema_version": 1,
+  "catalog_version": "0.1.0",
+  "area_id": "area.design.ui",
+  "status": "active",
+  "title": "Collibra UI capability catalog",
+  "implementation_boundary": "This is a framework-neutral contract. Consumer products own the runtime implementation and must keep it aligned with this catalog.",
+  "layout_policy": {
+    "spacing": "delegated",
+    "container_radius_role": "radius",
+    "responsive_behavior": "consumer-owned layout tokens; preserve hierarchy, task actions, and readable content at every supported viewport"
+  },
+  "token_policy": {
+    "spacing": "brand.space.scale is OPEN. Do not create a numeric spacing scale or place numeric spacing values in a component implementation here.",
+    "status": "Consumer products must provide semantic status tokens with contrast evidence. Do not infer warning or error colors from an unapproved ramp.",
+    "icons": "Consumer products may supply an icon set, but icon meaning never stands alone when text or accessible naming is required."
+  },
+  "semantic_tokens": {
+    "surface": "brand.color.neutral.white",
+    "surface-muted": "brand.color.neutral.light_cloud",
+    "surface-strong": "brand.color.primary.navy",
+    "ink": "brand.color.neutral.charcoal",
+    "ink-strong": "brand.color.neutral.black",
+    "on-strong": "brand.color.neutral.white",
+    "action": "brand.color.primary.navy",
+    "accent": "brand.color.primary.lime",
+    "support": "brand.color.accent.forest",
+    "focus": "brand.color.primary.navy",
+    "body": "brand.type.scale.web.body",
+    "label": "brand.type.scale.web.label",
+    "cta": "brand.type.scale.web.cta",
+    "radius": "brand.radius.scale",
+    "contrast-body": "brand.accessibility.contrast.body_text_minimum"
+  },
+  "components": [
+    {
+      "id": "ui.action.button",
+      "name": "Button",
+      "category": "action",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Starts a clear action with an explicit verb and a predictable completion state.",
+      "token_roles": [
+        "action",
+        "on-strong",
+        "accent",
+        "focus",
+        "radius",
+        "cta"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "loading",
+        "success",
+        "error"
+      ],
+      "keyboard": "Focusable with Tab; activates with Enter or Space; keeps focus visible while loading and after completion.",
+      "semantics": "Use a native button for an in-place action. Do not use a button to navigate to a URL.",
+      "accessibility": "Accessible name is the visible action label; disabled and busy states are programmatically exposed; status changes do not rely on color alone.",
+      "content": [
+        "Lead with a verb.",
+        "Keep one primary action per context.",
+        "Name the result when it matters, such as Save changes."
+      ],
+      "composition": [],
+      "do": [
+        "Keep the label stable while an action is in progress.",
+        "Make destructive intent explicit before the action."
+      ],
+      "avoid": [
+        "Icon-only labels without an accessible name.",
+        "Using low-contrast ramp colors for text or controls."
+      ]
+    },
+    {
+      "id": "ui.action.icon-button",
+      "name": "Icon button",
+      "category": "action",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Provides a compact action when the icon has a familiar, unambiguous meaning and space is constrained.",
+      "token_roles": [
+        "surface",
+        "ink",
+        "focus",
+        "radius",
+        "label"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "loading"
+      ],
+      "keyboard": "Focusable with Tab; activates with Enter or Space; tooltip is supplemental and never the only accessible name.",
+      "semantics": "Use a button with an accessible name that describes the action, not the icon shape.",
+      "accessibility": "Expose the accessible name in the control; provide a visible label or tooltip when the action is not universally understood.",
+      "content": [
+        "Use action language such as Open filters or Copy link.",
+        "Keep the accessible name stable."
+      ],
+      "composition": [
+        "ui.feedback.badge"
+      ],
+      "do": [
+        "Use for repeated, space-constrained actions.",
+        "Keep destructive actions visually and verbally distinct."
+      ],
+      "avoid": [
+        "Using a generic More label when the menu contents are unknown.",
+        "Using an icon as a status indicator without text or a programmatic announcement."
+      ]
+    },
+    {
+      "id": "ui.action.link",
+      "name": "Link",
+      "category": "action",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Navigates to another location or resource while preserving normal browser and assistive technology expectations.",
+      "token_roles": [
+        "action",
+        "focus",
+        "body"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "visited",
+        "unavailable"
+      ],
+      "keyboard": "Focusable with Tab and activates with Enter; preserves expected browser link behavior.",
+      "semantics": "Use a native link for navigation. The destination or outcome is clear from the label or its accessible context.",
+      "accessibility": "Do not communicate link meaning by color alone; distinguish visited or unavailable states with text or semantics where needed.",
+      "content": [
+        "Name the destination or outcome.",
+        "Avoid vague labels such as Click here."
+      ],
+      "composition": [],
+      "do": [
+        "Use links for navigation and references.",
+        "Open a new context only when the label explains it."
+      ],
+      "avoid": [
+        "Styling an in-place action as a link without a navigation outcome.",
+        "Removing native focus behavior."
+      ]
+    },
+    {
+      "id": "ui.action.menu",
+      "name": "Menu",
+      "category": "action",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Groups related, infrequent actions behind a labeled trigger without hiding the primary task path.",
+      "token_roles": [
+        "surface",
+        "ink",
+        "focus",
+        "radius",
+        "label"
+      ],
+      "states": [
+        "closed",
+        "open",
+        "focus-visible",
+        "item-highlighted",
+        "item-disabled",
+        "loading"
+      ],
+      "keyboard": "Trigger opens with Enter or Space; Arrow keys move through items; Escape closes and returns focus to the trigger; type-ahead is supported when the menu is long.",
+      "semantics": "Use menu semantics only for a list of actions. Use navigation semantics for a list of destinations.",
+      "accessibility": "Expose the expanded state, item names, disabled state, and current item; keep focus inside the open menu until it closes.",
+      "content": [
+        "Order items by task frequency and risk.",
+        "Use separators only when they communicate a meaningful group."
+      ],
+      "composition": [
+        "ui.action.button",
+        "ui.overlay.popover"
+      ],
+      "do": [
+        "Keep the trigger label or accessible name stable.",
+        "Place destructive actions behind explicit labels and, when needed, confirmation."
+      ],
+      "avoid": [
+        "Putting the primary action only in a menu.",
+        "Nested menus when a dedicated surface is clearer."
+      ]
+    },
+    {
+      "id": "ui.form.text-field",
+      "name": "Text field",
+      "category": "form",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Collects a short, bounded value with a visible label, useful hint, and recoverable validation.",
+      "token_roles": [
+        "surface",
+        "ink",
+        "ink-strong",
+        "focus",
+        "radius",
+        "body",
+        "label",
+        "contrast-body"
+      ],
+      "states": [
+        "empty",
+        "filled",
+        "focus-visible",
+        "invalid",
+        "disabled",
+        "read-only",
+        "loading"
+      ],
+      "keyboard": "Focusable with Tab; supports native text editing; validation does not trap focus or erase the user's input.",
+      "semantics": "Use a native input or textarea with an associated label, description, and error relationship.",
+      "accessibility": "Expose required, invalid, read-only, disabled, and described-by relationships; announce validation without relying on color alone.",
+      "content": [
+        "Labels identify the value, not the format.",
+        "Hints explain constraints before entry.",
+        "Errors state what happened and how to fix it."
+      ],
+      "composition": [
+        "ui.feedback.alert"
+      ],
+      "do": [
+        "Validate at the point that helps the user recover.",
+        "Preserve entered values after an error."
+      ],
+      "avoid": [
+        "Placeholder text as the only label.",
+        "Clearing a field on failed submit."
+      ]
+    },
+    {
+      "id": "ui.form.combobox",
+      "name": "Combobox",
+      "category": "form",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Supports selection from a known set while allowing search or filtering when the set is large.",
+      "token_roles": [
+        "surface",
+        "ink",
+        "focus",
+        "radius",
+        "body",
+        "label"
+      ],
+      "states": [
+        "collapsed",
+        "expanded",
+        "focus-visible",
+        "option-highlighted",
+        "invalid",
+        "disabled",
+        "loading",
+        "no-results"
+      ],
+      "keyboard": "Typing filters options; Arrow keys move through options; Enter selects; Escape closes without losing the query; Home and End work for long lists.",
+      "semantics": "Use a combobox pattern only when the input and popup list have a clear relationship; otherwise use a select or search field.",
+      "accessibility": "Expose expanded state, active option, list size when available, selected value, and no-results status.",
+      "content": [
+        "Tell users whether they can create a new value.",
+        "Use a useful no-results message with a recovery path."
+      ],
+      "composition": [
+        "ui.form.text-field",
+        "ui.feedback.alert"
+      ],
+      "do": [
+        "Keep the current query visible.",
+        "Make selection and filtering behavior predictable."
+      ],
+      "avoid": [
+        "A popup that changes position without preserving active context.",
+        "Loading forever without a recovery message."
+      ]
+    },
+    {
+      "id": "ui.form.checkbox",
+      "name": "Checkbox",
+      "category": "form",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Captures one or more independent yes/no choices, including an optional indeterminate parent state.",
+      "token_roles": [
+        "surface",
+        "ink",
+        "action",
+        "focus",
+        "radius",
+        "label"
+      ],
+      "states": [
+        "unchecked",
+        "checked",
+        "indeterminate",
+        "focus-visible",
+        "disabled",
+        "invalid"
+      ],
+      "keyboard": "Focusable with Tab; toggles with Space; preserves the native checkbox interaction model.",
+      "semantics": "Use a checkbox for independent choices, not for mutually exclusive selection or immediate mode changes.",
+      "accessibility": "Associate the label and group description; expose checked, mixed, required, disabled, and invalid states.",
+      "content": [
+        "Label the choice as a statement or setting.",
+        "Explain consequences when the choice changes behavior."
+      ],
+      "composition": [
+        "ui.feedback.alert"
+      ],
+      "do": [
+        "Use a group label when several choices share a context.",
+        "Preserve mixed state meaning in tree or bulk-selection contexts."
+      ],
+      "avoid": [
+        "Making the entire row ambiguous about what is selected.",
+        "Using a checkbox for an immediate action with side effects."
+      ]
+    },
+    {
+      "id": "ui.form.radio-group",
+      "name": "Radio group",
+      "category": "form",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Captures exactly one choice from a small, visible set.",
+      "token_roles": [
+        "surface",
+        "ink",
+        "action",
+        "focus",
+        "radius",
+        "label"
+      ],
+      "states": [
+        "unselected",
+        "selected",
+        "focus-visible",
+        "disabled",
+        "invalid"
+      ],
+      "keyboard": "Tab enters the group; Arrow keys move between options and update the selection; Space selects the focused option.",
+      "semantics": "Use a radio group for mutually exclusive choices that should be compared together.",
+      "accessibility": "Expose group name, option name, selected state, required state, and validation relationship.",
+      "content": [
+        "Put the question in the group label.",
+        "Make each option distinct and comparable."
+      ],
+      "composition": [
+        "ui.feedback.alert"
+      ],
+      "do": [
+        "Use a select when the option set is long.",
+        "Keep the selected choice visible after navigation."
+      ],
+      "avoid": [
+        "Allowing multiple options to be selected.",
+        "Hiding the group label in visual-only text."
+      ]
+    },
+    {
+      "id": "ui.form.switch",
+      "name": "Switch",
+      "category": "form",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Toggles a setting that takes effect immediately or clearly communicates when it will take effect.",
+      "token_roles": [
+        "surface",
+        "ink",
+        "action",
+        "focus",
+        "radius",
+        "label"
+      ],
+      "states": [
+        "off",
+        "on",
+        "focus-visible",
+        "disabled",
+        "pending",
+        "error"
+      ],
+      "keyboard": "Focusable with Tab; toggles with Space; exposes pending state without becoming unresponsive.",
+      "semantics": "Use a switch for an immediate setting change, not for a form submission or a choice requiring comparison.",
+      "accessibility": "Expose checked state, accessible name, pending state, and any consequence that requires confirmation.",
+      "content": [
+        "Label the setting, not the words On and Off alone.",
+        "Explain the effect when it is not obvious."
+      ],
+      "composition": [
+        "ui.feedback.toast",
+        "ui.feedback.alert"
+      ],
+      "do": [
+        "Keep state and outcome synchronized.",
+        "Offer an undo or recovery path for risky reversible changes."
+      ],
+      "avoid": [
+        "Using a switch for a destructive or irreversible action.",
+        "Changing state without communicating failure."
+      ]
+    },
+    {
+      "id": "ui.feedback.badge",
+      "name": "Badge",
+      "category": "feedback",
+      "maturity": "defined",
+      "interactive": false,
+      "purpose": "Adds compact, secondary metadata such as status, type, or count without becoming the only source of meaning.",
+      "token_roles": [
+        "surface-muted",
+        "ink",
+        "support",
+        "radius",
+        "label",
+        "contrast-body"
+      ],
+      "states": [
+        "default",
+        "emphasis",
+        "muted",
+        "overflow"
+      ],
+      "keyboard": "Not interactive. If the badge becomes actionable, use a labeled button or link instead.",
+      "semantics": "Expose meaningful text in the accessibility tree; decorative shape and color are supplementary.",
+      "accessibility": "Never encode status with color alone; counts and status names remain available as text.",
+      "content": [
+        "Use short, stable labels.",
+        "Prefer a meaningful status word over an unexplained color dot."
+      ],
+      "composition": [],
+      "do": [
+        "Use as supporting metadata next to a primary label.",
+        "Truncate only when the full value is available on demand."
+      ],
+      "avoid": [
+        "Using badges as buttons without action semantics.",
+        "Using many competing badges in one row."
+      ]
+    },
+    {
+      "id": "ui.feedback.alert",
+      "name": "Alert",
+      "category": "feedback",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Communicates important information, validation, or recovery guidance in the current context.",
+      "token_roles": [
+        "surface-muted",
+        "ink-strong",
+        "support",
+        "focus",
+        "radius",
+        "body",
+        "label",
+        "contrast-body"
+      ],
+      "states": [
+        "info",
+        "success",
+        "warning",
+        "error",
+        "progress",
+        "focus-visible",
+        "dismissed"
+      ],
+      "keyboard": "If dismissible, the dismiss control is focusable and returns focus to a sensible context; status announcements do not steal focus unexpectedly.",
+      "semantics": "Use a status or alert role according to urgency; use a live region only when the user must be notified without moving focus.",
+      "accessibility": "Expose severity and recovery instructions in text; do not rely on icon or color alone.",
+      "content": [
+        "State what happened.",
+        "State what the user can do next.",
+        "Avoid blame and implementation detail."
+      ],
+      "composition": [
+        "ui.action.icon-button",
+        "ui.action.link"
+      ],
+      "do": [
+        "Keep the message near the affected context.",
+        "Use alert urgency sparingly."
+      ],
+      "avoid": [
+        "Using a toast for a blocking validation error.",
+        "Replacing a useful error with a generic failure message."
+      ]
+    },
+    {
+      "id": "ui.feedback.toast",
+      "name": "Toast",
+      "category": "feedback",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Confirms a non-blocking result or offers a short-lived recovery action without interrupting the current task.",
+      "token_roles": [
+        "surface-strong",
+        "on-strong",
+        "accent",
+        "focus",
+        "radius",
+        "label"
+      ],
+      "states": [
+        "appearing",
+        "visible",
+        "focus-visible",
+        "action-focus",
+        "dismissed",
+        "expired"
+      ],
+      "keyboard": "If actionable, the action and dismiss controls are keyboard reachable; auto-dismiss must not remove a focused control.",
+      "semantics": "Use a status announcement for confirmation and a clear action for recovery; do not use a toast for required decisions.",
+      "accessibility": "Announce concise status text without stealing focus; keep actionable content available until it is no longer needed.",
+      "content": [
+        "Confirm the result in plain language.",
+        "Make undo or recovery the action label."
+      ],
+      "composition": [
+        "ui.action.button",
+        "ui.action.icon-button"
+      ],
+      "do": [
+        "Use for completed, non-blocking actions.",
+        "Allow enough time to read and act."
+      ],
+      "avoid": [
+        "Important errors that disappear before recovery.",
+        "Stacking so many messages that the user cannot parse them."
+      ]
+    },
+    {
+      "id": "ui.feedback.progress",
+      "name": "Progress",
+      "category": "feedback",
+      "maturity": "defined",
+      "interactive": false,
+      "purpose": "Shows measurable progress or ongoing activity while the system works.",
+      "token_roles": [
+        "surface-muted",
+        "ink",
+        "support",
+        "radius",
+        "label",
+        "contrast-body"
+      ],
+      "states": [
+        "idle",
+        "in-progress",
+        "complete",
+        "indeterminate",
+        "error"
+      ],
+      "keyboard": "Not interactive. If the operation can be stopped or paused, pair it with a labeled action.",
+      "semantics": "Use progressbar semantics for measurable progress and status semantics for indeterminate activity.",
+      "accessibility": "Expose current value, total, label, and completion or error state when known; do not communicate activity only through animation.",
+      "content": [
+        "Name the operation.",
+        "Use a meaningful completion statement.",
+        "Explain when progress cannot be estimated."
+      ],
+      "composition": [
+        "ui.action.button",
+        "ui.feedback.alert"
+      ],
+      "do": [
+        "Keep the operation label stable.",
+        "Provide a cancellation or recovery action when supported."
+      ],
+      "avoid": [
+        "A fake percentage that does not reflect work.",
+        "Indefinite motion with no status or timeout path."
+      ]
+    },
+    {
+      "id": "ui.feedback.skeleton",
+      "name": "Skeleton",
+      "category": "feedback",
+      "maturity": "defined",
+      "interactive": false,
+      "purpose": "Preserves the expected shape of content while a short-lived load is resolving.",
+      "token_roles": [
+        "surface-muted",
+        "radius"
+      ],
+      "states": [
+        "loading",
+        "resolved",
+        "failed"
+      ],
+      "keyboard": "Not interactive; content is not focusable until it is available.",
+      "semantics": "Expose a loading status when waiting is material; do not expose decorative skeleton shapes as content.",
+      "accessibility": "Avoid creating a focusable phantom layout; provide an error or retry state if loading does not resolve.",
+      "content": [
+        "Use only where the eventual structure is predictable.",
+        "Pair long waits with a meaningful status."
+      ],
+      "composition": [
+        "ui.feedback.progress",
+        "ui.feedback.alert"
+      ],
+      "do": [
+        "Use for local, bounded loading.",
+        "Preserve layout stability when content arrives."
+      ],
+      "avoid": [
+        "Skeletons for unknown or highly dynamic content.",
+        "Animation that communicates nothing and never resolves."
+      ]
+    },
+    {
+      "id": "ui.overlay.dialog",
+      "name": "Dialog",
+      "category": "overlay",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Requests focused input or confirmation without losing the current task context.",
+      "token_roles": [
+        "surface",
+        "ink",
+        "focus",
+        "radius",
+        "body",
+        "label",
+        "cta"
+      ],
+      "states": [
+        "closed",
+        "opening",
+        "open",
+        "focus-visible",
+        "busy",
+        "invalid",
+        "closing"
+      ],
+      "keyboard": "On open, focus moves to a sensible first control; Tab stays within the dialog; Escape closes when safe; close returns focus to the trigger.",
+      "semantics": "Use a dialog with a visible title and clear relationship to its trigger; use alertdialog only when immediate attention is required.",
+      "accessibility": "Expose title, description, modal state, busy state, validation, and a labeled close action.",
+      "content": [
+        "Title the decision or task.",
+        "Keep the dialog focused on one outcome.",
+        "Name the consequence of the primary action."
+      ],
+      "composition": [
+        "ui.action.button",
+        "ui.action.link",
+        "ui.form.text-field",
+        "ui.feedback.alert"
+      ],
+      "do": [
+        "Use for focused decisions or bounded forms.",
+        "Preserve entered values when validation fails."
+      ],
+      "avoid": [
+        "Long workflows that need persistent navigation.",
+        "Closing on outside click when it risks data loss."
+      ]
+    },
+    {
+      "id": "ui.overlay.drawer",
+      "name": "Drawer",
+      "category": "overlay",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Provides contextual detail or secondary controls while keeping the primary surface visible.",
+      "token_roles": [
+        "surface",
+        "ink",
+        "focus",
+        "radius",
+        "body",
+        "label"
+      ],
+      "states": [
+        "closed",
+        "opening",
+        "open",
+        "focus-visible",
+        "busy",
+        "invalid",
+        "closing"
+      ],
+      "keyboard": "Focus enters the drawer on open, remains contained while open, closes with Escape when safe, and returns to the invoking control.",
+      "semantics": "Use a labeled complementary or dialog surface according to whether the main task remains operable underneath.",
+      "accessibility": "Expose title, relationship to the invoking item, close action, and whether background content is inert.",
+      "content": [
+        "Lead with the context being inspected.",
+        "Keep secondary controls grouped and named."
+      ],
+      "composition": [
+        "ui.action.button",
+        "ui.action.link",
+        "ui.feedback.alert"
+      ],
+      "do": [
+        "Use for inspect-and-return flows.",
+        "Keep a clear route back to the source item."
+      ],
+      "avoid": [
+        "Hiding required workflow steps in a narrow drawer.",
+        "Allowing background controls to steal focus."
+      ]
+    },
+    {
+      "id": "ui.overlay.popover",
+      "name": "Popover",
+      "category": "overlay",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Shows compact, contextual information or controls near the invoking element.",
+      "token_roles": [
+        "surface",
+        "ink",
+        "focus",
+        "radius",
+        "label"
+      ],
+      "states": [
+        "closed",
+        "open",
+        "focus-visible",
+        "repositioned",
+        "dismissed"
+      ],
+      "keyboard": "Opens from the invoking control; supports Tab within interactive content; Escape closes and returns focus; remains usable when repositioned.",
+      "semantics": "Use a popover for contextual content, not for essential information that must be discovered without the trigger.",
+      "accessibility": "Expose the relationship to the trigger and a labeled close path when the content is interactive.",
+      "content": [
+        "Keep content concise and contextual.",
+        "Use a title when the content has more than one control."
+      ],
+      "composition": [
+        "ui.action.button",
+        "ui.action.link"
+      ],
+      "do": [
+        "Anchor to the element that explains the content.",
+        "Preserve access when the viewport is constrained."
+      ],
+      "avoid": [
+        "Tooltips that contain actions.",
+        "Essential instructions available only on hover."
+      ]
+    },
+    {
+      "id": "ui.navigation.tabs",
+      "name": "Tabs",
+      "category": "navigation",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Switches between peer views that share the same context and are useful to compare.",
+      "token_roles": [
+        "surface",
+        "ink",
+        "action",
+        "focus",
+        "label"
+      ],
+      "states": [
+        "active",
+        "inactive",
+        "focus-visible",
+        "disabled",
+        "loading"
+      ],
+      "keyboard": "Tab enters the active tab; Arrow keys move between tabs; activation follows the chosen manual or automatic contract and is consistent.",
+      "semantics": "Use tablist, tab, and tabpanel relationships with stable labels and selected state.",
+      "accessibility": "Expose selected tab, panel relationship, disabled state, and loading state; do not hide the active panel from assistive technology.",
+      "content": [
+        "Use short, parallel labels.",
+        "Order tabs by user task or natural sequence."
+      ],
+      "composition": [
+        "ui.feedback.badge",
+        "ui.feedback.skeleton"
+      ],
+      "do": [
+        "Use for peer views in one context.",
+        "Preserve selection when the content refreshes."
+      ],
+      "avoid": [
+        "Tabs that are actually navigation between unrelated destinations.",
+        "More tabs than a user can scan and compare."
+      ]
+    },
+    {
+      "id": "ui.navigation.breadcrumbs",
+      "name": "Breadcrumbs",
+      "category": "navigation",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Shows the user's location in a hierarchy and provides a short route back to parent contexts.",
+      "token_roles": [
+        "ink",
+        "action",
+        "focus",
+        "label"
+      ],
+      "states": [
+        "default",
+        "collapsed",
+        "focus-visible",
+        "current"
+      ],
+      "keyboard": "Links are reachable in document order with Tab and activate with Enter; collapsed ancestors have an explicit control and accessible name.",
+      "semantics": "Use navigation landmarks and mark the current page or location.",
+      "accessibility": "Expose the hierarchy in a readable order; separators are decorative and not announced as content.",
+      "content": [
+        "Use the product's user-facing names.",
+        "Keep the current location visible even when ancestors collapse."
+      ],
+      "composition": [
+        "ui.action.link",
+        "ui.action.menu"
+      ],
+      "do": [
+        "Use when hierarchy helps orientation.",
+        "Keep the trail short enough to scan."
+      ],
+      "avoid": [
+        "Repeating the page title without adding location context.",
+        "Using internal identifiers as labels."
+      ]
+    },
+    {
+      "id": "ui.navigation.pagination",
+      "name": "Pagination",
+      "category": "navigation",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Moves through a known, bounded set of result pages while preserving position and query context.",
+      "token_roles": [
+        "ink",
+        "action",
+        "focus",
+        "label"
+      ],
+      "states": [
+        "default",
+        "active",
+        "focus-visible",
+        "disabled",
+        "loading",
+        "error"
+      ],
+      "keyboard": "Controls are reachable with Tab and activate with Enter or Space; current page is exposed and previous/next controls are disabled at boundaries.",
+      "semantics": "Use navigation semantics and label the pagination region; do not make page numbers the only way to move.",
+      "accessibility": "Expose current page, total when known, and result updates without moving focus unexpectedly.",
+      "content": [
+        "Name previous and next actions.",
+        "Show enough context to understand position."
+      ],
+      "composition": [
+        "ui.action.button",
+        "ui.feedback.progress",
+        "ui.feedback.alert"
+      ],
+      "do": [
+        "Preserve filters and sort state across pages.",
+        "Return focus to the results when new content loads."
+      ],
+      "avoid": [
+        "Resetting the user's query on page change.",
+        "Infinite scrolling when a bounded result set is easier to orient in."
+      ]
+    },
+    {
+      "id": "ui.data.table",
+      "name": "Data table",
+      "category": "data",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Supports comparison, scanning, sorting, filtering, and selection across structured records.",
+      "token_roles": [
+        "surface",
+        "surface-muted",
+        "ink",
+        "ink-strong",
+        "action",
+        "focus",
+        "radius",
+        "body",
+        "label",
+        "contrast-body"
+      ],
+      "states": [
+        "loading",
+        "ready",
+        "empty",
+        "sorted",
+        "filtered",
+        "selected",
+        "focus-visible",
+        "error"
+      ],
+      "keyboard": "Header actions, row actions, selection controls, and pagination are keyboard reachable; horizontal overflow does not hide the active control.",
+      "semantics": "Use native table semantics when relationships are tabular; provide an alternate structure when the layout is not truly tabular.",
+      "accessibility": "Expose column and row headers, sort direction, selection state, and result updates; do not encode status in color alone.",
+      "content": [
+        "Use concise, comparable column labels.",
+        "Keep units and date formats consistent.",
+        "Explain empty, filtered, and failed states."
+      ],
+      "composition": [
+        "ui.action.button",
+        "ui.action.link",
+        "ui.form.checkbox",
+        "ui.feedback.badge",
+        "ui.feedback.skeleton",
+        "ui.feedback.alert"
+      ],
+      "do": [
+        "Keep the most decision-relevant columns visible.",
+        "Make row and bulk actions explicit."
+      ],
+      "avoid": [
+        "Truncation that prevents identification.",
+        "A table that becomes an unstructured card list without a clear mobile contract."
+      ]
+    },
+    {
+      "id": "ui.data.tree",
+      "name": "Tree",
+      "category": "data",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Explores hierarchical content with explicit expand, collapse, selection, and loading behavior.",
+      "token_roles": [
+        "surface",
+        "ink",
+        "action",
+        "focus",
+        "label"
+      ],
+      "states": [
+        "collapsed",
+        "expanded",
+        "focus-visible",
+        "selected",
+        "loading",
+        "empty",
+        "error"
+      ],
+      "keyboard": "Arrow keys navigate hierarchy; Right expands, Left collapses, Up and Down move among visible nodes; Home and End reach the bounds.",
+      "semantics": "Use tree semantics only for a hierarchy; use a list or navigation region for a flat set of links.",
+      "accessibility": "Expose level, expanded state, selection, loading, and unavailable child content.",
+      "content": [
+        "Use stable, human-readable node names.",
+        "Tell users when a node has children but they are not loaded."
+      ],
+      "composition": [
+        "ui.action.icon-button",
+        "ui.feedback.badge",
+        "ui.feedback.skeleton",
+        "ui.feedback.alert"
+      ],
+      "do": [
+        "Preserve expansion while content refreshes.",
+        "Keep selection separate from expansion."
+      ],
+      "avoid": [
+        "Requiring pointer precision for expansion.",
+        "Moving focus to the root after every update."
+      ]
+    },
+    {
+      "id": "ui.data.timeline",
+      "name": "Timeline",
+      "category": "data",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Shows ordered events, progress, or history with clear dates, actors, and outcomes where those facts are available.",
+      "token_roles": [
+        "surface",
+        "ink",
+        "support",
+        "focus",
+        "radius",
+        "body",
+        "label"
+      ],
+      "states": [
+        "default",
+        "loading",
+        "empty",
+        "expanded",
+        "error",
+        "focus-visible"
+      ],
+      "keyboard": "Expandable event details are keyboard reachable; chronological order remains understandable without visual connectors.",
+      "semantics": "Use an ordered list or time elements for chronology; interactive details use their native semantics.",
+      "accessibility": "Expose event order, date, label, and expanded state; visual linework is supplementary.",
+      "content": [
+        "Lead with the event and outcome.",
+        "Use absolute dates when relative time could mislead.",
+        "Distinguish planned, active, and completed events in text."
+      ],
+      "composition": [
+        "ui.action.button",
+        "ui.feedback.badge",
+        "ui.feedback.alert"
+      ],
+      "do": [
+        "Keep the ordering rule explicit.",
+        "Offer a compact and expanded reading path."
+      ],
+      "avoid": [
+        "Implying causality solely through proximity.",
+        "Filling gaps with invented events or actors."
+      ]
+    },
+    {
+      "id": "ui.content.card",
+      "name": "Card",
+      "category": "content",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Groups a coherent piece of content or task with a clear hierarchy and optional action.",
+      "token_roles": [
+        "surface",
+        "ink",
+        "focus",
+        "radius",
+        "body",
+        "label"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "selected",
+        "disabled",
+        "loading"
+      ],
+      "keyboard": "If the card is actionable, it has one clear focus target or clearly named internal actions; keyboard order follows reading order.",
+      "semantics": "Use a section, article, or link according to the content; do not make a generic container interactive without semantics.",
+      "accessibility": "Expose heading hierarchy and action names; hover styling is never the only indication of interactivity.",
+      "content": [
+        "Give each card one clear subject.",
+        "Lead with the information needed to decide what to do next."
+      ],
+      "composition": [
+        "ui.action.button",
+        "ui.action.link",
+        "ui.feedback.badge",
+        "ui.feedback.skeleton"
+      ],
+      "do": [
+        "Use consistent internal hierarchy across a collection.",
+        "Make the whole card clickable only when that improves predictability."
+      ],
+      "avoid": [
+        "Nested interactive controls inside a single clickable card without a deliberate focus model.",
+        "Cards that are only decorative boxes."
+      ]
+    },
+    {
+      "id": "ui.content.empty-state",
+      "name": "Empty state",
+      "category": "content",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Explains why a surface has no content and gives the user a relevant next step.",
+      "token_roles": [
+        "surface-muted",
+        "ink",
+        "action",
+        "focus",
+        "radius",
+        "body",
+        "label"
+      ],
+      "states": [
+        "default",
+        "action-focus",
+        "focus-visible",
+        "loading",
+        "error"
+      ],
+      "keyboard": "The primary recovery or setup action is keyboard reachable and follows the explanation in reading order.",
+      "semantics": "Use a named section or status region; do not treat absence of records as an error without evidence.",
+      "accessibility": "Expose the reason, current scope, and recovery action as text; decorative imagery is optional.",
+      "content": [
+        "Say whether the state is first use, no matches, or unavailable.",
+        "Offer one relevant next action.",
+        "Do not imply failure when the state is expected."
+      ],
+      "composition": [
+        "ui.action.button",
+        "ui.action.link",
+        "ui.feedback.alert"
+      ],
+      "do": [
+        "Match the message to the user's current query or scope.",
+        "Preserve the user's filters when explaining no matches."
+      ],
+      "avoid": [
+        "Generic messages such as Nothing here without context.",
+        "Inventing sample data that looks real."
+      ]
+    },
+    {
+      "id": "ui.ai.prompt-composer",
+      "name": "Prompt composer",
+      "category": "ai",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Collects an AI request with visible scope, optional attachments or context, and a reversible submit path.",
+      "token_roles": [
+        "surface",
+        "ink",
+        "action",
+        "focus",
+        "radius",
+        "body",
+        "label",
+        "cta"
+      ],
+      "states": [
+        "empty",
+        "composing",
+        "submitted",
+        "focus-visible",
+        "disabled",
+        "loading",
+        "error"
+      ],
+      "keyboard": "Supports normal text editing and an explicit submit shortcut; the shortcut is discoverable and does not prevent multiline entry; Escape can stop or dismiss only when the contract says so.",
+      "semantics": "Use a labeled form or textbox with explicit submit, stop, attachment, and scope controls.",
+      "accessibility": "Expose scope, attached context, busy state, errors, and stop action; never imply that an answer is authoritative by visual styling alone.",
+      "content": [
+        "State what the assistant can do in this context.",
+        "Show the active scope before submit.",
+        "Name privacy or data boundaries when they affect the request."
+      ],
+      "composition": [
+        "ui.form.text-field",
+        "ui.action.button",
+        "ui.action.icon-button",
+        "ui.feedback.alert",
+        "ui.feedback.badge"
+      ],
+      "do": [
+        "Keep submitted prompts and active scope inspectable.",
+        "Allow cancellation when generation is in progress."
+      ],
+      "avoid": [
+        "A single unlabeled input that hides context or tool use.",
+        "Representing generated output as a silent replacement for user content."
+      ]
+    },
+    {
+      "id": "ui.ai.response",
+      "name": "AI response",
+      "category": "ai",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Presents generated content with visible lifecycle, provenance affordances, and a clear distinction between suggestion and confirmed fact.",
+      "token_roles": [
+        "surface",
+        "ink",
+        "ink-strong",
+        "action",
+        "focus",
+        "radius",
+        "body",
+        "label"
+      ],
+      "states": [
+        "streaming",
+        "complete",
+        "partial",
+        "focus-visible",
+        "error",
+        "canceled",
+        "copied"
+      ],
+      "keyboard": "Response actions, source links, expanders, and retry controls are keyboard reachable; streaming does not repeatedly steal focus.",
+      "semantics": "Use a labeled article or region with status updates separate from the response body; preserve headings and lists in generated content.",
+      "accessibility": "Expose generation state, incomplete or failed status, source availability, and action outcomes; do not rely on animation to show activity.",
+      "content": [
+        "Label generated content as generated.",
+        "Separate answer, assumptions, sources, and suggested actions.",
+        "State uncertainty when it matters."
+      ],
+      "composition": [
+        "ui.action.button",
+        "ui.action.link",
+        "ui.feedback.progress",
+        "ui.feedback.alert",
+        "ui.ai.source-list"
+      ],
+      "do": [
+        "Keep partial output recoverable.",
+        "Make copy, retry, stop, and feedback actions explicit."
+      ],
+      "avoid": [
+        "Presenting a guess with the visual authority of a confirmed record.",
+        "Hiding tool use, source status, or failure behind a spinner."
+      ]
+    },
+    {
+      "id": "ui.ai.source-list",
+      "name": "Source list",
+      "category": "ai",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Shows the sources or context used for a generated answer, including unavailable or partial source evidence.",
+      "token_roles": [
+        "surface-muted",
+        "ink",
+        "action",
+        "focus",
+        "radius",
+        "label"
+      ],
+      "states": [
+        "collapsed",
+        "expanded",
+        "loading",
+        "empty",
+        "unavailable",
+        "focus-visible"
+      ],
+      "keyboard": "The source disclosure and each source link are keyboard reachable; expanding does not move focus unexpectedly.",
+      "semantics": "Use a labeled disclosure or list with links to the source context when links are available.",
+      "accessibility": "Expose source title, type, date when known, unavailable state, and relationship to the generated content.",
+      "content": [
+        "Use source names users can recognize.",
+        "Distinguish cited, related, and unavailable sources.",
+        "Do not invent a source label when provenance is missing."
+      ],
+      "composition": [
+        "ui.action.button",
+        "ui.action.link",
+        "ui.feedback.badge",
+        "ui.feedback.alert"
+      ],
+      "do": [
+        "Keep source context near the claim it supports when possible.",
+        "Show when the list is incomplete."
+      ],
+      "avoid": [
+        "Citation numbers with no route to source context.",
+        "Treating retrieval metadata as proof of correctness."
+      ]
+    },
+    {
+      "id": "ui.ai.change-review",
+      "name": "AI change review",
+      "category": "ai",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Lets a user inspect, accept, reject, or undo a generated change before it becomes authoritative.",
+      "token_roles": [
+        "surface",
+        "surface-muted",
+        "ink",
+        "action",
+        "focus",
+        "radius",
+        "body",
+        "label"
+      ],
+      "states": [
+        "proposed",
+        "selected",
+        "accepted",
+        "rejected",
+        "conflict",
+        "focus-visible",
+        "undoable",
+        "error"
+      ],
+      "keyboard": "Changed regions and accept/reject controls are keyboard reachable; focus moves to the next unresolved change only by an explicit, predictable rule.",
+      "semantics": "Use a diff or structured review pattern with clear old and proposed values; do not overwrite the source silently.",
+      "accessibility": "Expose change location, old value, proposed value, status, and action outcome in text; color highlighting is supplementary.",
+      "content": [
+        "Name the field or record being changed.",
+        "Show the proposed value and what it replaces.",
+        "Explain conflicts and irreversible effects."
+      ],
+      "composition": [
+        "ui.action.button",
+        "ui.action.link",
+        "ui.feedback.badge",
+        "ui.feedback.alert",
+        "ui.content.card"
+      ],
+      "do": [
+        "Keep the original value inspectable.",
+        "Provide undo or a clear recovery path when technically possible."
+      ],
+      "avoid": [
+        "Auto-applying a material change without an explicit boundary.",
+        "Hiding rejected or conflicted changes from the review history."
+      ]
+    },
+    {
+      "id": "ui.ai.operation-status",
+      "name": "AI operation status",
+      "category": "ai",
+      "maturity": "defined",
+      "interactive": true,
+      "purpose": "Makes a longer-running assistant or tool operation inspectable, stoppable, and honest about its current result.",
+      "token_roles": [
+        "surface-muted",
+        "ink",
+        "support",
+        "action",
+        "focus",
+        "radius",
+        "label"
+      ],
+      "states": [
+        "queued",
+        "running",
+        "paused",
+        "completed",
+        "focus-visible",
+        "failed",
+        "canceled"
+      ],
+      "keyboard": "Stop, pause, retry, and details controls are keyboard reachable; completion does not force navigation away from the current task.",
+      "semantics": "Use a labeled status region or task record with explicit lifecycle state and actions.",
+      "accessibility": "Announce meaningful transitions without flooding the user; expose failure reason, retry conditions, and whether output is partial.",
+      "content": [
+        "Name the operation and active scope.",
+        "State what is happening now.",
+        "State what the user can do if it fails or stalls."
+      ],
+      "composition": [
+        "ui.feedback.progress",
+        "ui.action.button",
+        "ui.action.link",
+        "ui.feedback.alert",
+        "ui.feedback.toast"
+      ],
+      "do": [
+        "Keep operation history inspectable.",
+        "Make stop behavior explicit and honest."
+      ],
+      "avoid": [
+        "A spinner with no operation name or timeout path.",
+        "Reporting completion before the result is available or verified."
+      ]
+    }
+  ]
+}
