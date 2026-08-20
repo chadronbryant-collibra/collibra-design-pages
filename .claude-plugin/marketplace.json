@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "collibra-design",
+  "owner": {
+    "name": "Chadron Bryant",
+    "url": "https://github.com/chadronbryant-collibra"
+  },
+  "description": "Public-safe Claude adoption package for the Collibra design atlas.",
+  "version": "0.1.0",
+  "plugins": [
+    {
+      "name": "collibra-design-suite",
+      "source": "./plugins/collibra-design-suite",
+      "displayName": "Collibra design suite",
+      "description": "Apply Collibra's reader-first design, voice, accessibility, and evidence contracts to content and experiences.",
+      "version": "0.1.0",
+      "homepage": "https://chadronbryant-collibra.github.io/collibra-design-pages/",
+      "repository": "https://github.com/chadronbryant-collibra/collibra-design-pages",
+      "license": "All rights reserved; Collibra-owned design guidance.",
+      "keywords": [
+        "collibra",
+        "design-system",
+        "voice",
+        "accessibility",
+        "content",
+        "ux"
+      ],
+      "category": "Design"
+    }
+  ]
+}

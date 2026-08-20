@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "collibra-design-suite",
+  "displayName": "Collibra design suite",
+  "description": "Apply Collibra's reader-first design, voice, accessibility, and evidence contracts to content and experiences.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Chadron Bryant"
+  },
+  "homepage": "https://chadronbryant-collibra.github.io/collibra-design-pages/",
+  "repository": "https://github.com/chadronbryant-collibra/collibra-design-pages",
+  "license": "All rights reserved; Collibra-owned design guidance.",
+  "keywords": [
+    "collibra",
+    "design-system",
+    "voice",
+    "accessibility",
+    "content",
+    "ux"
+  ],
+  "metadata": {
+    "contractVersion": "0.1.0",
+    "distribution": "public-safe",
+    "atlas": "https://chadronbryant-collibra.github.io/collibra-design-pages/"
+  }
+}

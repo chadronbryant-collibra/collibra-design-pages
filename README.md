@@ -1,4 +1,4 @@
-# Collibra design atlas
+# Collibra design atlas and Claude marketplace
 
 ## A public window into Collibra design thinking
 
@@ -8,6 +8,39 @@ does this mean, and what should I do next? — then move to the implementation
 detail when they are ready to build or review.
 
 [Open the live atlas](https://chadronbryant-collibra.github.io/collibra-design-pages/)
+
+This public repository also carries the public-safe
+`collibra-design-suite` Claude plugin, so the visual reference and the
+adoption package stay discoverable from one place. The private
+`collibra-design` repository remains the canonical source of the contracts.
+
+## Install the Claude plugin
+
+From Claude Code:
+
+```text
+/plugin marketplace add chadronbryant-collibra/collibra-design-pages
+/plugin install collibra-design-suite@collibra-design
+```
+
+For a one-session clone:
+
+```bash
+git clone https://github.com/chadronbryant-collibra/collibra-design-pages.git
+claude --plugin-dir ./collibra-design-pages/plugins/collibra-design-suite
+```
+
+For a ZIP upload, build the self-contained plugin archive:
+
+```bash
+python3 scripts/package_claude_plugin.py \
+  --package-root . \
+  --plugin collibra-design-suite \
+  --output-dir /tmp/collibra-claude-plugins
+```
+
+Then upload the generated ZIP through Claude's local-plugin flow. The ZIP
+contains the plugin root, not the marketplace repository.
 
 ## Start here
 
@@ -40,7 +73,8 @@ trace a guide back to its stable source identifier.
 
 ## For maintainers
 
-This repository contains only the generated public site: the page, its styles,
-its behavior, and the public data needed to render the atlas. Changes begin in
-the private source repository, pass its validation gates, and are then
-published here as a reviewed Pages release.
+This repository contains the generated public site plus the public-safe Claude
+plugin: the page, its styles, its behavior, public data, plugin skills, and
+bundled contract snapshot. Changes begin in the private source repository,
+pass its source and public-boundary gates, and are then published here as a
+reviewed Pages and marketplace release.

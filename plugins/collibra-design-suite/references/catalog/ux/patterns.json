@@ -1,0 +1,795 @@
+{
+  "schema_version": 1,
+  "catalog_version": "0.1.0",
+  "area_id": "area.design.ux",
+  "status": "active",
+  "title": "Collibra UX pattern catalog",
+  "implementation_boundary": "This is a framework-neutral interaction contract. Product teams own service behavior, data rules, and runtime implementation.",
+  "principles": [
+    "Orient before asking the user to act.",
+    "Make system state visible and recoverable.",
+    "Prefer progressive disclosure over hidden complexity.",
+    "Keep primary actions and consequences explicit.",
+    "Treat keyboard, assistive technology, and constrained viewports as first-class paths.",
+    "Separate generated suggestions from confirmed records or decisions.",
+    "Show provenance and uncertainty when they affect a decision.",
+    "Measure the task outcome before adding automation or complexity."
+  ],
+  "patterns": [
+    {
+      "id": "ux.shell.workspace",
+      "name": "Workspace shell",
+      "maturity": "defined",
+      "goal": "Give users a stable sense of location, scope, current work, and next action across a multi-surface product.",
+      "when": [
+        "The product has more than one context or workflow.",
+        "Users need to return to a parent context after inspecting detail."
+      ],
+      "flow": [
+        "Establish product and workspace context.",
+        "Show current location and active scope.",
+        "Expose the primary task path.",
+        "Keep secondary navigation available without competing with the task.",
+        "Preserve context after refresh, error, or return from detail."
+      ],
+      "components": [
+        "ui.navigation.breadcrumbs",
+        "ui.navigation.tabs",
+        "ui.content.card",
+        "ui.ai.operation-status"
+      ],
+      "states": [
+        "initial",
+        "loading",
+        "ready",
+        "empty",
+        "error",
+        "permission-denied"
+      ],
+      "resilience": {
+        "loading": "Keep the shell and location visible while local content loads.",
+        "empty": "Explain which scope is empty and give one relevant next action.",
+        "error": "Keep navigation usable and place recovery next to the failed surface."
+      },
+      "accessibility": [
+        "Use landmarks and a consistent heading hierarchy.",
+        "Keep current location and selected navigation state programmatically exposed.",
+        "Do not require hover to discover navigation."
+      ],
+      "content": [
+        "Use user-facing names for workspaces and resources.",
+        "Make active scope visible before actions that depend on it.",
+        "Keep navigation labels parallel and concise."
+      ],
+      "safety": [
+        "Do not hide permission or data-scope boundaries in navigation.",
+        "Do not make a destructive action the only global action."
+      ],
+      "anti_patterns": [
+        "A shell that changes structure between pages without explanation.",
+        "A global menu that hides the current location.",
+        "A loading screen that removes the route back to safety."
+      ],
+      "success": "A user can state where they are, what scope they are in, and how to start or resume the current task."
+    },
+    {
+      "id": "ux.search.filter-and-discover",
+      "name": "Search and filter discovery",
+      "maturity": "defined",
+      "goal": "Help users find the right records without losing their query, scope, or understanding of why results changed.",
+      "when": [
+        "The result set is larger than a user can scan.",
+        "Users need to combine free-text search with known facets or attributes."
+      ],
+      "flow": [
+        "Show the active scope and query context.",
+        "Accept a query or filter change.",
+        "Show which filters are active.",
+        "Update results with a visible status.",
+        "Offer clear removal, reset, and no-match recovery."
+      ],
+      "components": [
+        "ui.form.text-field",
+        "ui.form.combobox",
+        "ui.action.button",
+        "ui.feedback.badge",
+        "ui.data.table",
+        "ui.content.empty-state",
+        "ui.feedback.progress",
+        "ui.feedback.alert"
+      ],
+      "states": [
+        "idle",
+        "typing",
+        "loading",
+        "ready",
+        "no-results",
+        "error"
+      ],
+      "resilience": {
+        "loading": "Keep the query and active filters visible while results update.",
+        "empty": "Distinguish no records in scope from no matches for the current query.",
+        "error": "Preserve the query and offer retry or a narrower scope without silently resetting the form."
+      },
+      "accessibility": [
+        "Expose active filters and result count or status in text.",
+        "Keep focus in the input or filter control that initiated an update.",
+        "Make filter removal controls individually named."
+      ],
+      "content": [
+        "Name the field or facet in user language.",
+        "Explain why no results were found and what to try next.",
+        "Use stable units, date formats, and capitalization in result labels."
+      ],
+      "safety": [
+        "Do not broaden the scope silently when a query returns no results.",
+        "Do not treat search relevance as proof of authority or correctness."
+      ],
+      "anti_patterns": [
+        "Filters that disappear when a result loads.",
+        "A no-results message that implies the record does not exist.",
+        "Search that changes scope without a visible boundary."
+      ],
+      "success": "A user can reproduce the current result set from the visible query, filters, and scope."
+    },
+    {
+      "id": "ux.inspect.list-detail",
+      "name": "List and detail inspection",
+      "maturity": "defined",
+      "goal": "Support scanning a collection and inspecting one item without losing position, query context, or a route back.",
+      "when": [
+        "Users compare multiple records and occasionally need deeper detail.",
+        "Detail is contextual rather than a separate workflow."
+      ],
+      "flow": [
+        "Present a scannable collection.",
+        "Make the selected item and available actions explicit.",
+        "Open detail in a drawer or dedicated route according to task complexity.",
+        "Keep the source context and selection visible.",
+        "Return to the same collection position after close or save."
+      ],
+      "components": [
+        "ui.data.table",
+        "ui.content.card",
+        "ui.overlay.drawer",
+        "ui.navigation.breadcrumbs",
+        "ui.data.timeline",
+        "ui.feedback.alert"
+      ],
+      "states": [
+        "list-loading",
+        "list-ready",
+        "detail-opening",
+        "detail-open",
+        "detail-missing",
+        "error"
+      ],
+      "resilience": {
+        "loading": "Keep the collection structure visible and avoid changing selection while detail loads.",
+        "empty": "Explain whether the collection or only the current scope is empty.",
+        "error": "Keep the collection usable if detail fails and offer a direct retry."
+      },
+      "accessibility": [
+        "Use headings and table or list semantics that match the data.",
+        "Move focus deliberately into detail and return it to the invoking item.",
+        "Expose selection and expanded detail state."
+      ],
+      "content": [
+        "Lead detail with the identity and purpose of the item.",
+        "Use the same names in collection and detail.",
+        "Separate facts, actions, history, and related context."
+      ],
+      "safety": [
+        "Do not make inspecting an item mutate it.",
+        "Show which record and scope an action will affect before submission."
+      ],
+      "anti_patterns": [
+        "Detail that opens with no visible relationship to the selected row.",
+        "A drawer that contains an entire unrelated workflow.",
+        "Returning to the first page after closing detail."
+      ],
+      "success": "A user can inspect an item, understand its context, and return to the same place in the collection."
+    },
+    {
+      "id": "ux.command.quick-action",
+      "name": "Command and quick action surface",
+      "maturity": "defined",
+      "goal": "Make frequent actions discoverable and fast without turning the product into an opaque command language.",
+      "when": [
+        "Experienced users repeat a small set of cross-context actions.",
+        "The product has a stable action vocabulary and visible scope."
+      ],
+      "flow": [
+        "Open from a labeled, discoverable trigger.",
+        "Search or browse available actions.",
+        "Show the active scope and any required inputs.",
+        "Preview material consequences.",
+        "Confirm, complete, or recover without losing the source context."
+      ],
+      "components": [
+        "ui.action.menu",
+        "ui.form.combobox",
+        "ui.action.button",
+        "ui.overlay.dialog",
+        "ui.feedback.alert",
+        "ui.content.empty-state"
+      ],
+      "states": [
+        "closed",
+        "open",
+        "querying",
+        "no-match",
+        "confirming",
+        "completed",
+        "error"
+      ],
+      "resilience": {
+        "loading": "Keep the trigger and scope visible while actions are being resolved.",
+        "empty": "Explain that no action matches the query and show the available scope or recovery path.",
+        "error": "Keep the source task intact and explain whether the action ran, failed, or was not started."
+      },
+      "accessibility": [
+        "Use a named trigger and predictable keyboard navigation.",
+        "Do not require memorized shortcuts for essential actions.",
+        "Expose scope and confirmation content before execution."
+      ],
+      "content": [
+        "Use the same action verbs as visible buttons.",
+        "Show required parameters in plain language.",
+        "Name irreversible or broad effects before confirmation."
+      ],
+      "safety": [
+        "Keep the command surface read-only until the user explicitly confirms a material action.",
+        "Do not hide permission boundaries or active scope."
+      ],
+      "anti_patterns": [
+        "A command palette that exposes actions a user cannot perform.",
+        "Shortcuts that silently act on the wrong scope.",
+        "Commands that replace visible recovery paths."
+      ],
+      "success": "A user can discover a frequent action, see what it will affect, and execute or cancel it confidently."
+    },
+    {
+      "id": "ux.form.create-edit",
+      "name": "Create and edit form",
+      "maturity": "defined",
+      "goal": "Collect or revise structured values with clear constraints, preserved input, and an explicit completion boundary.",
+      "when": [
+        "The user must provide several related values.",
+        "The outcome is durable or needs validation before commit."
+      ],
+      "flow": [
+        "Explain the object or decision being edited.",
+        "Group fields in the user's task order.",
+        "Show constraints before or at entry.",
+        "Validate without destroying input.",
+        "Save explicitly and confirm the resulting state."
+      ],
+      "components": [
+        "ui.form.text-field",
+        "ui.form.combobox",
+        "ui.form.checkbox",
+        "ui.form.radio-group",
+        "ui.form.switch",
+        "ui.action.button",
+        "ui.feedback.alert",
+        "ui.feedback.toast",
+        "ui.overlay.dialog"
+      ],
+      "states": [
+        "untouched",
+        "editing",
+        "invalid",
+        "saving",
+        "saved",
+        "save-failed",
+        "canceled"
+      ],
+      "resilience": {
+        "loading": "Show which fields or related values are still loading without blocking independent entry.",
+        "empty": "Explain when a required option set is empty and who can resolve it.",
+        "error": "Preserve all recoverable input and identify the field or service that needs attention."
+      },
+      "accessibility": [
+        "Associate labels, descriptions, required state, and errors with each control.",
+        "Keep validation announcements useful without moving focus unpredictably.",
+        "Use native control semantics where possible."
+      ],
+      "content": [
+        "Use labels that describe the value.",
+        "Explain constraints in advance.",
+        "Use errors that state the fix, not just that the value is invalid."
+      ],
+      "safety": [
+        "Make save and cancel outcomes explicit.",
+        "Confirm before discarding material unsaved work.",
+        "Do not use an immediate switch for an irreversible change."
+      ],
+      "anti_patterns": [
+        "Placeholder-only labels.",
+        "A form that reports success before persistence is confirmed.",
+        "A save failure that clears the form."
+      ],
+      "success": "A user can complete or cancel the form and knows whether the intended change is durable."
+    },
+    {
+      "id": "ux.data.review",
+      "name": "Structured data review",
+      "maturity": "defined",
+      "goal": "Help users compare, inspect, and decide on structured information without losing provenance or change context.",
+      "when": [
+        "A decision depends on multiple records, fields, or event history.",
+        "The product needs a human review boundary before committing a change."
+      ],
+      "flow": [
+        "Declare the review scope and source.",
+        "Present a scannable summary.",
+        "Allow focused inspection and filtering.",
+        "Show differences, missing evidence, and unresolved issues.",
+        "Commit a decision or leave the review explicitly incomplete."
+      ],
+      "components": [
+        "ui.data.table",
+        "ui.data.tree",
+        "ui.data.timeline",
+        "ui.feedback.badge",
+        "ui.content.card",
+        "ui.ai.change-review",
+        "ui.ai.source-list",
+        "ui.feedback.alert"
+      ],
+      "states": [
+        "not-started",
+        "in-review",
+        "filtered",
+        "change-selected",
+        "complete",
+        "blocked",
+        "error"
+      ],
+      "resilience": {
+        "loading": "Show the review scope and source while individual data regions load.",
+        "empty": "Distinguish no data from no evidence for the chosen scope.",
+        "error": "Mark incomplete regions and keep already loaded evidence inspectable."
+      },
+      "accessibility": [
+        "Expose row, column, tree, timeline, and diff relationships in the chosen structure.",
+        "Make selected changes and unresolved items available as text.",
+        "Do not make color highlighting the only difference cue."
+      ],
+      "content": [
+        "Name the source and review date when known.",
+        "Separate confirmed, proposed, missing, and conflicting information.",
+        "Use stable labels across summary and detail."
+      ],
+      "safety": [
+        "Do not convert a missing source into a negative finding.",
+        "Require an explicit boundary before applying reviewed changes.",
+        "Keep the original value available during review."
+      ],
+      "anti_patterns": [
+        "A dashboard that hides the records behind unexplained scores.",
+        "An accepted change with no visible review history.",
+        "Treating retrieved evidence as automatically authoritative."
+      ],
+      "success": "A reviewer can explain what was examined, what remains uncertain, and what decision was actually made."
+    },
+    {
+      "id": "ux.ai.assist-review",
+      "name": "AI assist and human review",
+      "maturity": "defined",
+      "goal": "Let users get useful assistance while keeping scope, provenance, uncertainty, and human control visible.",
+      "when": [
+        "Generated content or suggested changes can accelerate a user task.",
+        "The user must remain accountable for a decision or durable change."
+      ],
+      "flow": [
+        "Show the active scope and available assistant capability.",
+        "Collect the request with inspectable context.",
+        "Show generation state and partial or failed output honestly.",
+        "Separate answer, assumptions, sources, and suggested actions.",
+        "Require review before a durable or material change.",
+        "Confirm the result and preserve a recovery path."
+      ],
+      "components": [
+        "ui.ai.prompt-composer",
+        "ui.ai.response",
+        "ui.ai.source-list",
+        "ui.ai.change-review",
+        "ui.ai.operation-status",
+        "ui.action.button",
+        "ui.feedback.alert"
+      ],
+      "states": [
+        "ready",
+        "composing",
+        "generating",
+        "partial",
+        "needs-review",
+        "accepted",
+        "rejected",
+        "failed",
+        "canceled"
+      ],
+      "resilience": {
+        "loading": "Show what is being generated and keep stop or cancel available.",
+        "empty": "Explain when no source context or result is available instead of fabricating a response.",
+        "error": "Keep the request and partial output inspectable and state whether retry is safe."
+      },
+      "accessibility": [
+        "Announce meaningful lifecycle changes without repeatedly stealing focus.",
+        "Make generated, cited, proposed, and confirmed content distinguishable in text.",
+        "Expose all review actions to keyboard and assistive technology."
+      ],
+      "content": [
+        "Label generated content as generated.",
+        "State uncertainty and source limitations when they affect use.",
+        "Use explicit verbs for accept, reject, retry, stop, and apply."
+      ],
+      "safety": [
+        "No silent durable writes.",
+        "No hidden scope expansion or tool use.",
+        "No claim of certainty or authority that the evidence does not support."
+      ],
+      "anti_patterns": [
+        "A chat transcript that hides the active data scope.",
+        "An answer that looks like a confirmed record.",
+        "A generated change applied without review or undo."
+      ],
+      "success": "A user can say what the assistant saw, what it suggested, what evidence it had, and what the user chose to do."
+    },
+    {
+      "id": "ux.long-running.operation",
+      "name": "Long-running operation",
+      "maturity": "defined",
+      "goal": "Keep an asynchronous task understandable, stoppable, and recoverable without forcing the user to wait on a frozen surface.",
+      "when": [
+        "An operation can outlast the current interaction.",
+        "The user needs to continue other work while a task runs."
+      ],
+      "flow": [
+        "Name the operation and active scope.",
+        "Show queued, running, paused, or blocked state.",
+        "Expose progress or honest indeterminate status.",
+        "Offer stop, pause, retry, or details when supported.",
+        "Show completion, partial result, failure, or cancellation explicitly."
+      ],
+      "components": [
+        "ui.ai.operation-status",
+        "ui.feedback.progress",
+        "ui.action.button",
+        "ui.action.link",
+        "ui.feedback.toast",
+        "ui.feedback.alert",
+        "ui.ai.response"
+      ],
+      "states": [
+        "queued",
+        "running",
+        "paused",
+        "completed",
+        "partial",
+        "failed",
+        "canceled"
+      ],
+      "resilience": {
+        "loading": "Use a stable operation name and state rather than an unexplained spinner.",
+        "empty": "Explain when an operation completed without producing a result.",
+        "error": "State whether retry will duplicate work, resume safely, or require a new request."
+      },
+      "accessibility": [
+        "Announce meaningful transitions at a useful rate.",
+        "Expose stop and retry controls with clear names.",
+        "Do not require the user to monitor animation to know that work continues."
+      ],
+      "content": [
+        "Name what is happening now.",
+        "Use complete, partial, failed, and canceled language precisely.",
+        "Tell the user what remains to be done."
+      ],
+      "safety": [
+        "Make stop semantics explicit.",
+        "Do not report completion before the output is available or verified.",
+        "Do not retry a non-idempotent operation without a clear boundary."
+      ],
+      "anti_patterns": [
+        "A permanent progress indicator with no timeout or recovery.",
+        "A completion toast that cannot be inspected later.",
+        "A retry that silently starts duplicate work."
+      ],
+      "success": "A user can leave and return to the operation and still understand its state, result, and next safe action."
+    },
+    {
+      "id": "ux.error-recovery",
+      "name": "Error and recovery",
+      "maturity": "defined",
+      "goal": "Turn failure into an understandable, local, recoverable state without blaming the user or losing their work.",
+      "when": [
+        "A request, field, data region, or background operation can fail.",
+        "The user needs to decide whether to retry, change input, or ask for help."
+      ],
+      "flow": [
+        "Keep the user's context and input.",
+        "State what failed and where.",
+        "Separate known facts from unknown cause.",
+        "Offer the smallest useful recovery action.",
+        "Confirm whether recovery worked or whether the task remains blocked."
+      ],
+      "components": [
+        "ui.feedback.alert",
+        "ui.content.empty-state",
+        "ui.action.button",
+        "ui.action.link",
+        "ui.feedback.toast",
+        "ui.feedback.skeleton"
+      ],
+      "states": [
+        "local-error",
+        "partial-error",
+        "blocked",
+        "retrying",
+        "recovered",
+        "unavailable"
+      ],
+      "resilience": {
+        "loading": "Label a retry in progress and keep the failed context visible.",
+        "empty": "Do not use an error state for expected absence; explain the actual scope instead.",
+        "error": "Name the recovery action, preserve input, and state what remains unavailable."
+      },
+      "accessibility": [
+        "Use text and semantics for error state, not color alone.",
+        "Associate field errors with their controls.",
+        "Do not move focus to a distant banner without a clear reason."
+      ],
+      "content": [
+        "Say what happened in user terms.",
+        "Say what the user can do next.",
+        "Avoid fabricated causes or blame."
+      ],
+      "safety": [
+        "Do not retry automatically when it could duplicate a material action.",
+        "Do not reveal secrets or sensitive implementation detail in an error.",
+        "Keep partial results marked as partial."
+      ],
+      "anti_patterns": [
+        "Something went wrong with no recovery path.",
+        "Clearing user input after an error.",
+        "A success message that masks a partial failure."
+      ],
+      "success": "A user can distinguish failed, incomplete, unavailable, and recovered states and knows the next safe action."
+    },
+    {
+      "id": "ux.confirmation.destructive",
+      "name": "Destructive confirmation",
+      "maturity": "defined",
+      "goal": "Prevent accidental irreversible or high-impact actions while keeping deliberate work efficient.",
+      "when": [
+        "The action is destructive, broad, irreversible, or difficult to undo.",
+        "The consequence would surprise a reasonable user from the visible action label alone."
+      ],
+      "flow": [
+        "Name the exact object, scope, and consequence.",
+        "Ask for an explicit decision.",
+        "Use an action label that names the consequence.",
+        "Complete or cancel without ambiguity.",
+        "Show the resulting state and recovery path when one exists."
+      ],
+      "components": [
+        "ui.overlay.dialog",
+        "ui.action.button",
+        "ui.feedback.alert",
+        "ui.feedback.toast"
+      ],
+      "states": [
+        "idle",
+        "confirming",
+        "submitting",
+        "completed",
+        "canceled",
+        "failed"
+      ],
+      "resilience": {
+        "loading": "Keep the exact scope and action visible while submission is in progress.",
+        "empty": "Do not show a confirmation when there is no target or no action to perform.",
+        "error": "State whether the action happened, did not happen, or is uncertain; do not claim safe rollback without evidence."
+      },
+      "accessibility": [
+        "Give the dialog a title and description that name the consequence.",
+        "Keep focus within the confirmation and return it to the trigger on cancel.",
+        "Make the confirm and cancel actions distinct in text."
+      ],
+      "content": [
+        "Name the object and scope.",
+        "Use the irreversible verb in the confirm action.",
+        "Explain undo or lack of undo."
+      ],
+      "safety": [
+        "Require explicit confirmation for material impact.",
+        "Never rely on color or position alone to signal danger.",
+        "Do not change the target while the dialog is open."
+      ],
+      "anti_patterns": [
+        "Generic Confirm labels.",
+        "A confirmation that omits the target or consequence.",
+        "Using confirmation as a substitute for a safe default or undo."
+      ],
+      "success": "A user can state what will happen before confirming and can tell what happened afterward."
+    },
+    {
+      "id": "ux.empty-state.first-use",
+      "name": "First-use and no-content state",
+      "maturity": "defined",
+      "goal": "Help users understand an expected absence of records or setup and take the smallest useful next step.",
+      "when": [
+        "The user has no records yet.",
+        "The current scope, filter, or permission produces no visible content."
+      ],
+      "flow": [
+        "Name the current scope.",
+        "Classify the absence as first use, no matches, unavailable, or not permitted.",
+        "Explain the next step in one sentence.",
+        "Offer one relevant setup, reset, request, or return action.",
+        "Preserve context after the action."
+      ],
+      "components": [
+        "ui.content.empty-state",
+        "ui.action.button",
+        "ui.action.link",
+        "ui.feedback.alert",
+        "ui.feedback.skeleton"
+      ],
+      "states": [
+        "first-use",
+        "no-matches",
+        "unavailable",
+        "permission-denied",
+        "action-focus",
+        "error"
+      ],
+      "resilience": {
+        "loading": "Keep the scope and expected content shape visible while the first load resolves.",
+        "empty": "Explain the specific kind of absence instead of presenting a generic blank surface.",
+        "error": "Distinguish no data from failed retrieval and offer a safe recovery path."
+      },
+      "accessibility": [
+        "Expose the reason for absence in text.",
+        "Make the next action keyboard reachable.",
+        "Do not use decorative illustration as the only explanation."
+      ],
+      "content": [
+        "Use a calm, factual explanation.",
+        "Offer one next action rather than a list of unrelated possibilities.",
+        "Avoid implying that missing data is a user mistake."
+      ],
+      "safety": [
+        "Do not fabricate sample records that could be mistaken for real data.",
+        "Do not broaden scope to make the surface look populated.",
+        "Respect permission boundaries in the explanation."
+      ],
+      "anti_patterns": [
+        "An empty white surface with no explanation.",
+        "Sample content that looks live.",
+        "A setup action that changes scope without telling the user."
+      ],
+      "success": "A user knows why the surface is empty and what one safe next action is available."
+    },
+    {
+      "id": "ux.responsive.adaptive",
+      "name": "Responsive and adaptive layout",
+      "maturity": "defined",
+      "goal": "Preserve task hierarchy, meaning, and control access when the available viewport or input mode changes.",
+      "when": [
+        "A surface can be used at different viewport sizes or with different input modes.",
+        "Dense data or secondary detail needs a different presentation at constrained sizes."
+      ],
+      "flow": [
+        "Identify the primary task and required controls.",
+        "Keep critical identity, status, and action information visible.",
+        "Move secondary detail into an explicit disclosure or drawer.",
+        "Preserve reading order, focus, and state across layout changes.",
+        "Test the constrained path with keyboard and assistive technology."
+      ],
+      "components": [
+        "ui.content.card",
+        "ui.data.table",
+        "ui.overlay.drawer",
+        "ui.navigation.breadcrumbs",
+        "ui.navigation.tabs",
+        "ui.content.empty-state"
+      ],
+      "states": [
+        "wide",
+        "constrained",
+        "stacked",
+        "overflow",
+        "reflowed",
+        "error"
+      ],
+      "resilience": {
+        "loading": "Preserve the same loading meaning and operation label across layouts.",
+        "empty": "Keep the reason and next action visible after reflow.",
+        "error": "Keep the failed context and recovery action reachable without relying on a hover or hidden overflow."
+      },
+      "accessibility": [
+        "Preserve semantic order even when visual order changes.",
+        "Keep focus on the same logical item after reflow.",
+        "Make horizontal overflow intentional, labeled, and keyboard usable."
+      ],
+      "content": [
+        "Shorten labels only when the meaning stays intact.",
+        "Prefer disclosure over truncation for identity and decision-critical values.",
+        "Keep action labels explicit in every layout."
+      ],
+      "safety": [
+        "Do not hide destructive or required actions only because space is constrained.",
+        "Do not change the active scope during reflow.",
+        "Do not turn data relationships into unexplained visual cards."
+      ],
+      "anti_patterns": [
+        "A mobile layout that removes the current identity or status.",
+        "A table that becomes unreadable cards with no relationship cues.",
+        "An overflow menu that contains the only recovery action."
+      ],
+      "success": "A user can complete the same core task and understand the same state at every supported layout."
+    },
+    {
+      "id": "ux.provenance.inspectable",
+      "name": "Inspectable provenance",
+      "maturity": "defined",
+      "goal": "Make the source, freshness, status, and limits of information visible when a user must trust or review it.",
+      "when": [
+        "A result is generated, aggregated, imported, or derived.",
+        "A decision depends on evidence that can be missing, stale, partial, or conflicting."
+      ],
+      "flow": [
+        "State what the information represents.",
+        "Show source or provenance affordance near the relevant claim.",
+        "Expose date, status, and limitations when known.",
+        "Separate source evidence from interpretation or suggestion.",
+        "Allow the user to inspect the underlying context."
+      ],
+      "components": [
+        "ui.ai.source-list",
+        "ui.data.timeline",
+        "ui.feedback.badge",
+        "ui.overlay.drawer",
+        "ui.action.link",
+        "ui.ai.response"
+      ],
+      "states": [
+        "known",
+        "partial",
+        "stale",
+        "unavailable",
+        "conflicting",
+        "inspected"
+      ],
+      "resilience": {
+        "loading": "Show that provenance is still resolving and do not imply completeness.",
+        "empty": "State when no source evidence is available.",
+        "error": "Keep the claim marked as unsupported or incomplete and explain the inspection failure."
+      },
+      "accessibility": [
+        "Expose provenance labels, dates, and status as text.",
+        "Make the inspection path keyboard reachable.",
+        "Do not require color or an icon to distinguish source from interpretation."
+      ],
+      "content": [
+        "Use source names users can recognize.",
+        "Distinguish sourced, inferred, proposed, and unknown content.",
+        "Use absolute dates when freshness matters."
+      ],
+      "safety": [
+        "Never invent a source or freshness signal.",
+        "Do not present retrieval as validation.",
+        "Keep missing evidence visible when it affects a decision."
+      ],
+      "anti_patterns": [
+        "A citation marker with no inspectable source.",
+        "A freshness badge with no date or rule.",
+        "A generated summary that hides conflicting evidence."
+      ],
+      "success": "A user can tell what is known, where it came from, how current it is, and what remains uncertain."
+    }
+  ]
+}
