@@ -409,7 +409,7 @@ function renderDetail() {
   addList(moreBody, "Accessibility", raw.accessibility);
   addList(moreBody, "Safety", raw.safety);
   addList(moreBody, "Avoid", raw.avoid);
-  addList(moreBody, "Open questions", raw.open_questions);
+  addList(moreBody, "Consumer checks", raw.open_questions);
   more.append(moreBody);
   panel.append(more);
 }
