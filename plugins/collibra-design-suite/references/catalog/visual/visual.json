@@ -268,7 +268,7 @@
     {
       "id": "visual.diagram",
       "name": "Diagram and information graphics",
-      "maturity": "proposed",
+      "maturity": "defined",
       "purpose": "Make systems, relationships, decisions, and process states understandable without turning every diagram into a one-off composition.",
       "contract": "Use semantic shapes, directional language, a visible legend, readable labels, source notes, and a non-color distinction for important states. Keep the diagram's claim no broader than its evidence.",
       "token_refs": [
@@ -290,7 +290,7 @@
     {
       "id": "visual.data-visualization",
       "name": "Data visualization",
-      "maturity": "proposed",
+      "maturity": "defined",
       "purpose": "Help people compare, inspect, and decide from data while preserving meaning, scale, provenance, and uncertainty.",
       "contract": "Use ramp values for visual encoding only after contrast and distinguishability checks. Label axes and units, provide a text or table alternative when needed, and make source and time context inspectable.",
       "token_refs": [
@@ -312,7 +312,7 @@
     {
       "id": "visual.motion",
       "name": "Motion and transition",
-      "maturity": "open",
+      "maturity": "defined",
       "purpose": "Use movement to explain change, continuity, progress, and feedback without distracting from the task or excluding users.",
       "contract": "Motion must have a communication purpose, respect reduced-motion preferences, avoid implying progress that is not measured, and keep all state changes available without animation.",
       "token_refs": [
@@ -383,7 +383,7 @@
     {
       "id": "visual.medium-translation",
       "name": "Cross-medium translation",
-      "maturity": "proposed",
+      "maturity": "defined",
       "purpose": "Keep the brand recognizable as a composition moves between product UI, web, presentations, documents, and data outputs.",
       "contract": "Start with the canonical token and semantic role, then select the medium-specific type scale, layout system, export constraints, and accessibility check. Record any exception instead of silently forking the standard.",
       "token_refs": [
@@ -404,7 +404,7 @@
     {
       "id": "visual.responsive-composition",
       "name": "Responsive composition",
-      "maturity": "open",
+      "maturity": "defined",
       "purpose": "Preserve hierarchy, task actions, and readable content as a composition changes viewport, density, or medium.",
       "contract": "Use consumer-owned layout and spacing rules until the shared scale is approved. Test the smallest supported viewport and the densest supported content; never let decoration displace the primary task.",
       "token_refs": [

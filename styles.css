@@ -640,8 +640,19 @@ input::placeholder {
 
 .catalog-pagination__pages {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: 0.35rem;
+}
+
+.catalog-pagination__ellipsis {
+  display: inline-flex;
+  min-width: 1.2rem;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  font-weight: 700;
 }
 
 .catalog-pagination__button {
@@ -1090,6 +1101,10 @@ input::placeholder {
   top: 5.5rem;
   min-width: 0;
   min-height: 20rem;
+  max-height: calc(100vh - 7rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
   padding: 1.35rem;
   border: 1px solid var(--support);
   border-radius: var(--radius);
@@ -1186,6 +1201,57 @@ input::placeholder {
 
 .detail-panel__contract p {
   margin: 0;
+}
+
+.detail-panel__contract-details {
+  margin-top: 0.7rem;
+}
+
+.detail-panel__contract-details summary {
+  display: inline-flex;
+  min-height: 2.5rem;
+  align-items: center;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 52%, transparent);
+  border-radius: var(--radius);
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.detail-panel__contract-details summary:hover {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.detail-panel__more {
+  margin-top: 1rem;
+  border-top: 1px solid color-mix(in srgb, var(--on-strong) 18%, transparent);
+  padding-top: 0.8rem;
+}
+
+.detail-panel__more > summary {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 52%, transparent);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--on-strong) 5%, transparent);
+  color: var(--accent);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.detail-panel__more > summary:hover {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.detail-panel__more-body {
+  padding-top: 0.2rem;
 }
 
 .detail-list {
@@ -2123,6 +2189,8 @@ input::placeholder {
 
   .detail-panel {
     position: static;
+    max-height: none;
+    overflow: visible;
   }
 
   .journey-grid {
@@ -2479,29 +2547,7 @@ input::placeholder {
 }
 
 .detail-panel__technical {
-  margin-top: 1rem;
-  border-top: 1px solid color-mix(in srgb, var(--on-strong) 18%, transparent);
-  padding-top: 0.8rem;
-}
-
-.detail-panel__technical summary {
-  display: flex;
-  min-height: 2.75rem;
-  align-items: center;
-  padding: 0.55rem 0.7rem;
-  border: 1px solid color-mix(in srgb, var(--accent) 52%, transparent);
-  border-radius: var(--radius);
-  background: color-mix(in srgb, var(--on-strong) 5%, transparent);
-  color: var(--accent);
-  cursor: pointer;
-  font-family: var(--font-display);
-  font-size: 0.86rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-}
-
-.detail-panel__technical summary:hover {
-  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  margin-top: 0.8rem;
 }
 
 .detail-panel__technical-note {

@@ -46,6 +46,7 @@ contains the plugin root, not the marketplace repository.
 
 - Browse the 105 guides in the explorer.
 - Use the plain-language explanation before opening the implementation reference.
+- Use the maturity summary to see what is defined, open, or deferred before you browse; long guidance stays behind an accessible detail view.
 - Start the work-memory section with five jobs: Capture, Current, History,
   Knowledge, and Recall. Improve is the loop around them, not a sixth job.
 - Read the optional Context Engine panel as a derived infrastructure boundary,
@@ -64,9 +65,8 @@ lets the atlas be public without publishing private history or source context.
 
 The atlas brings together foundations, UI behavior, UX patterns, visual
 capabilities, content guidance, reader personas, tone modes, and practical
-accessibility checks. It shows what is defined, what is proposed, and what
-still needs a decision — because honest edges are more useful than invented
-certainty.
+accessibility checks. It shows what is defined, what is open, and what is
+deferred — because honest edges are more useful than invented certainty.
 
 ## Built for more people
 

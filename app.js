@@ -143,6 +143,14 @@ function renderSummary() {
       + tokenEntries(state.tokens).filter((record) => record.maturity === value).length,
   ]);
   const total = maturity.reduce((sum, [, count]) => sum + count, 0);
+  const definedCount = maturity.find(([label]) => label === "defined")?.[1] || 0;
+  const remainingCount = total - definedCount;
+  setText(
+    "#maturity-summary",
+    remainingCount
+      ? `${definedCount} guides are defined and ready to use. ${remainingCount} remain open or deferred for a source, owner, or product decision.`
+      : "All guides are defined and ready to use."
+  );
   const rail = $("#maturity-rail");
   rail.replaceChildren();
   maturity.forEach(([label, count]) => {
@@ -363,33 +371,45 @@ function renderDetail() {
   panel.append(title);
   panel.append(node("p", "detail-panel__purpose", record.purpose));
   const contract = node("div", "detail-panel__contract");
-  contract.append(node("h4", null, "Build or use it this way"), node("p", null, record.contract));
+  contract.append(node("h4", null, "Build or use it this way"));
+  if ((record.contract || "").length > 260) {
+    const contractDetails = node("details", "detail-panel__contract-details");
+    contractDetails.append(node("summary", null, "Show full contract"));
+    contractDetails.append(node("p", null, record.contract));
+    contract.append(contractDetails);
+  } else {
+    contract.append(node("p", null, record.contract));
+  }
   panel.append(contract);
   const related = node("div", "detail-panel__related");
   related.append(node("h4", null, "Related guidance"));
   addTags(related, record.tags);
   panel.append(related);
+  panel.append(node("p", "detail-panel__source", `Evidence trail: ${record.source}`));
+  const more = node("details", "detail-panel__more");
+  more.append(node("summary", null, "Show implementation detail"));
+  const moreBody = node("div", "detail-panel__more-body");
   const raw = record.raw || {};
-  const technical = node("details", "detail-panel__technical");
-  technical.append(node("summary", null, "Show implementation reference"));
+  const technical = node("div", "detail-panel__technical");
   technical.append(node("p", "detail-panel__technical-note", "For designers and implementers: use this stable reference when you need to trace the guidance back to the source catalog."));
   technical.append(node("code", "detail-panel__id", record.id));
-  panel.append(technical);
-  addList(panel, "Reader questions", raw.questions);
-  addList(panel, "Translation steps", raw.translation_steps);
-  addList(panel, "Needs", raw.needs);
-  addList(panel, "Use this when", raw.use_when ? [raw.use_when] : null);
-  addList(panel, "Sounds like", raw.sound ? [raw.sound] : null);
-  addList(panel, "Structure", raw.structure);
-  addList(panel, "Channels", raw.channels);
-  addList(panel, "Good moves", raw.do);
-  addList(panel, "States", raw.states);
-  addList(panel, "Flow", raw.flow);
-  addList(panel, "Accessibility", raw.accessibility);
-  addList(panel, "Safety", raw.safety);
-  addList(panel, "Avoid", raw.avoid);
-  addList(panel, "Open questions", raw.open_questions);
-  panel.append(node("p", "detail-panel__source", `Evidence trail: ${record.source}`));
+  moreBody.append(technical);
+  addList(moreBody, "Reader questions", raw.questions);
+  addList(moreBody, "Translation steps", raw.translation_steps);
+  addList(moreBody, "Needs", raw.needs);
+  addList(moreBody, "Use this when", raw.use_when ? [raw.use_when] : null);
+  addList(moreBody, "Sounds like", raw.sound ? [raw.sound] : null);
+  addList(moreBody, "Structure", raw.structure);
+  addList(moreBody, "Channels", raw.channels);
+  addList(moreBody, "Good moves", raw.do);
+  addList(moreBody, "States", raw.states);
+  addList(moreBody, "Flow", raw.flow);
+  addList(moreBody, "Accessibility", raw.accessibility);
+  addList(moreBody, "Safety", raw.safety);
+  addList(moreBody, "Avoid", raw.avoid);
+  addList(moreBody, "Open questions", raw.open_questions);
+  more.append(moreBody);
+  panel.append(more);
 }
 
 function filteredCatalogRecords() {
@@ -434,7 +454,15 @@ function renderPagination(total) {
   addPageButton("Previous", Math.max(1, state.catalogPage - 1), { control: true, disabled: state.catalogPage === 1 });
   const pages = node("span", "catalog-pagination__pages");
   pages.setAttribute("aria-label", "Guide pages");
-  for (let page = 1; page <= pageCount; page += 1) {
+  const pageSet = new Set([1, pageCount, state.catalogPage - 1, state.catalogPage, state.catalogPage + 1]);
+  const visiblePages = [...pageSet].filter((page) => page >= 1 && page <= pageCount).sort((a, b) => a - b);
+  let previousPage = 0;
+  visiblePages.forEach((page) => {
+    if (page - previousPage > 1) {
+      const ellipsis = node("span", "catalog-pagination__ellipsis", "…");
+      ellipsis.setAttribute("aria-hidden", "true");
+      pages.append(ellipsis);
+    }
     const button = node("button", "catalog-pagination__button", String(page));
     button.type = "button";
     button.dataset.page = String(page);
@@ -446,7 +474,8 @@ function renderPagination(total) {
       nav.querySelector(`button[data-page="${page}"]`)?.focus();
     });
     pages.append(button);
-  }
+    previousPage = page;
+  });
   nav.append(pages);
   addPageButton("Next", Math.min(pageCount, state.catalogPage + 1), { control: true, disabled: state.catalogPage === pageCount });
 }

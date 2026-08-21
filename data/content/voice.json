@@ -391,7 +391,7 @@
         "long-form guide"
       ],
       "source": "Collibra people-team voice guidance",
-      "maturity": "proposed"
+      "maturity": "defined"
     },
     {
       "id": "persona.change-navigator",
@@ -421,7 +421,7 @@
         "slide deck"
       ],
       "source": "Collibra communications guidance",
-      "maturity": "proposed"
+      "maturity": "defined"
     },
     {
       "id": "persona.decision-maker",
@@ -450,7 +450,7 @@
         "long-form guide"
       ],
       "source": "Collibra communications guidance",
-      "maturity": "proposed"
+      "maturity": "defined"
     },
     {
       "id": "persona.builder",
@@ -479,7 +479,7 @@
         "slide deck"
       ],
       "source": "Collibra content guidance",
-      "maturity": "proposed"
+      "maturity": "defined"
     },
     {
       "id": "persona.data-steward",
@@ -508,7 +508,7 @@
         "slide deck"
       ],
       "source": "Collibra content guidance",
-      "maturity": "proposed"
+      "maturity": "defined"
     },
     {
       "id": "persona.customer",
@@ -537,7 +537,7 @@
         "long-form guide"
       ],
       "source": "Collibra content guidance",
-      "maturity": "proposed"
+      "maturity": "defined"
     }
   ],
   "mediums": [
@@ -668,7 +668,7 @@
         "a clever line that replaces the explanation"
       ],
       "source": "Collibra content guidance",
-      "maturity": "proposed"
+      "maturity": "defined"
     }
   ],
   "plain_language_lens": {
