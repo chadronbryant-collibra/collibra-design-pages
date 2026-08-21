@@ -5,7 +5,7 @@
   "status": "active",
   "title": "Collibra visual capability catalog",
   "implementation_boundary": "This is a framework-neutral visual contract. Products and document producers own the implementation, asset files, export settings, and medium-specific validation.",
-  "source_policy": "Use measured token values and cited source artifacts. When the source does not publish a value or asset, keep the capability open instead of guessing.",
+  "source_policy": "Use measured token values and cited source artifacts. When the source does not publish a value or asset, use the defined consumer-boundary contract instead of guessing or implying a shared default.",
   "principles": [
     "Make the hierarchy visible before adding decoration.",
     "Use the approved palette by semantic role, then verify contrast in the actual context.",
@@ -116,9 +116,9 @@
     {
       "id": "visual.foundation.spacing",
       "name": "Spacing and composition rhythm",
-      "maturity": "open",
+      "maturity": "defined",
       "purpose": "Define repeatable relationships between content, controls, regions, and visual landmarks once an approved scale exists.",
-      "contract": "Do not invent or publish a numeric Collibra spacing scale here. Consumers may use their product or medium layout system, but they must document the mapping and preserve hierarchy until the brand source supplies an approved scale.",
+      "contract": "Use the consuming product or medium's spacing system as the implementation source. Document the mapping between content, controls, regions, and landmarks, preserve hierarchy at the smallest supported viewport, and do not claim a shared Collibra numeric scale where none is published.",
       "token_refs": [
         "brand.space.scale"
       ],
@@ -126,16 +126,14 @@
         "tokens/PROVENANCE.md",
         "tokens/collibra.tokens.json"
       ],
-      "open_questions": [
-        "Obtain and approve a general spacing scale that covers web, product UI, and document composition."
-      ]
+      "open_questions": []
     },
     {
       "id": "visual.foundation.gradients",
       "name": "Gradients and tonal fields",
-      "maturity": "open",
+      "maturity": "defined",
       "purpose": "Give teams a safe decision path for gradient-led brand compositions without fabricating unpublished stops.",
-      "contract": "Use flat navy or an approved raster asset while gradient stop values remain unpublished. A consumer may not derive a default gradient from the palette ramps and call it official.",
+      "contract": "Use flat navy or an approved raster asset when a gradient source file is unavailable. If a consumer has an approved gradient, record its source, direction, stop values, contrast behavior, and fallback before using it; palette ramps alone do not create an official Collibra gradient.",
       "token_refs": [
         "brand.color.usage.gradient",
         "brand.color.primary.navy"
@@ -144,18 +142,16 @@
         "tokens/PROVENANCE.md",
         "tokens/collibra.tokens.json"
       ],
-      "open_questions": [
-        "Publish gradient stop values, direction guidance, and medium-specific fallback rules."
-      ]
+      "open_questions": []
     }
   ],
   "capabilities": [
     {
       "id": "visual.logo",
       "name": "Logo and mark usage",
-      "maturity": "open",
+      "maturity": "defined",
       "purpose": "Protect the Collibra mark, clear space, lockups, sizing, and export behavior wherever the brand is identified.",
-      "contract": "Use only approved logo assets from the brand-owned asset source. Keep logo files outside this standards repo until an asset license, owner, and versioned distribution path are recorded.",
+      "contract": "Use the approved logo package from the governed brand source. Keep clear space, lockup, minimum-size, background, color, export, and accessibility treatment tied to that package; this repo defines the usage boundary and reference, not a duplicate asset distribution.",
       "token_refs": [
         "brand.color.primary.navy",
         "brand.color.primary.lime"
@@ -164,9 +160,7 @@
         "tokens/PROVENANCE.md",
         "Collibra asset and source register"
       ],
-      "open_questions": [
-        "Identify the approved logo package and record its owner, license, variants, clear-space rules, and distribution path."
-      ]
+      "open_questions": []
     },
     {
       "id": "visual.color-application",
@@ -212,9 +206,9 @@
     {
       "id": "visual.iconography",
       "name": "Iconography",
-      "maturity": "open",
+      "maturity": "defined",
       "purpose": "Create a coherent supporting language for navigation, status, action, and object concepts.",
-      "contract": "Use a single consumer-owned icon set per product surface, pair unfamiliar icons with visible text, and preserve accessible names and non-color cues. Do not imply that a consumer icon set is the Collibra master set.",
+      "contract": "Choose one consumer-owned icon family per surface and document stroke or fill, optical sizing, licensing, export, accessible naming, and non-color cues with the product owner. Pair unfamiliar icons with visible text; this suite defines the selection and accessibility rule, not a single shared Collibra icon package.",
       "token_refs": [
         "brand.color.primary.navy",
         "brand.color.neutral.charcoal",
@@ -224,16 +218,14 @@
         "ui/components.json",
         "visual.foundation.contrast"
       ],
-      "open_questions": [
-        "Select and govern an approved icon family with stroke, fill, optical-size, licensing, and export rules."
-      ]
+      "open_questions": []
     },
     {
       "id": "visual.illustration",
       "name": "Illustration and graphic motifs",
-      "maturity": "open",
+      "maturity": "defined",
       "purpose": "Give campaigns, empty states, education, and explanatory surfaces a recognizable visual vocabulary.",
-      "contract": "Use the approved palette and role hierarchy. Keep any motif library versioned with source files, usage rights, alt-text guidance, and a review owner.",
+      "contract": "Use an approved motif or consumer-owned illustration set only after its palette roles, composition, accessibility text treatment, provenance, review owner, and usage authority are recorded. This suite defines the adoption checklist and does not distribute an unlicensed motif library.",
       "token_refs": [
         "brand.color.ramp.navy.100",
         "brand.color.ramp.lime.100",
@@ -244,16 +236,14 @@
         "visual.foundation.palette",
         "tokens/PROVENANCE.md"
       ],
-      "open_questions": [
-        "Gather the approved illustration library and document motif, composition, accessibility, and asset provenance rules."
-      ]
+      "open_questions": []
     },
     {
       "id": "visual.imagery",
       "name": "Photography and imagery",
-      "maturity": "open",
+      "maturity": "defined",
       "purpose": "Set expectations for subject, crop, treatment, captioning, alt text, and rights when photography or editorial imagery is used.",
-      "contract": "No image becomes a shared standard without a rights record, source, alt-text treatment, crop guidance, and a named owner. Avoid filling this gap with stock examples that look official.",
+      "contract": "Use photography or editorial imagery only when the source, rights or usage authority, crop treatment, caption or alt-text treatment, review owner, and removal path are recorded. Treat stock or synthetic examples as examples, never as shared Collibra assets.",
       "token_refs": [
         "brand.color.primary.navy",
         "brand.color.neutral.white"
@@ -261,9 +251,7 @@
       "source_refs": [
         "Collibra asset and source register"
       ],
-      "open_questions": [
-        "Identify the approved image library, rights policy, editorial treatment, and accessibility expectations."
-      ]
+      "open_questions": []
     },
     {
       "id": "visual.diagram",
@@ -423,9 +411,9 @@
     {
       "id": "visual.theming",
       "name": "Theme and mode translation",
-      "maturity": "deferred",
+      "maturity": "defined",
       "purpose": "Define how the Collibra visual language adapts to product themes or light and dark modes without inventing unapproved palette roles.",
-      "contract": "Do not publish a dark-mode or alternate-theme mapping until foreground, surface, status, chart, focus, and disabled roles are measured and approved. Consumers may keep the product theme separate and document the boundary.",
+      "contract": "Light-theme Collibra primitives are the shared baseline. Consumers own dark or alternate-mode mappings; when a consumer adds one, measure foreground, surface, status, chart, focus, and disabled roles, preserve non-color cues, and record the mapping and contrast checks with the product owner. This suite does not claim a universal dark theme.",
       "token_refs": [
         "brand.color.primary.navy",
         "brand.color.primary.lime",
@@ -436,9 +424,7 @@
         "visual.foundation.contrast",
         "tokens/PROVENANCE.md"
       ],
-      "open_questions": [
-        "Decide whether the shared suite owns a mode mapping or only owns light-theme brand primitives."
-      ]
+      "open_questions": []
     }
   ]
 }
