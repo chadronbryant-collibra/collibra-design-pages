@@ -151,6 +151,8 @@ function renderSummary() {
       ? `${definedCount} guides are defined and ready to use. ${remainingCount} remain open or deferred for a source, owner, or product decision.`
       : "All guides are defined and ready to use."
   );
+  const maturityPanel = $("#maturity-panel");
+  if (maturityPanel) maturityPanel.toggleAttribute("hidden", remainingCount === 0);
   const rail = $("#maturity-rail");
   rail.replaceChildren();
   maturity.forEach(([label, count]) => {
@@ -268,8 +270,8 @@ function renderFoundations() {
   const signalData = [
     ["Contrast", "defined", "Tokenized thresholds and measured examples"],
     ["Radius", "defined", "One published container treatment"],
-    ["Spacing", "open", "No approved general scale yet"],
-    ["Gradients", "open", "Stops are not published"],
+    ["Spacing", "defined", "Consumer-owned scale with documented hierarchy"],
+    ["Gradients", "defined", "Approved source or flat navy fallback"],
   ];
   const signals = $("#foundation-signals");
   signals.replaceChildren();
@@ -415,7 +417,7 @@ function renderDetail() {
 function filteredCatalogRecords() {
   const query = $("#catalog-search").value.trim().toLowerCase();
   const area = $("#catalog-area").value;
-  const maturity = $("#catalog-maturity").value;
+  const maturity = $("#catalog-maturity")?.value || "all";
   return state.records.filter((record) => {
     const searchable = [record.id, record.name, record.purpose, record.contract, record.areaLabel, ...(record.tags || [])].join(" ").toLowerCase();
     return (!query || searchable.includes(query)) && (area === "all" || record.area === area) && (maturity === "all" || record.maturity === maturity);
@@ -490,7 +492,7 @@ function renderCatalog() {
   const grid = $("#catalog-grid");
   grid.replaceChildren();
   if (!filtered.length) {
-    grid.append(node("div", "empty-card", "No guides match those filters. Try a broader search or show all maturity."));
+    grid.append(node("div", "empty-card", "No guides match those filters. Try a broader search or area."));
   } else {
     visible.forEach((record) => {
       const card = node("article", `catalog-card${record.id === state.selectedId ? " catalog-card--selected" : ""}`);
@@ -614,7 +616,7 @@ function renderProvenance() {
   grid.replaceChildren();
   const cards = [
     ["Canonical source", "Tokens, UI, UX, visual, and content JSON files are the machine-readable contracts. Generated Markdown is a review surface.", ["No raw brand literals in downstream catalogs", "Area validators and generated-file checks run in CI"]],
-    ["Maturity is visible", "Defined guidance is separated from proposed, open, and deferred work. Missing source is never filled with an invented default.", ["Open spacing scale", "Open gradient stops", "Open asset and theme decisions"]],
+    ["Coverage is complete", "Every guide has a usable contract and names the boundary a consumer still owns. Missing source is never filled with an invented default.", ["Consumer-owned layout mapping", "Governed asset packages", "Measured alternate-theme checks"]],
     ["Consumer boundary", "Products and document producers own runtime implementation, data, accessibility testing, localization, legal review, and release operations.", ["Framework-neutral contracts", "No tenant or credential access", "Pages deployment is a separate audience decision"]],
   ];
   cards.forEach(([title, description, bullets]) => {
@@ -660,9 +662,9 @@ async function load() {
     renderCatalog();
     renderDetail();
   };
-  ["#catalog-search", "#catalog-area", "#catalog-maturity"].forEach((selector) => {
-    $(selector).addEventListener("input", resetCatalogView);
-    $(selector).addEventListener("change", resetCatalogView);
+  ["#catalog-search", "#catalog-area"].forEach((selector) => {
+    $(selector)?.addEventListener("input", resetCatalogView);
+    $(selector)?.addEventListener("change", resetCatalogView);
   });
 }
 
