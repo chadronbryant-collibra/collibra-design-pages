@@ -144,18 +144,26 @@ function renderSummary() {
   ]);
   const total = maturity.reduce((sum, [, count]) => sum + count, 0);
   const definedCount = maturity.find(([label]) => label === "defined")?.[1] || 0;
-  const remainingCount = total - definedCount;
+  const remaining = maturity.filter(([label, count]) => label !== "defined" && count > 0);
+  const remainingCount = remaining.reduce((sum, [, count]) => sum + count, 0);
   setText(
     "#maturity-summary",
     remainingCount
-      ? `${definedCount} guides are defined and ready to use. ${remainingCount} remain open or deferred for a source, owner, or product decision.`
-      : "All guides are defined and ready to use."
+      ? `${remainingCount} ${remainingCount === 1 ? "item needs" : "items need"} attention`
+      : "Nothing is waiting to be defined"
   );
   const maturityPanel = $("#maturity-panel");
-  if (maturityPanel) maturityPanel.toggleAttribute("hidden", remainingCount === 0);
+  if (maturityPanel && remainingCount > 0) maturityPanel.open = true;
   const rail = $("#maturity-rail");
   rail.replaceChildren();
-  maturity.forEach(([label, count]) => {
+  if (!remainingCount) {
+    const complete = node("div", "maturity-empty");
+    complete.append(node("strong", null, `${definedCount} guides are ready to use.`));
+    complete.append(node("p", null, "This view will surface proposed, open, or deferred work when something needs a source, owner, or decision."));
+    rail.append(complete);
+    return;
+  }
+  remaining.forEach(([label, count]) => {
     const item = node("div", "maturity-bar");
     const header = node("div", "maturity-bar__header");
     header.append(node("span", "maturity-bar__label", label));
@@ -543,7 +551,7 @@ function renderVoices() {
   state.content.audience_personas.forEach((persona) => {
     const card = node("article", "voice-card");
     const header = node("div", "voice-card__header");
-    header.append(node("span", "eyebrow", "Audience"), statusPill(persona.maturity));
+    header.append(node("span", "eyebrow", "Audience"));
     card.append(header, node("h4", null, persona.name), node("p", "voice-card__audience", persona.audience));
     card.append(node("p", "voice-card__job", persona.job_to_be_done));
     card.append(node("p", "voice-card__tone", persona.voice_shift));
@@ -557,7 +565,7 @@ function renderVoices() {
   state.content.tone_modes.forEach((tone) => {
     const card = node("article", "tone-card");
     const header = node("div", "voice-card__header");
-    header.append(node("h4", null, tone.name), statusPill(tone.maturity));
+    header.append(node("h4", null, tone.name));
     card.append(header, node("p", null, tone.use_when), node("p", "tone-card__sound", tone.sound));
     addTags(card, tone.channels);
     toneGrid.append(card);
@@ -568,7 +576,7 @@ function renderVoices() {
   state.content.mediums.forEach((medium) => {
     const card = node("article", "medium-card");
     const header = node("div", "voice-card__header");
-    header.append(node("h4", null, medium.name), statusPill(medium.maturity));
+    header.append(node("h4", null, medium.name));
     card.append(header, node("p", null, medium.reader_need));
     addList(card, "Use this shape", medium.structure, "voice-card__list");
     addTags(card, medium.tone_modes);
@@ -580,11 +588,11 @@ function renderJourney() {
   const grid = $("#journey-grid");
   grid.replaceChildren();
   const steps = [
-    ["01", "Name the task", "Audience, decision, action, scope, and consequence before the component."],
-    ["02", "Choose the contract", "Resolve vocabulary, select the UI and UX pattern, then map visual and content rules."],
-    ["03", "Make states visible", "Loading, empty, partial, error, review, confirmation, recovery, and completion all count."],
-    ["04", "Test the real surface", "Keyboard, focus, contrast, type, responsive behavior, reduced motion, and provenance."],
-    ["05", "Record the exception", "If a consumer decision differs, keep the reason, owner, version, and revisit path."],
+    ["01", "Say what you are making", "A workflow, message, screen, deck, or review. Name the person who will use it and what they need to do next."],
+    ["02", "Open the closest guide", "Use Atlas to choose the area or search Explorer for the task in your own words. You do not need to read the whole suite."],
+    ["03", "Apply it in the real surface", "Write the label, shape the flow, choose the visual treatment, and include loading, empty, error, review, and completion states."],
+    ["04", "Check it as the reader", "Can someone scan it, understand the choice, use it with a keyboard, recover from a mistake, and know what happens next?"],
+    ["05", "Share the decision", "Ship the useful result. If you intentionally differ from the guide, keep the reason and owner where the team can find it."],
   ];
   steps.forEach(([number, title, description]) => {
     const card = node("article", "journey-step");
@@ -611,26 +619,8 @@ function renderPrinciples() {
   });
 }
 
-function renderProvenance() {
-  const grid = $("#provenance-grid");
-  grid.replaceChildren();
-  const cards = [
-    ["Canonical source", "Tokens, UI, UX, visual, and content JSON files are the machine-readable contracts. Generated Markdown is a review surface.", ["No raw brand literals in downstream catalogs", "Area validators and generated-file checks run in CI"]],
-    ["Coverage is complete", "Every guide has a usable contract and names the boundary a consumer still owns. Missing source is never filled with an invented default.", ["Consumer-owned layout mapping", "Governed asset packages", "Measured alternate-theme checks"]],
-    ["Consumer boundary", "Products and document producers own runtime implementation, data, accessibility testing, localization, legal review, and release operations.", ["Framework-neutral contracts", "No tenant or credential access", "Pages deployment is a separate audience decision"]],
-  ];
-  cards.forEach(([title, description, bullets]) => {
-    const card = node("article", "provenance-card");
-    card.append(node("h3", null, title), node("p", null, description));
-    const list = node("ul");
-    bullets.forEach((bullet) => list.append(node("li", null, bullet)));
-    card.append(list);
-    grid.append(card);
-  });
-}
-
 function renderError(error) {
-  ["#summary-grid", "#maturity-rail", "#system-map-list", "#swatch-grid", "#type-list", "#foundation-signals", "#reader-lens", "#persona-grid", "#tone-grid", "#medium-grid", "#catalog-grid", "#journey-grid", "#principles-grid", "#provenance-grid"].forEach((selector) => {
+  ["#summary-grid", "#maturity-rail", "#system-map-list", "#swatch-grid", "#type-list", "#foundation-signals", "#reader-lens", "#persona-grid", "#tone-grid", "#medium-grid", "#catalog-grid", "#journey-grid", "#principles-grid"].forEach((selector) => {
     const target = $(selector);
     if (target) target.replaceChildren(node("div", selector.includes("provenance") || selector.includes("swatch") || selector.includes("type") || selector.includes("foundation") || selector.includes("system-map") ? "error-card error-card--dark" : "error-card", `The reference data could not load: ${error.message}`));
   });
@@ -645,6 +635,11 @@ async function load() {
     return [key, await response.json()];
   }));
   entries.forEach(([key, value]) => { state[key] = value; });
+  const main = $("#main");
+  ["system-map", "foundations", "adoption", "voices", "catalog", "principles"].forEach((id) => {
+    const section = document.getElementById(id);
+    if (main && section) main.append(section);
+  });
   applyTokenVariables();
   state.records = makeRecords();
   renderSummary();
@@ -655,7 +650,6 @@ async function load() {
   renderDetail();
   renderJourney();
   renderPrinciples();
-  renderProvenance();
   const resetCatalogView = () => {
     state.catalogPage = 1;
     state.selectedId = null;
