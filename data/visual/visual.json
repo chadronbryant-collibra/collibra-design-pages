@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "catalog_version": "0.1.0",
+  "catalog_version": "0.3.0",
   "area_id": "area.design.visual",
   "status": "active",
   "title": "Collibra visual capability catalog",
@@ -258,7 +258,7 @@
       "name": "Diagram and information graphics",
       "maturity": "defined",
       "purpose": "Make systems, relationships, decisions, and process states understandable without turning every diagram into a one-off composition.",
-      "contract": "Use semantic shapes, directional language, a visible legend, readable labels, source notes, and a non-color distinction for important states. Keep the diagram's claim no broader than its evidence.",
+      "contract": "Use the diagram-theme-suite semantic roles for shapes, connectors, direction, legends, readable labels, source notes, and non-color distinctions. Keep the diagram's claim no broader than its evidence and let the consuming medium own geometry and delivery.",
       "token_refs": [
         "brand.color.primary.navy",
         "brand.color.primary.lime",
@@ -269,11 +269,46 @@
       "source_refs": [
         "visual.foundation.palette",
         "visual.foundation.contrast",
+        "visual/diagram-theme-suite.json",
         "ux/patterns.json"
       ],
-      "open_questions": [
-        "Define an approved diagram grammar for entities, boundaries, events, decisions, and uncertainty."
-      ]
+      "open_questions": []
+    },
+    {
+      "id": "visual.diagram-theme-suite",
+      "name": "Diagram and workflow theme suite",
+      "maturity": "defined",
+      "purpose": "Give diagram, workflow, chart, and information-graphic producers one semantic Collibra theming contract that can translate across presentations, documents, product surfaces, and exported media.",
+      "contract": "Use the theme suite's token-backed semantic roles for surfaces, entities, boundaries, actions, decisions, states, evidence, unknowns, flows, handoffs, dependencies, exceptions, and boundary crossings. Preserve labels, direction, source context, accessibility summaries, and non-color cues; consumers own layout geometry, export settings, and native validation. State comparison consumers may use the state_comparison layout treatment for explicit legacy, transitional, target, and retirement columns; journey consumers may use the journey rail; quadrant consumers may use the two-axis decision field; pyramid consumers may use the foundation-to-outcome stack; and refinement-tier consumers may use the medallion treatment for one artifact moving through quality states with explicit promotion gates, without implying live discovery.",
+      "token_refs": [
+        "brand.color.primary.navy",
+        "brand.color.primary.lime",
+        "brand.color.accent.forest",
+        "brand.color.accent.light_forest",
+        "brand.color.neutral.charcoal",
+        "brand.color.neutral.cloud",
+        "brand.color.neutral.light_cloud",
+        "brand.color.neutral.white",
+        "brand.type.family.presentation",
+        "brand.type.family.mono",
+        "brand.type.scale.slides.title",
+        "brand.type.scale.slides.body",
+        "brand.type.scale.slides.body_small",
+        "brand.type.scale.slides.caption",
+        "brand.type.scale.slides.eyebrow",
+        "brand.radius.scale",
+        "brand.accessibility.contrast.body_text_minimum",
+        "brand.accessibility.contrast.large_or_bold_text_minimum"
+      ],
+      "source_refs": [
+        "visual/diagram-theme-suite.json",
+        "visual.diagram",
+        "visual.foundation.palette",
+        "visual.foundation.typography",
+        "visual.foundation.contrast",
+        "slides/collibra-slides-2026.json"
+      ],
+      "open_questions": []
     },
     {
       "id": "visual.data-visualization",
@@ -296,6 +331,41 @@
       "open_questions": [
         "Define chart families, color sequencing, annotation conventions, and minimum data-label requirements."
       ]
+    },
+    {
+      "id": "visual.slide-grammar-suite",
+      "name": "Slide visual grammar suite",
+      "maturity": "defined",
+      "purpose": "Give slide and document producers a reader-first way to choose varied visual forms, shells, and editorial rhythm without treating a renderer or template layout as the design system.",
+      "contract": "Choose a named grammar from the reader question, preserve its reading order, accessibility cue, evidence contract, and cross-medium translation, then let the consuming library own geometry, native template inheritance, export, and final-medium validation. Add a new atom only when the input contract or visual grammar is genuinely distinct; otherwise add a governed recipe or story arc.",
+      "token_refs": [
+        "brand.color.primary.navy",
+        "brand.color.primary.lime",
+        "brand.color.accent.forest",
+        "brand.color.accent.light_forest",
+        "brand.color.neutral.charcoal",
+        "brand.color.neutral.cloud",
+        "brand.color.neutral.light_cloud",
+        "brand.color.neutral.white",
+        "brand.type.family.presentation",
+        "brand.type.family.mono",
+        "brand.type.scale.slides.title",
+        "brand.type.scale.slides.body",
+        "brand.type.scale.slides.body_small",
+        "brand.type.scale.slides.caption",
+        "brand.type.scale.slides.eyebrow",
+        "brand.radius.scale",
+        "brand.accessibility.contrast.body_text_minimum",
+        "brand.accessibility.contrast.large_or_bold_text_minimum"
+      ],
+      "source_refs": [
+        "visual/slide-grammar-suite.json",
+        "visual/diagram-theme-suite.json",
+        "slides/collibra-slides-2026.json",
+        "visual.foundation.spacing",
+        "visual.foundation.contrast"
+      ],
+      "open_questions": []
     },
     {
       "id": "visual.motion",

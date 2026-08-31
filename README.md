@@ -44,15 +44,12 @@ contains the plugin root, not the marketplace repository.
 
 ## Start here
 
-- Browse the 105 guides in the explorer.
-- Use the plain-language explanation before opening the implementation reference.
-- Browse the completed contract set; long guidance stays behind an accessible detail view.
-- Start the work-memory section with five jobs: Capture, Current, History,
-  Knowledge, and Recall. Improve is the loop around them, not a sixth job.
-- Read the optional Context Engine panel as a derived infrastructure boundary,
-  not a live memory service or a storage commitment.
-- Visit the voice section to see how audience, tone, and medium change the way a message should land.
-- Use the adoption path when you are turning a user task into a tested surface.
+- Use Atlas to see how the five design areas work together.
+- Open Foundations for the shared visual language.
+- Use Adoption while you are writing, designing, building, or reviewing.
+- Visit Voice to choose the reader, moment, and medium.
+- Browse all 107 guides in Explorer and open implementation detail only when you need it.
+- Expand Readiness only when you want to see what still needs attention.
 
 ## Why this repository exists
 
