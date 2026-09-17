@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.0 - public release, 2026-09-17
+
+- Published the five-skill, dependency-free design suite with its synthetic
+  examples, offline dashboard, licenses, SBOM, provenance, and portable package.
+- Preserved the no-admin personal-plugin boundary when personal plugins are
+  permitted by the user's Claude plan and organization policy.
+- Recorded the accountable owner's waiver of rendered, behavioral, native, and
+  real-device acceptance. Those checks were not performed and are not claimed
+  as passing evidence.
+
 ## 1.0.0-rc.6 - public release candidate, 2026-09-17
 
 - Recorded accountable-owner approval for public publication, Apache-2.0 code,

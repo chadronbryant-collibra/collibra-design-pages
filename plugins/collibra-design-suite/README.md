@@ -1,8 +1,8 @@
-# Collibra design suite 1.0 release candidate
+# Collibra design suite 1.0
 
-- **Status:** approved public release candidate
-- **Version:** `1.0.0-rc.6`
-- **Source:** the merged private `collibra-design` release-candidate branch
+- **Status:** public release
+- **Version:** `1.0.0`
+- **Source:** the merged private `collibra-design` release branch
 
 The Collibra design suite helps people make content and experiences easier to
 understand, use, and trust. It brings the reader-first design contract into
@@ -46,8 +46,8 @@ private source repository.
 
 ## Claude Desktop installation
 
-The accountable owner approved public RC publication and in-place remediation
-on 2026-09-17. A paid-plan user can install the accepted RC in
+The accountable owner approved public publication and in-place remediation
+on 2026-09-17. A paid-plan user can install the release in
 Claude Desktop through **Customize → Plugins → Personal plugins → Add
 marketplace**, add the public GitHub repository, and select this suite.
 
@@ -79,4 +79,6 @@ and installed-client parity.
 For the private Claude Code marketplace, install with `/plugin install` after
 adding the approved marketplace. For Codex, use `codex plugin add` with the
 approved local marketplace entry. These CLI routes do not prove Claude Desktop
-installation; Desktop acceptance remains a separate macOS and Windows gate.
+installation. The accountable owner waived real-device Claude Desktop and
+rendered human acceptance for 1.0, so those checks are not claimed as passing
+release evidence.
