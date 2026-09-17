@@ -1,0 +1,29 @@
+name: Bug report
+description: Report a reproducible public plugin or documentation problem.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Do not include credentials, private security reports, tenant data, or work-owned source material. Use SECURITY.md for vulnerabilities.
+  - type: input
+    id: version
+    attributes:
+      label: Plugin version
+      placeholder: 1.0.0-rc.4
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Surface
+      options: [Claude Desktop Chat, Claude Desktop Cowork, Claude Code, Documentation]
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Synthetic reproduction
+      description: Use synthetic content and include the expected and observed result.
+    validations:
+      required: true

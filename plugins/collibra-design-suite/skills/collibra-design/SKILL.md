@@ -8,7 +8,7 @@ description: >-
   boundary; do not use for a prose-only rewrite when no design decision is
   needed.
 metadata:
-  version: "0.1.0"
+  version: "1.0.0-rc.6"
 ---
 
 # Collibra design
@@ -32,10 +32,19 @@ pattern, visual capability, or content rule matters.
    emphasis changes for the moment and medium.
 4. Select the smallest useful contract slice:
    - content or prose: `content/voice.json`;
+   - a team hub, initiative page, or task guide: `content/guide-patterns.json`
+     for native sections, conditional detail, and content visibility;
    - product controls or AI surfaces: `ui/components.json` plus
      `ux/patterns.json` and the relevant content rule;
-   - visual composition, diagrams, charts, or imagery: `visual/visual.json`;
-   - slide outputs: `slides-contract.md` plus the visual and content guidance;
+   - visual composition, charts, or imagery: `visual/visual.json`;
+   - branded documents: `content/voice.json` plus
+     `visual.document-composition` in `visual/visual.json`; use native tabs only
+     for distinct reader tasks and keep exact geometry with the document
+     consumer;
+   - diagrams and workflows: `visual/visual.json` plus
+     `visual/diagram-theme-suite.json`;
+   - slide outputs: `slides-contract.md` plus the visual and content guidance
+     and `visual/slide-grammar-suite.json` for reader-first visual variety;
    - foundations: `tokens/collibra.tokens.json` and semantic roles, not copied
      raw values.
 5. Check maturity. `defined` is ready within its stated boundary; `proposed`,
@@ -43,6 +52,33 @@ pattern, visual capability, or content rule matters.
 6. Check the actual experience: keyboard access, focus, contrast, readable
    content, non-color cues, reduced motion, content expansion, states,
    recovery, provenance, and human review before a durable change.
+
+Before drafting or generating any slide output, read and apply
+`../../references/slides-contract.md`. Preserve each text role's semantic job.
+Caption and eyebrow roles are metadata, not overflow repair. If substantive
+copy does not fit its role, follow the contract's author-time geometry and
+escalation rules; do not downshift the role or rely on native autofit. Use
+`../../references/catalog/slides/type-role-usage.json` as the machine-readable
+type contract. Before emitting native slide objects, also read and emit a
+strict resolution against `../../references/catalog/slides/layout-geometry.json`
+when the slide has a semantic role stack, two or more aligned or distributed
+components, a nonrectangular semantic surface, an outside label or leader, an
+obstacle, or intentional decorative/mask/marker layering. Skip a new geometry
+resolution only for a copy-only edit that leaves existing object geometry
+unchanged.
+
+## Finish audience-facing content
+
+Apply Design, then the bundled Collibra refinement contract, then an audience-ready review. Read the
+`authoring_sequence` and `visibility` contracts in
+`../../references/catalog/content/guide-patterns.json`. Apply
+`collibra-refine` in embedded mode. An internal refinement skill may add a
+separate review when available, but public completion never depends on it.
+
+Keep the artifact ready for its audience. Put drafting choices and review
+findings in the private handoff, not in published copy or off-canvas content.
+Use native speaker notes or a separate facilitator area for useful delivery
+prompts, remembering that collaborators may see them.
 
 ## Make the contract usable
 

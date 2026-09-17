@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "catalog_version": "0.2.0",
+  "catalog_version": "0.6.0",
   "area_id": "area.design.content",
   "status": "active",
   "title": "Collibra content and voice contract",
@@ -15,13 +15,13 @@
       "What context, evidence, or uncertainty changes the choice?"
     ],
     "translation_steps": [
-      "Lead with the outcome or change the reader needs.",
-      "Name the next action in the reader's language.",
-      "Add only the context that helps the reader decide or act.",
-      "Keep evidence, limits, and human review visible when they matter.",
-      "Place the technical contract behind a useful label instead of making it the opening sentence."
+      "Open with the answer, change or decision this reader needs, including any condition that changes its meaning. A brief acknowledgment may lead a sensitive message.",
+      "Give the reason or evidence needed to understand or act; use an example only when it explains something.",
+      "Choose order by task: current outcome for updates; audience impact and timing for changes; need and intended outcome for briefs; recommendation and tradeoffs for decisions; prerequisites and execution order for instructions.",
+      "Keep required steps and material conditions, costs, risks and uncertainty at the point of use. Put background and reference detail in a clearly named section or existing link.",
+      "Make a supported next action easy to find. Do not invent an owner, deadline or request for a reply; do not repeat a short message merely to close it."
     ],
-    "source": "Collibra content guidance"
+    "source": "Collibra content guidance; content/PROVENANCE.md#communication-structure-review-2026-09-11"
   },
   "voice_pillars": [
     {
@@ -126,6 +126,22 @@
       "use_when": "A detail is missing, changing, or not yet verified.",
       "avoid": "Plausible defaults presented as approved truth.",
       "source": "Collibra content guidance · non-negotiables"
+    },
+    {
+      "id": "content.style.audience-ready",
+      "name": "Write for the audience, not the authoring session",
+      "rule": "Use we for the team's work and I for the author's personal observations. Keep useful facts, decisions, instructions, and genuine credit; keep drafting commentary and assistant conversation out of the published content.",
+      "use_when": "A page, deck, board, guide, or message is ready for its intended audience.",
+      "avoid": "Author-review prompts, narration about who asked for the draft, placeholder examples, and explanations of how the assistant produced it.",
+      "source": "content/guide-patterns.json#visibility"
+    },
+    {
+      "id": "content.style.reading-order",
+      "name": "Choose order by the reader's task",
+      "rule": "Use the smallest structure that preserves the meaning and helps this reader act. Group related support under descriptive headings when the length needs them. Treat communication frameworks as private editing aids, without compulsory labels, section counts or repeated conclusions. Preserve the requested structure and deliberate author voice.",
+      "use_when": "An update, change, help answer, brief, procedure or decision request needs a clearer reading path.",
+      "avoid": "Reordering operational steps by importance, hiding a material condition in reference detail, or deleting supported facts to meet a length target.",
+      "source": "content/PROVENANCE.md#communication-structure-review-2026-09-11"
     }
   ],
   "ui_content_rules": [
@@ -251,6 +267,18 @@
       "question": "If the content changes a durable record or material decision, is the human review boundary explicit?",
       "failure_action": "Separate suggestion from confirmed change and require an explicit review action.",
       "source": "ux/patterns.json"
+    },
+    {
+      "id": "content.gate.audience-ready",
+      "question": "Can this audience use the artifact as it stands, without seeing private drafting notes, invented examples, or an assistant speaking on the author's behalf?",
+      "failure_action": "Move author-review material to a private record, resolve or remove placeholders, and review the actual audience view. Preserve required disclosures, source attribution, and real uncertainty.",
+      "source": "content/guide-patterns.json#authoring_sequence"
+    },
+    {
+      "id": "content.gate.reading-path",
+      "question": "Can the reader identify the point and any needed action while still seeing the conditions, tradeoffs and uncertainty that change its meaning?",
+      "failure_action": "Restore missing or detached facts, reorder for the task, and remove empty scaffolding. Use a numbered list for sequential actions and a comparison table only when it helps compare.",
+      "source": "content/PROVENANCE.md#communication-structure-review-2026-09-11"
     }
   ],
   "tone_modes": [
@@ -360,6 +388,27 @@
         "long-form guide"
       ],
       "source": "Collibra content guidance",
+      "maturity": "defined"
+    },
+    {
+      "id": "tone.plainly-useful",
+      "name": "Plainly useful",
+      "use_when": "People partners and a technology team are shaping work, building a solution, or explaining a change together.",
+      "sound": "Warm, knowledgeable, and clear about what we can design and build together. Use concrete words and a natural rhythm. Explain the benefit, the next step, and any limit that changes the decision.",
+      "avoid": [
+        "enthusiasm standing in for evidence",
+        "capabilities without a useful purpose",
+        "support language that hides design and building",
+        "technical performance or forced slogans",
+        "repeated separator dots and clipped phrases used as a house style"
+      ],
+      "channels": [
+        "slide deck",
+        "long-form guide",
+        "chat",
+        "email"
+      ],
+      "source": "Team authoring guidance",
       "maturity": "defined"
     }
   ],
@@ -538,6 +587,42 @@
       ],
       "source": "Collibra content guidance",
       "maturity": "defined"
+    },
+    {
+      "id": "persona.people-partner",
+      "name": "The People partner",
+      "audience": "A People colleague who brings knowledge of their work and partners with the technology team to improve it.",
+      "job_to_be_done": "Shape and build a useful solution with us, without needing to know the technical answer before the conversation starts.",
+      "needs": [
+        "the outcome before the mechanism",
+        "a way to involve us while the need is still taking shape",
+        "clarity on what each partner contributes",
+        "an honest next step"
+      ],
+      "voice_shift": "Treat the reader as a capable partner. Start with the people and work affected, then explain how our technology expertise helps us design, build, and support a solution together.",
+      "do": [
+        "invite partners in early and understand the work with them",
+        "make our ability to design and build solutions explicit",
+        "use the words the reader uses for their work",
+        "name the partner's decisions and our contribution without inventing boundaries",
+        "keep adoption and useful results in view after release",
+        "put implementation detail behind a useful link"
+      ],
+      "avoid": [
+        "opening with a tool or project code when it hides the point",
+        "reducing the team to a help desk or a consulting service",
+        "implying a commitment or response time we have not agreed",
+        "stacking abstractions where a concrete explanation would help",
+        "treating a half-formed question as an incomplete form"
+      ],
+      "channels": [
+        "long-form guide",
+        "slide deck",
+        "chat",
+        "email"
+      ],
+      "source": "Team authoring guidance",
+      "maturity": "defined"
     }
   ],
   "mediums": [
@@ -574,7 +659,8 @@
       "tone_modes": [
         "tone.aligned-purposeful",
         "tone.teaching-wise",
-        "tone.confident-approachable"
+        "tone.confident-approachable",
+        "tone.plainly-useful"
       ],
       "avoid": [
         "dense paragraphs",
@@ -639,7 +725,8 @@
       "tone_modes": [
         "tone.teaching-wise",
         "tone.trust-building",
-        "tone.inclusive-approachable"
+        "tone.inclusive-approachable",
+        "tone.plainly-useful"
       ],
       "avoid": [
         "a wall of equal-weight detail",
@@ -647,6 +734,31 @@
         "sources separated from the claim"
       ],
       "source": "Collibra content guidance",
+      "maturity": "defined"
+    },
+    {
+      "id": "medium.google-doc",
+      "name": "Branded Google Doc",
+      "reader_need": "Find the point quickly, understand the supporting detail, and return to the document without relearning its structure.",
+      "structure": [
+        "open with the useful answer or outcome",
+        "build a scan path with descriptive headings and short sections",
+        "use cards, tables, flows, or images only when the content has that relationship",
+        "separate distinct durable reader tasks with native tabs when one continuous document would be harder to navigate"
+      ],
+      "tone_modes": [
+        "tone.confident-approachable",
+        "tone.teaching-wise",
+        "tone.trust-building",
+        "tone.plainly-useful"
+      ],
+      "avoid": [
+        "pages of equal-weight paragraphs",
+        "decorative panels without a content role",
+        "images without accessible descriptions",
+        "tabs that merely split a short linear narrative"
+      ],
+      "source": "visual.document-composition and Collibra content guidance",
       "maturity": "defined"
     },
     {

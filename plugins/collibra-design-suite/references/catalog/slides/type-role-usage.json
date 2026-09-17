@@ -1,0 +1,87 @@
+{
+  "$schema": "collibra-design/slides/type-role-usage/v1",
+  "version": 1,
+  "measurement": "final_visible_text_after_layout",
+  "role_classes": {
+    "headline": [
+      "brand.type.scale.slides.display",
+      "brand.type.scale.slides.title",
+      "brand.type.scale.slides.subtitle"
+    ],
+    "substantive_body": [
+      "brand.type.scale.slides.body_large",
+      "brand.type.scale.slides.body"
+    ],
+    "secondary_detail": [
+      "brand.type.scale.slides.body_small"
+    ],
+    "metadata": [
+      "brand.type.scale.slides.caption",
+      "brand.type.scale.slides.eyebrow"
+    ]
+  },
+  "jobs_by_role": {
+    "brand.type.scale.slides.display": [
+      "cover_statement",
+      "hero_measure"
+    ],
+    "brand.type.scale.slides.title": [
+      "slide_conclusion",
+      "section_heading"
+    ],
+    "brand.type.scale.slides.subtitle": [
+      "deck_promise",
+      "section_kicker"
+    ],
+    "brand.type.scale.slides.body_large": [
+      "lead_context",
+      "key_implication",
+      "callout_statement"
+    ],
+    "brand.type.scale.slides.body": [
+      "explanation",
+      "decision_context",
+      "evidence_interpretation"
+    ],
+    "brand.type.scale.slides.body_small": [
+      "secondary_detail",
+      "dense_table_cell",
+      "compact_node_label"
+    ],
+    "brand.type.scale.slides.caption": [
+      "source",
+      "footnote",
+      "unit",
+      "axis_label",
+      "page_furniture",
+      "concise_legend"
+    ],
+    "brand.type.scale.slides.eyebrow": [
+      "section_locator",
+      "category_tag",
+      "status_tag",
+      "sequence_tag"
+    ]
+  },
+  "fit_policy": {
+    "preserve_semantic_role": true,
+    "downshift_role_to_fit": false,
+    "native_autofit": "NONE",
+    "resolution_order": [
+      "shorten_without_losing_meaning",
+      "expand_or_reflow_within_declared_visual_zone",
+      "reduce_simultaneous_items",
+      "split_into_complementary_slides"
+    ],
+    "prohibited": [
+      "caption_as_explanatory_body_copy",
+      "eyebrow_as_sentence_length_body_copy",
+      "type_role_downshift_as_overflow_repair"
+    ]
+  },
+  "review_policy": {
+    "machine_census": "Count final visible type roles and report likely role misuse as a review signal; a role count alone is not promotion proof.",
+    "human_review": "Inspect the rendered composition at presentation size for hierarchy, density, readability, and whether secondary text still carries a primary idea.",
+    "promotion": "A family may promote only when substantive copy uses a substantive role, metadata roles stay metadata, and no role was downshifted merely to make the layout fit."
+  }
+}

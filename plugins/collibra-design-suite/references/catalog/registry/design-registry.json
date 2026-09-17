@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "registry_version": "0.1.0",
+  "registry_id": "collibra.design",
+  "status": "active",
+  "product": {
+    "name": "Collibra design registry",
+    "description": "A configurable control plane for Collibra design contracts, brand sources, and safe distribution views.",
+    "authority": "Git-held semantic contracts with local source bindings",
+    "runtime": "local-first"
+  },
+  "policy": {
+    "public_export": "Metadata-only; redact local paths, Drive URIs, credentials, and restricted asset details",
+    "default_write_mode": "read-only",
+    "binary_assets": "Reference local source files; do not copy licensed binaries into Git or the public plugin",
+    "consumer_validation": "The consuming product owns runtime, localization, legal, accessibility, performance, and release checks"
+  },
+  "sources": [
+    {
+      "id": "source.brand-guidelines",
+      "label": "Collibra Brand Guidelines 2026.07",
+      "kind": "guidelines",
+      "maturity": "measured",
+      "distribution": "metadata-only"
+    },
+    {
+      "id": "source.brand-toolkit",
+      "label": "Collibra Brand Toolkit",
+      "kind": "asset-library",
+      "maturity": "source-found",
+      "distribution": "local-reference-only"
+    },
+    {
+      "id": "source.content-style",
+      "label": "Collibra Content Style Guide 2026",
+      "kind": "content-guidance",
+      "maturity": "measured",
+      "distribution": "metadata-only"
+    },
+    {
+      "id": "source.people-voice",
+      "label": "Voice of the People team guide",
+      "kind": "content-guidance",
+      "maturity": "measured",
+      "distribution": "metadata-only"
+    },
+    {
+      "id": "source.internal-comms",
+      "label": "Internal Communications Framework",
+      "kind": "content-guidance",
+      "maturity": "measured",
+      "distribution": "metadata-only"
+    },
+    {
+      "id": "source.slides-guidance",
+      "label": "Collibra Slides Presentation Best Practices",
+      "kind": "medium-guidance",
+      "maturity": "measured",
+      "distribution": "metadata-only"
+    },
+    {
+      "id": "source.git-catalogs",
+      "label": "Canonical Collibra design catalogs",
+      "kind": "git-source",
+      "maturity": "active",
+      "distribution": "public-safe-snapshot"
+    }
+  ],
+  "collections": [
+    {
+      "id": "collection.colors",
+      "label": "Color palette",
+      "kind": "foundation",
+      "maturity": "source-found",
+      "editable": false,
+      "canonical_refs": [
+        "brand.color.primary.navy",
+        "brand.color.primary.lime",
+        "brand.color.accent.forest"
+      ],
+      "channel_policy": "semantic-values-in-Git; source-files-local-only",
+      "review": "Keep numeric values source-backed and run contrast checks in the consuming surface"
+    },
+    {
+      "id": "collection.typography",
+      "label": "Typography and font delivery",
+      "kind": "foundation",
+      "maturity": "source-found",
+      "editable": true,
+      "canonical_refs": [
+        "brand.type.family.display",
+        "brand.type.family.presentation",
+        "brand.type.family.mono"
+      ],
+      "channel_policy": "font-files-local-or-licensed-consumer-delivery",
+      "review": "Do not package licensed font binaries into the public plugin without a distribution ruling"
+    },
+    {
+      "id": "collection.logos",
+      "label": "Logo package",
+      "kind": "asset",
+      "maturity": "source-found",
+      "editable": false,
+      "canonical_refs": [
+        "visual.logo"
+      ],
+      "channel_policy": "approved-reference-only",
+      "review": "Record variant, clear space, rights, owner, and channel before copying or publishing"
+    },
+    {
+      "id": "collection.icons",
+      "label": "Icon library",
+      "kind": "asset",
+      "maturity": "source-found",
+      "editable": false,
+      "canonical_refs": [
+        "visual.iconography"
+      ],
+      "channel_policy": "approved-reference-only",
+      "review": "Keep the consumer icon set explicit; preserve accessible names and non-color cues"
+    },
+    {
+      "id": "collection.gradients",
+      "label": "Gradient backgrounds",
+      "kind": "asset",
+      "maturity": "source-found",
+      "editable": false,
+      "canonical_refs": [
+        "visual.foundation.gradients"
+      ],
+      "channel_policy": "approved-raster-reference-only",
+      "review": "Approved raster examples exist; numeric gradient stops remain an open contract"
+    },
+    {
+      "id": "collection.textures",
+      "label": "Textures and surface motifs",
+      "kind": "asset",
+      "maturity": "source-found",
+      "editable": false,
+      "canonical_refs": [
+        "visual.surface-and-shape"
+      ],
+      "channel_policy": "approved-reference-only",
+      "review": "Use purposefully and verify text contrast on the final surface"
+    },
+    {
+      "id": "collection.imagery",
+      "label": "Photography and imagery",
+      "kind": "asset",
+      "maturity": "source-found",
+      "editable": false,
+      "canonical_refs": [
+        "visual.imagery",
+        "visual.asset-governance"
+      ],
+      "channel_policy": "rights-and-alt-text-required",
+      "review": "Do not publish or redistribute without rights, crop, alt-text, and owner metadata"
+    },
+    {
+      "id": "collection.content-guidance",
+      "label": "Voice and content guidance",
+      "kind": "content",
+      "maturity": "measured",
+      "editable": true,
+      "canonical_refs": [
+        "content.voice",
+        "content.personas",
+        "content.tone-modes"
+      ],
+      "channel_policy": "sanitized-contract-in-plugin",
+      "review": "Keep source evidence and approval state visible when a tone or persona changes"
+    },
+    {
+      "id": "collection.slides-guidance",
+      "label": "Slides and medium guidance",
+      "kind": "medium",
+      "maturity": "measured",
+      "editable": true,
+      "canonical_refs": [
+        "slides.contract",
+        "visual.medium-translation"
+      ],
+      "channel_policy": "sanitized-contract-in-plugin",
+      "review": "Native template, object IDs, and delivery remain owned by the consuming document system"
+    },
+    {
+      "id": "collection.diagram-theme-suite",
+      "label": "Diagram and workflow theme suite",
+      "kind": "semantic-contract",
+      "maturity": "active",
+      "editable": true,
+      "canonical_refs": [
+        "visual.diagram",
+        "visual.diagram-theme-suite"
+      ],
+      "channel_policy": "sanitized-contract-in-plugin",
+      "review": "Keep semantic roles, non-color cues, accessibility rules, and consumer adapters synchronized with diagram and workflow capability catalogs"
+    }
+  ],
+  "settings": {
+    "default_persona": {
+      "default": "persona.collibrian",
+      "options": [
+        "persona.collibrian",
+        "persona.change-navigator",
+        "persona.decision-maker",
+        "persona.builder",
+        "persona.data-steward",
+        "persona.customer"
+      ],
+      "editable": true,
+      "source": "content/voice.json"
+    },
+    "default_tone": {
+      "default": "tone.aligned-purposeful",
+      "options": [
+        "tone.aligned-purposeful",
+        "tone.action-oriented",
+        "tone.trust-building",
+        "tone.inclusive-approachable",
+        "tone.teaching-wise",
+        "tone.confident-approachable"
+      ],
+      "editable": true,
+      "source": "content/voice.json"
+    },
+    "default_medium": {
+      "default": "public-web",
+      "options": [
+        "product-ui",
+        "public-web",
+        "email",
+        "chat",
+        "long-form-guide",
+        "slide-deck",
+        "document",
+        "data-surface",
+        "ai-surface"
+      ],
+      "editable": true,
+      "source": "content/voice.json"
+    },
+    "theme": {
+      "default": "light",
+      "options": [
+        "light",
+        "dark",
+        "system"
+      ],
+      "editable": true,
+      "source": "tokens/collibra.tokens.json"
+    },
+    "public_export": {
+      "default": "metadata-only",
+      "options": [
+        "metadata-only",
+        "disabled"
+      ],
+      "editable": false,
+      "source": "registry policy"
+    }
+  },
+  "distribution": {
+    "source_repo_private": true,
+    "public_variant": "collibra-design-pages",
+    "payload": "metadata-only"
+  }
+}

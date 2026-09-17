@@ -1,0 +1,244 @@
+{
+  "$schema": "collibra-design/slides/layout-geometry/v1",
+  "version": 1,
+  "unit": "points",
+  "coordinate_origin": "top_left",
+  "governed_zones": {
+    "visual_body_default": {
+      "x": 48,
+      "y": 126,
+      "w": 624,
+      "h": 220
+    },
+    "semantic_body_full_field": {
+      "x": 48,
+      "y": 120,
+      "w": 624,
+      "h": 228
+    }
+  },
+  "semantic_stacks": {
+    "ordered_roles": [
+      "locator_or_number",
+      "headline_or_label",
+      "detail_or_evidence",
+      "source"
+    ],
+    "axis": "vertical",
+    "one_semantic_role_per_frame": true,
+    "distinct_frame_origins": true,
+    "inter_role_gaps": "explicit_non_negative_points"
+  },
+  "component_sizing": {
+    "measurement": "visible_content_bounds_at_declared_type_role",
+    "required_inputs": [
+      "measured_role_frames",
+      "padding",
+      "inter_role_gaps"
+    ],
+    "minimum_width": {
+      "operation": "sum",
+      "terms": [
+        "maximum_measured_frame_width",
+        "padding_left",
+        "padding_right"
+      ]
+    },
+    "minimum_height": {
+      "operation": "sum",
+      "terms": [
+        "measured_frame_heights",
+        "inter_role_gaps",
+        "padding_top",
+        "padding_bottom"
+      ]
+    },
+    "preferred_size_constraint": "greater_than_or_equal_to_minimum_on_each_axis",
+    "resolved_size_constraint": "greater_than_or_equal_to_minimum_on_each_axis"
+  },
+  "alignment_and_distribution": {
+    "alignment_strategies": [
+      "left_edges",
+      "right_edges",
+      "top_edges",
+      "bottom_edges",
+      "horizontal_centers",
+      "vertical_centers"
+    ],
+    "distribution_strategies": [
+      "equal_gaps_horizontal",
+      "equal_gaps_vertical"
+    ],
+    "member_order": "explicit_reading_order_then_stable_id",
+    "gap_floor_pt": 0,
+    "collision_policy": {
+      "semantic_content_peers": "forbidden",
+      "overlap_capable_surface_classes": [
+        "decorative",
+        "mask",
+        "marker"
+      ],
+      "overlap_requires": [
+        "overlap_owner_id",
+        "distinct_layer_index"
+      ],
+      "protected_semantic_frames": "clear"
+    },
+    "tolerance_sources": {
+      "alignment": "geometry_contract.tolerances_pt.alignment",
+      "distribution": "geometry_contract.tolerances_pt.distribution"
+    }
+  },
+  "surface_and_label_ownership": {
+    "surface_classes": [
+      "semantic-content",
+      "decorative",
+      "mask",
+      "marker"
+    ],
+    "text_host_class": "semantic-content",
+    "shape_safe_inset_schema": "collibra-design/slides/shape-label-safe-insets/v1",
+    "shape_safe_inset_owner": "surface",
+    "marker_overflow_resolution": "outside_label",
+    "outside_label_strategies": [
+      "left_rail",
+      "right_rail",
+      "above",
+      "below"
+    ],
+    "leader_routing": "orthogonal_polyline",
+    "leader_must_touch": [
+      "owner_boundary",
+      "label_boundary"
+    ]
+  },
+  "obstacle_clearance": {
+    "obstacle_kinds": [
+      "protected_region",
+      "component",
+      "text",
+      "label"
+    ],
+    "minimum_pt": 4,
+    "applies_to": [
+      "component_bounds",
+      "outside_label_bounds",
+      "leader_segments"
+    ],
+    "crossing": "forbidden"
+  },
+  "output_contract": {
+    "$schema": "collibra-design/slides/layout-resolution/v1",
+    "serialization": "strict_json",
+    "duplicate_keys": "reject",
+    "finite_numbers_only": true,
+    "booleans_are_numbers": false,
+    "unknown_fields": "reject",
+    "required_top_level_fields": [
+      "$schema",
+      "contract_schema",
+      "zone_id",
+      "components",
+      "alignment_groups",
+      "distribution_groups",
+      "obstacles",
+      "outside_labels",
+      "resolution"
+    ],
+    "required_record_fields": {
+      "box": [
+        "x",
+        "y",
+        "w",
+        "h"
+      ],
+      "point": [
+        "x",
+        "y"
+      ],
+      "component": [
+        "id",
+        "bounds",
+        "minimum_size",
+        "preferred_size",
+        "surface",
+        "layering",
+        "semantic_stack"
+      ],
+      "size": [
+        "w",
+        "h"
+      ],
+      "surface": [
+        "class",
+        "shape_family",
+        "safe_inset_owner"
+      ],
+      "layering": [
+        "layer_index",
+        "overlap_owner_id"
+      ],
+      "semantic_stack": [
+        "frames",
+        "gaps_pt"
+      ],
+      "stack_frame": [
+        "id",
+        "role",
+        "type_role",
+        "origin",
+        "bounds"
+      ],
+      "alignment_group": [
+        "id",
+        "strategy",
+        "member_ids"
+      ],
+      "distribution_group": [
+        "id",
+        "strategy",
+        "member_ids",
+        "gap_pt"
+      ],
+      "obstacle": [
+        "id",
+        "kind",
+        "bounds"
+      ],
+      "outside_label": [
+        "id",
+        "owner_component_id",
+        "strategy",
+        "bounds",
+        "leader"
+      ],
+      "leader": [
+        "points"
+      ],
+      "resolution": [
+        "status",
+        "strategy",
+        "attempted_strategies",
+        "preserve_semantic_roles",
+        "type_role_downshift",
+        "native_autofit"
+      ]
+    }
+  },
+  "resolution_policy": {
+    "strategy_order": [
+      "shorten_without_losing_meaning",
+      "expand_or_reflow_within_declared_visual_zone",
+      "reduce_simultaneous_items",
+      "split_into_complementary_slides"
+    ],
+    "terminal_statuses": [
+      "resolved",
+      "split_required",
+      "failed_closed"
+    ],
+    "preserve_semantic_roles": true,
+    "type_role_downshift": false,
+    "native_autofit": "NONE"
+  }
+}

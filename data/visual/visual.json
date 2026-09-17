@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "catalog_version": "0.3.0",
+  "catalog_version": "0.5.0",
   "area_id": "area.design.visual",
   "status": "active",
   "title": "Collibra visual capability catalog",
@@ -403,6 +403,36 @@
       ],
       "open_questions": [
         "Confirm shadow, border, elevation, and panel treatments for product and document contexts."
+      ]
+    },
+    {
+      "id": "visual.document-composition",
+      "name": "Reader-first document composition",
+      "maturity": "defined",
+      "purpose": "Give branded documents a recognizable reading path without turning every paragraph into decoration or forcing one layout onto every audience.",
+      "contract": "Begin with the answer, outcome, or decision the reader needs. Use token-backed navy headings, readable neutral body text, a light base, restrained supporting panels, forest links, and lime only as a safe accent or fill. Use cards for real groupings, tables for real comparisons, numbered lists for sequences, and diagrams or images only when they explain a relationship or example faster than prose. Keep paragraph rhythm open, preserve a readable type floor, and let the document consumer own exact type sizes and spacing until an approved Docs scale exists. Use native tabs only for distinct, durable reader tasks; preserve the complete tab tree when adapting an existing document. Verify the final native document and exported pages, including alt text, link behavior, contrast, page breaks, and non-color meaning.",
+      "token_refs": [
+        "brand.color.primary.navy",
+        "brand.color.primary.lime",
+        "brand.color.accent.forest",
+        "brand.color.accent.light_forest",
+        "brand.color.neutral.charcoal",
+        "brand.color.neutral.light_cloud",
+        "brand.color.neutral.white",
+        "brand.accessibility.contrast.body_text_minimum",
+        "brand.accessibility.contrast.large_or_bold_text_minimum",
+        "brand.space.scale"
+      ],
+      "source_refs": [
+        "content/voice.json",
+        "visual.foundation.palette",
+        "visual.foundation.spacing",
+        "visual.foundation.contrast",
+        "visual/slide-grammar-suite.json",
+        "tokens/PROVENANCE.md"
+      ],
+      "open_questions": [
+        "Approve a shared Google Docs type and spacing scale before treating one consumer recipe as a universal numeric default."
       ]
     },
     {

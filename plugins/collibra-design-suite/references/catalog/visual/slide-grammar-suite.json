@@ -1,0 +1,934 @@
+{
+  "$schema": "collibra-design/visual/slide-grammar-suite/v1",
+  "status": "defined",
+  "suite_version": "0.4.0",
+  "title": "Collibra slide visual grammar suite",
+  "purpose": "Give presentation and document producers a shared way to choose visual form from reader intent, while leaving medium-specific geometry and delivery to the consuming library.",
+  "source_of_truth": "collibra-design/visual/slide-grammar-suite.json",
+  "consumers": [
+    "collibra-doc-suite",
+    "Collibra presentation authors",
+    "Collibra document producers",
+    "Collibra design atlas"
+  ],
+  "token_refs": [
+    "brand.color.primary.navy",
+    "brand.color.primary.lime",
+    "brand.color.accent.forest",
+    "brand.color.accent.light_forest",
+    "brand.color.neutral.charcoal",
+    "brand.color.neutral.cloud",
+    "brand.color.neutral.light_cloud",
+    "brand.color.neutral.white",
+    "brand.type.family.presentation",
+    "brand.type.family.mono",
+    "brand.type.scale.slides.title",
+    "brand.type.scale.slides.body",
+    "brand.type.scale.slides.body_small",
+    "brand.type.scale.slides.caption",
+    "brand.type.scale.slides.eyebrow",
+    "brand.radius.scale",
+    "brand.accessibility.contrast.body_text_minimum",
+    "brand.accessibility.contrast.large_or_bold_text_minimum"
+  ],
+  "principles": [
+    "Choose the visual grammar from the reader question before choosing a shell or atom.",
+    "Give every slide one dominant job and one obvious reading direction.",
+    "Use shape, position, line treatment, and text as meaning; color is supporting evidence.",
+    "Prefer a named grammar with a distinct rhythm over a renamed card or rectangle grid.",
+    "Carry source, scope, uncertainty, ownership, and next action where the claim needs them.",
+    "Translate the grammar across media without pretending that geometry or delivery is universal.",
+    "Split dense stories into a sequence of complementary slides instead of shrinking the type."
+  ],
+  "shell_roles": [
+    {
+      "id": "cover_field",
+      "purpose": "Orient the reader with a strong title, promise, and focal mark.",
+      "composition": "Use a spacious field with one anchored statement and restrained supporting context.",
+      "avoid": [
+        "multiple competing headlines",
+        "decorative panels without a job"
+      ]
+    },
+    {
+      "id": "editorial_rail",
+      "purpose": "Hold a narrative claim beside evidence, context, or a source note.",
+      "composition": "Use an asymmetric rail and a visual field so the eye has a deliberate entry point.",
+      "avoid": [
+        "equal-weight columns for unequal ideas",
+        "a rail that repeats the headline"
+      ]
+    },
+    {
+      "id": "metric_stage",
+      "purpose": "Give a bounded measure or signal room to be interpreted.",
+      "composition": "Pair one measure with context, comparison, source, and implication.",
+      "avoid": [
+        "orphaned numbers",
+        "unlabeled status color"
+      ]
+    },
+    {
+      "id": "participation_field",
+      "purpose": "Invite one bounded audience response with an explicit participation method.",
+      "composition": "Use an open prompt field with one focal cue, a concise question, response lenses, and a printed handoff instruction.",
+      "avoid": [
+        "a question without a response method",
+        "generic option cards with no facilitation cue"
+      ]
+    },
+    {
+      "id": "comparison_frame",
+      "purpose": "Make a meaningful difference between alternatives or states inspectable.",
+      "composition": "Use a declared comparison axis and a visible bridge, delta, or decision cue.",
+      "avoid": [
+        "two unrelated cards called before and after",
+        "comparison by color alone"
+      ]
+    },
+    {
+      "id": "process_track",
+      "purpose": "Show movement through phases, owners, or handoffs.",
+      "composition": "Give sequence a direction and make gates, owners, and exceptions visible.",
+      "avoid": [
+        "arrows crossing without labels",
+        "a timeline that has no time or sequence meaning"
+      ]
+    },
+    {
+      "id": "decision_field",
+      "purpose": "Help a reader choose, prioritize, or resolve a trade-off.",
+      "composition": "Expose the decision axes, threshold, or focal question before listing options.",
+      "avoid": [
+        "a matrix with unnamed axes",
+        "a decorative diamond with no branch meaning"
+      ]
+    },
+    {
+      "id": "diagram_field",
+      "purpose": "Explain a system, relationship, boundary, or operating model.",
+      "composition": "Use semantic shapes, directional connectors, and a concise legend or key.",
+      "avoid": [
+        "generic boxes and arrows",
+        "unbounded node density"
+      ]
+    },
+    {
+      "id": "evidence_grid",
+      "purpose": "Let a reader inspect structured evidence without losing the conclusion.",
+      "composition": "Use row, column, or lane structure only when it matches the comparison contract.",
+      "avoid": [
+        "a table used as a default layout",
+        "dense cells without a reading order"
+      ]
+    }
+  ],
+  "grammars": [
+    {
+      "id": "thesis_field",
+      "name": "Thesis field",
+      "reader_question": "What is the one conclusion the reader should carry forward?",
+      "visual_language": "A dominant statement sits in an open field with one evidence anchor and a clear implication.",
+      "primary_primitive": "field",
+      "shell_role": "cover_field",
+      "reading_order": "thesis to evidence to implication",
+      "anchor": "single conclusion",
+      "supporting_roles": [
+        "headline",
+        "evidence",
+        "implication",
+        "source"
+      ],
+      "theme_roles": [
+        "boundary",
+        "ink",
+        "evidence",
+        "muted"
+      ],
+      "medium_translation": {
+        "slides": "Use a native cover or hero shell with one strong statement and a restrained evidence mark.",
+        "docs": "Open a section with the conclusion, then place supporting evidence in the next reading block.",
+        "sheets": "Use a summary tab or top panel that points to the underlying evidence range.",
+        "web": "Use a hero region with an accessible heading, supporting proof, and a direct next action.",
+        "exported_media": "Keep the statement and source legible without narration or hover behavior."
+      },
+      "accessibility_cue": "The conclusion is available as heading text and the evidence relationship is repeated in prose.",
+      "evidence_contract": "Name the source and scope of the evidence anchor; do not imply causation from a single signal.",
+      "avoid": [
+        "multiple theses",
+        "a background image that carries the claim"
+      ]
+    },
+    {
+      "id": "metric_beacon",
+      "name": "Metric beacon",
+      "reader_question": "What does this measure mean, and what should change because of it?",
+      "visual_language": "One prominent measure is surrounded by context, comparison, and an implication cue.",
+      "primary_primitive": "glyph",
+      "shell_role": "metric_stage",
+      "reading_order": "measure to context to implication",
+      "anchor": "bounded measure",
+      "supporting_roles": [
+        "headline",
+        "measure",
+        "comparison",
+        "source",
+        "implication"
+      ],
+      "theme_roles": [
+        "boundary",
+        "accent",
+        "support",
+        "muted"
+      ],
+      "medium_translation": {
+        "slides": "Use a metric stage with a visible unit, comparison point, period, and source note.",
+        "docs": "Lead with the measure in a callout, then explain denominator, period, and implication in text.",
+        "sheets": "Keep the metric tied to its source range and expose the comparison formula or target.",
+        "web": "Use a labeled metric component with a text alternative and an inspectable source link.",
+        "exported_media": "Print the unit, period, and status cue next to the number rather than relying on color."
+      },
+      "accessibility_cue": "The number, unit, period, comparison, and status are all written in text.",
+      "evidence_contract": "Declare denominator, time context, source, and whether the measure is actual, target, or estimate.",
+      "avoid": [
+        "isolated big numbers",
+        "precision that the source does not support"
+      ]
+    },
+    {
+      "id": "comparison_split",
+      "name": "Comparison split",
+      "reader_question": "What materially differs between the current state and the alternative?",
+      "visual_language": "Two states share a declared axis and are connected by a visible delta or bridge.",
+      "primary_primitive": "split",
+      "shell_role": "comparison_frame",
+      "reading_order": "comparison axis to current to alternative to delta",
+      "anchor": "declared difference",
+      "supporting_roles": [
+        "headline",
+        "current",
+        "target",
+        "delta",
+        "decision"
+      ],
+      "theme_roles": [
+        "boundary",
+        "support",
+        "accent",
+        "unknown"
+      ],
+      "medium_translation": {
+        "slides": "Use a split frame, state columns, or a bridge that names the migration or decision between them.",
+        "docs": "Use paired headings and a written transition paragraph instead of two isolated panels.",
+        "sheets": "Place comparable fields in aligned columns and calculate the delta in a labeled column.",
+        "web": "Use a comparison component with headings, semantic differences, and an accessible alternative.",
+        "exported_media": "Print both state labels and the change cue so the relationship survives grayscale or cropping."
+      },
+      "accessibility_cue": "The axis and delta are stated in text, with state labels that do not depend on fill color.",
+      "evidence_contract": "Identify the comparison basis, date or version, and whether the target is proposed or evidenced.",
+      "avoid": [
+        "unrelated side-by-side cards",
+        "before and after labels without a transition"
+      ]
+    },
+    {
+      "id": "journey_spine",
+      "name": "Journey spine",
+      "reader_question": "How does an experience change from entry through outcome?",
+      "visual_language": "A directional experience rail connects stages, friction, opportunity, and an outcome.",
+      "primary_primitive": "path",
+      "shell_role": "process_track",
+      "reading_order": "entry to stages to friction to opportunity to outcome",
+      "anchor": "experienced progression",
+      "supporting_roles": [
+        "persona",
+        "stage",
+        "friction",
+        "opportunity",
+        "outcome"
+      ],
+      "theme_roles": [
+        "boundary",
+        "support",
+        "accent",
+        "unknown",
+        "evidence"
+      ],
+      "medium_translation": {
+        "slides": "Use a rail with stage markers, experience notes, and a terminal outcome rather than a generic process row.",
+        "docs": "Use stage headings with a consistent entry, experience, and opportunity pattern.",
+        "sheets": "Keep stages as rows and experience dimensions as columns with explicit status text.",
+        "web": "Use a semantic list or stepper with text-first stage content and optional visual emphasis.",
+        "exported_media": "Keep stage names and friction or opportunity cues readable when the rail is viewed as a static image."
+      },
+      "accessibility_cue": "The journey is a labeled ordered list in the same order as the visual rail.",
+      "evidence_contract": "Separate observed experience from proposed opportunity and name the research or source context.",
+      "avoid": [
+        "a roadmap relabeled as a journey",
+        "stage names without lived quality or friction"
+      ]
+    },
+    {
+      "id": "phase_chevrons",
+      "name": "Phase chevrons",
+      "reader_question": "What sequence of phases moves the work toward the outcome?",
+      "visual_language": "Directional phase forms create a forward path with gates, owners, and a terminal outcome.",
+      "primary_primitive": "phase",
+      "shell_role": "process_track",
+      "reading_order": "first phase to later phase to gate to outcome",
+      "anchor": "declared sequence",
+      "supporting_roles": [
+        "phase",
+        "owner",
+        "gate",
+        "dependency",
+        "outcome"
+      ],
+      "theme_roles": [
+        "support",
+        "boundary",
+        "accent",
+        "evidence"
+      ],
+      "medium_translation": {
+        "slides": "Use chevrons or stations for future sequence, with labels that distinguish phases from milestones.",
+        "docs": "Use numbered sections or headings with explicit entry and exit conditions.",
+        "sheets": "Use columns for phases and rows for owners, deliverables, gates, or dates.",
+        "web": "Use an ordered step pattern with progress semantics only when progress is measured.",
+        "exported_media": "Print sequence labels, phase names, and gate conditions directly on or beside the path."
+      },
+      "accessibility_cue": "The sequence is expressed as an ordered list with phase names and gate text.",
+      "evidence_contract": "Mark future intent separately from completed evidence and identify the owner of each gate.",
+      "avoid": [
+        "a generic arrow row",
+        "using chevrons for unordered categories"
+      ]
+    },
+    {
+      "id": "governance_orbit",
+      "name": "Governance orbit",
+      "reader_question": "Which forums and owners keep the decision or operating model aligned?",
+      "visual_language": "Forums, owners, and outcomes orbit a central decision or operating purpose.",
+      "primary_primitive": "radial",
+      "shell_role": "diagram_field",
+      "reading_order": "central purpose to forum to owner to outcome",
+      "anchor": "shared decision",
+      "supporting_roles": [
+        "purpose",
+        "forum",
+        "owner",
+        "cadence",
+        "outcome"
+      ],
+      "theme_roles": [
+        "boundary",
+        "support",
+        "accent",
+        "evidence",
+        "muted"
+      ],
+      "medium_translation": {
+        "slides": "Use an orbit or spoke composition when alignment around a shared decision matters more than chronology.",
+        "docs": "Use a central purpose statement followed by forum and owner subsections.",
+        "sheets": "Use a cadence table with forums as rows, periods as columns, and decisions in the cells.",
+        "web": "Use a hub-and-spoke or grouped list with visible ownership and cadence labels.",
+        "exported_media": "Keep every spoke named and provide a linear reading order beside the radial view."
+      },
+      "accessibility_cue": "Every forum and owner is listed in a linear alternative with its outcome and cadence.",
+      "evidence_contract": "Distinguish an existing governance commitment from a proposed operating model.",
+      "avoid": [
+        "decorative circles",
+        "orbits with no central decision or ownership"
+      ]
+    },
+    {
+      "id": "evidence_chain",
+      "name": "Evidence chain",
+      "reader_question": "How does the source evidence support the claim and the next action?",
+      "visual_language": "Sources, observations, synthesis, and action are linked in a directional chain.",
+      "primary_primitive": "chain",
+      "shell_role": "evidence_grid",
+      "reading_order": "source to observation to claim to action",
+      "anchor": "traceable claim",
+      "supporting_roles": [
+        "source",
+        "observation",
+        "claim",
+        "uncertainty",
+        "action"
+      ],
+      "theme_roles": [
+        "evidence",
+        "boundary",
+        "ink",
+        "unknown",
+        "accent"
+      ],
+      "medium_translation": {
+        "slides": "Use labeled links or evidence cards that keep source context beside the claim rather than in a footnote only.",
+        "docs": "Use a claim heading, evidence block, limitation note, and action paragraph.",
+        "sheets": "Keep source fields and transformations adjacent to the result or in an inspectable provenance tab.",
+        "web": "Use expandable evidence details or linked source notes while preserving a visible summary.",
+        "exported_media": "Print source kind, confidence or limitation, and action cue in the static composition."
+      },
+      "accessibility_cue": "The chain is repeated as a sequence of labeled text blocks with source and uncertainty included.",
+      "evidence_contract": "Never collapse source, interpretation, and recommendation into one undifferentiated card.",
+      "avoid": [
+        "unlabeled connectors",
+        "source notes detached from the claims they support"
+      ]
+    },
+    {
+      "id": "quadrant_field",
+      "name": "Quadrant field",
+      "reader_question": "How do options compare across the two decision dimensions that matter?",
+      "visual_language": "A plotted field makes axes, thresholds, clusters, and outliers visible.",
+      "primary_primitive": "matrix",
+      "shell_role": "decision_field",
+      "reading_order": "axis labels to regions to plotted option to recommendation",
+      "anchor": "two-axis choice",
+      "supporting_roles": [
+        "axis",
+        "option",
+        "threshold",
+        "cluster",
+        "recommendation"
+      ],
+      "theme_roles": [
+        "boundary",
+        "accent",
+        "support",
+        "unknown",
+        "ink"
+      ],
+      "medium_translation": {
+        "slides": "Use a plotted field with named axes, a legend, and a callout for the decision implication.",
+        "docs": "Use an axis explanation followed by a compact option table and recommendation.",
+        "sheets": "Keep axis definitions, values, and plotted labels in adjacent source ranges.",
+        "web": "Use an accessible scatter or matrix alternative with filterable option details.",
+        "exported_media": "Print axis names, scale meaning, option labels, and recommendation outside the plot marks."
+      },
+      "accessibility_cue": "Every option has a text row with its two values, region, and decision implication.",
+      "evidence_contract": "Name the measurement basis and explain whether placement is observed, estimated, or judgmental.",
+      "avoid": [
+        "unnamed axes",
+        "placing options by decoration rather than a stated rule"
+      ]
+    },
+    {
+      "id": "pyramid_stack",
+      "name": "Pyramid stack",
+      "reader_question": "Which foundations support the higher-order outcome?",
+      "visual_language": "Stacked layers narrow or broaden to show dependency, maturity, or abstraction.",
+      "primary_primitive": "stack",
+      "shell_role": "diagram_field",
+      "reading_order": "foundation to enabling layer to outcome",
+      "anchor": "dependency hierarchy",
+      "supporting_roles": [
+        "foundation",
+        "layer",
+        "dependency",
+        "outcome",
+        "owner"
+      ],
+      "theme_roles": [
+        "support_soft",
+        "support",
+        "boundary",
+        "accent",
+        "ink"
+      ],
+      "medium_translation": {
+        "slides": "Use trapezoid or banded layers with one claim per layer and an explicit outcome at the apex.",
+        "docs": "Use ordered headings that explain why each foundation enables the next layer.",
+        "sheets": "Use a dependency table with layer, prerequisite, owner, and evidence columns.",
+        "web": "Use a nested or stacked list with semantic headings and clear dependency language.",
+        "exported_media": "Keep layer labels, direction, and foundation-to-outcome reading order visible without color."
+      },
+      "accessibility_cue": "The layers are provided as an ordered list from foundation to outcome.",
+      "evidence_contract": "State whether each layer is an existing capability, a dependency, or a proposed investment.",
+      "avoid": [
+        "a stack with equal claims in every band",
+        "using a pyramid only as decoration"
+      ]
+    },
+    {
+      "id": "hierarchy_tree",
+      "name": "Hierarchy tree",
+      "reader_question": "How does one focal concept decompose into named child concepts across explicit levels?",
+      "visual_language": "A bounded rooted tree uses level bands and parent-child branches to make decomposition legible from root to leaf.",
+      "primary_primitive": "tree",
+      "shell_role": "editorial_rail",
+      "reading_order": "root to level band to branch to leaf to relationship key",
+      "anchor": "focal concept",
+      "supporting_roles": [
+        "root",
+        "branch",
+        "leaf",
+        "level",
+        "relationship",
+        "source"
+      ],
+      "theme_roles": [
+        "surface",
+        "boundary",
+        "support",
+        "evidence",
+        "unknown"
+      ],
+      "medium_translation": {
+        "slides": "Use a top-down tree with visible level bands, parent-child connectors, printed root/branch/leaf cues, and a concise relationship key.",
+        "docs": "Use nested headings or an indented outline that preserves the root-to-leaf order and names the relationship.",
+        "sheets": "Use one row per node with level, parent, order, detail, and evidence fields so the tree can be reconstructed and audited.",
+        "web": "Use a semantic nested list or expandable tree with an equivalent linear reading order and visible relationship labels.",
+        "exported_media": "Print level labels, relationship meaning, source context, and unknown status so branching is not the only cue."
+      },
+      "accessibility_cue": "The tree is repeated as a level-ordered text list in root-to-leaf order, including parent relationships and unknown status.",
+      "evidence_contract": "Name the source and scope of the decomposition; distinguish observed structure from proposed or unresolved child concepts.",
+      "avoid": [
+        "decision branches",
+        "organizational ownership implied by position",
+        "unlabeled connectors or unbounded node density"
+      ]
+    },
+    {
+      "id": "waterfall_bridge",
+      "name": "Waterfall bridge",
+      "reader_question": "Which positive and negative contributions explain the movement from start to finish?",
+      "visual_language": "A starting measure is bridged through labeled contributions to a final measure.",
+      "primary_primitive": "waterfall",
+      "shell_role": "metric_stage",
+      "reading_order": "start to contribution to contribution to finish",
+      "anchor": "explained movement",
+      "supporting_roles": [
+        "start",
+        "increase",
+        "decrease",
+        "finish",
+        "source"
+      ],
+      "theme_roles": [
+        "boundary",
+        "accent",
+        "support",
+        "unknown",
+        "muted"
+      ],
+      "medium_translation": {
+        "slides": "Use a waterfall or bridge with printed values, direction, and a concise takeaway.",
+        "docs": "Use an ordered change list with a start, signed contributors, and finish statement.",
+        "sheets": "Expose the source values and running total so the bridge can be audited.",
+        "web": "Use a chart with a table alternative and a clear distinction between contributors and totals.",
+        "exported_media": "Print signs, units, and start or finish labels; do not rely on up or down color alone."
+      },
+      "accessibility_cue": "Each contribution has a signed text value and the running sequence is available as a table.",
+      "evidence_contract": "The start, contributors, and finish must reconcile to the declared total within the source precision.",
+      "avoid": [
+        "floating bars with no baseline meaning",
+        "unexplained residuals"
+      ]
+    },
+    {
+      "id": "swimlane_handoff",
+      "name": "Swimlane handoff",
+      "reader_question": "Who acts when, where does work cross a boundary, and what decision gates it?",
+      "visual_language": "Owner lanes carry a directional sequence with explicit handoffs, decisions, and exceptions.",
+      "primary_primitive": "swimlane",
+      "shell_role": "process_track",
+      "reading_order": "lane to sequence to handoff to decision",
+      "anchor": "owned flow",
+      "supporting_roles": [
+        "owner",
+        "action",
+        "handoff",
+        "decision",
+        "exception"
+      ],
+      "theme_roles": [
+        "boundary",
+        "support",
+        "accent",
+        "unknown",
+        "evidence"
+      ],
+      "medium_translation": {
+        "slides": "Use lanes and orthogonal connectors with printed handoff labels and decision gates.",
+        "docs": "Use owner subsections or a responsibility table followed by the exception path.",
+        "sheets": "Use owners as rows or columns and steps as ordered fields with a handoff marker.",
+        "web": "Use a semantic process list grouped by owner with explicit state and exception text.",
+        "exported_media": "Keep lane names, action verbs, connector meaning, and decision text legible in a static view."
+      },
+      "accessibility_cue": "The visual is paired with a lane-first ordered list of actions and handoffs.",
+      "evidence_contract": "Mark assumed ownership, observed flow, and proposed control points separately.",
+      "avoid": [
+        "crossing connectors without labels",
+        "a process row that hides ownership"
+      ]
+    },
+    {
+      "id": "network_hub",
+      "name": "Network hub",
+      "reader_question": "Which relationships or dependencies surround the shared outcome?",
+      "visual_language": "A named focal outcome connects to a bounded set of related actors, systems, or dependencies.",
+      "primary_primitive": "network",
+      "shell_role": "diagram_field",
+      "reading_order": "outcome to connected node to relationship label",
+      "anchor": "shared outcome",
+      "supporting_roles": [
+        "outcome",
+        "node",
+        "relationship",
+        "boundary",
+        "source"
+      ],
+      "theme_roles": [
+        "boundary",
+        "support",
+        "evidence",
+        "muted",
+        "unknown"
+      ],
+      "medium_translation": {
+        "slides": "Use a hub-and-spoke field with relationship labels and a bounded node count.",
+        "docs": "Use a focal outcome paragraph followed by relationship subsections or a table.",
+        "sheets": "Use a source edge list with node names, relationship labels, and evidence columns.",
+        "web": "Use a graph only when a keyboard and text alternative expose the same relationships.",
+        "exported_media": "Print relationship labels and provide a linear key so proximity is not the only meaning."
+      },
+      "accessibility_cue": "Every relationship is written as an outcome-to-node statement with its label.",
+      "evidence_contract": "Do not imply a live organizational or system graph when the inputs are illustrative or stale.",
+      "avoid": [
+        "unlabeled spokes",
+        "network density that hides the focal outcome"
+      ]
+    },
+    {
+      "id": "radial_wheel",
+      "name": "Radial wheel",
+      "reader_question": "Which dimensions or capabilities must work together around the focal purpose?",
+      "visual_language": "A central purpose is surrounded by complementary dimensions that form a bounded system.",
+      "primary_primitive": "radial",
+      "shell_role": "diagram_field",
+      "reading_order": "center to dimension to supporting detail",
+      "anchor": "integrated system",
+      "supporting_roles": [
+        "purpose",
+        "dimension",
+        "capability",
+        "status",
+        "source"
+      ],
+      "theme_roles": [
+        "boundary",
+        "accent",
+        "support",
+        "support_soft",
+        "muted"
+      ],
+      "medium_translation": {
+        "slides": "Use a wheel or ring when the dimensions are co-dependent rather than sequential.",
+        "docs": "Use a central purpose followed by dimension headings in a consistent order.",
+        "sheets": "Use one row per dimension with status, owner, evidence, and dependency fields.",
+        "web": "Use a grouped list or accessible radial enhancement with a clear text-first order.",
+        "exported_media": "Include the center label, dimension names, and a linear reading key beside the wheel."
+      },
+      "accessibility_cue": "The dimensions are enumerated in a stable order with their supporting detail.",
+      "evidence_contract": "Use a status or maturity cue for each dimension and label unknown or incomplete coverage.",
+      "avoid": [
+        "a wheel with no center",
+        "radial placement that implies sequence"
+      ]
+    },
+    {
+      "id": "state_ladder",
+      "name": "State ladder",
+      "reader_question": "How does one artifact, capability, or operating state move through maturity or refinement?",
+      "visual_language": "Named states form a directional ladder with promotion conditions and a terminal quality bar.",
+      "primary_primitive": "ladder",
+      "shell_role": "process_track",
+      "reading_order": "current state to gate to next state to target state",
+      "anchor": "promotion path",
+      "supporting_roles": [
+        "state",
+        "gate",
+        "condition",
+        "owner",
+        "target"
+      ],
+      "theme_roles": [
+        "support_soft",
+        "support",
+        "accent",
+        "boundary",
+        "unknown"
+      ],
+      "medium_translation": {
+        "slides": "Use a ladder or refinement ribbon with explicit gate text and a property or evidence alternative.",
+        "docs": "Use state headings with entry condition, exit condition, and owner fields.",
+        "sheets": "Use a state transition table with conditions, evidence, and accountable owner.",
+        "web": "Use a stepper or state list that exposes the same conditions without animation.",
+        "exported_media": "Print state names and transition conditions; do not imply promotion from color or height alone."
+      },
+      "accessibility_cue": "Each state and gate is written as a sequence with explicit transition conditions.",
+      "evidence_contract": "Separate current evidence, proposed target, and unverified promotion criteria.",
+      "avoid": [
+        "maturity labels with no criteria",
+        "a progress bar that implies measured progress"
+      ]
+    },
+    {
+      "id": "narrative_rail",
+      "name": "Narrative rail",
+      "reader_question": "How should a message, evidence, and action be read together?",
+      "visual_language": "A strong message rail guides the eye through selected evidence and a next-action cue.",
+      "primary_primitive": "rail",
+      "shell_role": "editorial_rail",
+      "reading_order": "message to selected evidence to next action",
+      "anchor": "editorial emphasis",
+      "supporting_roles": [
+        "message",
+        "evidence",
+        "quote",
+        "implication",
+        "action"
+      ],
+      "theme_roles": [
+        "boundary",
+        "ink",
+        "evidence",
+        "accent",
+        "muted"
+      ],
+      "medium_translation": {
+        "slides": "Use an editorial rail or storyboard with varied emphasis instead of equal-weight cards.",
+        "docs": "Use a pull quote or key message followed by evidence and an action paragraph.",
+        "sheets": "Use a summary row linked to a detail range and mark the selected evidence fields.",
+        "web": "Use a content rail with headings, citations, and a visible next action.",
+        "exported_media": "Keep the message, source, and action together so the story survives as a single page."
+      },
+      "accessibility_cue": "The message and evidence are available as sequential headings and paragraphs.",
+      "evidence_contract": "Quotes and emphasis retain attribution, context, and any uncertainty that changes interpretation.",
+      "avoid": [
+        "a wall of equal cards",
+        "emphasis without an evidentiary relationship"
+      ]
+    },
+    {
+      "id": "participation_prompt",
+      "name": "Participation prompt",
+      "reader_question": "What should the audience respond to, and how should they participate?",
+      "visual_language": "A focal participation cue opens into one answerable prompt, a small set of response lenses, and an explicit action handoff.",
+      "primary_primitive": "field",
+      "shell_role": "participation_field",
+      "reading_order": "participation mode to prompt to response lenses to action handoff",
+      "anchor": "answerable audience question",
+      "supporting_roles": [
+        "mode",
+        "prompt",
+        "response lens",
+        "timebox",
+        "instruction"
+      ],
+      "theme_roles": [
+        "boundary",
+        "accent",
+        "support",
+        "ink",
+        "muted"
+      ],
+      "medium_translation": {
+        "slides": "Use a spacious prompt field with a visible mode cue, numbered response lenses, and the exact action the room should take.",
+        "docs": "Use a question heading followed by response guidance, a bounded set of lenses, and a written submission or discussion instruction.",
+        "sheets": "Place the prompt above a labeled response range and keep the allowed response method, owner, and review state visible.",
+        "web": "Use a semantic question region with labeled controls, clear submission behavior, keyboard access, and a non-interactive fallback.",
+        "exported_media": "Print the participation mode, prompt, response lenses, and action instruction so the cue remains usable without interaction."
+      },
+      "accessibility_cue": "The participation mode, prompt, response lenses, and action are available in one linear text order and do not depend on color or motion.",
+      "evidence_contract": "Distinguish a facilitation prompt from collected evidence; do not imply that audience responses were received unless the source and collection state are supplied.",
+      "avoid": [
+        "an open question with no response instruction",
+        "participation encoded only by animation or color",
+        "source-deck people, imagery, or response data carried into a reusable example"
+      ]
+    },
+    {
+      "id": "data_table_lens",
+      "name": "Data table lens",
+      "reader_question": "What should the reader notice in this structured evidence, and why?",
+      "visual_language": "A constrained table or matrix is paired with a narrative lens that highlights the decision-relevant pattern.",
+      "primary_primitive": "table",
+      "shell_role": "evidence_grid",
+      "reading_order": "lens to table headers to notable rows or cells to implication",
+      "anchor": "selected evidence",
+      "supporting_roles": [
+        "lens",
+        "header",
+        "status",
+        "exception",
+        "implication"
+      ],
+      "theme_roles": [
+        "boundary",
+        "ink",
+        "support",
+        "accent",
+        "unknown"
+      ],
+      "medium_translation": {
+        "slides": "Use a compact table with a narrative rail, meaningful row labels, and a highlighted pattern.",
+        "docs": "Use a short table only after explaining the question and how to read it.",
+        "sheets": "Use filters, frozen headers, source fields, and a summary view that names the lens.",
+        "web": "Use a responsive table with an accessible summary and a row or cell focus treatment.",
+        "exported_media": "Keep headers, units, source, and the selected pattern readable; split dense detail into an appendix."
+      },
+      "accessibility_cue": "The lens is stated in text and the table has row-first or column-first reading guidance.",
+      "evidence_contract": "Show units, time context, source, and missingness; do not let an accent cell carry a conclusion alone.",
+      "avoid": [
+        "tables as generic decoration",
+        "highlighting without a stated question"
+      ]
+    },
+    {
+      "id": "collage_mosaic",
+      "name": "Collage mosaic",
+      "reader_question": "What collection of visual evidence makes the story tangible?",
+      "visual_language": "A small set of images, marks, or artifacts is composed as an intentional editorial mosaic with captions.",
+      "primary_primitive": "mosaic",
+      "shell_role": "editorial_rail",
+      "reading_order": "thesis to artifact to caption to pattern",
+      "anchor": "curated evidence set",
+      "supporting_roles": [
+        "thesis",
+        "artifact",
+        "caption",
+        "source",
+        "pattern"
+      ],
+      "theme_roles": [
+        "surface",
+        "boundary",
+        "ink",
+        "evidence",
+        "muted"
+      ],
+      "medium_translation": {
+        "slides": "Use a bounded collage with deliberate focal hierarchy, captions, and reviewed asset provenance.",
+        "docs": "Use figures with captions and an explanatory paragraph rather than decorative image clusters.",
+        "sheets": "Keep asset references and captions in a catalog range; use images only as reviewed evidence.",
+        "web": "Use a responsive gallery with alt text, captions, loading behavior, and rights metadata.",
+        "exported_media": "Embed captions and source context so the static image set is interpretable on its own."
+      },
+      "accessibility_cue": "Every artifact has alt text or a written description and a caption in reading order.",
+      "evidence_contract": "Record source, usage authority, version, and review status for every shared or external asset.",
+      "avoid": [
+        "unlicensed imagery",
+        "image walls that substitute mood for evidence"
+      ]
+    },
+    {
+      "id": "chart_plot",
+      "name": "Chart plot",
+      "reader_question": "What comparison, trend, distribution, or relationship does the data support?",
+      "visual_language": "A data-native plot is paired with annotation, units, source context, and a text or table alternative.",
+      "primary_primitive": "chart",
+      "shell_role": "metric_stage",
+      "reading_order": "question to measure to pattern to source",
+      "anchor": "data pattern",
+      "supporting_roles": [
+        "question",
+        "measure",
+        "annotation",
+        "uncertainty",
+        "source"
+      ],
+      "theme_roles": [
+        "boundary",
+        "accent",
+        "support",
+        "support_soft",
+        "unknown"
+      ],
+      "medium_translation": {
+        "slides": "Use the chart family that matches the question and keep the takeaway, units, and source near the plot.",
+        "docs": "Use a figure with a plain-language takeaway and a tabular or textual alternative.",
+        "sheets": "Keep the chart bound to labeled data ranges and expose a source or calculation tab.",
+        "web": "Use accessible axes, summaries, focusable data, and a downloadable or textual alternative.",
+        "exported_media": "Print labels, units, legend meaning, time context, and source; avoid hover-only detail."
+      },
+      "accessibility_cue": "The chart has a text summary and data alternative; color is not the only series distinction.",
+      "evidence_contract": "Name scale, units, time context, source, and uncertainty or missingness where relevant.",
+      "avoid": [
+        "chart choice by habit",
+        "decorative chart shapes that distort the data"
+      ]
+    }
+  ],
+  "rhythm_rules": [
+    {
+      "id": "one-dominant-job",
+      "rule": "Give the page one dominant reader job and let supporting evidence serve that job.",
+      "why": "A library becomes reusable when a maker can choose a form from intent instead of arranging content by habit.",
+      "failure_signal": "The title, visual, and action each ask the reader to do something different."
+    },
+    {
+      "id": "entry-point",
+      "rule": "Create a deliberate visual entry point before adding secondary detail.",
+      "why": "Asymmetric emphasis and focal signals make varied compositions easier to scan.",
+      "failure_signal": "Every object has equal visual weight or the eye has no stable first stop."
+    },
+    {
+      "id": "complementary-sequence",
+      "rule": "Across a story, alternate visual grammars when the reader question changes.",
+      "why": "A one-deck library should demonstrate how a narrative moves, not repeat one layout for every beat.",
+      "failure_signal": "Adjacent pages share the same shell, primitive, and reading rhythm without a semantic reason."
+    },
+    {
+      "id": "density-break",
+      "rule": "Split dense evidence into a complementary detail page before reducing type or label clarity.",
+      "why": "Readable evidence is more valuable than fitting every input into one canvas.",
+      "failure_signal": "The visual depends on tiny labels, unexplained abbreviations, or crowded connectors."
+    },
+    {
+      "id": "bookend",
+      "rule": "Open and close a multi-page story with orientation and a named implication or action.",
+      "why": "A library deck is an editorial object, not only a catalog of isolated examples.",
+      "failure_signal": "The reader reaches the final page without knowing what to remember or do next."
+    },
+    {
+      "id": "participation-reset",
+      "rule": "Before inviting audience input, reduce information density and make the response method and handoff explicit.",
+      "why": "Participation works when the room can see the question, how to respond, and what will happen to the response.",
+      "failure_signal": "The prompt competes with dense evidence, assumes an unstated interaction, or leaves the audience unsure what to do."
+    }
+  ],
+  "accessibility": [
+    "Preserve a linear reading order for every visual grammar.",
+    "Keep color, position, shape, and motion from carrying meaning alone.",
+    "Provide text alternatives for charts, diagrams, imagery, and plotted relationships.",
+    "Keep labels, units, source context, and uncertainty inspectable at the intended medium.",
+    "Test content expansion, contrast, smallest supported view, and static export behavior.",
+    "Use reduced-motion behavior when a consumer adds transitions to an otherwise static grammar."
+  ],
+  "provenance": [
+    {
+      "source": "visual/visual.json",
+      "status": "derived",
+      "notes": "Extends the visual capability catalog with a slide-specific reader-question and cross-medium contract."
+    },
+    {
+      "source": "visual/diagram-theme-suite.json",
+      "status": "aligned",
+      "notes": "Reuses semantic roles for diagram, workflow, chart, state, evidence, and uncertainty meaning."
+    },
+    {
+      "source": "slides/collibra-slides-2026.json",
+      "status": "consumer-boundary",
+      "notes": "The native slide contract owns template inheritance and geometry; this suite owns visual intent and translation rules."
+    },
+    {
+      "source": "Napa-informed clean-room review",
+      "status": "concept-reference",
+      "notes": "Pattern diversity, composition recipes, and reader-first sequencing inform the concepts without importing code, assets, or text."
+    }
+  ]
+}

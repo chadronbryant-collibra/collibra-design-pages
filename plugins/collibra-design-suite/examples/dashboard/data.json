@@ -1,0 +1,15 @@
+{
+  "label": "Synthetic program health",
+  "as_of": "2026-09-01",
+  "status": "proposed",
+  "metrics": [
+    {"label": "Domains reviewed", "value": 12, "target": 16},
+    {"label": "Critical issues resolved", "value": 31, "target": 40},
+    {"label": "Decisions awaiting owner", "value": 4, "target": 0}
+  ],
+  "workstreams": [
+    {"name": "Customer terms", "state": "On track", "next": "Confirm two definitions"},
+    {"name": "Finance lineage", "state": "Needs attention", "next": "Assign decision owner"},
+    {"name": "Access guidance", "state": "Complete", "next": "Publish approved summary"}
+  ]
+}

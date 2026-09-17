@@ -8,7 +8,7 @@ description: >-
   return the final result first and show before/after or a diff only when
   requested.
 metadata:
-  version: "0.1.0"
+  version: "1.0.0-rc.6"
 ---
 
 # Collibra content refinement
@@ -18,6 +18,13 @@ Use this skill when the user wants the content changed. Read
 `../../references/catalog/content/voice.json` before editing. When the content
 is product UI, a slide, a document, a public page, or an AI surface, also use
 the matching contract in `../../references/catalog/`.
+
+For audience-facing artifacts, follow `authoring_sequence` and `visibility`
+in `../../references/catalog/content/guide-patterns.json`: establish the design
+contract, apply this bundled refinement contract in embedded mode, then review
+the actual audience output. Do not claim a separate internal refinement skill
+ran merely because these catalogs were loaded. Keep the audit and drafting
+choices in the private handoff, not the artifact.
 
 ## Decide before rewriting
 
