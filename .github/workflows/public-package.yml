@@ -35,7 +35,7 @@ jobs:
         run: |
           python scripts/package_plugin.py --output first.zip
           python scripts/package_plugin.py --output second.zip
-          python - <<'PY'
+          python3 - <<'PY'
           import hashlib
           from pathlib import Path
           one = hashlib.sha256(Path("first.zip").read_bytes()).hexdigest()
@@ -62,7 +62,7 @@ jobs:
           path: packages
       - name: Require one verified digest
         run: |
-          python - <<'PY'
+          python3 - <<'PY'
           from pathlib import Path
           files = sorted(Path("packages").glob("*/digest-*.txt"))
           digests = {path.read_text(encoding="utf-8").strip() for path in files}
