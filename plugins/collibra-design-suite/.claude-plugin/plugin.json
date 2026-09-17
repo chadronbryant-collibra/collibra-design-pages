@@ -3,7 +3,7 @@
   "name": "collibra-design-suite",
   "displayName": "Collibra design suite",
   "description": "Apply Collibra's reader-first design, voice, accessibility, and evidence contracts to content and experiences.",
-  "version": "1.0.0-rc.6",
+  "version": "1.0.0",
   "author": {
     "name": "Chadron Bryant"
   },
@@ -19,8 +19,8 @@
     "ux"
   ],
   "metadata": {
-    "contractVersion": "1.0.0-rc.6",
-    "distribution": "public-release-candidate",
+    "contractVersion": "1.0.0",
+    "distribution": "public-release",
     "atlas": "https://chadronbryant-collibra.github.io/collibra-design-pages/"
   }
 }
