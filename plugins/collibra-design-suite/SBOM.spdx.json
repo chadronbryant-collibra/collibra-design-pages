@@ -1,0 +1,417 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "collibra-design-suite-1.0.0-rc.6",
+  "documentNamespace": "https://github.com/chadronbryant-collibra/collibra-design-pages/sbom/1.0.0-rc.6",
+  "creationInfo": {
+    "created": "2026-09-11T00:00:00Z",
+    "creators": [
+      "Tool: collibra-design sanitizer"
+    ]
+  },
+  "packages": [
+    {
+      "name": "collibra-design-suite",
+      "SPDXID": "SPDXRef-Package",
+      "versionInfo": "1.0.0-rc.6",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0 AND CC-BY-4.0",
+      "copyrightText": "NOASSERTION"
+    }
+  ],
+  "files": [
+    {
+      "SPDXID": "SPDXRef-File-037fda53525563fb",
+      "fileName": "./.claude-plugin/plugin.json",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1782c98a436eb3920bdf0246a97023ace8ddbb666323049312c1f0f7066af4eb"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-06572a96a58dc510",
+      "fileName": "./CHANGELOG.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9348c74e0de54760efb2aca2783dd6e61c01ff277a4e416fb88e8b941191938b"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-4673a3aba01813b5",
+      "fileName": "./LICENSE.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "47cf57ee733f6cd2cdcaf1db373a51c8bedee3b079c7fe729455438ebae4c4dd"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-963dcc022dd2394e",
+      "fileName": "./LICENSES/Apache-2.0.txt",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-86e5226616ff7c8e",
+      "fileName": "./LICENSES/CC-BY-4.0.txt",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-dfb14fbb9e7d0952",
+      "fileName": "./NOTICE",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "cdb5740adbc8aa027be026bc86964e351acc8e408e0c194c630bd319b34898e8"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-b335630551682c19",
+      "fileName": "./README.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fd87a5f9c6400c13f6fac91867b2c83c207a80c6fcb7cb894a1431f55e858889"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-49aaa2819e35a856",
+      "fileName": "./examples/README.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d1500297775eac739d35b0fefaefb91e56ce41a4a488ea84bad948a8f9245ae6"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-f290e234ad45d1cf",
+      "fileName": "./examples/content/refinement.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "97abec4bce15d1eac8faf82d950543b446826c7d52c3ed0b7c01a18434930579"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-dad1406a95b22b7c",
+      "fileName": "./examples/dashboard/WALKTHROUGH.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0706d1a10448ed5f8d3071f088bc0f0a328393f4817335f27efd42248f60f618"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-5c2d857df01f1121",
+      "fileName": "./examples/dashboard/data.json",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "28f063a3220b6d4f810fc4ffa163dd7a75aa8fb4210adefdf6a68db3b3c92401"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-a3db58f374ea0244",
+      "fileName": "./examples/dashboard/index.html",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c6f207000d4473324eb125007ce5d30d92278329586caf5c7d57792a115e4d0e"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-95b8b38f5dee642e",
+      "fileName": "./examples/document/team-guide.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "94f89ecc2544ddad6f3ab4eb63a0dc1d1099660a5fafe46d3e6d3a42b023a955"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-b7e35c1aaa5b105e",
+      "fileName": "./examples/slide-diagram/decision-flow.svg",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "acaa383b1fec5b3de46f184a7ef6379b7ee2ff0929bd1fbb158cf9aa273de5f2"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-8922c71440e77733",
+      "fileName": "./examples/slide-diagram/outline.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "35f25689107d66f180dd2dd175c84a39497008d266ade7606f473d18356ce389"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-f775832339fd3558",
+      "fileName": "./examples/ui-flow/recovery-flow.html",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f02abc70fecb15f603aa5aea6c526fa42f1d230397f1979359f9cd1673227497"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-bd8310107f8adabd",
+      "fileName": "./references/catalog/README.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "308edad9b17371aa2130a3932064b97f02cbf242323b72c58112e201c395fb3a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-d4d481883d2201ba",
+      "fileName": "./references/catalog/content/guide-patterns.json",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "567c1ce44c50dbb4d5f79339c8e095ddc72f808b32c58d66a3c679d6a4cf527f"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-7183a34862bf79b5",
+      "fileName": "./references/catalog/content/voice.json",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "dbfd953f8c564bceafa640c8caa953950db2adc9b0d1f6d34b8975d700d0a420"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-0674c202a8fef88c",
+      "fileName": "./references/catalog/registry/design-registry.json",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7376a56432c926ead8f79b1e9a8b9ba526771e29fe22564cd723df2679dec5bb"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-65cf17618058141d",
+      "fileName": "./references/catalog/slides/layout-geometry.json",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7b01ae1792c72726d731564a12b9c88004ad442bec5ff70f7d2c950a5675cf77"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-192d5b536d0ac2d4",
+      "fileName": "./references/catalog/slides/shape-label-safe-insets.json",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "983903148926b2342931d18326197a15fa83874c28c22624fb0a3f7bf3cf517c"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-660cf7869c6448e4",
+      "fileName": "./references/catalog/slides/type-role-usage.json",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "407863add78a39092622acc863a52f9b9e0f06800c295ef01c70287c0d04a7b4"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-6d0aaf73712360c1",
+      "fileName": "./references/catalog/tokens/collibra.tokens.json",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6072667bc0c23c59cb3436c7ecec8d3a6afa42e4956dcd3330d6824145e5d570"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-89cdd63c96f68441",
+      "fileName": "./references/catalog/ui/components.json",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "aee301cd0cf3c4b7ef82f6f7c052e7fd3e9bb4e3238fa3a4702535f340f866eb"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-2ed314ccb00f79e6",
+      "fileName": "./references/catalog/ux/patterns.json",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4bee2222af3c0a5fb4da6748465628fecb3a622ca34095d2462cc1553acf66d3"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-cc6be6903a4d4cc4",
+      "fileName": "./references/catalog/visual/diagram-theme-suite.json",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8613d8007f586c8125c1aa3dd20100273b554d8ba7795a43b8389fc518309946"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-244ddb486e70124d",
+      "fileName": "./references/catalog/visual/slide-grammar-suite.json",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b18f013e670941803d7314db3e3a8264345eff5cc946cd76b87829527ffbca04"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-098a3d1b4da7b56a",
+      "fileName": "./references/catalog/visual/visual.json",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "859ab3376322c6c09935c4a3bec822f2b66f1a3737048ef329f8570f7bd45204"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-db3537f2d5545756",
+      "fileName": "./references/contract-index.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "cda75c80ec9fe9539a8ee0d5ab29ff91579ec25ae65b8c0fcac9ef5b661db849"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-616905703e7a87c8",
+      "fileName": "./references/creation-playbook.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "50b3ee2d815b576fa3383b7ab1ddc8484a54a97e8d75dae9f50a3dd036b6ae6a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-04f8ac35684f0137",
+      "fileName": "./references/output-protocol.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "890b46528b4c4492cf23e89a1605e469e80c00edbe76f499b12ac9e189722c0f"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-3abffa8e1edfe3e3",
+      "fileName": "./references/public-boundary.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7f955c5c22fafb6199210081f18500662137e2befda48e31e52a45863dfe9ce4"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-1c729d9b4f2c28d1",
+      "fileName": "./references/slides-contract.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "189297e05f3d4371a3ff1a9379d4cacd717ee9f5cd178785e059490192238143"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-cc19560ece580421",
+      "fileName": "./skills/collibra-create/SKILL.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c8668f1de9754f35e6d598174407973353582e16ecefdb1133e79ee13c563864"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-b9c074d413a9989b",
+      "fileName": "./skills/collibra-design/SKILL.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8a973d46c29417217b1ae6bc7ebbd670d663fe9ff6e9ff08b3b56a17244ccfcf"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-1b6600b9491ccc94",
+      "fileName": "./skills/collibra-refine/SKILL.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "14c8af6db51b4ebafdf6eece018121a6d081dc5f36fdd207202e554c21aeed26"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-e7133aa842b12447",
+      "fileName": "./skills/collibra-review/SKILL.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "86d3f2ac7d44b1c4427c0b3bb9acf03f23241c151ee2d4435dd8ec99175d8b70"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-76c74922b3f67b00",
+      "fileName": "./skills/collibra-simplify/SKILL.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7c250df6ddd9dc0cd4ab7cf36c2fb89c9cddccd797bfaea4691c71612d519922"
+        }
+      ]
+    }
+  ]
+}

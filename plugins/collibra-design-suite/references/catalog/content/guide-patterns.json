@@ -1,0 +1,191 @@
+{
+  "$schema": "collibra-design/content/guide-patterns/v1",
+  "catalog_version": "0.2.4",
+  "title": "Team and partner guide patterns",
+  "maturity": "defined",
+  "source": "Team authoring guidance",
+  "boundary": "Reusable content and review guidance for new team guides. The consuming team owns facts, links, permissions, publication, and review in the actual application. These patterns do not establish a team mandate or change an existing guide.",
+  "defaults": {
+    "persona": "persona.people-partner",
+    "tone": "tone.plainly-useful",
+    "medium": "medium.long-form-guide",
+    "new_guide_home": "The team's existing documentation home, with one canonical page for each guide.",
+    "existing_guidance": "link_in_place",
+    "retrofit_existing_guides": false,
+    "empty_sections": "omit",
+    "native_content": [
+      "headings",
+      "paragraphs",
+      "lists",
+      "descriptive links",
+      "simple tables",
+      "reviewed images with text alternatives"
+    ],
+    "composition": "Use the application's native content and navigation. Keep one clear reading path; use a table only for a useful comparison. Do not recreate a web landing page inside a document.",
+    "conditional_sections": "Include a section only when its condition is true and its content helps this reader. Remove empty sections and authoring prompts rather than filling them with boilerplate.",
+    "terminology": "Reuse the consuming team's approved terms and glossary links. Define a necessary term once; do not invent a second glossary or replace a precise term with a vague synonym."
+  },
+  "visibility": {
+    "audience": {
+      "in_audience_body": true,
+      "content": "The current explanation, verified facts, decisions, practical instructions, relevant uncertainty, and a useful next step. Write as the team or named author. Preserve required disclosures and genuine source or contributor credit."
+    },
+    "presenter_notes": {
+      "in_audience_body": false,
+      "content": "Speaking prompts and additional context belong in presenter notes. Treat native speaker notes as accessible to deck collaborators; keep private editorial review elsewhere."
+    },
+    "facilitation_notes": {
+      "in_audience_body": false,
+      "content": "Timing, workshop instructions, and capture prompts belong in a separate facilitator area. Audience questions and activities may be published deliberately, but private author notes must not sit on an audience-accessible board."
+    },
+    "author_review": {
+      "in_audience_body": false,
+      "publish": false,
+      "content": "Draft alternatives, review findings, missing-input reminders, tool diagnostics, source reconciliation, and narration about the authoring process stay in the private working record. An off-canvas board area is not a privacy boundary."
+    }
+  },
+  "authoring_sequence": [
+    {
+      "id": "design",
+      "required": true,
+      "action": "Apply Collibra Design to the reader, purpose, voice, native structure, and accessibility needs. Choose only the relevant sections and preserve existing source ownership.",
+      "source": "content/voice.json and the relevant Collibra Design surface contract"
+    },
+    {
+      "id": "collibra-refine",
+      "required": true,
+      "action": "Apply the bundled Collibra refinement contract in embedded mode to the audience copy. Preserve facts, decisions, quotations, meaningful terminology, and the author's voice. Keep the review trail out of the artifact.",
+      "source": "content/voice.json and the bundled collibra-refine skill",
+      "reference_version": "1.0.0-rc.6",
+      "unavailable_action": "Apply the documented plain-language, protected-fact, evidence, and audience checks directly. Do not claim a separate internal refinement skill ran."
+    },
+    {
+      "id": "audience-ready-review",
+      "required": true,
+      "action": "Review the actual audience view for meaning, completeness, reading order, links, spacing, and remaining placeholders. Confirm that visible content, presenter notes, facilitator material, and private author review are in their intended locations.",
+      "source": "content.gate.audience-ready and the relevant Collibra Design surface contract"
+    }
+  ],
+  "patterns": [
+    {
+      "id": "guide.team-partner-hub",
+      "name": "Team and partner hub",
+      "reader_question": "What does this team help us achieve, and how do we work with it?",
+      "use_when": "Creating the front door for a team or a partner-facing documentation area.",
+      "sections": [
+        {
+          "id": "purpose",
+          "title": "What we do",
+          "when": "Always",
+          "native_structure": "A short paragraph describing the team's contribution and the people it serves. Use the canonical mission wording when it has been agreed."
+        },
+        {
+          "id": "partnership",
+          "title": "How we work with you",
+          "when": "Always",
+          "native_structure": "A short explanation of early partnership, designing and building together, and what each side contributes. Link to fuller working guidance."
+        },
+        {
+          "id": "start",
+          "title": "Bring us a question",
+          "when": "A route has been verified",
+          "native_structure": "One clear next action with a descriptive link. Distinguish a planning conversation from a separate support route when both exist; do not promise an unagreed response time."
+        },
+        {
+          "id": "work",
+          "title": "Our work",
+          "when": "There is a maintained work or roadmap view",
+          "native_structure": "A concise description and link to that canonical view. Do not copy a changing issue list into the hub."
+        },
+        {
+          "id": "guides",
+          "title": "Useful guides",
+          "when": "Relevant guides exist",
+          "native_structure": "A short, grouped list of descriptive links, ordered by the reader's most common questions. Link existing guidance in place."
+        }
+      ]
+    },
+    {
+      "id": "guide.initiative",
+      "name": "Initiative page",
+      "reader_question": "What are we working on together, what should improve, and what happens next?",
+      "use_when": "Explaining one initiative without duplicating its live work tracker.",
+      "sections": [
+        {
+          "id": "need",
+          "title": "Why this matters",
+          "when": "Always",
+          "native_structure": "A short description of the people, work, and need involved. Avoid an invented before-state."
+        },
+        {
+          "id": "outcome",
+          "title": "What we want to improve",
+          "when": "Always",
+          "native_structure": "Specific intended outcomes in plain language. Distinguish the intention from a measured result."
+        },
+        {
+          "id": "partners",
+          "title": "Who is involved",
+          "when": "Roles or owners are confirmed",
+          "native_structure": "A short list or simple role table showing the partner contribution, technology contribution, and decisions each owns."
+        },
+        {
+          "id": "progress",
+          "title": "Where we are",
+          "when": "The current state is verified",
+          "native_structure": "A dated summary and a descriptive link to the canonical work or roadmap view. Mention a dependency only when it changes the next step."
+        },
+        {
+          "id": "wins",
+          "title": "What has improved",
+          "when": "There is evidence of a completed change or useful result",
+          "native_structure": "A brief set of evidenced results, with dates or source links where useful. A check mark may reinforce completed status but never replace its wording or evidence."
+        },
+        {
+          "id": "next",
+          "title": "What happens next",
+          "when": "Always",
+          "native_structure": "The next agreed action or decision. Name an owner and date only when confirmed; keep unfinished author reminders outside the page."
+        }
+      ]
+    },
+    {
+      "id": "guide.task",
+      "name": "Task guide",
+      "reader_question": "How do I complete this task and know it worked?",
+      "use_when": "Creating a new practical guide for a repeatable task.",
+      "sections": [
+        {
+          "id": "result",
+          "title": "What you can do",
+          "when": "Always",
+          "native_structure": "One short statement of the task and expected result. Name who the guide is for when that affects the steps."
+        },
+        {
+          "id": "before",
+          "title": "Before you start",
+          "when": "Access, inputs, or a prerequisite changes whether the task can be completed",
+          "native_structure": "A short prerequisite list with verified access or source links. Omit this section when there is nothing to prepare."
+        },
+        {
+          "id": "steps",
+          "title": "Steps",
+          "when": "Always",
+          "native_structure": "A numbered list of complete actions in order, using the application's real labels. Use a reviewed screenshot only when it explains something the steps cannot show clearly."
+        },
+        {
+          "id": "check",
+          "title": "Check the result",
+          "when": "Always",
+          "native_structure": "Describe the observable result, confirmation, or next state that shows the task worked."
+        },
+        {
+          "id": "help",
+          "title": "If you need help",
+          "when": "A meaningful recovery step or verified help route exists",
+          "native_structure": "Explain the relevant recovery action or link to help. Avoid generic troubleshooting lists and invented causes."
+        }
+      ]
+    }
+  ]
+}

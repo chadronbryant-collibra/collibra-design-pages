@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Synthetic program health dashboard</title>
+  <style>
+    :root { color-scheme: light; --navy:#002B40; --ink:#4B4B4B; --surface:#FFFFFF; --soft:#F0F2F3; --forest:#03755F; --light-forest:#B6D8D1; --cloud:#DFE6E8; --focus:#002B40; }
+    * { box-sizing:border-box; }
+    body { margin:0; font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); background:var(--soft); }
+    header, main, footer { max-width:72rem; margin:auto; padding:1.25rem; }
+    header { background:var(--navy); color:#fff; max-width:none; }
+    header > div { max-width:69.5rem; margin:auto; }
+    h1 { margin:.2rem 0; font-size:clamp(1.8rem,4vw,3rem); }
+    h2 { margin-top:2rem; }
+    .eyebrow { font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:.8rem; }
+    .callout { background:var(--light-forest); border-left:.45rem solid var(--forest); padding:1rem 1.2rem; margin:1.25rem 0; }
+    .metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
+    .metric { background:var(--surface); border-radius:4px; padding:1.1rem; border:1px solid var(--cloud); }
+    .value { display:block; color:var(--navy); font-size:2rem; font-weight:750; }
+    .meter { height:.55rem; background:var(--cloud); border-radius:4px; overflow:hidden; margin-top:.7rem; }
+    .meter span { display:block; height:100%; background:var(--forest); }
+    .table-wrap { overflow-x:auto; background:var(--surface); border-radius:4px; }
+    table { width:100%; border-collapse:collapse; min-width:38rem; }
+    th, td { text-align:left; padding:.9rem 1rem; border-bottom:1px solid var(--cloud); }
+    th { color:var(--navy); }
+    .status { display:inline-flex; align-items:center; gap:.45rem; font-weight:700; }
+    .status::before { content:""; width:.7rem; height:.7rem; border-radius:50%; background:currentColor; }
+    .track { color:var(--forest); } .attention { color:var(--navy); } .complete { color:var(--ink); }
+    .attention::before { border-radius:0; transform:rotate(45deg); }
+    .complete::before { border-radius:0; }
+    button { font:inherit; border:2px solid var(--navy); border-radius:.4rem; background:var(--navy); color:#fff; padding:.65rem .9rem; cursor:pointer; }
+    button:hover { background:var(--forest); border-color:var(--forest); }
+    :focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
+    [hidden] { display:none; }
+    @media (max-width:42rem) { .metrics { grid-template-columns:1fr; } header, main, footer { padding:1rem; } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; animation:none!important; } }
+  </style>
+</head>
+<body>
+  <header><div><div class="eyebrow">Synthetic example · proposed data</div><h1>Four decisions need an owner</h1><p>Program leads can unblock the finance-lineage workstream by assigning decision ownership this week.</p></div></header>
+  <main>
+    <section aria-labelledby="summary-title">
+      <h2 id="summary-title">Program summary</h2>
+      <div class="callout"><strong>Decision:</strong> assign owners to four unresolved decisions. All values are synthetic examples, not measured Collibra results.</div>
+      <div class="metrics">
+        <article class="metric"><span class="value">12 of 16</span><strong>Domains reviewed</strong><div class="meter" role="img" aria-label="12 of 16 domains reviewed"><span style="width:75%"></span></div></article>
+        <article class="metric"><span class="value">31 of 40</span><strong>Critical issues resolved</strong><div class="meter" role="img" aria-label="31 of 40 critical issues resolved"><span style="width:77.5%"></span></div></article>
+        <article class="metric"><span class="value">4</span><strong>Decisions awaiting owner</strong><p>Target: none outstanding</p></article>
+      </div>
+    </section>
+    <section aria-labelledby="work-title">
+      <h2 id="work-title">Where to intervene</h2>
+      <div class="table-wrap"><table><thead><tr><th scope="col">Workstream</th><th scope="col">State</th><th scope="col">Next action</th></tr></thead><tbody>
+        <tr><th scope="row">Customer terms</th><td><span class="status track">On track</span></td><td>Confirm two definitions</td></tr>
+        <tr><th scope="row">Finance lineage</th><td><span class="status attention">Needs attention</span></td><td>Assign decision owner</td></tr>
+        <tr><th scope="row">Access guidance</th><td><span class="status complete">Complete</span></td><td>Publish approved summary</td></tr>
+      </tbody></table></div>
+    </section>
+    <section aria-labelledby="meaning-title"><h2 id="meaning-title">What “proposed” means</h2><p>These values illustrate the dashboard pattern. An accountable owner must replace and confirm them before the dashboard is used for a real decision.</p><button id="toggle" aria-expanded="false" aria-controls="details">Show evidence boundary</button><p id="details" hidden>No analytics, remote assets, storage, or network requests are used. This file does not contain customer or tenant data.</p></section>
+  </main>
+  <footer><p>Synthetic Collibra design-suite example. Generated content remains proposed until an owner confirms it. Colors are measured public values; the system font stack and content-driven breakpoint are operational accessibility fallbacks, not brand tokens.</p></footer>
+  <script>const b=document.getElementById('toggle'),d=document.getElementById('details');b.addEventListener('click',()=>{const open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!open));b.textContent=open?'Show evidence boundary':'Hide evidence boundary';d.hidden=open;});</script>
+</body>
+</html>

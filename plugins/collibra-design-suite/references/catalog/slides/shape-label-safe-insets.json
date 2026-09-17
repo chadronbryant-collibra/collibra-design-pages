@@ -1,0 +1,73 @@
+{
+  "$schema": "collibra-design/slides/shape-label-safe-insets/v1",
+  "version": 1,
+  "unit": "fraction_of_shape_bounds",
+  "measurement": "visible_glyph_bounds_after_layout",
+  "containment_test": "glyph_bounds_inside_safe_rect",
+  "frame_overlap_sufficient": false,
+  "treatments": {
+    "CHEVRON": {
+      "safe_insets": {
+        "left": 0.25,
+        "right": 0.25,
+        "top": 0.12,
+        "bottom": 0.12
+      },
+      "silhouette_basis": "Inscribed label rectangle clears the full-height tail notch and arrow tip of the visible chevron silhouette."
+    },
+    "HEXAGON": {
+      "safe_insets": {
+        "left": 0.25,
+        "right": 0.25,
+        "top": 0.12,
+        "bottom": 0.12
+      },
+      "silhouette_basis": "Inscribed label rectangle clears the sloped left and right shoulders of the visible six-sided silhouette."
+    },
+    "TRAPEZOID": {
+      "safe_insets": {
+        "left": 0.2,
+        "right": 0.2,
+        "top": 0.12,
+        "bottom": 0.12
+      },
+      "silhouette_basis": "Inscribed label rectangle uses the narrower parallel edge and clears both visible sloped sides."
+    },
+    "PARALLELOGRAM": {
+      "safe_insets": {
+        "left": 0.2,
+        "right": 0.2,
+        "top": 0.12,
+        "bottom": 0.12
+      },
+      "silhouette_basis": "Inscribed label rectangle clears both visible slanted sides across the shape height."
+    },
+    "DIAMOND": {
+      "safe_insets": {
+        "left": 0.25,
+        "right": 0.25,
+        "top": 0.25,
+        "bottom": 0.25
+      },
+      "silhouette_basis": "Central half-width by half-height rectangle is inscribed inside the four visible diagonal edges."
+    },
+    "ELLIPSE": {
+      "safe_insets": {
+        "left": 0.15,
+        "right": 0.15,
+        "top": 0.15,
+        "bottom": 0.15
+      },
+      "silhouette_basis": "Near-maximum axis-aligned rectangle is inscribed inside the visible ellipse rather than its bounding frame."
+    },
+    "ROUND_RECTANGLE": {
+      "safe_insets": {
+        "left": 0.08,
+        "right": 0.08,
+        "top": 0.12,
+        "bottom": 0.12
+      },
+      "silhouette_basis": "Label rectangle clears the visible rounded corners and remains in the stable central surface."
+    }
+  }
+}
