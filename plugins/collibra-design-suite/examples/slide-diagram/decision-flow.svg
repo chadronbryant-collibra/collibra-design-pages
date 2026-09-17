@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">Synthetic definition decision flow</title>
+  <desc id="desc">Four left-to-right steps: propose, review, decide, and publish. Each step includes a short explanation and a numbered label.</desc>
+  <rect width="1200" height="420" fill="#F0F2F3"/>
+  <text x="60" y="70" fill="#002B40" font-family="Arial, sans-serif" font-size="36" font-weight="700">From proposed to confirmed</text>
+  <text x="60" y="108" fill="#4B4B4B" font-family="Arial, sans-serif" font-size="18">Synthetic example · not a native Slides acceptance receipt</text>
+  <g font-family="Arial, sans-serif">
+    <path d="M270 245H350" stroke="#03755F" stroke-width="8"/>
+    <path d="M550 245H630" stroke="#03755F" stroke-width="8"/>
+    <path d="M830 245H910" stroke="#03755F" stroke-width="8"/>
+    <g transform="translate(50 155)"><rect width="220" height="180" rx="4" fill="#002B40"/><text x="24" y="42" fill="#72BF00" font-size="18">1 · PROPOSE</text><text x="24" y="82" fill="#FFFFFF" font-size="24" font-weight="700">Supply meaning</text><text x="24" y="116" fill="#DFE6E8" font-size="17">Add the definition</text><text x="24" y="142" fill="#DFE6E8" font-size="17">and its source.</text></g>
+    <g transform="translate(330 155)"><rect width="220" height="180" rx="4" fill="#FFFFFF" stroke="#002B40" stroke-width="3"/><text x="24" y="42" fill="#03755F" font-size="18">2 · REVIEW</text><text x="24" y="82" fill="#002B40" font-size="24" font-weight="700">Check impact</text><text x="24" y="116" fill="#4B4B4B" font-size="17">Test meaning, evidence,</text><text x="24" y="142" fill="#4B4B4B" font-size="17">and affected readers.</text></g>
+    <g transform="translate(610 155)"><rect width="220" height="180" rx="4" fill="#FFFFFF" stroke="#002B40" stroke-width="3"/><text x="24" y="42" fill="#03755F" font-size="18">3 · DECIDE</text><text x="24" y="82" fill="#002B40" font-size="24" font-weight="700">Owner confirms</text><text x="24" y="116" fill="#4B4B4B" font-size="17">Approve, return,</text><text x="24" y="142" fill="#4B4B4B" font-size="17">or reject.</text></g>
+    <g transform="translate(890 155)"><rect width="220" height="180" rx="4" fill="#03755F"/><text x="24" y="42" fill="#FFFFFF" font-size="18">4 · PUBLISH</text><text x="24" y="82" fill="#FFFFFF" font-size="24" font-weight="700">Share clearly</text><text x="24" y="116" fill="#FFFFFF" font-size="17">Include owner, date,</text><text x="24" y="142" fill="#FFFFFF" font-size="17">and confirmation state.</text></g>
+  </g>
+</svg>

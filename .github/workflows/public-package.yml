@@ -1,0 +1,76 @@
+name: validate public package
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source:
+    name: Source and negative-boundary tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m unittest discover -s tests -v
+
+  package:
+    name: Deterministic package (${{ matrix.os }})
+    needs: source
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build twice and require local parity
+        shell: bash
+        run: |
+          python scripts/package_plugin.py --output first.zip
+          python scripts/package_plugin.py --output second.zip
+          python - <<'PY'
+          import hashlib
+          from pathlib import Path
+          one = hashlib.sha256(Path("first.zip").read_bytes()).hexdigest()
+          two = hashlib.sha256(Path("second.zip").read_bytes()).hexdigest()
+          if one != two:
+              raise SystemExit(f"same-OS builds differ: {one} != {two}")
+          Path("digest-${{ runner.os }}.txt").write_text(one + "\n", encoding="utf-8", newline="\n")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: package-${{ runner.os }}
+          path: |
+            first.zip
+            digest-${{ runner.os }}.txt
+
+  compare:
+    name: Identical cross-platform package digest
+    needs: package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: package-*
+          path: packages
+      - name: Require three identical digests
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          files = sorted(Path("packages").glob("*/digest-*.txt"))
+          digests = {path.read_text(encoding="utf-8").strip() for path in files}
+          if len(files) != 3 or len(digests) != 1:
+              raise SystemExit(f"expected three identical digests, got {files=} {digests=}")
+          print("identical cross-platform digest:", digests.pop())
+          PY

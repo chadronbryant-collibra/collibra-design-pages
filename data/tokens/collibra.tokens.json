@@ -2,7 +2,7 @@
   "$schema": "https://design-tokens.github.io/community-group/format/",
   "meta": {
     "brand": "Collibra",
-    "tokens_version": "1.1.0",
+    "tokens_version": "1.2.0",
     "brand_guidelines_version": "2026.07",
     "source_artifacts": [
       "Collibra_Brand_Guidelines.pdf (2026.07)",
@@ -11,7 +11,8 @@
     "evidence_labels": {
       "MEASURED": "Read directly from a source artifact.",
       "DERIVED": "Computed or normalized from measured data.",
-      "OPEN": "No approved value is available. Do not use it as a default."
+      "OPEN": "No approved value is available. Do not use it as a default.",
+      "OPERATIONAL_FALLBACK": "An accessible implementation choice used only when no measured brand default exists. It is not a Collibra brand token."
     }
   },
   "brand": {
@@ -183,7 +184,7 @@
         "followed_link": {
           "id": "brand.color.theme.followed_link",
           "value": "#0097A7",
-          "source": "OPEN, MEASURED: Collibra 2026 PPTX theme, folHlink slot. It is outside the published palette and needs a brand-team ruling."
+          "source": "OPEN, MEASURED: Collibra 2026 PPTX theme, folHlink slot. It is outside the published palette and is not published as a default; use the labeled operational fallback when accessibility requires one."
         }
       },
       "usage": {
@@ -428,7 +429,7 @@
       "scale": {
         "id": "brand.space.scale",
         "value": null,
-        "source": "OPEN: The doc-suite records no approved Collibra spacing scale. Do not create or use numeric spacing defaults until the brand team supplies them."
+        "source": "OPEN: The doc-suite records no approved Collibra spacing scale. It is not published as a brand default; use content-driven layout and label any implementation spacing as operational."
       }
     },
     "radius": {
@@ -436,6 +437,48 @@
         "id": "brand.radius.scale",
         "value": "4px",
         "source": "MEASURED: Collibra Brand Guidelines 2026.07, p.34. \"A 4px (0.25rem) corner radius is applied to many, if not all, UI components in this design system. Especially elements that act as containers to content.\" Single value, not a scale -- the source publishes one radius, not a ramp."
+      }
+    },
+    "operational_fallbacks": {
+      "followed_link_on_light": {
+        "id": "operational.color.followed_link_on_light",
+        "value": "#03755F",
+        "source": "OPERATIONAL_FALLBACK: Reuses the measured forest palette value because it clears normal-text contrast on white. This does not replace the open followed-link brand token."
+      },
+      "gradient": {
+        "id": "operational.color.gradient",
+        "value": "flat-navy",
+        "source": "OPERATIONAL_FALLBACK: Use measured navy as a flat fill while gradient stops remain unpublished."
+      },
+      "web_font": {
+        "id": "operational.type.web_font",
+        "value": "system-ui, -apple-system, Segoe UI, sans-serif",
+        "source": "OPERATIONAL_FALLBACK: Portable system stack for environments without licensed brand fonts. It is not a brand type token."
+      },
+      "letter_spacing": {
+        "id": "operational.type.letter_spacing",
+        "value": "normal",
+        "source": "OPERATIONAL_FALLBACK: Preserve browser default spacing while the measured source labels conflict."
+      },
+      "spacing": {
+        "id": "operational.space.strategy",
+        "value": "content-driven",
+        "source": "OPERATIONAL_FALLBACK: Size space from content, reading order, and target viewport; do not present a numeric local scale as Collibra brand guidance."
+      },
+      "status": {
+        "id": "operational.status.strategy",
+        "value": "text-and-shape-plus-verified-color",
+        "source": "OPERATIONAL_FALLBACK: Pair status text and shape with a measured color whose contrast is verified in context."
+      },
+      "icon": {
+        "id": "operational.icon.strategy",
+        "value": "text-label-or-platform-icon-with-accessible-name",
+        "source": "OPERATIONAL_FALLBACK: No public icon asset family is bundled. Prefer visible text or a familiar platform icon with an accessible name."
+      },
+      "responsive": {
+        "id": "operational.responsive.strategy",
+        "value": "content-driven-reflow-and-overflow-testing",
+        "source": "OPERATIONAL_FALLBACK: Choose breakpoints where content needs them and verify keyboard order, reflow, and overflow; no breakpoint is published as a brand token."
       }
     },
     "accessibility": {

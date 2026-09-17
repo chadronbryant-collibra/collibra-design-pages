@@ -54,3 +54,16 @@ Return:
 `detect only` and `what would you change?` do not edit. `embedded` returns only
 the result required by the calling workflow. If the user asks for a file edit,
 make the smallest explicit change and report the path plus a short summary.
+
+## Audience and authoring content
+
+Use `catalog/content/guide-patterns.json` for the ordered Design → bundled
+Collibra refinement → audience-ready review. The process produces audience
+content, not a published review log.
+
+Keep presentation copy, native speaker notes, facilitator prompts, and private
+editorial work distinct. Speaker notes and collaborator-visible board areas
+can hold useful delivery prompts, but are not private. Keep alternatives,
+unresolved drafting choices, assistant conversation, and tool diagnostics in
+the private handoff. Retain evidence, meaningful uncertainty, required
+disclosure, and genuine credit where the audience needs them.

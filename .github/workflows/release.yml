@@ -1,0 +1,53 @@
+name: release plugin
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate and package deterministically
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          manifest = json.loads(Path("plugins/collibra-design-suite/.claude-plugin/plugin.json").read_text())
+          version = os.environ["RELEASE_TAG"].removeprefix("v")
+          if manifest["version"] != version:
+              raise SystemExit(f"tag {version} does not match manifest {manifest['version']}")
+          PY
+          python scripts/package_plugin.py --output collibra-design-suite.zip
+          python - <<'PY'
+          import hashlib
+          from pathlib import Path
+          output = Path("collibra-design-suite.zip")
+          digest = hashlib.sha256(output.read_bytes()).hexdigest()
+          Path("SHA256SUMS").write_text(f"{digest}  {output.name}\n", encoding="utf-8", newline="\n")
+          PY
+      - uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: |
+            collibra-design-suite.zip
+            SHA256SUMS
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          release_args=(--verify-tag --generate-notes)
+          if [[ "$GITHUB_REF_NAME" == *-rc.* ]]; then
+            release_args+=(--prerelease)
+          fi
+          gh release create "$GITHUB_REF_NAME" collibra-design-suite.zip SHA256SUMS "${release_args[@]}"

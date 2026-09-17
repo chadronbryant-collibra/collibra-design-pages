@@ -1,80 +1,70 @@
-# Collibra design atlas and Claude marketplace
+# Collibra design suite
 
-## A public window into Collibra design thinking
+This repository hosts the public Collibra design atlas and the approved
+`collibra-design-suite` release candidate. RC publication is not a final
+installed-client or `1.0.0` acceptance claim.
 
-The atlas is a friendly place to explore the ideas and guidance behind better
-Collibra experiences. It helps people start with the reader’s question — what
-does this mean, and what should I do next? — then move to the implementation
-detail when they are ready to build or review.
+## Install in Claude Desktop
 
-[Open the live atlas](https://chadronbryant-collibra.github.io/collibra-design-pages/)
+Prerequisites: an already installed Claude Desktop app on macOS 11+ or Windows
+10+, a paid Claude plan, and an organization policy that permits personal
+plugins.
 
-This public repository also carries the public-safe
-`collibra-design-suite` Claude plugin, so the visual reference and the
-adoption package stay discoverable from one place. The private
-`collibra-design` repository remains the canonical source of the contracts.
+1. Open **Customize → Plugins → Personal plugins → Add marketplace**.
+2. Add `chadronbryant-collibra/collibra-design-pages`.
+3. Select and install **Collibra design suite**.
+4. Start a new Chat or Cowork session and ask Claude to design, create, refine,
+   simplify, or review a surface.
 
-## Install the Claude plugin
+The personal-plugin route requires no administrator password, operating-system
+elevation, system-directory write, environment-variable change, terminal
+command, connector authorization, or Claude organization-admin role. It does
+not bypass an organization's policy.
 
-From Claude Code:
+## Claude Code alternative
+
+Desktop installation is the primary supported path. In Claude Code, add this
+marketplace and install the suite with:
 
 ```text
 /plugin marketplace add chadronbryant-collibra/collibra-design-pages
 /plugin install collibra-design-suite@collibra-design
 ```
 
-For a one-session clone:
+Start a new session if skill discovery does not refresh immediately.
 
-```bash
-git clone https://github.com/chadronbryant-collibra/collibra-design-pages.git
-claude --plugin-dir ./collibra-design-pages/plugins/collibra-design-suite
-```
+## What it includes
 
-For a ZIP upload, build the self-contained plugin archive:
+- `collibra-design`: choose and explain the smallest useful contract.
+- `collibra-create`: create and adjust an Artifact, dashboard, page, document
+  structure, deck outline, diagram, UI flow, or data story.
+- `collibra-refine`: produce audience-ready copy.
+- `collibra-simplify`: reduce technical complexity without losing meaning.
+- `collibra-review`: return ranked findings without silently editing.
 
-```bash
-python3 scripts/package_claude_plugin.py \
-  --package-root . \
-  --plugin collibra-design-suite \
-  --output-dir /tmp/collibra-claude-plugins
-```
+The plugin is offline and dependency-free. It contains no hooks, agents, MCP
+servers, connectors, executable plugin scripts, subprocesses, credentials,
+analytics, or tracking. Synthetic Artifact examples may use self-contained
+HTML, CSS, and JavaScript with no remote assets. In Cowork, files are written
+only when requested and only to the connected folder in scope.
 
-Then upload the generated ZIP through Claude's local-plugin flow. The ZIP
-contains the plugin root, not the marketplace repository.
+## Manage the plugin
 
-## Start here
+Use **Customize → Plugins** to enable, disable, update, or uninstall the suite.
+If a skill is not visible, confirm the plugin is enabled, start a new session,
+and check whether personal plugins are allowed by your organization. Report
+general problems through GitHub issues without including work-owned data,
+tenant details, prompts, credentials, or private files.
 
-- Use Atlas to see how the five design areas work together.
-- Open Foundations for the shared visual language.
-- Use Adoption while you are writing, designing, building, or reviewing.
-- Visit Voice to choose the reader, moment, and medium.
-- Browse all 107 guides in Explorer and open implementation detail only when you need it.
-- Expand Readiness only when you want to see what still needs attention.
+See `SECURITY.md` for private security reporting and `SUPPORT.md` for the
+supported boundary.
 
-## Why this repository exists
+User-provided content stays in the active Claude conversation or, after an
+explicit file request in Cowork, the connected folder the user selected. The
+plugin itself stores no content and performs no analytics or network calls.
 
-This is the public Pages publication of the Collibra design atlas. The private
-`collibra-design` repository is the canonical source; this repository is a
-sanitized snapshot made for reading and sharing. Keeping those roles separate
-lets the atlas be public without publishing private history or source context.
+## License
 
-## What you’ll find
-
-The atlas brings together foundations, UI behavior, UX patterns, visual
-capabilities, content guidance, reader personas, tone modes, and practical
-accessibility checks. It shows the complete defined contract set and the boundaries consumers still own — because honest edges are more useful than invented certainty.
-
-## Built for more people
-
-The page is designed for keyboard and screen-reader use, readable contrast,
-visible focus, responsive layouts, reduced motion, and plain language. The
-implementation reference is available when a designer or developer needs to
-trace a guide back to its stable source identifier.
-
-## For maintainers
-
-This repository contains the generated public site plus the public-safe Claude
-plugin: the page, its styles, its behavior, public data, plugin skills, and
-bundled contract snapshot. Changes begin in the private source repository,
-pass its source and public-boundary gates, and are then published here as a
-reviewed Pages and marketplace release.
+Code is Apache-2.0 and guidance and synthetic examples are CC BY 4.0. Collibra
+trademarks, logos, proprietary fonts, trade dress, and restricted assets are
+excluded from both grants. See `LICENSE.md`, `NOTICE`, and `LICENSES/`.

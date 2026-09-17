@@ -1,0 +1,551 @@
+{
+  "$schema": "collibra-design/visual/diagram-theme-suite/v1",
+  "status": "defined",
+  "suite_version": "0.4.4",
+  "title": "Collibra diagram and workflow theme suite",
+  "purpose": "Define the semantic visual language shared by Collibra diagrams, workflows, charts, and information graphics while leaving medium-specific geometry and delivery to the consuming product.",
+  "source_of_truth": "collibra-design/visual/diagram-theme-suite.json",
+  "consumers": [
+    {
+      "id": "collibra-doc-suite",
+      "medium": "slide-deck",
+      "adapter": "collibra-doc-suite:brand/collibra-slides-2026.profile.json",
+      "boundary": "Map semantic roles to native Slides shapes, connectors, text, and inherited template surfaces; do not copy native object ids into the theme contract."
+    },
+    {
+      "id": "collibra-design",
+      "medium": "framework-neutral",
+      "adapter": "visual capability catalog",
+      "boundary": "Own semantic roles, accessibility rules, provenance, and cross-medium translation guidance."
+    }
+  ],
+  "token_refs": [
+    "brand.color.primary.navy",
+    "brand.color.primary.lime",
+    "brand.color.accent.forest",
+    "brand.color.accent.light_forest",
+    "brand.color.neutral.charcoal",
+    "brand.color.neutral.cloud",
+    "brand.color.neutral.light_cloud",
+    "brand.color.neutral.white",
+    "brand.color.ramp.navy.100",
+    "brand.color.ramp.lime.100",
+    "brand.color.ramp.forest.100",
+    "brand.type.family.presentation",
+    "brand.type.family.mono",
+    "brand.type.scale.slides.title",
+    "brand.type.scale.slides.body",
+    "brand.type.scale.slides.body_small",
+    "brand.type.scale.slides.caption",
+    "brand.type.scale.slides.eyebrow",
+    "brand.radius.scale",
+    "brand.accessibility.contrast.body_text_minimum",
+    "brand.accessibility.contrast.large_or_bold_text_minimum"
+  ],
+  "semantic_roles": {
+    "surface": "brand.color.neutral.white",
+    "surface_subtle": "brand.color.neutral.light_cloud",
+    "ink": "brand.color.neutral.charcoal",
+    "boundary": "brand.color.primary.navy",
+    "accent": "brand.color.primary.lime",
+    "support": "brand.color.accent.forest",
+    "support_soft": "brand.color.accent.light_forest",
+    "muted": "brand.color.neutral.cloud",
+    "evidence": "brand.color.primary.navy",
+    "focus": "brand.color.primary.lime",
+    "unknown": "brand.color.neutral.charcoal"
+  },
+  "text_roles": {
+    "title": {
+      "token_ref": "brand.type.scale.slides.title",
+      "color_role": "boundary",
+      "minimum_pt": 24,
+      "weight": "bold"
+    },
+    "body": {
+      "token_ref": "brand.type.scale.slides.body",
+      "color_role": "ink",
+      "minimum_pt": 11,
+      "weight": "regular"
+    },
+    "label": {
+      "token_ref": "brand.type.scale.slides.body_small",
+      "color_role": "ink",
+      "minimum_pt": 11,
+      "weight": "regular"
+    },
+    "caption": {
+      "token_ref": "brand.type.scale.slides.caption",
+      "color_role": "muted",
+      "minimum_pt": 10,
+      "weight": "regular"
+    },
+    "unknown": {
+      "token_ref": "brand.type.scale.slides.body_small",
+      "color_role": "unknown",
+      "minimum_pt": 11,
+      "weight": "bold"
+    },
+    "decision": {
+      "token_ref": "brand.type.scale.slides.body_small",
+      "color_role": "boundary",
+      "minimum_pt": 11,
+      "weight": "bold"
+    },
+    "phase": {
+      "token_ref": "brand.type.scale.slides.body_small",
+      "color_role": "surface",
+      "minimum_pt": 11,
+      "weight": "bold"
+    }
+  },
+  "shape_roles": [
+    {
+      "id": "entity",
+      "visual_cue": "named container with a stable label",
+      "token_role": "surface",
+      "non_color_cue": "shape and label"
+    },
+    {
+      "id": "boundary",
+      "visual_cue": "named enclosing region with a distinct outline",
+      "token_role": "boundary",
+      "non_color_cue": "outline and boundary label"
+    },
+    {
+      "id": "action",
+      "visual_cue": "step or activity in an ordered workflow",
+      "token_role": "surface_subtle",
+      "non_color_cue": "position and action verb"
+    },
+    {
+      "id": "phase",
+      "visual_cue": "named phase in a sequence or roadmap",
+      "token_role": "support",
+      "non_color_cue": "chevron direction and phase label"
+    },
+    {
+      "id": "decision",
+      "visual_cue": "branch point with explicit question text",
+      "token_role": "accent",
+      "non_color_cue": "distinct decision shape and branch labels"
+    },
+    {
+      "id": "state",
+      "visual_cue": "condition or lifecycle position",
+      "token_role": "support_soft",
+      "non_color_cue": "state label and transition text"
+    },
+    {
+      "id": "layer",
+      "visual_cue": "abstraction or maturity band in a framework",
+      "token_role": "support_soft",
+      "non_color_cue": "stack position and layer label"
+    },
+    {
+      "id": "data",
+      "visual_cue": "data input, output, or transformed payload",
+      "token_role": "surface_subtle",
+      "non_color_cue": "parallelogram shape and data label"
+    },
+    {
+      "id": "evidence",
+      "visual_cue": "claim support, source, or control",
+      "token_role": "evidence",
+      "non_color_cue": "source label, kind, or confidence marker"
+    },
+    {
+      "id": "external_actor",
+      "visual_cue": "participant outside the governed boundary",
+      "token_role": "muted",
+      "non_color_cue": "boundary position and actor label"
+    },
+    {
+      "id": "unknown",
+      "visual_cue": "unverified, incomplete, or intentionally unresolved item",
+      "token_role": "unknown",
+      "non_color_cue": "printed unknown or evidence-status text"
+    }
+  ],
+  "connector_roles": [
+    {
+      "id": "flow",
+      "meaning": "ordered movement or process progression",
+      "token_role": "boundary",
+      "non_color_cue": "arrow direction and endpoint labels"
+    },
+    {
+      "id": "handoff",
+      "meaning": "ownership changes between actors or lanes",
+      "token_role": "support",
+      "non_color_cue": "sender, receiver, and handoff label"
+    },
+    {
+      "id": "dependency",
+      "meaning": "one capability or activity relies on another",
+      "token_role": "evidence",
+      "non_color_cue": "dependency label and direction"
+    },
+    {
+      "id": "exception",
+      "meaning": "fallback, escalation, or alternate path",
+      "token_role": "unknown",
+      "non_color_cue": "dashed or explicitly labeled exception path"
+    },
+    {
+      "id": "evidence",
+      "meaning": "claim-to-source or control relationship",
+      "token_role": "evidence",
+      "non_color_cue": "source or confidence label"
+    },
+    {
+      "id": "boundary_crossing",
+      "meaning": "relationship crossing an operating boundary",
+      "token_role": "accent",
+      "non_color_cue": "crossing label and boundary context"
+    }
+  ],
+  "shape_treatment": {
+    "entity": {
+      "shape_family": "container",
+      "native_shape_hint": "ROUND_RECTANGLE",
+      "fill_role": "surface",
+      "text_role": "body",
+      "outline_role": "boundary",
+      "label_policy": "named_container"
+    },
+    "boundary": {
+      "shape_family": "enclosure",
+      "native_shape_hint": "RECTANGLE_DASHED",
+      "fill_role": "surface_subtle",
+      "text_role": "label",
+      "outline_role": "boundary",
+      "label_policy": "boundary_name_and_scope"
+    },
+    "action": {
+      "shape_family": "workflow_step",
+      "native_shape_hint": "ROUND_RECTANGLE",
+      "fill_role": "surface_subtle",
+      "text_role": "body",
+      "outline_role": "boundary",
+      "label_policy": "action_verb"
+    },
+    "phase": {
+      "shape_family": "sequence_phase",
+      "native_shape_hint": "CHEVRON",
+      "fill_role": "support",
+      "text_role": "phase",
+      "outline_role": "boundary",
+      "label_policy": "phase_name"
+    },
+    "decision": {
+      "shape_family": "branch_point",
+      "native_shape_hint": "DIAMOND",
+      "fill_role": "accent",
+      "text_role": "decision",
+      "outline_role": "boundary",
+      "label_policy": "question_text"
+    },
+    "state": {
+      "shape_family": "state",
+      "native_shape_hint": "ROUND_RECTANGLE",
+      "fill_role": "support_soft",
+      "text_role": "body",
+      "outline_role": "support",
+      "label_policy": "state_name_and_status"
+    },
+    "layer": {
+      "shape_family": "framework_layer",
+      "native_shape_hint": "TRAPEZOID",
+      "fill_role": "support_soft",
+      "text_role": "body",
+      "outline_role": "support",
+      "label_policy": "layer_name_and_abstraction"
+    },
+    "data": {
+      "shape_family": "data_payload",
+      "native_shape_hint": "PARALLELOGRAM",
+      "fill_role": "surface_subtle",
+      "text_role": "body",
+      "outline_role": "boundary",
+      "label_policy": "data_name_and_direction"
+    },
+    "evidence": {
+      "shape_family": "evidence_card",
+      "native_shape_hint": "HEXAGON",
+      "fill_role": "surface",
+      "text_role": "label",
+      "outline_role": "evidence",
+      "label_policy": "source_kind_and_confidence"
+    },
+    "external_actor": {
+      "shape_family": "actor",
+      "native_shape_hint": "ELLIPSE",
+      "fill_role": "muted",
+      "text_role": "label",
+      "outline_role": "boundary",
+      "label_policy": "actor_name"
+    },
+    "unknown": {
+      "shape_family": "uncertainty_marker",
+      "native_shape_hint": "HEXAGON",
+      "fill_role": "surface_subtle",
+      "text_role": "unknown",
+      "outline_role": "unknown",
+      "label_policy": "printed_unknown_or_evidence_status"
+    }
+  },
+  "connector_treatment": {
+    "flow": {
+      "stroke_role": "boundary",
+      "line_style": "solid",
+      "arrowhead": "filled",
+      "weight_pt": 2,
+      "label_position": "above_midpoint"
+    },
+    "handoff": {
+      "stroke_role": "support",
+      "line_style": "solid",
+      "arrowhead": "filled",
+      "weight_pt": 2,
+      "label_position": "at_crossing"
+    },
+    "dependency": {
+      "stroke_role": "evidence",
+      "line_style": "solid",
+      "arrowhead": "open",
+      "weight_pt": 1.5,
+      "label_position": "above_midpoint"
+    },
+    "exception": {
+      "stroke_role": "unknown",
+      "line_style": "dashed",
+      "arrowhead": "open",
+      "weight_pt": 1.5,
+      "label_position": "outside_primary_path"
+    },
+    "evidence": {
+      "stroke_role": "evidence",
+      "line_style": "solid",
+      "arrowhead": "open",
+      "weight_pt": 1.5,
+      "label_position": "masked_midpoint"
+    },
+    "boundary_crossing": {
+      "stroke_role": "accent",
+      "line_style": "solid",
+      "arrowhead": "filled",
+      "weight_pt": 2,
+      "label_position": "at_boundary"
+    }
+  },
+  "chart_roles": {
+    "series_primary": "boundary",
+    "series_secondary": "accent",
+    "series_tertiary": "support",
+    "series_quaternary": "support_soft",
+    "reference": "muted",
+    "uncertainty": "unknown",
+    "annotation": "ink"
+  },
+  "layout_families": [
+    "graph",
+    "sequence",
+    "swimlane",
+    "state",
+    "timeline",
+    "matrix",
+    "cycle",
+    "hierarchy",
+    "layered",
+    "set",
+    "chart",
+    "state_comparison",
+    "journey",
+    "quadrant",
+    "pyramid",
+    "medallion"
+  ],
+  "type_treatment": {
+    "workflow": [
+      "action",
+      "phase",
+      "decision",
+      "flow",
+      "handoff",
+      "exception"
+    ],
+    "architecture": [
+      "entity",
+      "boundary",
+      "dependency",
+      "external_actor",
+      "data"
+    ],
+    "data_flow": [
+      "data",
+      "entity",
+      "flow",
+      "dependency",
+      "exception"
+    ],
+    "state": [
+      "state",
+      "flow",
+      "exception"
+    ],
+    "evidence": [
+      "evidence",
+      "dependency",
+      "unknown"
+    ],
+    "comparison": [
+      "entity",
+      "decision",
+      "evidence",
+      "unknown"
+    ],
+    "chart": [
+      "entity",
+      "evidence",
+      "unknown"
+    ],
+    "state_comparison": [
+      "state",
+      "phase",
+      "flow",
+      "exception",
+      "unknown"
+    ],
+    "journey": [
+      "phase",
+      "action",
+      "unknown",
+      "evidence",
+      "flow"
+    ],
+    "quadrant": [
+      "entity",
+      "decision",
+      "evidence",
+      "unknown"
+    ],
+    "pyramid": [
+      "layer",
+      "state",
+      "evidence",
+      "unknown"
+    ],
+    "refinement_tiers": [
+      "data",
+      "state",
+      "evidence",
+      "flow",
+      "unknown"
+    ]
+  },
+  "layout_treatment": {
+    "graph": {
+      "composition": "nodes_and_relationships",
+      "primary_reading": "source_to_outcome",
+      "density_strategy": "split_overview_and_detail"
+    },
+    "sequence": {
+      "composition": "lifelines_and_messages",
+      "primary_reading": "left_to_right_time",
+      "density_strategy": "split_by_actor_or_phase"
+    },
+    "swimlane": {
+      "composition": "lanes_and_handoffs",
+      "primary_reading": "lane_then_sequence",
+      "density_strategy": "split_by_owner"
+    },
+    "state": {
+      "composition": "states_and_transitions",
+      "primary_reading": "start_to_terminal",
+      "density_strategy": "limit_transition_crossings"
+    },
+    "timeline": {
+      "composition": "events_on_time_axis",
+      "primary_reading": "earliest_to_latest",
+      "density_strategy": "group_by_phase"
+    },
+    "matrix": {
+      "composition": "explicit_axes_and_cells",
+      "primary_reading": "axis_then_option",
+      "density_strategy": "print_cell_status"
+    },
+    "cycle": {
+      "composition": "closed_loop_with_breakpoint",
+      "primary_reading": "clockwise_or_declared_direction",
+      "density_strategy": "limit_cycle_nodes"
+    },
+    "hierarchy": {
+      "composition": "parent_child_levels",
+      "primary_reading": "top_down",
+      "density_strategy": "split_wide_branches"
+    },
+    "layered": {
+      "composition": "stacked_abstraction_bands",
+      "primary_reading": "foundation_to_outcome",
+      "density_strategy": "one_claim_per_layer"
+    },
+    "data_flow": {
+      "composition": "data_stores_and_transforms",
+      "primary_reading": "input_to_output",
+      "density_strategy": "split_sources_and_transformations"
+    },
+    "set": {
+      "composition": "bounded_regions_and_intersections",
+      "primary_reading": "set_labels_then_intersection",
+      "density_strategy": "limit_overlap_text"
+    },
+    "chart": {
+      "composition": "plot_axes_legend_annotation",
+      "primary_reading": "title_to_measure_to_source",
+      "density_strategy": "provide_table_or_text_alternative"
+    },
+    "state_comparison": {
+      "composition": "state_columns_and_migration_ribbon",
+      "primary_reading": "legacy_to_target_with_retirement",
+      "density_strategy": "limit_items_per_column_and_split_detail"
+    },
+    "journey": {
+      "composition": "experience_rail_with_friction_and_opportunity",
+      "primary_reading": "persona_left_to_right",
+      "density_strategy": "limit_stages_and_split_dense_detail"
+    },
+    "quadrant": {
+      "composition": "two_axis_decision_field",
+      "primary_reading": "axes_then_option",
+      "density_strategy": "print_point_detail_and_split_dense_labels"
+    },
+    "pyramid": {
+      "composition": "stacked_foundation_to_outcome_layers",
+      "primary_reading": "foundation_to_outcome",
+      "density_strategy": "one_claim_per_layer_and_split_wide_detail"
+    },
+    "medallion": {
+      "composition": "refinement_ribbon_and_property_matrix",
+      "primary_reading": "artifact_left_to_right_then_gate",
+      "density_strategy": "limit_tiers_and_print_transition_conditions"
+    }
+  },
+  "accessibility": {
+    "contrast": "Meet the published contrast threshold for the actual text size, surface, and state.",
+    "reading_order": "Keep the visual order, connector direction, and logical reading order aligned.",
+    "non_color": "Never make state, status, difference, ownership, or exception meaning depend on color alone.",
+    "labels": "Print axes, units, transition labels, actor or lane labels, source context, and uncertainty where they carry meaning.",
+    "density": "Split an overview from detail when labels or connectors would fall below the consuming medium's legibility floor.",
+    "alt_text": "Provide a concise accessibility summary that states the diagram's claim and the relationship a reader should follow."
+  },
+  "provenance": {
+    "source_refs": [
+      "visual/visual.json",
+      "slides/collibra-slides-2026.json",
+      "tokens/PROVENANCE.md",
+      "ux/patterns.json"
+    ],
+    "review_boundary": "This contract defines semantic theming and review rules. It does not distribute licensed assets, invent unpublished palette values, or claim native or live promotion."
+  }
+}
