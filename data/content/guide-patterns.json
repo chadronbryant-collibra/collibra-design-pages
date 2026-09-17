@@ -1,6 +1,6 @@
 {
   "$schema": "collibra-design/content/guide-patterns/v1",
-  "catalog_version": "0.2.4",
+  "catalog_version": "0.2.5",
   "title": "Team and partner guide patterns",
   "maturity": "defined",
   "source": "Team authoring guidance",
@@ -56,7 +56,7 @@
       "required": true,
       "action": "Apply the bundled Collibra refinement contract in embedded mode to the audience copy. Preserve facts, decisions, quotations, meaningful terminology, and the author's voice. Keep the review trail out of the artifact.",
       "source": "content/voice.json and the bundled collibra-refine skill",
-      "reference_version": "1.0.0-rc.6",
+      "reference_version": "1.0.0",
       "unavailable_action": "Apply the documented plain-language, protected-fact, evidence, and audience checks directly. Do not claim a separate internal refinement skill ran."
     },
     {

@@ -1,8 +1,7 @@
 # Collibra design suite
 
-This repository hosts the public Collibra design atlas and the approved
-`collibra-design-suite` release candidate. RC publication is not a final
-installed-client or `1.0.0` acceptance claim.
+This repository hosts the public Collibra design atlas and the
+`collibra-design-suite` 1.0 release.
 
 ## Install in Claude Desktop
 
@@ -62,6 +61,11 @@ supported boundary.
 User-provided content stays in the active Claude conversation or, after an
 explicit file request in Cowork, the connected folder the user selected. The
 plugin itself stores no content and performs no analytics or network calls.
+
+The 1.0 release was source-, package-, and portability-validated. The
+accountable owner waived standard-user Claude Desktop and rendered human
+acceptance for this release, so no real-device Chat, Cowork, update, or
+uninstall receipt is claimed.
 
 ## License
 

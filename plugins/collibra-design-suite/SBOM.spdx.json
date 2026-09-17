@@ -2,8 +2,8 @@
   "spdxVersion": "SPDX-2.3",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "name": "collibra-design-suite-1.0.0-rc.6",
-  "documentNamespace": "https://github.com/chadronbryant-collibra/collibra-design-pages/sbom/1.0.0-rc.6",
+  "name": "collibra-design-suite-1.0.0",
+  "documentNamespace": "https://github.com/chadronbryant-collibra/collibra-design-pages/sbom/1.0.0",
   "creationInfo": {
     "created": "2026-09-11T00:00:00Z",
     "creators": [
@@ -14,7 +14,7 @@
     {
       "name": "collibra-design-suite",
       "SPDXID": "SPDXRef-Package",
-      "versionInfo": "1.0.0-rc.6",
+      "versionInfo": "1.0.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": true,
       "licenseConcluded": "NOASSERTION",
@@ -29,7 +29,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "1782c98a436eb3920bdf0246a97023ace8ddbb666323049312c1f0f7066af4eb"
+          "checksumValue": "90bd2d6d15ed88ac266dd5dcfa6e366d0dafd060ad0c3b6bca1aad208875e750"
         }
       ]
     },
@@ -39,7 +39,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "9348c74e0de54760efb2aca2783dd6e61c01ff277a4e416fb88e8b941191938b"
+          "checksumValue": "e9fd1bf693760d16880044d6cdef3b8a9445ab6afc40019f073d4d833206035b"
         }
       ]
     },
@@ -89,7 +89,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "fd87a5f9c6400c13f6fac91867b2c83c207a80c6fcb7cb894a1431f55e858889"
+          "checksumValue": "0991d4604f000e5b14fa0324aceb53c524e861ec5e0e4696aa20608d9d921a35"
         }
       ]
     },
@@ -199,7 +199,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "567c1ce44c50dbb4d5f79339c8e095ddc72f808b32c58d66a3c679d6a4cf527f"
+          "checksumValue": "a349f852b47397f0122f38b0940c4acdf29793ca28807c4d511a22fd501a7a0f"
         }
       ]
     },
@@ -369,7 +369,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "c8668f1de9754f35e6d598174407973353582e16ecefdb1133e79ee13c563864"
+          "checksumValue": "a81e808cb919275a26a680173344908f54af5b305d197f5889e08e036a78fb83"
         }
       ]
     },
@@ -379,7 +379,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "8a973d46c29417217b1ae6bc7ebbd670d663fe9ff6e9ff08b3b56a17244ccfcf"
+          "checksumValue": "cd671223d8371ec5d331d900a2862b3ff841331b7fdc55fe34f3e72ac51cdffe"
         }
       ]
     },
@@ -389,7 +389,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "14c8af6db51b4ebafdf6eece018121a6d081dc5f36fdd207202e554c21aeed26"
+          "checksumValue": "19cafeb2c429a00c3001cb3ee3f3ab3e3fcc23bba97bef545e2346827ed89ac8"
         }
       ]
     },
@@ -399,7 +399,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "86d3f2ac7d44b1c4427c0b3bb9acf03f23241c151ee2d4435dd8ec99175d8b70"
+          "checksumValue": "af5f5f1d5a897668921cd0dd300056043a080781d54a81a79ee8551d1b17cce7"
         }
       ]
     },
@@ -409,7 +409,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "7c250df6ddd9dc0cd4ab7cf36c2fb89c9cddccd797bfaea4691c71612d519922"
+          "checksumValue": "7c82b3c8c67252b12e095430dc622537cb151d3386c5a0faff7b4444360885de"
         }
       ]
     }
