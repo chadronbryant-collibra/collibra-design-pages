@@ -9,8 +9,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
@@ -19,7 +17,7 @@ concurrency:
 jobs:
   validate:
     name: Validate public plugin surface
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64, jarvis-pr-ephemeral]
     steps:
       - name: Checkout public artifact
         uses: actions/checkout@v4
@@ -32,7 +30,10 @@ jobs:
           python scripts/package_plugin.py --output "$RUNNER_TEMP/collibra-design-suite.zip"
   deploy:
     needs: validate
-    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
