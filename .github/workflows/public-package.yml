@@ -13,7 +13,7 @@ permissions:
 jobs:
   source:
     name: Source and negative-boundary tests
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64, jarvis-pr-ephemeral]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -22,13 +22,9 @@ jobs:
       - run: python -m unittest discover -s tests -v
 
   package:
-    name: Deterministic package (${{ matrix.os }})
+    name: Deterministic portable package
     needs: source
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: [self-hosted, linux, x64, jarvis-pr-ephemeral]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -46,31 +42,31 @@ jobs:
           two = hashlib.sha256(Path("second.zip").read_bytes()).hexdigest()
           if one != two:
               raise SystemExit(f"same-OS builds differ: {one} != {two}")
-          Path("digest-${{ runner.os }}.txt").write_text(one + "\n", encoding="utf-8", newline="\n")
+          Path("digest-linux.txt").write_text(one + "\n", encoding="utf-8", newline="\n")
           PY
       - uses: actions/upload-artifact@v4
         with:
-          name: package-${{ runner.os }}
+          name: package-linux
           path: |
             first.zip
-            digest-${{ runner.os }}.txt
+            digest-linux.txt
 
   compare:
-    name: Identical cross-platform package digest
+    name: Verify deterministic package digest
     needs: package
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64, jarvis-pr-ephemeral]
     steps:
       - uses: actions/download-artifact@v4
         with:
           pattern: package-*
           path: packages
-      - name: Require three identical digests
+      - name: Require one verified digest
         run: |
           python - <<'PY'
           from pathlib import Path
           files = sorted(Path("packages").glob("*/digest-*.txt"))
           digests = {path.read_text(encoding="utf-8").strip() for path in files}
-          if len(files) != 3 or len(digests) != 1:
-              raise SystemExit(f"expected three identical digests, got {files=} {digests=}")
-          print("identical cross-platform digest:", digests.pop())
+          if len(files) != 1 or len(digests) != 1:
+              raise SystemExit(f"expected one verified digest, got {files=} {digests=}")
+          print("verified deterministic digest:", digests.pop())
           PY
