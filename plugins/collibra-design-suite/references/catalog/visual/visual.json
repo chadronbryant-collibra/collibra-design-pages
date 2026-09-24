@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "catalog_version": "0.5.0",
+  "catalog_version": "0.6.0",
   "area_id": "area.design.visual",
   "status": "active",
   "title": "Collibra visual capability catalog",
@@ -465,6 +465,34 @@
       "source_refs": [
         "tokens/PROVENANCE.md",
         "Collibra asset and source register"
+      ],
+      "open_questions": []
+    },
+    {
+      "id": "visual.program-brand-extension",
+      "name": "Governed program brand extensions",
+      "maturity": "defined",
+      "purpose": "Let an internal program develop a recognizable identity that remains traceable to the Collibra visual system without replacing the corporate brand or leaking private assets into public distribution.",
+      "contract": "A program extension must name its owner, purpose, maturity, semantic token roles, visual motifs, provenance, usage authority, accessibility treatment, channel rules, review states, version, and deprecation path. Keep the shared adoption contract public-safe while private program assets and restricted source links stay in the governed private extension and Drive collection. Consumers must label proposed work, preserve visible text and non-color meaning, and complete the recorded brand, legal, accessibility, and owner reviews before external publication or a corporate-brand claim.",
+      "token_refs": [
+        "brand.color.primary.navy",
+        "brand.color.primary.lime",
+        "brand.color.accent.forest",
+        "brand.color.accent.light_forest",
+        "brand.color.neutral.charcoal",
+        "brand.color.neutral.cloud",
+        "brand.color.neutral.light_cloud",
+        "brand.color.neutral.white",
+        "brand.type.family.display",
+        "brand.type.family.presentation",
+        "brand.type.family.mono",
+        "brand.accessibility.contrast.body_text_minimum"
+      ],
+      "source_refs": [
+        "visual.asset-governance",
+        "visual.iconography",
+        "visual.medium-translation",
+        "config/registry/design-registry.json"
       ],
       "open_questions": []
     },
