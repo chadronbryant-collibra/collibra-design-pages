@@ -1,7 +1,7 @@
-# Collibra design suite 1.0
+# Collibra design suite 1.1
 
 - **Status:** public release
-- **Version:** `1.0.0`
+- **Version:** `1.1.0`
 - **Source:** the merged private `collibra-design` release branch
 
 The Collibra design suite helps people make content and experiences easier to

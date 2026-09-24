@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.0 - public release, 2026-09-24
+
+- Added the public-safe governed program-brand-extension contract so internal
+  programs can adopt the shared visual system with explicit provenance,
+  accessibility, usage-authority, review, channel, and deprecation rules.
+- Kept named internal program sources and private assets out of the public
+  registry snapshot; the public package carries only the reusable contract.
+- Refreshed the visual and metadata-only registry snapshots and preserved the
+  existing dependency-free, no-connector runtime boundary.
+
 ## 1.0.0 - public release, 2026-09-17
 
 - Published the five-skill, dependency-free design suite with its synthetic

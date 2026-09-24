@@ -8,7 +8,7 @@ description: >-
   return the final result first and show before/after or a diff only when
   requested.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Collibra content refinement
