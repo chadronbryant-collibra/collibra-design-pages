@@ -3,6 +3,16 @@
 This repository hosts the public Collibra design atlas and the
 `collibra-design-suite` 1.1 release.
 
+Want to see what it does first? [Open the design suite](https://chadronbryant-collibra.github.io/collibra-design-pages/).
+Start with a deck, document, speech, message, or dashboard. The synthetic
+examples let you compare approaches, change the audience, and copy a prompt
+for your own work. Short brand lessons explain color, type, voice, and
+accessibility; a paginated library holds the detailed guidance.
+
+You can use the site as a reference without installing anything. The examples
+illustrate design choices, not ready-to-send native templates. Use your
+approved assets and authoring tools, and review the final output.
+
 ## Install in Claude Desktop
 
 Prerequisites: an already installed Claude Desktop app on macOS 11+ or Windows
