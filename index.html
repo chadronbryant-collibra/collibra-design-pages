@@ -1,265 +1,86 @@
 <!doctype html>
 <html lang="en" data-source-root="data/">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="An explorable atlas of the Collibra design suite." />
-    <title>Collibra design suite — atlas</title>
-    <link rel="stylesheet" href="styles.css?v=20260831-reader-path" />
-  </head>
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header" data-site-header>
-      <div class="site-header__inner">
-        <a class="wordmark" href="#overview" aria-label="Collibra design suite home">
-          <span class="wordmark__tick" aria-hidden="true"></span>
-          <span>Collibra<span class="wordmark__suffix"> design suite</span></span>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Make clearer Collibra decks, documents, speeches, messages, and dashboards. Explore examples, learn the brand, and try the design suite in Claude." />
+  <title>Collibra design suite | Make it clear</title>
+  <link rel="stylesheet" href="styles.css?v=20261001-employee" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="wordmark" href="#home" aria-label="Collibra design suite home">Collibra <span>/ Design suite</span></a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="#home">Overview</a><a href="#examples/deck">Try examples</a><a href="#brand">Learn the brand</a><a href="#catalog">Guidance library</a><a href="#start" class="nav-start">Use in Claude <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <p id="load-status" class="load-status" role="status">Loading brand guidance…</p>
+    <section id="home" class="page" data-page aria-labelledby="home-title">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">FOR THE WORK YOU SHARE</p>
+          <h1 id="home-title" tabindex="-1">Good work.<br />Clearly told.</h1>
+          <p class="lede">Turn a rough draft into a deck people follow, a guide they can use, or a message that makes sense.</p>
+          <p>The design suite brings Collibra’s voice, visual style, and accessibility guidance into your everyday work. You bring the facts and the purpose.</p>
+          <div class="actions"><a class="button primary" href="#examples/deck">See what changes <span aria-hidden="true">→</span></a><a class="text-button" href="#start">Get started in Claude</a></div>
+        </div>
+        <a class="hero-preview" href="#examples/deck" aria-label="Explore the slide deck example">
+          <div class="preview-caption"><span>FROM UPDATE TO STORY</span><span aria-hidden="true">↗</span></div>
+          <div class="mini-slide"><p class="eyebrow">TEAM UPDATE · SYNTHETIC EXAMPLE</p><h2>A clearer start<br />for every new joiner.</h2><div class="mini-flow"><span>Find the guide</span><b aria-hidden="true">→</b><span>Meet your buddy</span><b aria-hidden="true">→</b><span>Ask a question</span></div><p>One next step. A place to get help.</p></div>
+          <p class="preview-note">Same idea. A headline, a visual sequence, and a next step.</p>
         </a>
-        <nav class="site-nav" aria-label="Suite sections">
-          <a href="#system-map">Atlas</a>
-          <a href="#foundations">Foundations</a>
-          <a href="#adoption">Adoption</a>
-          <a href="#voices">Voice</a>
-          <a href="#catalog">Explorer</a>
-        </nav>
       </div>
-    </header>
+      <div class="section-heading"><div><p class="eyebrow">START WITH YOUR TASK</p><h2>What are you making?</h2></div><p>You don’t need to learn a design system first.<br />Choose an example close to your work.</p></div>
+      <div id="task-cards" class="task-cards"></div>
+      <div class="why-strip"><h2>A little structure goes a long way.</h2><div><p><strong>Make the point easy to find.</strong><br />Lead with what the reader needs, then layer the detail.</p><p><strong>Sound like us.</strong><br />Direct, thoughtful, and human. Change the tone for the moment.</p><p><strong>Help more people use it.</strong><br />Readable type, useful labels, and meaning that doesn’t rely on color.</p></div></div>
+      <div class="next-strip"><div><p class="eyebrow">USE IT YOUR WAY</p><h2>A reference when you need it.<br />A collaborator when you want one.</h2><p>Browse the guidance yourself, or install the five-skill Claude plugin to create, refine, simplify, and review your work.</p></div><a class="button primary" href="#start">Choose how to start →</a></div>
+    </section>
 
-    <main id="main">
-      <section class="hero section" id="overview" aria-labelledby="hero-title">
-        <div class="hero__eyebrow eyebrow">COLLIBRA / DESIGN ATLAS</div>
-        <div class="hero__grid">
-          <div>
-            <h1 id="hero-title">Make the right thing easier to see.</h1>
-            <p class="hero__lede">
-              A practical reference for making Collibra experiences clear, useful, and
-              unmistakably Collibra, with content, visual design, and interaction working
-              together from the first sentence to the final state.
-            </p>
-            <div class="hero__actions" aria-label="Primary actions">
-              <a class="button button--primary" href="#system-map">See the system</a>
-              <a class="button button--secondary" href="#voices">Find the right voice</a>
-            </div>
-          </div>
-          <aside class="hero-card" aria-label="Suite status">
-            <div class="hero-card__label eyebrow">THE CURRENT BUILD</div>
-            <p class="hero-card__statement">Start with the reader. Keep the system honest.</p>
-            <div class="hero-card__rule" aria-hidden="true"></div>
-            <p class="hero-card__note">Use the plain-language view first. Open the design contract when you need to build, review, or make a decision.</p>
-            <div class="hero-card__meta"><span class="live-dot" aria-hidden="true"></span><span>Live catalog view</span></div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="section section--compact" aria-labelledby="summary-title">
-        <div class="section-heading">
-          <div>
-            <div class="eyebrow">AT A GLANCE</div>
-          <h2 id="summary-title">A system people can use.</h2>
-          </div>
-          <p class="section-heading__description">Start with what helps today. Each guide names its boundary so teams can use it without guessing.</p>
-        </div>
-        <div class="summary-grid" id="summary-grid" aria-live="polite">
-          <div class="loading-card">Loading the suite counts…</div>
-        </div>
-        <details class="maturity-panel" id="maturity-panel">
-          <summary class="maturity-panel__summary">
-            <span class="eyebrow" id="maturity-title">READINESS AT A GLANCE</span>
-            <strong id="maturity-summary">Checking what still needs attention…</strong>
-            <span class="maturity-panel__toggle" aria-hidden="true">View details</span>
-          </summary>
-          <div class="maturity-rail" id="maturity-rail" aria-live="polite">
-            <div class="loading-card">Checking readiness…</div>
-          </div>
-        </details>
-      </section>
-
-      <section class="section section--dark system-map-section" id="system-map" aria-labelledby="system-map-title">
-        <div class="section-heading section-heading--dark">
-          <div>
-            <div class="eyebrow eyebrow--lime">THE ATLAS</div>
-            <h2 id="system-map-title">Five ways to make a good experience.</h2>
-          </div>
-          <p class="section-heading__description">Begin with the question in front of you, then follow it to the guidance, evidence, and next step.</p>
-        </div>
-        <div class="system-map" id="system-map-visual" aria-label="Interactive map of the Collibra design suite">
-          <div class="system-map__canvas" id="system-map-canvas">
-            <svg class="system-map__connectors" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-              <path d="M50 50 L18 22 M50 50 L82 22 M50 50 L13 75 M50 50 L87 75 M50 50 L50 10" />
-            </svg>
-            <div class="map-core" aria-hidden="true">
-              <span class="map-core__tick"></span>
-              <span class="map-core__label">COLLIBRA<br />DESIGN SUITE</span>
-            </div>
-          </div>
-          <div class="system-map__list" id="system-map-list" aria-label="Suite layers">
-            <div class="loading-card loading-card--dark">Loading suite layers…</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section--pale voice-section" id="voices" aria-labelledby="voices-title">
-        <div class="section-heading">
-          <div>
-            <div class="eyebrow">VOICE &amp; AUDIENCE</div>
-            <h2 id="voices-title">Choose the reader. Then shape the message.</h2>
-          </div>
-          <p class="section-heading__description">Start with who needs the message, then use the moment and medium to decide what to emphasize.</p>
-        </div>
-        <div class="reader-lens" id="reader-lens" aria-live="polite">
-          <div class="loading-card">Loading the reader lens…</div>
-        </div>
-        <div class="voice-section__heading">
-          <div>
-            <div class="eyebrow">WORKING PERSONAS</div>
-            <h3>Choose the reader before the tone.</h3>
-          </div>
-          <p>These are working audience models, not fictional personalities. Use them to make the next sentence more helpful.</p>
-        </div>
-        <div class="voice-grid" id="persona-grid" aria-live="polite">
-          <div class="loading-card">Loading audience personas…</div>
-        </div>
-        <div class="voice-lanes">
-          <section class="voice-lane" aria-labelledby="tone-modes-title">
-            <div class="voice-section__heading voice-section__heading--compact">
-              <div>
-                <div class="eyebrow">TONE MODES</div>
-                <h3 id="tone-modes-title">Let the moment set the temperature.</h3>
-              </div>
-            </div>
-            <div class="tone-grid" id="tone-grid" aria-live="polite">
-              <div class="loading-card">Loading tone modes…</div>
-            </div>
-          </section>
-          <section class="voice-lane" aria-labelledby="medium-guide-title">
-            <div class="voice-section__heading voice-section__heading--compact">
-              <div>
-                <div class="eyebrow">MEDIUM GUIDE</div>
-                <h3 id="medium-guide-title">Make the format do useful work.</h3>
-              </div>
-            </div>
-            <div class="medium-grid" id="medium-grid" aria-live="polite">
-              <div class="loading-card">Loading medium guidance…</div>
-            </div>
-          </section>
-        </div>
-      </section>
-
-      <section class="section section--dark" id="foundations" aria-labelledby="foundations-title">
-        <div class="section-heading section-heading--dark">
-          <div>
-            <div class="eyebrow eyebrow--lime">FOUNDATION LAYER</div>
-            <h2 id="foundations-title">The details that keep the experience recognizable.</h2>
-          </div>
-          <p class="section-heading__description">Color, type, contrast, and shape come from the token source. Consumer-owned values stay explicit.</p>
-        </div>
-        <div class="foundation-layout">
-          <div>
-            <h3 class="subheading">Palette roles</h3>
-            <div class="swatch-grid" id="swatch-grid" aria-live="polite">
-              <div class="loading-card loading-card--dark">Loading palette…</div>
-            </div>
-          </div>
-          <div class="type-panel">
-            <div class="type-panel__header">
-              <div>
-                <h3 class="subheading">Type specimens</h3>
-                <p>Measured scales stay tied to their medium.</p>
-              </div>
-              <span class="pill pill--dark" id="radius-status">Radius: loading</span>
-            </div>
-            <div class="type-list" id="type-list" aria-live="polite">
-              <div class="loading-card loading-card--dark">Loading type…</div>
-            </div>
-          </div>
-        </div>
-        <div class="foundation-signals" id="foundation-signals" aria-live="polite">
-          <div class="loading-card loading-card--dark">Loading foundation signals…</div>
-        </div>
-      </section>
-
-      <section class="section" id="catalog" aria-labelledby="catalog-title">
-        <div class="section-heading">
-          <div>
-            <div class="eyebrow">GUIDE EXPLORER</div>
-            <h2 id="catalog-title">Find the guidance for the work in front of you.</h2>
-          </div>
-          <p class="section-heading__description">Browse guides by the work you’re doing. Start with the plain-language meaning; open implementation detail only when you need to build, review, or explain a decision.</p>
-        </div>
-        <div class="catalog-toolbar" role="group" aria-label="Guide filters">
-          <label class="field-label" for="catalog-search">Search the guides
-            <input id="catalog-search" type="search" placeholder="Try “review”, “voice”, or “accessibility”" autocomplete="off" />
-          </label>
-          <label class="field-label" for="catalog-area">Area
-            <select id="catalog-area">
-              <option value="all">All areas</option>
-              <option value="foundations">Foundations</option>
-              <option value="ui">UI</option>
-              <option value="ux">UX</option>
-              <option value="visual">Visual</option>
-              <option value="content">Content</option>
-            </select>
-          </label>
-        </div>
-        <p class="catalog-count" id="catalog-count" role="status" aria-live="polite">Loading catalog…</p>
-        <div class="explorer-layout">
-          <div class="catalog-column">
-            <div class="catalog-grid" id="catalog-grid" aria-live="polite">
-              <div class="loading-card">Loading guides…</div>
-            </div>
-            <div class="catalog-pagination-row" id="catalog-pagination-row" hidden>
-              <p class="catalog-page-status" id="catalog-page-status" role="status" aria-live="polite"></p>
-              <nav class="catalog-pagination" id="catalog-pagination" aria-label="Guide pages"></nav>
-            </div>
-          </div>
-          <aside class="detail-panel" id="detail-panel" aria-labelledby="detail-title" aria-live="polite">
-            <div class="detail-panel__empty">
-              <div class="detail-panel__mark" aria-hidden="true">+</div>
-              <h3 id="detail-title">Choose a contract.</h3>
-              <p>Select any card to open its purpose, behavior, maturity, and source trail here.</p>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="section section--pale" id="adoption" aria-labelledby="adoption-title">
-        <div class="section-heading">
-          <div>
-            <div class="eyebrow">ADOPTION PATH</div>
-            <h2 id="adoption-title">Use the suite while you work.</h2>
-          </div>
-          <p class="section-heading__description">Open it when you are writing, designing, building, or reviewing. Start with the task, apply only the guidance you need, and check the result before it reaches people.</p>
-        </div>
-        <div class="journey-grid" id="journey-grid" aria-live="polite">
-          <div class="loading-card">Loading adoption path…</div>
-        </div>
-      </section>
-
-      <section class="section section--pale" id="principles" aria-labelledby="principles-title">
-        <div class="section-heading">
-          <div>
-            <div class="eyebrow">DESIGN POINT OF VIEW</div>
-            <h2 id="principles-title">Make the system feel like a good collaborator.</h2>
-          </div>
-          <p class="section-heading__description">Direct when the answer is clear. Wise when context matters. Clever enough to stay human.</p>
-        </div>
-        <div class="principles-layout" id="principles-grid" aria-live="polite">
-          <div class="loading-card">Loading principles…</div>
-        </div>
-      </section>
-
-    </main>
-
-    <footer class="site-footer">
-      <div class="site-footer__inner">
-        <p><span class="wordmark__tick" aria-hidden="true"></span> Collibra design suite</p>
-        <p class="site-footer__meta">Pages-ready reference surface · canonical catalogs remain the source of truth</p>
+    <section id="examples" class="page" data-page hidden aria-labelledby="examples-title">
+      <div class="page-heading"><p class="eyebrow">SEE THE GUIDANCE AT WORK</p><h1 id="examples-title" tabindex="-1">Start with something familiar.</h1><p class="lede">Switch the format or audience. Compare a rough draft with a clearer version, then take the prompt into your own work.</p></div>
+      <nav id="example-nav" class="choice-nav" aria-label="Example formats"></nav>
+      <div class="example-heading"><div><h2 id="example-title"></h2><p id="example-description"></p></div><p class="sample-label">Illustrative only · all content is synthetic</p></div>
+      <div class="example-controls">
+        <label for="example-audience">Who is it for?<select id="example-audience"><option value="team">Colleagues getting started</option><option value="leaders">Leaders making a decision</option></select></label>
+        <fieldset><legend>Compare the approach</legend><label><input type="radio" name="example-version" value="before" /> Rough draft</label><label><input type="radio" name="example-version" value="after" checked /> With the suite</label></fieldset>
       </div>
-    </footer>
+      <div class="example-layout">
+        <div><div id="example-preview" class="example-preview" aria-label="Example output"></div><p id="example-caption" class="caption" role="status"></p></div>
+        <aside class="lesson-panel" aria-labelledby="lesson-title"><p class="eyebrow">WHAT TO NOTICE</p><h3 id="lesson-title"></h3><div id="example-lessons"></div><h4>Guidance behind this example</h4><div id="example-guides" class="guide-links"></div></aside>
+      </div>
+      <div class="prompt-panel"><div><p class="eyebrow">TRY IT WITH YOUR CONTENT</p><h2>A useful first prompt.</h2><p>Adjust the words in brackets. Use only content you’re allowed to share with your approved AI tool.</p><p class="caption">This page doesn’t send or save your edits. Copying a prompt is optional. Your edits stay while you explore; Reset prompt loads the current example’s suggestion.</p></div><div><label for="example-prompt" class="sr-only">Editable example prompt</label><textarea id="example-prompt" rows="8" spellcheck="false"></textarea><div class="actions"><button id="copy-prompt" type="button" class="button primary">Copy prompt</button><button id="reset-prompt" type="button" class="button secondary">Reset prompt</button><a class="text-button" href="#start">Set up the plugin</a></div><p id="copy-status" role="status" class="caption"></p></div></div>
+      <div class="next-strip"><div><h2>Keep adjusting until it helps.</h2><p>Ask for a shorter version, a warmer tone, a different visual, or a clearer action. Then ask for a review. Check facts, accessibility, and required approvals before sharing.</p></div><a id="next-example" class="button secondary" href="#examples/document">Next example →</a></div>
+    </section>
 
-    <noscript>
-      <div class="noscript-message">This atlas needs JavaScript to load its canonical catalogs. Read the JSON and generated Markdown files in the repository directly.</div>
-    </noscript>
-    <script type="module" src="app.js?v=20260831-reader-path"></script>
-  </body>
+    <section id="brand" class="page" data-page hidden aria-labelledby="brand-title">
+      <div class="page-heading"><p class="eyebrow">THE BRAND, IN PRACTICE</p><h1 id="brand-title" tabindex="-1">Recognizable. Readable. Human.</h1><p class="lede">Learn a few useful choices, then see where they fit. These are practical summaries of the suite’s guidance, not a replacement for approved brand assets.</p></div>
+      <nav class="choice-nav" aria-label="Brand lessons"><a href="#brand/color">Color</a><a href="#brand/type">Type &amp; layout</a><a href="#brand/voice">Voice &amp; tone</a><a href="#brand/accessibility">Accessibility</a></nav>
+      <div id="brand-lesson"></div>
+      <div class="brand-boundary"><h3>When you need the official asset</h3><p>Use your approved Collibra template, logo, or image source. This site doesn’t distribute logos, photography, or licensed fonts. A mockup isn’t a ready-to-send slide deck or document, and generated work still needs your review.</p><a href="#catalog?area=visual&q=asset" class="text-button">Read the asset guidance →</a></div>
+      <div class="section-heading"><h2>Go a little deeper.</h2><a class="text-button" href="#catalog?area=foundations">Browse foundation guidance →</a></div>
+    </section>
+
+    <section id="catalog" class="page" data-page hidden aria-labelledby="catalog-title">
+      <div class="page-heading"><p class="eyebrow">GUIDANCE LIBRARY</p><h1 id="catalog-title" tabindex="-1">Find the part you need.</h1><p class="lede">A contract is a reusable guide: what to do, why it helps, and what to check. Browse one area at a time. You don’t need to read them all.</p></div>
+      <div class="catalog-toolbar"><label for="catalog-search">Search guidance<input id="catalog-search" type="search" placeholder="Try “typography”, “tone”, or “diagram”" autocomplete="off" /></label><label for="catalog-area">Choose an area<select id="catalog-area"><option value="all">All guidance</option><option value="foundations">Brand foundations</option><option value="content">Writing &amp; voice</option><option value="visual">Layouts &amp; visuals</option><option value="ux">User journeys</option><option value="ui">Interface elements</option></select></label></div>
+      <p id="catalog-count" class="caption" role="status"></p>
+      <div class="explorer-layout"><div><div id="catalog-grid" class="catalog-grid"></div><div id="catalog-pagination-row"><p id="catalog-page-status" class="caption"></p><nav id="catalog-pagination" class="catalog-pagination" aria-label="Guidance pages"></nav></div></div><aside id="detail-panel" class="detail-panel" aria-labelledby="detail-title"></aside></div>
+      <details id="maturity-panel" class="maturity-panel"><summary class="maturity-panel__summary">How to read guidance status</summary><p>Defined guidance is usable within its stated boundary. Proposed guidance needs review. Open means a source or decision is missing. Deferred means it’s intentionally held. These labels don’t confirm that your own output has been reviewed or approved.</p><p id="maturity-summary"></p></details>
+    </section>
+
+    <section id="start" class="page" data-page hidden aria-labelledby="start-title">
+      <div class="page-heading"><p class="eyebrow">FROM EXAMPLE TO YOUR OWN WORK</p><h1 id="start-title" tabindex="-1">Bring the suite into Claude.</h1><p class="lede">Install once. Tell Claude what you’re making, who it’s for, and what needs to stay true.</p></div>
+      <div class="start-layout"><div><h2>Install in Claude Desktop</h2><p>You’ll need an installed, supported Claude Desktop app, a paid plan, and permission to use personal plugins under your organization’s policy.</p><ol class="install-steps"><li><strong>Open Customize → Plugins.</strong><span>Choose Personal plugins, then Add marketplace.</span></li><li><strong>Add the public marketplace.</strong><code>chadronbryant-collibra/collibra-design-pages</code></li><li><strong>Install Collibra design suite.</strong><span>Enable it, then start a new Chat or Cowork session.</span></li><li><strong>Ask for the work you need.</strong><span>“Use collibra-create to turn this outline into a five-slide team update. Keep the facts, lead with the takeaway, and suggest a visual for each slide.”</span></li></ol><p>No terminal commands or administrator password are required for personal-plugin installation when your organization permits it. The suite doesn’t bypass policy or connect to company systems.</p><a class="text-button" href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude">Claude’s plugin instructions ↗</a></div><aside class="start-note"><p class="eyebrow">YOU CAN ALSO START HERE</p><h2>No plugin? Still useful.</h2><p>Browse the brand lessons and examples. Apply the guidance by hand in your approved slide template, document, or message.</p><a class="button secondary" href="#examples/deck">Choose an example →</a><hr /><h3>What the plugin does</h3><p>It advises, writes, and helps you adjust. It doesn’t grant asset rights, create approvals, or publish your work.</p><p>In Chat, ask for a self-contained Artifact or an outline. In Cowork, request portable files in a folder you’ve connected. Native slides and documents need an appropriate authoring tool and your approved template.</p></aside></div>
+      <div class="section-heading"><div><p class="eyebrow">FIVE WAYS TO ASK FOR HELP</p><h2>Choose the help, not the jargon.</h2></div></div><div id="skill-cards" class="skill-cards"></div>
+      <details><summary>Update, disable, or uninstall</summary><p>Open Customize → Plugins to manage the suite. After an update, start a new session. If the skills aren’t visible, confirm the plugin is enabled and personal plugins are allowed.</p></details><details><summary>Privacy, permissions, and limits</summary><p>The plugin is skills and references only. It adds no connectors, credentials, external packages, or tracking. Your prompts still go to Claude under your account’s terms and organization policy. This site uses no analytics, stores no prompt edits, and makes no AI requests. Examples use made-up content. Use only authorized material in your approved tools.</p><p>Source and package validation are separate from real-device acceptance. The release owner waived rendered human and standard-user Desktop acceptance; no macOS or Windows Chat/Cowork installation receipt is claimed.</p></details><details><summary>Get help or suggest an improvement</summary><p><a href="https://github.com/chadronbryant-collibra/collibra-design-pages/issues">Open a public GitHub issue</a> for general feedback. Don’t include company documents, prompts, people data, credentials, or private security details. See the <a href="https://github.com/chadronbryant-collibra/collibra-design-pages/blob/main/SECURITY.md">security policy</a> for private reporting.</p></details>
+    </section>
+  </main>
+  <footer class="site-footer"><p>Collibra design suite <span>· Practical guidance for the work you share</span></p><div><a href="#start">Help &amp; installation</a><a href="https://github.com/chadronbryant-collibra/collibra-design-pages">Source &amp; licenses ↗</a></div><p class="caption">Guidance and synthetic examples are CC BY 4.0; code is Apache-2.0. Collibra trademarks, restricted assets, and licensed fonts are excluded.</p></footer>
+  <noscript><p class="noscript-message">Interactive examples need JavaScript. You can still <a href="https://github.com/chadronbryant-collibra/collibra-design-pages/blob/main/README.md">read installation instructions and the guidance in the public repository</a>.</p></noscript>
+  <script type="module" src="app.js?v=20261001-employee"></script>
+</body>
 </html>

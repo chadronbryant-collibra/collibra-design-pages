@@ -1,6 +1,6 @@
 {
   "$schema": "collibra-design/public-candidate-provenance/v1",
-  "sourceCommit": "1bfb6e4c40651f629c357baee2c0e4d4bfa5972e",
+  "sourceCommit": "e5c1775070aa29173c5525b8839d72d9d3104a97",
   "sanitizerVersion": "1.0.0",
   "contractVersion": "1.1.0",
   "allowlistVersion": "1.0.1",
@@ -95,7 +95,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "5233303be4ee9b8188def43f3825c297113098354acb81aa9f763477de29e337",
+      "sha256": "bf06bb2b9e5939491166026a63866d042d919cf8a0df076c247ee0cda6efb0c9",
       "sourceId": "repository-controls"
     },
     {
@@ -110,7 +110,7 @@
     },
     {
       "path": "app.js",
-      "sha256": "2f20d0405f8fed1392cf0fb06f62758a0fb5e48336d4b4377b6bb1dacd972e97",
+      "sha256": "e9d2006f2bc7ca72bea8326f29d6e6376e28fd75e41f224cf4e96f69f7ead8c7",
       "sourceId": "design-atlas"
     },
     {
@@ -145,7 +145,7 @@
     },
     {
       "path": "index.html",
-      "sha256": "1337bfbe3957ab9cb933b648de28ce6e64a964d2e6e2785861ef2bd4091b96c6",
+      "sha256": "39667839eca53e683ded9ded12fda6dd20512fdefd903f1eae90f478e6644863",
       "sourceId": "design-atlas"
     },
     {
@@ -355,7 +355,7 @@
     },
     {
       "path": "styles.css",
-      "sha256": "db337800624cb53c6d0d0d521b6fe9e05daea627516f9026b3e5a2c86eec9147",
+      "sha256": "984c337ab50acd7a7075cba07cde51446177fd2c5269bc4c995dac0a970bcb5d",
       "sourceId": "design-atlas"
     },
     {
