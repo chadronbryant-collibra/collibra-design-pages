@@ -1,665 +1,252 @@
-const DATASETS = {
-  tokens: "tokens/collibra.tokens.json",
-  ui: "ui/components.json",
-  ux: "ux/patterns.json",
-  visual: "visual/visual.json",
-  content: "content/voice.json",
-};
-
-const state = {
-  tokens: null,
-  ui: null,
-  ux: null,
-  visual: null,
-  content: null,
-  records: [],
-  selectedId: null,
-  catalogPage: 1,
-};
-
-const CATALOG_PAGE_SIZE = 12;
-const $ = (selector) => document.querySelector(selector);
-const DATA_ROOT = document.documentElement.dataset.sourceRoot || "../";
-
-const TAG_PREFIX_LABELS = [
-  ["brand.color.primary.", "Primary "],
-  ["brand.color.accent.", "Supporting "],
-  ["brand.color.neutral.", "Neutral "],
+const DATASETS = { tokens: "tokens/collibra.tokens.json", ui: "ui/components.json", ux: "ux/patterns.json", visual: "visual/visual.json", content: "content/voice.json" };
+export const CATALOG_PAGE_SIZE = 6;
+export const TASKS = [
+  { id: "deck", name: "Slide decks", title: "Give your update a story.", description: "A team update, a leadership decision, or a workshop. Put the takeaway in the headline and give each slide a job.", card: "Tell a story people can follow.", skill: "collibra-create", format: "five-slide outline with a suggested layout and visual for each slide", guides: ["medium.slide-deck", "visual.slide-grammar-suite", "visual.typography"], lessons: ["Use a conclusion as the headline, so the point survives a quick scan.", "Turn a sequence into a visual flow instead of another list of bullets.", "Give supporting detail a place in the appendix. Use your approved slide template for the final deck."] },
+  { id: "document", name: "Documents", title: "Make a guide people return to.", description: "A team guide, process note, or project brief. Create a clear path through the answer, the detail, and the next step.", card: "Style the answer, not just the page.", skill: "collibra-create", format: "document structure with an opening summary, descriptive headings, a short checklist, and a help section", guides: ["medium.google-doc", "visual.document-composition", "visual.accessibility"], lessons: ["Open with what the reader can do, then use headings they can navigate.", "Group related steps together. Use a table only when readers need to compare.", "Apply native heading styles in your document editor. Keep links descriptive and add image descriptions."] },
+  { id: "speech", name: "Speeches", title: "Write for ears, not just eyes.", description: "A town-hall opening, a team introduction, or a short talk. Keep the meaning, find a natural rhythm, and leave room to breathe.", card: "Find a rhythm you can say aloud.", skill: "collibra-refine", format: "two-minute spoken script with short paragraphs, light pause cues, and a clear closing invitation", guides: ["voice.respectfully-direct", "voice.wise", "visual.medium-translation"], lessons: ["Use the suite’s voice and cross-medium guidance as a starting point. Speech cues here are an illustrative adaptation, not a published speech-format contract.", "Give each spoken paragraph one thought. Read it aloud to find sentences that need a breath.", "Keep facts and commitments intact. Separate delivery cues from the words you intend to say."] },
+  { id: "message", name: "Messages & voice", title: "Say what changed. Make the next step clear.", description: "An email, a chat post, or a change announcement. Be specific, considerate, and useful in the time the reader has.", card: "Sound human. Keep the facts.", skill: "collibra-refine", format: "short email with a clear subject, the change, why it matters, an action, and a help route", guides: ["persona.collibrian", "tone.action-oriented", "tone.inclusive-approachable", "medium.email"], lessons: ["Put the change before the backstory. The reader shouldn’t have to decode the impact.", "Keep a stable voice; shift the tone for the moment. Warmth doesn’t need extra promises.", "Name the action and help route. Don’t invent a deadline, owner, or benefit your source doesn’t support."] },
+  { id: "dashboard", name: "Dashboards", title: "Show the decision behind the numbers.", description: "A project snapshot or a data story. Name the question, label the evidence, and keep the limits in view.", card: "Help the reader see what matters.", skill: "collibra-create", format: "self-contained HTML/CSS/JavaScript Claude Artifact dashboard with no external packages or remote assets", guides: ["visual.data-visualization", "visual.accessibility", "ui.data.table", "ux.inspect.list-detail"], lessons: ["Start with the question the numbers answer. Keep the source and reporting period near the data.", "Label values directly and show an accessible table or text equivalent. Color is supporting detail.", "Use only supplied data. Test empty states, keyboard access, small screens, and missing information before sharing."] },
 ];
 
-function node(tag, className, text) {
-  const element = document.createElement(tag);
-  if (className) element.className = className;
-  if (text !== undefined) element.textContent = text;
-  return element;
+export function parseRoute(hash) {
+  const [path, query = ""] = hash.replace(/^#/, "").split("?");
+  const [rawPage, item] = path.split("/");
+  const aliases = { overview: "home", "system-map": "home", foundations: "brand", voices: "brand", adoption: "start", principles: "brand" };
+  const page = aliases[rawPage] || (["home", "examples", "brand", "catalog", "start"].includes(rawPage) ? rawPage : "home");
+  const params = new URLSearchParams(query);
+  const area = ["foundations", "content", "visual", "ui", "ux"].includes(params.get("area")) ? params.get("area") : "all";
+  const number = Number(params.get("page"));
+  return { page, item: rawPage === "voices" ? "voice" : item, area, query: params.get("q") || "", catalogPage: Number.isSafeInteger(number) && number > 0 ? number : 1, selectedId: params.get("id") || null };
 }
 
-function setText(selector, text) {
-  const element = $(selector);
-  if (element) element.textContent = text;
-  return element;
+export function pageSlice(records, requestedPage, size = CATALOG_PAGE_SIZE) {
+  const count = Math.max(1, Math.ceil(records.length / size));
+  const page = Math.min(Math.max(requestedPage, 1), count);
+  const start = (page - 1) * size;
+  return { page, count, start, records: records.slice(start, start + size) };
 }
 
-function tokenEntries(value, result = []) {
-  if (Array.isArray(value)) {
-    value.forEach((item) => tokenEntries(item, result));
-  } else if (value && typeof value === "object") {
-    if (typeof value.id === "string" && Object.prototype.hasOwnProperty.call(value, "value")) {
-      result.push(value);
-    }
-    Object.values(value).forEach((item) => tokenEntries(item, result));
-  }
-  return result;
+export function promptFor(task, audience) {
+  return `Use ${task.skill} from the Collibra design suite.\n\nHelp me make a ${task.format} for ${audience === "leaders" ? "leaders making a decision" : "colleagues getting started"}.\n\nPurpose: [what people need to understand or do].\nSource: [paste authorized facts, draft, or data here].\n\nKeep names, numbers, dates, links, and commitments unchanged. Don’t invent evidence or approvals. Use Collibra’s reader-first voice, clear hierarchy, and accessible formatting. Ask up to two focused questions if a material input is missing.\n\nAfter the first version, suggest useful adjustments and offer a review. Label proposed content and anything I need to confirm.`;
 }
 
-function token(id) {
-  return tokenEntries(state.tokens).find((entry) => entry.id === id)?.value;
-}
-
-function tokenVariable(id) {
-  return `--token-${id.replaceAll(".", "-")}`;
-}
-
-function applyTokenVariables() {
-  const root = document.documentElement;
-  tokenEntries(state.tokens).forEach((entry) => {
-    if (typeof entry.value === "string" && entry.value !== "") {
-      root.style.setProperty(tokenVariable(entry.id), entry.value);
-    }
-  });
-  const display = token("brand.type.family.display");
-  const mono = token("brand.type.family.mono");
-  if (display) root.style.setProperty("--font-display", `"${display}", system-ui, sans-serif`);
-  if (mono) root.style.setProperty("--font-mono", `"${mono}", ui-monospace, monospace`);
-  const body = token("brand.type.scale.web.body");
-  if (body && typeof body === "object") {
-    root.style.setProperty("--type-body-size", `${body.size_px}px`);
-    root.style.setProperty("--type-body-line", `${body.line_height_px}px`);
-  }
-}
-
-function statusPill(maturity) {
-  return node("span", `status-pill status-pill--${maturity}`, maturity);
-}
-
-function friendlyTag(value) {
-  if (typeof value !== "string") return value;
-  const prefix = TAG_PREFIX_LABELS.find(([key]) => value.startsWith(key));
-  const label = prefix ? `${prefix[1]}${value.slice(prefix[0].length)}` : value.replace(/^brand\./, "");
-  return label
-    .replaceAll("_", " ")
-    .split(".")
-    .map((part) => part.split(" ").map((word) => {
-      const upper = word.toUpperCase();
-      if (["ai", "ui", "ux"].includes(word.toLowerCase())) return upper;
-      return word ? `${word[0].toUpperCase()}${word.slice(1)}` : word;
-    }).join(" "))
-    .join(" · ");
-}
-
-function addTags(parent, tags) {
-  if (!tags?.length) return;
-  const list = node("div", "tag-list");
-  list.setAttribute("role", "list");
-  tags.slice(0, 6).forEach((tag) => {
-    const item = node("span", "tag", friendlyTag(tag));
-    item.setAttribute("role", "listitem");
-    list.append(item);
-  });
-  parent.append(list);
-}
-
-function addList(parent, title, items, className = "detail-list") {
-  if (!Array.isArray(items) || !items.length) return;
-  const wrapper = node("div", className);
-  wrapper.append(node("h4", null, title));
-  const list = node("ul");
-  items.forEach((item) => list.append(node("li", null, typeof item === "string" ? item : JSON.stringify(item))));
-  wrapper.append(list);
-  parent.append(wrapper);
-}
-
-function renderSummary() {
-  const grid = $("#summary-grid");
-  if (!grid) return;
-  grid.replaceChildren();
-  const metrics = [
-    [tokenEntries(state.tokens).length, "foundation tokens", "foundation"],
-    [state.ui.components.length, "UI contracts", "ui"],
-    [state.ux.patterns.length, "UX patterns", "ux"],
-    [state.visual.capabilities.length, "visual capabilities", "visual"],
-    [state.content.audience_personas.length + state.content.tone_modes.length + state.content.mediums.length, "voice & audience guides", "content"],
-  ];
-  metrics.forEach(([count, label, kind]) => {
-    const card = node("div", `summary-card summary-card--${kind}`);
-    card.append(node("span", "summary-card__count", String(count)));
-    card.append(node("span", "summary-card__label", label));
-    grid.append(card);
-  });
-
-  const maturity = ["defined", "proposed", "open", "deferred"].map((value) => [
-    value,
-    state.records.filter((record) => record.maturity === value).length
-      + tokenEntries(state.tokens).filter((record) => record.maturity === value).length,
-  ]);
-  const total = maturity.reduce((sum, [, count]) => sum + count, 0);
-  const definedCount = maturity.find(([label]) => label === "defined")?.[1] || 0;
-  const remaining = maturity.filter(([label, count]) => label !== "defined" && count > 0);
-  const remainingCount = remaining.reduce((sum, [, count]) => sum + count, 0);
-  setText(
-    "#maturity-summary",
-    remainingCount
-      ? `${remainingCount} ${remainingCount === 1 ? "item needs" : "items need"} attention`
-      : "Nothing is waiting to be defined"
-  );
-  const maturityPanel = $("#maturity-panel");
-  if (maturityPanel && remainingCount > 0) maturityPanel.open = true;
-  const rail = $("#maturity-rail");
-  rail.replaceChildren();
-  if (!remainingCount) {
-    const complete = node("div", "maturity-empty");
-    complete.append(node("strong", null, `${definedCount} guides are ready to use.`));
-    complete.append(node("p", null, "This view will surface proposed, open, or deferred work when something needs a source, owner, or decision."));
-    rail.append(complete);
-    return;
-  }
-  remaining.forEach(([label, count]) => {
-    const item = node("div", "maturity-bar");
-    const header = node("div", "maturity-bar__header");
-    header.append(node("span", "maturity-bar__label", label));
-    header.append(node("span", "maturity-bar__count", `${count} · ${total ? Math.round((count / total) * 100) : 0}%`));
-    const track = node("div", "maturity-bar__track");
-    const fill = node("span", `maturity-bar__fill maturity-bar__fill--${label}`);
-    fill.style.width = `${total ? (count / total) * 100 : 0}%`;
-    track.append(fill);
-    item.append(header, track);
-    rail.append(item);
-  });
-}
-
-function layerDefinitions() {
-  return [
-    { id: "foundations", label: "Foundations", kicker: "Do not drift", count: tokenEntries(state.tokens).length, description: "Color, type, contrast, shape, and the deliberate gaps.", className: "foundation" },
-    { id: "ui", label: "UI", kicker: "Make it operable", count: state.ui.components.length, description: "Components with states, semantics, accessibility, content, and safety.", className: "ui" },
-    { id: "ux", label: "UX", kicker: "Make it make sense", count: state.ux.patterns.length, description: "Flows for orientation, review, recovery, AI, and durable decisions.", className: "ux" },
-    { id: "visual", label: "Visual", kicker: "Make it recognizable", count: state.visual.capabilities.length, description: "Assets, composition, diagrams, data, motion, and cross-medium translation.", className: "visual" },
-    { id: "content", label: "Content", kicker: "Make it understood", count: contentRecords().length, description: "Voice, audience, medium, plain language, and human-review guidance.", className: "content" },
-  ];
-}
-
-function chooseArea(area) {
-  const areaControl = $("#catalog-area");
-  const searchControl = $("#catalog-search");
-  if (areaControl) areaControl.value = area;
-  if (searchControl) searchControl.value = "";
-  state.selectedId = null;
-  state.catalogPage = 1;
-  renderCatalog();
-  renderDetail();
-  $("#catalog")?.scrollIntoView({ behavior: "smooth", block: "start" });
-}
-
-function renderSystemMap() {
-  const canvas = $("#system-map-canvas");
-  const list = $("#system-map-list");
-  canvas.querySelectorAll(".map-node").forEach((element) => element.remove());
-  list.replaceChildren();
-  const layers = layerDefinitions();
-  const positions = ["map-node--top", "map-node--right", "map-node--left", "map-node--bottom-right", "map-node--bottom-left"];
-  layers.forEach((layer, index) => {
-    const button = node("button", `map-node map-node--${layer.className} ${positions[index]}`);
-    button.type = "button";
-    button.setAttribute("aria-label", `Explore ${layer.label}, ${layer.count} contracts`);
-    button.append(node("span", "map-node__kicker", layer.kicker));
-    button.append(node("strong", "map-node__label", layer.label));
-    button.append(node("span", "map-node__count", `${layer.count} signals`));
-    button.addEventListener("click", () => chooseArea(layer.id));
-    canvas.append(button);
-
-    const item = node("article", `map-list-item map-list-item--${layer.className}`);
-    const itemHeader = node("div", "map-list-item__header");
-    itemHeader.append(node("span", "map-list-item__kicker", layer.kicker));
-    itemHeader.append(node("span", "map-list-item__count", String(layer.count)));
-    item.append(itemHeader);
-    item.append(node("h3", null, layer.label));
-    item.append(node("p", null, layer.description));
-    const explore = node("button", "text-button", `Explore ${layer.label}`);
-    explore.type = "button";
-    explore.addEventListener("click", () => chooseArea(layer.id));
-    item.append(explore);
-    list.append(item);
-  });
-}
-
-function renderFoundations() {
-  const swatches = $("#swatch-grid");
-  const palette = [
-    ["Navy", "brand.color.primary.navy", false],
-    ["Lime", "brand.color.primary.lime", true],
-    ["Forest", "brand.color.accent.forest", false],
-    ["Light forest", "brand.color.accent.light_forest", true],
-    ["Cloud", "brand.color.neutral.cloud", true],
-    ["Light cloud", "brand.color.neutral.light_cloud", true],
-  ];
-  swatches.replaceChildren();
-  palette.forEach(([name, id, light]) => {
-    const card = node("article", `swatch${light ? " swatch--light" : ""}`);
-    card.style.backgroundColor = token(id) || "Canvas";
-    card.append(node("strong", "swatch__name", name));
-    card.append(node("span", "swatch__meta", id));
-    swatches.append(card);
-  });
-
-  const typeList = $("#type-list");
-  typeList.replaceChildren();
-  const specimens = [
-    ["Web hero", "brand.type.scale.web.hero", "The signal is clear."],
-    ["Web body", "brand.type.scale.web.body", "Readable detail that helps a decision land."],
-    ["Slide title", "brand.type.scale.slides.title", "A title for the room."],
-    ["Mono eyebrow", "brand.type.scale.slides.eyebrow", "SOURCE / REVIEW"],
-  ];
-  specimens.forEach(([label, id, sample]) => {
-    const value = token(id);
-    const row = node("div", "type-specimen");
-    row.append(node("span", "type-specimen__label", label));
-    const sampleNode = node("p", "type-specimen__sample", sample);
-    if (value && typeof value === "object") {
-      sampleNode.style.setProperty("--specimen-size", `${value.size_px ?? value.size_pt ?? 16}${value.size_px ? "px" : "pt"}`);
-      sampleNode.style.setProperty("--specimen-line", value.line_height_px ? `${value.line_height_px}px` : "1.05");
-      const family = value.font || value.family;
-      if (family) sampleNode.style.setProperty("--specimen-font", `"${family}", var(--font-display)`);
-    }
-    row.append(sampleNode);
-    typeList.append(row);
-  });
-
-  const radius = token("brand.radius.scale");
-  setText("#radius-status", `Radius: ${radius || "open"}`);
-  const signalData = [
-    ["Contrast", "defined", "Tokenized thresholds and measured examples"],
-    ["Radius", "defined", "One published container treatment"],
-    ["Spacing", "defined", "Consumer-owned scale with documented hierarchy"],
-    ["Gradients", "defined", "Approved source or flat navy fallback"],
-  ];
-  const signals = $("#foundation-signals");
-  signals.replaceChildren();
-  signalData.forEach(([label, maturity, description]) => {
-    const card = node("article", `foundation-signal foundation-signal--${maturity}`);
-    const header = node("div", "foundation-signal__header");
-    header.append(node("strong", null, label), statusPill(maturity));
-    card.append(header, node("p", null, description));
-    signals.append(card);
-  });
-}
-
-function contentRecords() {
-  const records = [];
-  state.content.voice_pillars.forEach((record) => records.push({
-    area: "content", areaLabel: "Content · voice", id: record.id, name: record.name, maturity: "defined",
-    purpose: record.contract, contract: record.avoid?.length ? `Avoid: ${record.avoid.join(", ")}.` : "",
-    tags: ["voice pillar"], source: record.source, raw: record,
-  }));
-  state.content.writing_goals.forEach((record) => records.push({
-    area: "content", areaLabel: "Content · goal", id: record.id, name: record.name, maturity: "defined",
-    purpose: record.contract, contract: "A writing goal that keeps the reader moving.", tags: ["writing goal"], source: record.source, raw: record,
-  }));
-  state.content.style_rules.forEach((record) => records.push({
-    area: "content", areaLabel: "Content · style", id: record.id, name: record.name, maturity: "defined",
-    purpose: record.rule, contract: `${record.use_when} Avoid: ${record.avoid}`, tags: ["style rule"], source: record.source, raw: record,
-  }));
-  state.content.ui_content_rules.forEach((record) => records.push({
-    area: "content", areaLabel: "Content · UI", id: record.id, name: record.name, maturity: "defined",
-    purpose: record.contract, contract: record.examples?.length ? `Examples: ${record.examples.join(" · ")}` : "",
-    tags: ["UI content"], source: record.source, raw: record,
-  }));
-  state.content.content_gates.forEach((record) => records.push({
-    area: "content", areaLabel: "Content · gate", id: record.id, name: "Content gate", maturity: "defined",
-    purpose: record.question, contract: record.failure_action, tags: ["gate"], source: record.source, raw: record,
-  }));
-  state.content.tone_modes.forEach((record) => records.push({
-    area: "content", areaLabel: "Content · tone", id: record.id, name: record.name, maturity: record.maturity,
-    purpose: record.use_when, contract: `Sounds like: ${record.sound}`, tags: [...record.channels, "tone"], source: record.source, raw: record,
-  }));
-  state.content.audience_personas.forEach((record) => records.push({
-    area: "content", areaLabel: "Content · persona", id: record.id, name: record.name, maturity: record.maturity,
-    purpose: record.job_to_be_done, contract: `Voice shift: ${record.voice_shift}`, tags: [...record.channels, "audience"], source: record.source, raw: record,
-  }));
-  state.content.mediums.forEach((record) => records.push({
-    area: "content", areaLabel: "Content · medium", id: record.id, name: record.name, maturity: record.maturity,
-    purpose: record.reader_need, contract: `Structure: ${record.structure.join(" → ")}`, tags: [...record.tone_modes, "medium"], source: record.source, raw: record,
-  }));
-  const lens = state.content.plain_language_lens;
-  records.push({
-    area: "content", areaLabel: "Content · plain language", id: lens.id, name: lens.name, maturity: "defined",
-    purpose: lens.contract, contract: `Reader-first example: ${lens.example.reader_first}`, tags: ["plain language", "translation"], source: lens.source, raw: lens,
-  });
-  return records;
-}
+const state = { records: [], selectedId: null, catalogPage: 1, route: null, ready: false };
+const $ = (selector) => document.querySelector(selector);
+function node(tag, className, text) { const e = document.createElement(tag); if (className) e.className = className; if (text !== undefined) e.textContent = text; return e; }
+function link(text, href, className) { const e = node("a", className, text); e.href = href; return e; }
+function textAt(selector, text) { const e = $(selector); if (e) e.textContent = text; }
+function list(parent, items, ordered = false) { const e = node(ordered ? "ol" : "ul"); items.forEach(t => e.append(node("li", null, t))); parent.append(e); }
+function tokenEntries(value, result = []) { if (Array.isArray(value)) value.forEach(v => tokenEntries(v, result)); else if (value && typeof value === "object") { if (value.id && Object.hasOwn(value, "value")) result.push(value); Object.values(value).forEach(v => tokenEntries(v, result)); } return result; }
+function token(id) { return tokenEntries(state.tokens).find(t => t.id === id)?.value; }
+function applyTokens() { tokenEntries(state.tokens).forEach(t => { if (typeof t.value === "string" && t.value) document.documentElement.style.setProperty(`--token-${t.id.replaceAll(".", "-").replaceAll("_", "-")}`, t.value); }); }
+function statusPill(status) { return node("span", "status-pill", status); }
 
 function makeRecords() {
-  const records = [];
-  state.visual.foundations.forEach((record) => records.push({
-    area: "foundations", areaLabel: "Foundation · visual", id: record.id, name: record.name, maturity: record.maturity,
-    purpose: record.purpose, contract: record.contract, tags: record.token_refs.slice(0, 4), source: "visual/visual.json", raw: record,
-  }));
-  state.ui.components.forEach((record) => records.push({
-    area: "ui", areaLabel: `UI · ${record.category}`, id: record.id, name: record.name, maturity: record.maturity,
-    purpose: record.purpose, contract: record.accessibility, tags: [...(record.states || []).slice(0, 3), ...(record.token_roles || []).slice(0, 2)], source: "ui/components.json", raw: record,
-  }));
-  state.ux.patterns.forEach((record) => records.push({
-    area: "ux", areaLabel: "UX · pattern", id: record.id, name: record.name, maturity: record.maturity,
-    purpose: record.goal, contract: record.success, tags: [...(record.states || []).slice(0, 3), ...(record.components || []).slice(0, 2)], source: "ux/patterns.json", raw: record,
-  }));
-  state.visual.capabilities.forEach((record) => records.push({
-    area: "visual", areaLabel: "Visual · capability", id: record.id, name: record.name, maturity: record.maturity,
-    purpose: record.purpose, contract: record.contract, tags: record.token_refs.slice(0, 4), source: "visual/visual.json", raw: record,
-  }));
-  records.push(...contentRecords());
-  return records;
+  const out = [];
+  const add = (area, areaLabel, records, purpose, contract, source) => records.forEach(r => out.push({ area, areaLabel, id: r.id, name: r.name || "Content check", maturity: r.maturity || "defined", purpose: r[purpose] || "", contract: r[contract] || "", source: source || r.source, raw: r }));
+  add("foundations", "Brand foundations", state.visual.foundations, "purpose", "contract", "visual/visual.json");
+  add("visual", "Layouts & visuals", state.visual.capabilities, "purpose", "contract", "visual/visual.json");
+  add("ui", "Interface elements", state.ui.components, "purpose", "accessibility", "ui/components.json");
+  add("ux", "User journeys", state.ux.patterns, "goal", "success", "ux/patterns.json");
+  add("content", "Voice", state.content.voice_pillars, "contract", "contract");
+  add("content", "Writing goals", state.content.writing_goals, "contract", "contract");
+  add("content", "Writing style", state.content.style_rules, "rule", "use_when");
+  add("content", "Interface copy", state.content.ui_content_rules, "contract", "contract");
+  add("content", "Content checks", state.content.content_gates, "question", "failure_action");
+  add("content", "Tone", state.content.tone_modes, "use_when", "sound");
+  add("content", "Audience", state.content.audience_personas, "job_to_be_done", "voice_shift");
+  add("content", "Format", state.content.mediums, "reader_need", "structure");
+  add("content", "Plain language", [state.content.plain_language_lens], "contract", "contract");
+  return out;
 }
 
-function renderDetail() {
-  const panel = $("#detail-panel");
-  if (!panel) return;
-  panel.replaceChildren();
-  const record = state.records.find((item) => item.id === state.selectedId);
-  if (!record) {
-    const empty = node("div", "detail-panel__empty");
-    empty.append(node("div", "detail-panel__mark", "+"));
-    const emptyTitle = node("h3", null, "Choose a contract.");
-    emptyTitle.id = "detail-title";
-    empty.append(emptyTitle);
-    empty.append(node("p", null, "Select any card to open its purpose, behavior, maturity, and source trail here."));
-    panel.append(empty);
-    return;
-  }
-  const header = node("div", "detail-panel__header");
-  header.append(node("span", "catalog-card__area", record.areaLabel), statusPill(record.maturity));
-  panel.append(header);
-  const title = node("h3", null, record.name);
-  title.id = "detail-title";
-  panel.append(title);
-  panel.append(node("p", "detail-panel__purpose", record.purpose));
-  const contract = node("div", "detail-panel__contract");
-  contract.append(node("h4", null, "Build or use it this way"));
-  if ((record.contract || "").length > 260) {
-    const contractDetails = node("details", "detail-panel__contract-details");
-    contractDetails.append(node("summary", null, "Show full contract"));
-    contractDetails.append(node("p", null, record.contract));
-    contract.append(contractDetails);
+function renderHome() {
+  const cards = $("#task-cards"); const nav = $("#example-nav");
+  TASKS.forEach(t => {
+    const card = link("", `#examples/${t.id}`, "task-card");
+    const art = node("div", `task-art task-art--${t.id}`); art.setAttribute("aria-hidden", "true");
+    for (let i = 0; i < 3; i++) art.append(node("span"));
+    card.append(art, node("h3", null, t.name), node("p", null, t.card), node("span", "task-action", "Explore example →")); cards.append(card);
+    nav.append(link(t.name, `#examples/${t.id}`));
+  });
+  const skills = [
+    ["design", "Find the right guidance", "Choose the smallest useful set of design rules for your task.", "Which guidance should I use for a team onboarding guide?"],
+    ["create", "Make a first version", "Build an Artifact, an outline, or a structure you can adjust.", "Make a dashboard from this synthetic data. Label its limits."],
+    ["refine", "Make the writing ready", "Shape a draft for the audience. Keep its facts and meaning.", "Refine this announcement for colleagues new to the project."],
+    ["simplify", "Explain it plainly", "Reduce technical complexity without losing important detail.", "Explain this process for a nontechnical reader. Keep the caveats."],
+    ["review", "Check before sharing", "Get ranked, evidence-backed findings. No silent edits.", "Review this deck outline for clarity, brand, and accessibility."],
+  ];
+  skills.forEach(([id, title, description, example]) => { const card = node("article", "skill-card"); card.append(node("code", null, `collibra-${id}`), node("h3", null, title), node("p", null, description), node("p", "caption", `Try: “${example}”`)); $("#skill-cards").append(card); });
+}
+
+function sampleFacts(audience) {
+  const leaders = audience === "leaders";
+  return { headline: leaders ? "Choose a small pilot before a wider launch." : "A clearer start for every new joiner.", action: leaders ? "Proposed decision: test the guide with one team, then review feedback before expanding." : "Start with the guide. Your buddy can help with questions.", steps: leaders ? ["Test with one team", "Review feedback", "Decide what’s next"] : ["Find the guide", "Meet your buddy", "Ask a question"] };
+}
+
+function renderExample() {
+  const task = TASKS.find(t => t.id === state.route.item) || TASKS[0];
+  const audience = $("#example-audience").value;
+  const before = $("input[name=example-version]:checked").value === "before";
+  const facts = sampleFacts(audience);
+  textAt("#example-title", task.title); textAt("#example-description", task.description);
+  $("#example-nav").querySelectorAll("a").forEach(a => { if (a.hash === `#examples/${task.id}`) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  const preview = $("#example-preview"); preview.replaceChildren();
+  const sample = node("article", before ? "rough-draft" : `sample-${task.id === "deck" ? "slide" : task.id}`);
+  if (before) {
+    sample.append(node("p", "eyebrow", "SYNTHETIC ROUGH DRAFT"), node("h3", null, task.id === "dashboard" ? "Project metrics" : "Onboarding process update"));
+    sample.append(node("p", null, task.id === "dashboard" ? "Guide 24. Buddy 18. Questions 12. The figures are provided for informational purposes relating to the various onboarding workstreams." : "As part of our ongoing efforts regarding the onboarding experience, an onboarding guide and buddy arrangement are being considered for use. There are a number of steps and considerations that relate to the provision of information and the handling of questions in connection with this process."));
+    sample.append(node("p", null, audience === "leaders" ? "A pilot with one team is proposed. Feedback would be reviewed before a decision on expansion." : "New joiners can find the guide, meet their buddy, and ask a question."));
+    textAt("#example-caption", "The source idea is here, but the reader has to work to find the point. The before/after pair is illustrative, not measured research.");
   } else {
-    contract.append(node("p", null, record.contract));
-  }
-  panel.append(contract);
-  const related = node("div", "detail-panel__related");
-  related.append(node("h4", null, "Related guidance"));
-  addTags(related, record.tags);
-  panel.append(related);
-  panel.append(node("p", "detail-panel__source", `Evidence trail: ${record.source}`));
-  const more = node("details", "detail-panel__more");
-  more.append(node("summary", null, "Show implementation detail"));
-  const moreBody = node("div", "detail-panel__more-body");
-  const raw = record.raw || {};
-  const technical = node("div", "detail-panel__technical");
-  technical.append(node("p", "detail-panel__technical-note", "For designers and implementers: use this stable reference when you need to trace the guidance back to the source catalog."));
-  technical.append(node("code", "detail-panel__id", record.id));
-  moreBody.append(technical);
-  addList(moreBody, "Reader questions", raw.questions);
-  addList(moreBody, "Translation steps", raw.translation_steps);
-  addList(moreBody, "Needs", raw.needs);
-  addList(moreBody, "Use this when", raw.use_when ? [raw.use_when] : null);
-  addList(moreBody, "Sounds like", raw.sound ? [raw.sound] : null);
-  addList(moreBody, "Structure", raw.structure);
-  addList(moreBody, "Channels", raw.channels);
-  addList(moreBody, "Good moves", raw.do);
-  addList(moreBody, "States", raw.states);
-  addList(moreBody, "Flow", raw.flow);
-  addList(moreBody, "Accessibility", raw.accessibility);
-  addList(moreBody, "Safety", raw.safety);
-  addList(moreBody, "Avoid", raw.avoid);
-  addList(moreBody, "Consumer checks", raw.open_questions);
-  more.append(moreBody);
-  panel.append(more);
-}
-
-function filteredCatalogRecords() {
-  const query = $("#catalog-search").value.trim().toLowerCase();
-  const area = $("#catalog-area").value;
-  const maturity = $("#catalog-maturity")?.value || "all";
-  return state.records.filter((record) => {
-    const searchable = [record.id, record.name, record.purpose, record.contract, record.areaLabel, ...(record.tags || [])].join(" ").toLowerCase();
-    return (!query || searchable.includes(query)) && (area === "all" || record.area === area) && (maturity === "all" || record.maturity === maturity);
-  });
-}
-
-function renderPagination(total) {
-  const row = $("#catalog-pagination-row");
-  const nav = $("#catalog-pagination");
-  if (!row || !nav) return;
-  nav.replaceChildren();
-  if (!total) {
-    row.hidden = true;
-    return;
-  }
-  row.hidden = false;
-  const pageCount = Math.ceil(total / CATALOG_PAGE_SIZE);
-  state.catalogPage = Math.min(Math.max(state.catalogPage, 1), pageCount);
-  setText("#catalog-page-status", `Page ${state.catalogPage} of ${pageCount}`);
-
-  const addPageButton = (label, page, options = {}) => {
-    const button = node("button", `catalog-pagination__button${options.control ? " catalog-pagination__button--control" : ""}`, label);
-    button.type = "button";
-    if (!options.control) button.dataset.page = String(page);
-    button.setAttribute("aria-label", options.control ? label : `Go to guide page ${page}`);
-    if (page === state.catalogPage && !options.control) button.setAttribute("aria-current", "page");
-    if (options.disabled) button.disabled = true;
-    button.addEventListener("click", () => {
-      state.catalogPage = page;
-      renderCatalog();
-      nav.querySelector(`button[data-page="${page}"]`)?.focus();
-    });
-    nav.append(button);
-  };
-
-  addPageButton("Previous", Math.max(1, state.catalogPage - 1), { control: true, disabled: state.catalogPage === 1 });
-  const pages = node("span", "catalog-pagination__pages");
-  pages.setAttribute("aria-label", "Guide pages");
-  const pageSet = new Set([1, pageCount, state.catalogPage - 1, state.catalogPage, state.catalogPage + 1]);
-  const visiblePages = [...pageSet].filter((page) => page >= 1 && page <= pageCount).sort((a, b) => a - b);
-  let previousPage = 0;
-  visiblePages.forEach((page) => {
-    if (page - previousPage > 1) {
-      const ellipsis = node("span", "catalog-pagination__ellipsis", "…");
-      ellipsis.setAttribute("aria-hidden", "true");
-      pages.append(ellipsis);
+    sample.append(node("p", "eyebrow", task.id === "dashboard" ? "SYNTHETIC DATA · EXAMPLE SNAPSHOT" : "SYNTHETIC EXAMPLE · NOT A LIVE PROGRAM"));
+    if (task.id === "deck") {
+      sample.append(node("h3", null, facts.headline));
+      const flow = node("div", "sequence"); facts.steps.forEach((s, i) => flow.append(node("span", null, `${i + 1}. ${s}`))); sample.append(flow, node("p", null, facts.action));
+    } else if (task.id === "document") {
+      sample.append(node("h3", null, audience === "leaders" ? "Onboarding guide: pilot proposal" : "Your first steps"), node("p", null, facts.action));
+      sample.append(node("h4", null, audience === "leaders" ? "The proposed approach" : "Start here")); list(sample, facts.steps, true);
+      sample.append(node("h4", null, audience === "leaders" ? "Before we expand" : "Need a hand?"), node("p", null, audience === "leaders" ? "Review feedback from the pilot. The wider launch is not confirmed." : "Ask your buddy about the guide or your next step."));
+    } else if (task.id === "speech") {
+      sample.append(node("h3", null, audience === "leaders" ? "A short proposal" : "A welcome, in your own words"));
+      sample.append(node("span", "delivery-cue", "[OPEN · LOOK UP]"), node("p", null, audience === "leaders" ? "I’m proposing that we test the onboarding guide with one team before we take it further." : "Starting somewhere new brings questions. Where do I begin? Who can help?"));
+      sample.append(node("span", "delivery-cue", "[PAUSE]"), node("p", null, audience === "leaders" ? "We’d review the feedback, then decide whether to expand. The wider launch isn’t confirmed." : "The guide gives you a place to start. Your buddy gives you someone to ask."));
+      sample.append(node("span", "delivery-cue", "[CLOSE · LEAVE SPACE FOR QUESTIONS]"), node("p", null, facts.action));
+    } else if (task.id === "message") {
+      sample.append(node("h3", null, audience === "leaders" ? "Proposal: pilot the onboarding guide" : "New here? Start with the guide."), node("p", null, audience === "leaders" ? "We’re proposing a small pilot with one team. It would give us feedback before we decide on a wider launch." : "The onboarding guide brings your first steps together. Find the guide, meet your buddy, and ask about anything that’s unclear."), node("p", null, facts.action));
+    } else {
+      sample.append(node("h3", null, audience === "leaders" ? "Where might new joiners need support?" : "A quick view of onboarding steps"), node("p", "caption", "Made-up counts for learning only. Different steps may include the same people; these are not completion rates."));
+      const metrics = node("div", "metric-row"); [[24, "Found the guide"], [18, "Met their buddy"], [12, "Asked a question"]].forEach(([n, label]) => { const m = node("div", "metric"); m.append(node("strong", null, String(n)), node("span", null, label)); metrics.append(m); }); sample.append(metrics);
+      [["Guide", 24], ["Buddy", 18], ["Questions", 12]].forEach(([label, value]) => { const row = node("div", "bar-row"); const track = node("div", "bar-track"); track.setAttribute("aria-hidden", "true"); const fill = node("div", "bar-fill"); fill.style.width = `${value / 24 * 100}%`; track.append(fill); row.append(node("span", null, label), track, node("strong", null, String(value))); sample.append(row); });
+      sample.append(node("p", "caption", "Source: synthetic example fixture. No reporting period or population is supplied. Don’t infer a trend or a cause."));
     }
-    const button = node("button", "catalog-pagination__button", String(page));
-    button.type = "button";
-    button.dataset.page = String(page);
-    button.setAttribute("aria-label", `Go to guide page ${page}`);
-    if (page === state.catalogPage) button.setAttribute("aria-current", "page");
-    button.addEventListener("click", () => {
-      state.catalogPage = page;
-      renderCatalog();
-      nav.querySelector(`button[data-page="${page}"]`)?.focus();
-    });
-    pages.append(button);
-    previousPage = page;
-  });
-  nav.append(pages);
-  addPageButton("Next", Math.min(pageCount, state.catalogPage + 1), { control: true, disabled: state.catalogPage === pageCount });
+    textAt("#example-caption", "A preview of the approach, not a downloadable native template. Use your approved source content and authoring tools for the final work.");
+  }
+  preview.append(sample);
+  textAt("#lesson-title", task.id === "speech" ? "Meaning first. Delivery second." : "Make the reader’s job easier.");
+  $("#example-lessons").replaceChildren(); list($("#example-lessons"), task.lessons, true);
+  const guides = $("#example-guides"); guides.replaceChildren();
+  task.guides.forEach(id => { const r = state.records.find(r => r.id === id); if (r) guides.append(link(`${r.name} →`, `#catalog?area=${r.area}&id=${encodeURIComponent(id)}`)); });
+  if (!$("#example-prompt").value || $("#example-prompt").value === state.generatedPrompt) {
+    state.generatedPrompt = promptFor(task, audience); $("#example-prompt").value = state.generatedPrompt;
+    textAt("#copy-status", "");
+  } else textAt("#copy-status", "Your prompt edits are kept. Reset prompt loads the suggestion for this example and audience.");
+  const next = TASKS[(TASKS.indexOf(task) + 1) % TASKS.length]; $("#next-example").href = `#examples/${next.id}`; textAt("#next-example", `Next: ${next.name.toLowerCase()} →`);
+}
+
+function renderBrand() {
+  const lesson = ["color", "type", "voice", "accessibility"].includes(state.route.item) ? state.route.item : "color";
+  $("#brand .choice-nav").querySelectorAll("a").forEach(a => { if (a.hash === `#brand/${lesson}`) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  const layout = node("div", "brand-layout"); const demo = node("div", "brand-demo"); const copy = node("div");
+  if (lesson === "color") {
+    copy.append(node("h2", null, "Give color a job."), node("p", null, "Use navy for a strong anchor, lime for emphasis, and supporting colors when they help the content. A little emphasis is easier to spot than a page full of it."));
+    list(copy, ["Use navy text on lime fills. Don’t use lime for small text on white.", "Forest can support links on light surfaces. Keep links recognizable without color alone.", "Check the actual text/background pairing. Approved colors don’t make every combination accessible.", "Use flat navy when approved gradient values aren’t available. Don’t make up brand stops."]);
+    copy.append(link("Read color application →", "#catalog?area=visual&id=visual.color-application"));
+    const swatches = node("div", "swatch-grid");
+    [["Navy", "primary.navy", false], ["Lime", "primary.lime", true], ["Forest", "accent.forest", false], ["Light forest", "accent.light_forest", true], ["Cloud", "neutral.cloud", true], ["Light cloud", "neutral.light_cloud", true]].forEach(([name, id, light]) => { const value = token(`brand.color.${id}`); const swatch = node("div", `swatch${light ? " swatch--light" : ""}`); swatch.style.backgroundColor = value; swatch.append(node("strong", null, name), node("code", null, value)); swatches.append(swatch); });
+    demo.append(swatches, node("p", "caption", "Values come from the canonical brand tokens. Click the guidance link for usage and limits."));
+  } else if (lesson === "type") {
+    copy.append(node("h2", null, "Let size and space do the organizing."), node("p", null, "Give the takeaway the strongest position. Put related detail together. Leave enough space for the reader to see the structure."));
+    list(copy, ["Use your approved template’s type styles instead of shrinking everything to fit.", "Use Arial in Slides and Docs. Web brand fonts require the appropriate licensed assets; this site uses system fallbacks.", "Use real headings and lists, not just bold paragraphs. Keep the reading order meaningful.", "The suite doesn’t publish a shared spacing scale. The layout here is an example, not a new token standard."]);
+    copy.append(link("Read typography guidance →", "#catalog?area=visual&id=visual.typography"));
+    const specimen = node("div", "type-example"); specimen.append(node("p", "eyebrow", "A DOCUMENT SCAN PATH"), node("h2", null, "Start with the answer."), node("p", null, "Make the summary useful before you add the detail."), node("h3", null, "What happens next"), node("p", null, "A descriptive heading tells readers where to look.")); demo.append(specimen, node("p", "caption", "Illustrative hierarchy in Arial, not a measured native template preview."));
+  } else if (lesson === "voice") {
+    copy.append(node("h2", null, "Keep the voice. Match the moment."), node("p", null, "Collibra’s voice is respectfully direct, wise, and clever and punchy. That last part is a little spark when it helps, not a joke in every message."));
+    const pillars = node("ul", "pillar-list"); state.content.voice_pillars.forEach(p => { const li = node("li"); li.append(node("strong", null, `${p.name}. `), document.createTextNode(p.contract)); pillars.append(li); }); copy.append(pillars);
+    copy.append(link("Browse voice guidance →", "#catalog?area=content&q=voice"));
+    const label = node("label", null, "What does the moment need?"); label.htmlFor = "brand-tone";
+    const select = node("select"); select.id = "brand-tone";
+    ["tone.action-oriented", "tone.inclusive-approachable", "tone.trust-building", "tone.teaching-wise"].forEach(id => { const t = state.content.tone_modes.find(t => t.id === id); const option = node("option", null, t.name); option.value = id; select.append(option); });
+    const output = node("div", "voice-example"); output.setAttribute("role", "status");
+    const update = () => { const tone = state.content.tone_modes.find(t => t.id === select.value); const examples = { "tone.action-oriented": "Open the guide, then talk through your first steps with your buddy.", "tone.inclusive-approachable": "New here? The guide is a good place to start. Your buddy can help with questions.", "tone.trust-building": "The guide covers the first steps. Some details may need a conversation with your buddy; it won’t answer every question.", "tone.teaching-wise": "The guide explains what to do first. Your buddy helps you understand how those steps fit your work." }; output.replaceChildren(node("p", "caption", tone.sound), node("blockquote", null, examples[tone.id]), node("p", "caption", "Synthetic wording, not an official announcement.")); };
+    select.addEventListener("change", update); demo.append(label, select, output); update();
+  } else {
+    copy.append(node("h2", null, "Clarity includes who can use it."), node("p", null, "A readable screen isn’t the whole check. Think about the person using a keyboard, listening to a document, or viewing your chart without its colors."));
+    list(copy, ["Check contrast: at least 4.5:1 for normal text and 3:1 for large text. Essential interface graphics also need adequate contrast.", "Write descriptive links and image descriptions. Use native headings for a useful reading order.", "Label chart values and status in words. Never make color the only explanation.", "Test keyboard focus, responsive layout, overflow, and reduced motion in the actual output."]);
+    copy.append(link("Read accessibility guidance →", "#catalog?area=visual&id=visual.accessibility"));
+    const accessible = node("div", "contrast-example"); accessible.append(node("h3", null, "Ready for review"), node("p", null, "The status is written out. You don’t need a green dot to know what it means.")); demo.append(accessible, node("p", "caption", "Try the page with Tab and Shift+Tab. Visible focus shows where you are. Review your own output separately."));
+  }
+  layout.append(demo, copy); $("#brand-lesson").replaceChildren(layout);
+}
+
+function catalogHash() { const p = new URLSearchParams(); if ($("#catalog-area").value !== "all") p.set("area", $("#catalog-area").value); if ($("#catalog-search").value) p.set("q", $("#catalog-search").value); if (state.catalogPage > 1) p.set("page", state.catalogPage); if (state.selectedId) p.set("id", state.selectedId); return `#catalog${p.size ? `?${p}` : ""}`; }
+function rememberCatalog() { history.replaceState(null, "", catalogHash()); }
+function renderPagination(total) {
+  const nav = $("#catalog-pagination"); nav.replaceChildren(); $("#catalog-pagination-row").hidden = !total;
+  const count = Math.max(1, Math.ceil(total / CATALOG_PAGE_SIZE)); textAt("#catalog-page-status", `Page ${state.catalogPage} of ${count}`);
+  const button = (label, page, control = false) => { const b = node("button", "catalog-pagination__button", label); b.type = "button"; b.dataset.page = page; b.setAttribute("aria-label", control ? `${label} guidance page` : `Go to guidance page ${page}`); if (!control && page === state.catalogPage) b.setAttribute("aria-current", "page"); if (control && page === state.catalogPage) b.disabled = true; b.addEventListener("click", () => { state.catalogPage = page; state.selectedId = null; renderCatalog(); renderDetail(); rememberCatalog(); nav.querySelector('[aria-current="page"]')?.focus(); }); return b; };
+  nav.append(button("Previous", Math.max(1, state.catalogPage - 1), true));
+  const pages = node("span", "catalog-pagination__pages"); let prior = 0;
+  [...new Set([1, count, state.catalogPage - 1, state.catalogPage, state.catalogPage + 1])].filter(p => p > 0 && p <= count).sort((a,b) => a-b).forEach(p => { if (p - prior > 1) { const e = node("span", "catalog-pagination__ellipsis", "…"); e.setAttribute("aria-hidden", "true"); pages.append(e); } pages.append(button(String(p), p)); prior = p; });
+  nav.append(pages, button("Next", Math.min(count, state.catalogPage + 1), true));
 }
 
 function renderCatalog() {
-  state.records = state.records.length ? state.records : makeRecords();
-  const filtered = filteredCatalogRecords();
-  const pageCount = Math.max(1, Math.ceil(filtered.length / CATALOG_PAGE_SIZE));
-  state.catalogPage = Math.min(Math.max(state.catalogPage, 1), pageCount);
-  const pageStart = (state.catalogPage - 1) * CATALOG_PAGE_SIZE;
-  const visible = filtered.slice(pageStart, pageStart + CATALOG_PAGE_SIZE);
-  const grid = $("#catalog-grid");
-  grid.replaceChildren();
-  if (!filtered.length) {
-    grid.append(node("div", "empty-card", "No guides match those filters. Try a broader search or area."));
-  } else {
-    visible.forEach((record) => {
-      const card = node("article", `catalog-card${record.id === state.selectedId ? " catalog-card--selected" : ""}`);
-      card.dataset.recordId = record.id;
-      const top = node("div", "catalog-card__topline");
-      top.append(node("span", "catalog-card__area", record.areaLabel), statusPill(record.maturity));
-      card.append(top, node("h3", null, record.name));
-      card.append(node("span", "catalog-card__plain-label", "In plain English"), node("p", null, record.purpose));
-      if (record.contract) card.append(node("p", "catalog-card__contract", record.contract));
-      card.append(node("span", "source-line", `Evidence: ${record.source}`));
-      addTags(card, record.tags);
-      const inspect = node("button", "card-link", record.id === state.selectedId ? "Open in detail" : "Open guidance");
-      inspect.type = "button";
-      inspect.setAttribute("aria-label", `${record.id === state.selectedId ? "Open this guidance in the detail panel" : "Open guidance"}: ${record.name}`);
-      inspect.setAttribute("aria-controls", "detail-panel");
-      inspect.setAttribute("aria-pressed", String(record.id === state.selectedId));
-      inspect.addEventListener("click", () => {
-        state.selectedId = record.id;
-        renderCatalog();
-        renderDetail();
-      });
-      card.append(inspect);
-      grid.append(card);
-    });
+  const query = $("#catalog-search").value.trim().toLowerCase(); const area = $("#catalog-area").value;
+  const filtered = state.records.filter(r => (area === "all" || r.area === area) && (!query || [r.id, r.name, r.purpose, r.contract, r.areaLabel].join(" ").toLowerCase().includes(query)));
+  const page = pageSlice(filtered, state.catalogPage); state.catalogPage = page.page;
+  const grid = $("#catalog-grid"); grid.replaceChildren();
+  if (!filtered.length) grid.append(node("p", null, "No guidance matches yet. Try another word or choose all guidance."));
+  page.records.forEach(r => { const card = node("article", `catalog-card${r.id === state.selectedId ? " catalog-card--selected" : ""}`); const top = node("div", "catalog-card__topline"); top.append(node("span", "catalog-card__area", r.areaLabel), statusPill(r.maturity)); const b = node("button", "card-link", "Read guidance →"); b.type = "button"; b.setAttribute("aria-label", `Read guidance: ${r.name}`); b.setAttribute("aria-controls", "detail-panel"); b.setAttribute("aria-pressed", String(r.id === state.selectedId)); b.addEventListener("click", () => { state.selectedId = r.id; renderCatalog(); renderDetail(); rememberCatalog(); $("#detail-panel").focus(); }); card.append(top, node("h3", null, r.name), node("p", null, r.purpose.length > 200 ? `${r.purpose.slice(0, 197)}…` : r.purpose), b); grid.append(card); });
+  textAt("#catalog-count", filtered.length ? `${area === "all" ? "All guidance" : $("#catalog-area").selectedOptions[0].textContent}: ${page.start + 1}–${Math.min(page.start + CATALOG_PAGE_SIZE, filtered.length)} of ${filtered.length}` : "0 guides found"); renderPagination(filtered.length);
+}
+
+function detailList(parent, title, value) { const items = Array.isArray(value) ? value : typeof value === "string" ? [value] : []; if (items.length) { parent.append(node("h4", null, title)); list(parent, items.map(i => typeof i === "string" ? i : JSON.stringify(i))); } }
+function renderDetail() {
+  const panel = $("#detail-panel"); panel.replaceChildren(); panel.tabIndex = -1;
+  const r = state.records.find(r => r.id === state.selectedId);
+  const title = node("h3", null, r ? r.name : "Choose a guide."); title.id = "detail-title";
+  if (!r) { panel.append(title, node("p", null, "Open a card to read the guidance here. Technical details stay tucked away until you need them.")); return; }
+  panel.append(statusPill(r.maturity), title, node("p", null, r.purpose));
+  if (r.contract && r.contract !== r.purpose) { panel.append(node("h4", null, "How to use it")); if (Array.isArray(r.contract)) list(panel, r.contract); else if (r.contract.length > 260) { const d = node("details"); d.append(node("summary", null, "Show full contract"), node("p", null, r.contract)); panel.append(d); } else panel.append(node("p", null, r.contract)); }
+  detailList(panel, "Good moves", r.raw.do); detailList(panel, "Avoid", r.raw.avoid);
+  const more = node("details", "detail-panel__more"); more.append(node("summary", null, "Show implementation detail"));
+  [["Accessibility", r.raw.accessibility], ["States", r.raw.states], ["Flow", r.raw.flow], ["Checks", r.raw.open_questions], ["Safety", r.raw.safety], ["Needs", r.raw.needs]].forEach(([t,v]) => detailList(more, t, v));
+  more.append(node("code", "detail-panel__id", r.id), node("p", "detail-panel__source", `Source: ${r.source}`)); panel.append(more);
+}
+
+function route(focus = false) {
+  const next = parseRoute(location.hash); const prior = state.route; state.route = next;
+  document.querySelectorAll("[data-page]").forEach(e => { e.hidden = e.id !== next.page; });
+  document.querySelectorAll(".site-nav a").forEach(a => { if (parseRoute(a.hash).page === next.page) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  document.title = `Collibra design suite | ${{home: "Make it clear", examples: "Try examples", brand: "Learn the brand", catalog: "Guidance library", start: "Use in Claude"}[next.page]}`;
+  if (state.ready) {
+    if (next.page === "examples") renderExample();
+    if (next.page === "brand") renderBrand();
+    if (next.page === "catalog") {
+      $("#catalog-area").value = next.area; $("#catalog-search").value = next.query;
+      state.catalogPage = next.catalogPage; state.selectedId = next.selectedId;
+      const selected = state.records.find(r => r.id === next.selectedId);
+      if (selected) {
+        const matching = r => [r.id, r.name, r.purpose, r.contract, r.areaLabel].join(" ").toLowerCase().includes(next.query.toLowerCase());
+        if ((next.area !== "all" && selected.area !== next.area) || !matching(selected)) {
+          $("#catalog-area").value = selected.area; $("#catalog-search").value = "";
+        }
+        const visible = state.records.filter(r => ($("#catalog-area").value === "all" || r.area === $("#catalog-area").value) && (!$("#catalog-search").value || matching(r)));
+        state.catalogPage = Math.floor(visible.indexOf(selected) / CATALOG_PAGE_SIZE) + 1;
+      }
+      renderCatalog(); renderDetail();
+    }
   }
-  const first = filtered.length ? pageStart + 1 : 0;
-  const last = filtered.length ? Math.min(pageStart + CATALOG_PAGE_SIZE, filtered.length) : 0;
-  setText("#catalog-count", filtered.length ? `Showing ${first}–${last} of ${filtered.length} guides` : "Showing 0 guides");
-  renderPagination(filtered.length);
-}
-
-function renderVoices() {
-  const lens = state.content.reader_lens;
-  const lensPanel = $("#reader-lens");
-  lensPanel.replaceChildren();
-  const lensCopy = node("div", "reader-lens__copy");
-  lensCopy.append(node("div", "eyebrow", "The reader lens"));
-  lensCopy.append(node("h3", null, lens.name));
-  lensCopy.append(node("p", null, lens.contract));
-  lensPanel.append(lensCopy);
-  const lensQuestions = node("div", "reader-lens__questions");
-  addList(lensQuestions, "Ask before you write", lens.questions, "voice-card__list");
-  addList(lensQuestions, "Translate in this order", lens.translation_steps, "voice-card__list");
-  lensPanel.append(lensQuestions);
-
-  const personaGrid = $("#persona-grid");
-  personaGrid.replaceChildren();
-  state.content.audience_personas.forEach((persona) => {
-    const card = node("article", "voice-card");
-    const header = node("div", "voice-card__header");
-    header.append(node("span", "eyebrow", "Audience"));
-    card.append(header, node("h4", null, persona.name), node("p", "voice-card__audience", persona.audience));
-    card.append(node("p", "voice-card__job", persona.job_to_be_done));
-    card.append(node("p", "voice-card__tone", persona.voice_shift));
-    addList(card, "They need", persona.needs, "voice-card__list");
-    addTags(card, persona.channels);
-    personaGrid.append(card);
-  });
-
-  const toneGrid = $("#tone-grid");
-  toneGrid.replaceChildren();
-  state.content.tone_modes.forEach((tone) => {
-    const card = node("article", "tone-card");
-    const header = node("div", "voice-card__header");
-    header.append(node("h4", null, tone.name));
-    card.append(header, node("p", null, tone.use_when), node("p", "tone-card__sound", tone.sound));
-    addTags(card, tone.channels);
-    toneGrid.append(card);
-  });
-
-  const mediumGrid = $("#medium-grid");
-  mediumGrid.replaceChildren();
-  state.content.mediums.forEach((medium) => {
-    const card = node("article", "medium-card");
-    const header = node("div", "voice-card__header");
-    header.append(node("h4", null, medium.name));
-    card.append(header, node("p", null, medium.reader_need));
-    addList(card, "Use this shape", medium.structure, "voice-card__list");
-    addTags(card, medium.tone_modes);
-    mediumGrid.append(card);
-  });
-}
-
-function renderJourney() {
-  const grid = $("#journey-grid");
-  grid.replaceChildren();
-  const steps = [
-    ["01", "Say what you are making", "A workflow, message, screen, deck, or review. Name the person who will use it and what they need to do next."],
-    ["02", "Open the closest guide", "Use Atlas to choose the area or search Explorer for the task in your own words. You do not need to read the whole suite."],
-    ["03", "Apply it in the real surface", "Write the label, shape the flow, choose the visual treatment, and include loading, empty, error, review, and completion states."],
-    ["04", "Check it as the reader", "Can someone scan it, understand the choice, use it with a keyboard, recover from a mistake, and know what happens next?"],
-    ["05", "Share the decision", "Ship the useful result. If you intentionally differ from the guide, keep the reason and owner where the team can find it."],
-  ];
-  steps.forEach(([number, title, description]) => {
-    const card = node("article", "journey-step");
-    card.append(node("span", "journey-step__number", number), node("h3", null, title), node("p", null, description));
-    grid.append(card);
-  });
-}
-
-function renderPrinciples() {
-  const grid = $("#principles-grid");
-  grid.replaceChildren();
-  const groups = [
-    ["Visual", state.visual.principles],
-    ["UX", state.ux.principles],
-    ["Content", state.content.voice_pillars.map((pillar) => `${pillar.name}: ${pillar.contract}`)],
-  ];
-  groups.forEach(([title, items]) => {
-    const card = node("article", "principle-group");
-    card.append(node("h3", null, title));
-    const list = node("ul");
-    items.slice(0, 6).forEach((item) => list.append(node("li", null, item)));
-    card.append(list);
-    grid.append(card);
-  });
-}
-
-function renderError(error) {
-  ["#summary-grid", "#maturity-rail", "#system-map-list", "#swatch-grid", "#type-list", "#foundation-signals", "#reader-lens", "#persona-grid", "#tone-grid", "#medium-grid", "#catalog-grid", "#journey-grid", "#principles-grid"].forEach((selector) => {
-    const target = $(selector);
-    if (target) target.replaceChildren(node("div", selector.includes("provenance") || selector.includes("swatch") || selector.includes("type") || selector.includes("foundation") || selector.includes("system-map") ? "error-card error-card--dark" : "error-card", `The reference data could not load: ${error.message}`));
-  });
-  setText("#catalog-count", "Reference data unavailable");
-  $("#catalog-pagination-row")?.setAttribute("hidden", "");
+  if (focus && (prior?.page !== next.page || prior?.item !== next.item)) { $(`#${next.page}-title`)?.focus(); window.scrollTo({ top: 0, behavior: "instant" }); }
 }
 
 async function load() {
-  const entries = await Promise.all(Object.entries(DATASETS).map(async ([key, path]) => {
-    const response = await fetch(new URL(`${DATA_ROOT}${path}`, document.baseURI), { cache: "no-store" });
-    if (!response.ok) throw new Error(`${key} returned ${response.status}`);
-    return [key, await response.json()];
-  }));
-  entries.forEach(([key, value]) => { state[key] = value; });
-  const main = $("#main");
-  ["system-map", "foundations", "adoption", "voices", "catalog", "principles"].forEach((id) => {
-    const section = document.getElementById(id);
-    if (main && section) main.append(section);
-  });
-  applyTokenVariables();
-  state.records = makeRecords();
-  renderSummary();
-  renderSystemMap();
-  renderVoices();
-  renderFoundations();
-  renderCatalog();
-  renderDetail();
-  renderJourney();
-  renderPrinciples();
-  const resetCatalogView = () => {
-    state.catalogPage = 1;
-    state.selectedId = null;
-    renderCatalog();
-    renderDetail();
-  };
-  ["#catalog-search", "#catalog-area"].forEach((selector) => {
-    $(selector)?.addEventListener("input", resetCatalogView);
-    $(selector)?.addEventListener("change", resetCatalogView);
+  route();
+  window.addEventListener("hashchange", () => route(true));
+  $(".skip-link").addEventListener("click", e => { e.preventDefault(); $("#main").focus(); });
+  const root = document.documentElement.dataset.sourceRoot || "../";
+  await Promise.all(Object.entries(DATASETS).map(async ([key, path]) => { const response = await fetch(new URL(`${root}${path}`, document.baseURI)); if (!response.ok) throw new Error(`Guidance returned ${response.status}`); state[key] = await response.json(); }));
+  applyTokens(); state.records = makeRecords(); state.ready = true; renderHome();
+  const waiting = state.records.filter(r => r.maturity !== "defined").length; textAt("#maturity-summary", waiting ? `${waiting} library entries are proposed, open, or deferred. Check their status before adopting them.` : "All current library entries are defined within their stated boundaries.");
+  $("#load-status").hidden = true; route();
+  $("#example-audience").addEventListener("change", renderExample); document.querySelectorAll("input[name=example-version]").forEach(e => e.addEventListener("change", renderExample));
+  ["#catalog-search", "#catalog-area"].forEach(s => $(s).addEventListener("input", () => { state.catalogPage = 1; state.selectedId = null; renderCatalog(); renderDetail(); rememberCatalog(); }));
+  $("#copy-prompt").addEventListener("click", async () => { try { await navigator.clipboard.writeText($("#example-prompt").value); textAt("#copy-status", "Prompt copied. Paste it into your approved Claude session."); } catch { $("#example-prompt").focus(); $("#example-prompt").select(); textAt("#copy-status", "Clipboard access wasn’t available. The prompt is selected; copy it using your browser’s Copy command."); } });
+  $("#reset-prompt").addEventListener("click", () => {
+    const task = TASKS.find(t => t.id === state.route.item) || TASKS[0];
+    state.generatedPrompt = promptFor(task, $("#example-audience").value);
+    $("#example-prompt").value = state.generatedPrompt; textAt("#copy-status", "Prompt reset to the current example and audience.");
   });
 }
-
-load().catch(renderError);
+if (typeof document !== "undefined") load().catch(() => { textAt("#load-status", "The guidance couldn’t load. Reload the page, or use the installation and reference links below. Examples are unavailable until the source data loads."); $("#load-status").append(link(" Open the public reference repository.", "https://github.com/chadronbryant-collibra/collibra-design-pages")); });
