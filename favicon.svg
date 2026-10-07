@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Design suite pencil and spark</title>
+  <rect width="64" height="64" rx="14" fill="#002B40"/>
+  <polygon points="15,38 37,16 46,25 24,47" fill="#72BF00"/>
+  <polygon points="13,49 15,38 24,47" fill="#FFFFFF"/>
+  <polygon points="46,35 49,42 56,45 49,48 46,55 43,48 36,45 43,42" fill="#FFFFFF"/>
+</svg>
