@@ -1,11 +1,11 @@
 {
   "$schema": "collibra-design/public-candidate-provenance/v1",
-  "sourceCommit": "e5c1775070aa29173c5525b8839d72d9d3104a97",
+  "sourceCommit": "b6ec510a74b1ccd745d63639b8b58819228fd291",
   "sanitizerVersion": "1.0.0",
   "contractVersion": "1.1.0",
-  "allowlistVersion": "1.0.1",
-  "allowlistSha256": "fc5c4dab890e56c75fcee3284a7b34b70e722af79f70ae3eff57e1a1bcc31c79",
-  "provenanceRegistryVersion": "1.0.1",
+  "allowlistVersion": "1.0.2",
+  "allowlistSha256": "2a146c035a329ef9d2d8da95bd8176efed5a43fac764f133c95d1a7b72951667",
+  "provenanceRegistryVersion": "1.0.2",
   "publicationMode": "in-place-remediation",
   "privatePathsIncluded": false,
   "self": {
@@ -20,7 +20,7 @@
     },
     {
       "path": ".gitattributes",
-      "sha256": "d60f352d0db1404c70afb4bb8b2ca3fd1c610572aa40720e8a0b7baa7885418c",
+      "sha256": "67c8553872a8e7d08366c8ec66767ef13938ea04f749c3bcdbe050c664d340af",
       "sourceId": "repository-controls"
     },
     {
@@ -114,6 +114,11 @@
       "sourceId": "design-atlas"
     },
     {
+      "path": "apple-touch-icon.png",
+      "sha256": "4abc043bdb11f920e7a22dd4abad6bf9dae5d20a738b562a4dd2e57a728b4e73",
+      "sourceId": "design-atlas"
+    },
+    {
       "path": "data/content/guide-patterns.json",
       "sha256": "a349f852b47397f0122f38b0940c4acdf29793ca28807c4d511a22fd501a7a0f",
       "sourceId": "design-atlas"
@@ -144,8 +149,23 @@
       "sourceId": "design-atlas"
     },
     {
+      "path": "favicon-32.png",
+      "sha256": "2ff65feab6c7605875bd2d62a26329ec0a46dea3be8f0215cf83043c33ab7696",
+      "sourceId": "design-atlas"
+    },
+    {
+      "path": "favicon.ico",
+      "sha256": "fba09b0b51e15b4b0db31dad6ff1620590a7888419f137ddd8bd8e5803442943",
+      "sourceId": "design-atlas"
+    },
+    {
+      "path": "favicon.svg",
+      "sha256": "859b906e6174d96893de2891788a1ffef4fdf6710588d63001250b7984b67b28",
+      "sourceId": "design-atlas"
+    },
+    {
       "path": "index.html",
-      "sha256": "39667839eca53e683ded9ded12fda6dd20512fdefd903f1eae90f478e6644863",
+      "sha256": "2b193bb8d3a928323119f246482d66b5c2be8aac81139384b5ecdea0a8203e03",
       "sourceId": "design-atlas"
     },
     {
