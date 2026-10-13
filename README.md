@@ -29,15 +29,19 @@ The plugin does not install those capabilities or a persistent memory service.
 
 ## Install in Claude Desktop
 
-Prerequisites: an already installed Claude Desktop app on macOS 11+ or Windows
+Prerequisites: an already installed Claude Desktop app on macOS 13+ or Windows
 10+, a paid Claude plan, and an organization policy that permits personal
-plugins.
+plugins. This supported package path does not extend to Linux.
 
-1. Open **Customize → Plugins → Personal plugins → Add marketplace**.
+1. Open **Customize → Plugins → Add → Add marketplace**.
 2. Add `chadronbryant-collibra/collibra-design-pages`.
 3. Select and install **Collibra design suite**.
 4. Start a new Chat or Cowork session and ask Claude to design, create, refine,
    simplify, or review a surface.
+
+These prerequisites and steps were verified 2026-10-13 against the official
+[Claude Desktop installation requirements](https://support.claude.com/en/articles/10065433-install-claude-desktop)
+and [plugin marketplace instructions](https://support.claude.com/en/articles/13837440-use-plugins-in-claude).
 
 The personal-plugin route requires no administrator password, operating-system
 elevation, system-directory write, environment-variable change, terminal

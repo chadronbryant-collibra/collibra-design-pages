@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.1 - adoption documentation correction, 2026-10-13
+
+- Correct the supported Claude Desktop prerequisite to macOS 13+ or Windows
+  10+ and the current marketplace route to **Customize → Plugins → Add → Add
+  marketplace**, with dated links to the official instructions.
+- Preserve the 1.2.0 creation release history and runtime boundary. This patch
+  adds no Linux support, dependency, connector, hook, persistence, or tenant
+  capability.
+
 ## 1.2.0 - creation experience, 2026-10-13
 
 - Add a dedicated web-app creation path, portable design brief, offline

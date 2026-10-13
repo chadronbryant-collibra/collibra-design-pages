@@ -7,7 +7,7 @@ description: >-
   return ranked, evidence-backed findings and do not silently redesign the
   artifact.
 metadata:
-  version: "1.2.0"
+  version: "1.2.1"
 ---
 
 # Collibra pre-ship review
