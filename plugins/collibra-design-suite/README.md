@@ -1,7 +1,7 @@
 # Collibra design suite 1.2
 
 - **Status:** public release
-- **Version:** `1.2.0`
+- **Version:** `1.2.1`
 - **Source:** the merged private `collibra-design` release branch
 
 The Collibra design suite helps people make content and experiences easier to
@@ -65,8 +65,14 @@ private source repository.
 
 The accountable owner approved public publication and in-place remediation
 on 2026-09-17. A paid-plan user can install the release in
-Claude Desktop through **Customize → Plugins → Personal plugins → Add
-marketplace**, add the public GitHub repository, and select this suite.
+Claude Desktop through **Customize → Plugins → Add → Add marketplace**, add
+the public GitHub repository, and select this suite.
+
+Verified 2026-10-13 against the official
+[Claude Desktop installation requirements](https://support.claude.com/en/articles/10065433-install-claude-desktop)
+and [plugin marketplace instructions](https://support.claude.com/en/articles/13837440-use-plugins-in-claude):
+this supported path requires an already installed Claude Desktop app on macOS
+13+ or Windows 10+. This package does not extend support to Linux.
 
 That route requires no operating-system elevation or Claude organization-admin
 role when personal plugins are permitted. Organization policy can disable
