@@ -1,6 +1,6 @@
 {
   "$schema": "collibra-design/public-candidate-provenance/v1",
-  "sourceCommit": "b6ec510a74b1ccd745d63639b8b58819228fd291",
+  "sourceCommit": "18558911ec1b233d38fbb4b0534430cd166f20f2",
   "sanitizerVersion": "1.0.0",
   "contractVersion": "1.1.0",
   "allowlistVersion": "1.0.2",
@@ -105,7 +105,7 @@
     },
     {
       "path": "SUPPORT.md",
-      "sha256": "cfe88526c6d1c88a4e8de89d5c4a8f2f49796219d056f47d42c12b055ed2d690",
+      "sha256": "9a25123d24e472a8a7cb645d92d397d06d5fde24b29178f999db3a5c9066cda0",
       "sourceId": "repository-controls"
     },
     {
