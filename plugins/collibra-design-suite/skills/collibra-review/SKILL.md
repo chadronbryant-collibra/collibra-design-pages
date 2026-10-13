@@ -7,7 +7,7 @@ description: >-
   return ranked, evidence-backed findings and do not silently redesign the
   artifact.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Collibra pre-ship review
@@ -15,6 +15,9 @@ metadata:
 Use this as a review gate, not as an invisible rewrite. Read
 `../../references/contract-index.md`, the relevant bundled catalog, and
 `../../references/output-protocol.md` before reporting findings.
+For a web app, also read `../../references/web-app-playbook.md`. When a
+machine-readable handoff is requested, use
+`../../references/review-receipt.schema.json`.
 
 ## Review in three passes
 
@@ -65,6 +68,11 @@ or evidence.`
 Use `blocker`, `high`, `medium`, or `low`. Prefer a few high-value findings to
 an exhaustive style list. Call out existing strengths when they materially
 change the decision, but do not bury the fixes.
+
+In a review receipt, keep generated, proposed, reviewed, and confirmed items
+separate. Mark each evidence check `checked` or `not-checked`, name the method
+or reason, and record only what that evidence supports. A receipt is not an
+approval, release decision, or proof of checks that were not run.
 
 Do not edit the artifact in review mode. If the user explicitly asks for
 `fix`, apply only the accepted blocking fixes after presenting the review and

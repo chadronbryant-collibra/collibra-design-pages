@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "artifact": "Synthetic offline request-review prototype",
+  "states": {
+    "generated": ["Single-file HTML, embedded CSS, and embedded JavaScript"],
+    "proposed": ["Synthetic requests and their next actions"],
+    "reviewed": ["Source structure and automated creation-experience tests"],
+    "confirmed": ["No remote resources, network calls, storage, authentication, or backend implementation"]
+  },
+  "evidence": [
+    {"check": "Offline source boundary", "status": "checked", "method": "Source inspection and automated pattern checks", "supports": "No remote resource, network, or browser-storage references in the example"},
+    {"check": "Required state model", "status": "checked", "method": "Automated HTML structure check", "supports": "Loading, empty, error, ready, and long-content regions exist"},
+    {"check": "Rendered keyboard and focus behavior", "status": "not-checked", "method": "No rendered browser or assistive-technology session was run", "supports": "No human acceptance claim"}
+  ],
+  "approval": false
+}

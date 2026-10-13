@@ -1,7 +1,7 @@
-# Collibra design suite 1.1
+# Collibra design suite 1.2
 
 - **Status:** public release
-- **Version:** `1.1.0`
+- **Version:** `1.2.0`
 - **Source:** the merged private `collibra-design` release branch
 
 The Collibra design suite helps people make content and experiences easier to
@@ -10,7 +10,7 @@ Claude for five jobs:
 
 - choose the right design, audience, medium, and accessibility guidance;
 - create and adjust an Artifact, dashboard, page, document structure, deck
-  outline, diagram, UI flow, or data story;
+  outline, diagram, UI flow, web app, speech, or data story;
 - refine emails, prompts, UI copy, briefs, and other Collibra-facing content;
 - simplify technical language without flattening the meaning; and
 - review a surface before it ships, with ranked, fixable findings.
@@ -25,7 +25,24 @@ plugin useful when the atlas is not available. It includes a metadata-only
 registry snapshot so the package can explain source maturity and channel
 policy without receiving local paths or licensed asset files.
 
-## Skills
+## Design a web app
+
+Ask: "Design a web app for my team to review proposals. Use synthetic data,
+make the main task clear, and include empty, loading, error, and success states."
+Claude starts with the reader and journey, then returns an editable offline
+prototype or a plan appropriate to the tools available. It does not provision
+authentication, connect a backend, or deploy an application.
+
+Reuse the portable brief in `references/design-brief.schema.json` for a new
+medium without losing the facts. See `examples/web-app/`, `examples/cross-medium/`,
+and `examples/speech/` for worked outputs. A separate review receipt records
+checked and unchecked evidence; it is not a brand or human approval.
+
+The site adds a guided brief builder and component-state playground. Inputs
+remain in the current page until you explicitly copy or download them. No
+plugin memory backend, automatic capture, or hidden persistence is added.
+
+## Five skill lanes
 
 | Skill | Use it when |
 |---|---|

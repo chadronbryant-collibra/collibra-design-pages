@@ -1,26 +1,30 @@
 ---
 name: collibra-create
 description: >-
-  Create and iteratively adjust a Collibra-aligned Artifact, dashboard, page,
-  document structure, deck outline, diagram, UI flow, or data story. Use when
-  the user wants a new audience-ready surface rather than guidance or review;
-  keep generated, proposed, reviewed, and confirmed content distinct.
+  Create and iteratively adjust a Collibra-aligned Artifact, web app, dashboard,
+  page, document structure, deck outline, diagram, UI flow, or data story. Use
+  when the user wants a new audience-ready surface rather than guidance or
+  review; keep generated, proposed, reviewed, and confirmed content distinct.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Collibra creation
 
 Create the smallest complete surface that helps the intended reader act. Read
 `../../references/contract-index.md`, `../../references/creation-playbook.md`,
-and only the catalog slices relevant to the requested medium.
+and only the catalog slices relevant to the requested medium. For a web app,
+also read `../../references/web-app-playbook.md`.
 
 ## Frame the result
 
 Identify the reader, decision, medium, content or data source, and requested
 output. Ask at most two focused questions only when missing inputs would
 materially change the result. Otherwise make a low-risk assumption and label
-it in the handoff.
+it in the handoff. When the work will produce several outputs or move between
+tools, use `../../references/design-brief.schema.json` as the portable brief.
+Return it to the user or pass it directly to the requested tool; do not persist
+it automatically.
 
 Choose a structure before decoration. Lead with the outcome, make hierarchy
 and state visible, preserve supplied facts, and never invent evidence,
@@ -31,6 +35,15 @@ metrics, owners, dates, links, or brand approvals. Mark proposed data clearly.
 - In Claude Chat, return a self-contained Artifact. For a web Artifact, use one
   portable HTML file with embedded CSS and JavaScript, no external packages,
   remote assets, analytics, hidden tracking, network requests, or storage.
+- For a public, portable web-app prototype, use the offline single-file path in
+  `../../references/web-app-playbook.md` and `medium.web-app`. Define the
+  journey, screens, state model, semantic structure, keyboard path, and
+  responsive behavior before styling. Include useful loading, empty, error,
+  ready, and long-content states when the app can encounter them.
+- Use native or private creation tools only when that host exposes them and the
+  user has separately authorized their effects. A prototype does not establish
+  authentication, backend behavior, persistence, deployment, or production
+  readiness.
 - In Cowork, write portable files only when the user requests a file and only
   into the user-connected folder in scope.
 - For branded documents, apply `medium.google-doc` and
@@ -41,6 +54,8 @@ metrics, owners, dates, links, or brand approvals. Mark proposed data clearly.
 - For decks, diagrams, UI flows, and data stories, return an editable structure
   with content, hierarchy, accessibility treatment, and explicit placeholders
   for unconfirmed facts.
+- For spoken output, apply `medium.speech`, make the intended pace and estimated
+  duration explicit, and preserve fact state and source in the working handoff.
 
 Use semantic HTML and logical reading order. Provide keyboard operation,
 visible focus, non-color cues, adequate contrast, reduced-motion behavior,
@@ -56,4 +71,7 @@ do not restart discovery unless the goal changed.
 
 Finish with an optional `collibra-review` pass. Distinguish what was generated,
 proposed, reviewed, and confirmed. Do not claim visual or runtime validation
-unless the rendered result or meaningful test evidence was inspected.
+unless the rendered result or meaningful test evidence was inspected. When a
+machine-readable handoff helps, use
+`../../references/review-receipt.schema.json`; the receipt records evidence
+and states, not approval.

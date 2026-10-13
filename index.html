@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" href="favicon-32.png?v=20261007" sizes="32x32" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=20261007" sizes="any" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261007" sizes="180x180" />
-  <link rel="stylesheet" href="styles.css?v=20261001-employee" />
+  <link rel="stylesheet" href="styles.css?v=20261013-create" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -17,7 +17,7 @@
     <div class="header-inner">
       <a class="wordmark" href="#home" aria-label="Collibra design suite home">Collibra <span>/ Design suite</span></a>
       <nav class="site-nav" aria-label="Main navigation">
-        <a href="#home">Overview</a><a href="#examples/deck">Try examples</a><a href="#brand">Learn the brand</a><a href="#catalog">Guidance library</a><a href="#start" class="nav-start">Use in Claude <span aria-hidden="true">↗</span></a>
+        <a href="#home">Overview</a><a href="#make/web-app">Make something</a><a href="#examples/deck">Try examples</a><a href="#brand">Learn the brand</a><a href="#catalog">Guidance library</a><a href="#start" class="nav-start">Use in Claude <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
@@ -30,7 +30,7 @@
           <h1 id="home-title" tabindex="-1">Good work.<br />Clearly told.</h1>
           <p class="lede">Turn a rough draft into a deck people follow, a guide they can use, or a message that makes sense.</p>
           <p>The design suite brings Collibra’s voice, visual style, and accessibility guidance into your everyday work. You bring the facts and the purpose.</p>
-          <div class="actions"><a class="button primary" href="#examples/deck">See what changes <span aria-hidden="true">→</span></a><a class="text-button" href="#start">Get started in Claude</a></div>
+          <div class="actions"><a class="button primary" href="#make/web-app">Design a web app <span aria-hidden="true">→</span></a><a class="text-button" href="#examples/deck">See what changes</a></div>
         </div>
         <a class="hero-preview" href="#examples/deck" aria-label="Explore the slide deck example">
           <div class="preview-caption"><span>FROM UPDATE TO STORY</span><span aria-hidden="true">↗</span></div>
@@ -40,8 +40,45 @@
       </div>
       <div class="section-heading"><div><p class="eyebrow">START WITH YOUR TASK</p><h2>What are you making?</h2></div><p>You don’t need to learn a design system first.<br />Choose an example close to your work.</p></div>
       <div id="task-cards" class="task-cards"></div>
+      <div class="next-strip"><div><p class="eyebrow">MAKE SOMETHING</p><h2>One brief. A useful place to start.</h2><p>Describe the reader, the task, and your source. Prepare a prompt for a web app, a dashboard, a document, or another format.</p></div><div class="actions"><a class="button primary" href="#make/web-app">Build your brief →</a><a class="text-button" href="#playground">Try interface states</a></div></div>
       <div class="why-strip"><h2>A little structure goes a long way.</h2><div><p><strong>Make the point easy to find.</strong><br />Lead with what the reader needs, then layer the detail.</p><p><strong>Sound like us.</strong><br />Direct, thoughtful, and human. Change the tone for the moment.</p><p><strong>Help more people use it.</strong><br />Readable type, useful labels, and meaning that doesn’t rely on color.</p></div></div>
       <div class="next-strip"><div><p class="eyebrow">USE IT YOUR WAY</p><h2>A reference when you need it.<br />A collaborator when you want one.</h2><p>Browse the guidance yourself, or install the five-skill Claude plugin to create, refine, simplify, and review your work.</p></div><a class="button primary" href="#start">Choose how to start →</a></div>
+    </section>
+
+    <section id="make" class="page" data-page hidden aria-labelledby="make-title">
+      <div class="page-heading"><p class="eyebrow">MAKE SOMETHING</p><h1 id="make-title" tabindex="-1">Start with the person using it.</h1><p class="lede">Turn your idea into a reusable brief and a tailored prompt. Try a made-up web app first, or bring your own authorized content.</p></div>
+      <p class="privacy-note">Your input stays in this page’s memory until you reload or close it. Nothing you enter is sent, stored by the site, or added to a link. Copying and downloading happen only when you choose them.</p>
+      <div class="actions builder-start"><button id="brief-example" type="button" class="button secondary">Load synthetic web-app brief</button><a class="text-button" href="#playground">Explore empty, loading, and error states →</a></div>
+      <p class="caption">Loading the example replaces the brief fields below. It describes an offline prototype with made-up tasks, not a connected service.</p>
+      <div class="builder-layout">
+        <form id="brief-form" novalidate aria-describedby="brief-help">
+          <h2>1. Tell us what you need</h2><p id="brief-help">The reader, decision, source, and output are required. Use a source description if you don’t have approved material to paste.</p>
+          <label for="brief-reader">Who will use this? <span class="caption">Required</span><input id="brief-reader" name="reader" maxlength="4000" required placeholder="For example: colleagues planning their first week" /></label>
+          <label for="brief-decision">What should they understand, decide, or do? <span class="caption">Required</span><textarea id="brief-decision" name="decision" rows="3" maxlength="4000" required></textarea></label>
+          <label for="brief-source">What source should the work use? <span class="caption">Required</span><textarea id="brief-source" name="source" rows="4" maxlength="12000" required aria-describedby="brief-source-help"></textarea></label><p id="brief-source-help" class="caption">Name your source and its limits. A pasted claim is not independently verified here.</p>
+          <label for="brief-medium">What are you making?<select id="brief-medium" name="medium"><option value="web-app">Web app</option><option value="dashboard">Dashboard</option><option value="document">Document</option><option value="deck">Slide deck</option><option value="speech">Speech</option><option value="message">Message</option><option value="diagram">Diagram</option><option value="ui-flow">Interface flow</option><option value="data-story">Data story</option></select></label>
+          <label for="brief-output">What should the first version include? <span class="caption">Required</span><textarea id="brief-output" name="output" rows="3" maxlength="4000" required placeholder="For example: a task list, a detail view, and a clear next action"></textarea></label>
+          <label for="brief-tone">What tone suits the moment? <span class="caption">Optional</span><input id="brief-tone" name="tone" maxlength="4000" placeholder="Direct and approachable" /></label>
+          <label for="brief-constraints">What must stay true? <span class="caption">Optional, one constraint per line</span><textarea id="brief-constraints" name="constraints" rows="3" maxlength="12000" placeholder="Use only supplied facts&#10;Keep the main task usable on a small screen"></textarea></label>
+          <fieldset id="brief-facts"><legend>Facts and proposals <span class="caption">Optional</span></legend><p class="caption">Keep confirmed facts separate from ideas. “Confirmed” records your assessment; this page does not verify it.</p><div id="brief-fact-rows"></div><button id="brief-add-fact" type="button" class="button secondary">Add a fact or proposal</button></fieldset>
+          <p id="brief-error" class="form-error" role="alert" hidden></p>
+          <button class="button primary" type="submit">Prepare prompt →</button><p id="brief-status" class="caption" role="status"></p>
+        </form>
+        <aside class="builder-output" aria-labelledby="builder-output-title"><h2 id="builder-output-title">2. Choose your next output</h2><p>Reuse the same brief for another format. Each choice prepares instructions for your authoring tool.</p>
+          <label for="brief-lane">Prompt for<select id="brief-lane"><option value="primary">My chosen format</option><option value="web-app">Web app</option><option value="dashboard">Dashboard</option><option value="document">Document</option><option value="deck">Slide deck</option><option value="speech">Speech</option><option value="message">Message</option><option value="diagram">Diagram</option><option value="ui-flow">Interface flow</option><option value="data-story">Data story</option></select></label>
+          <label for="brief-mode">Where will you use it?<select id="brief-mode"><option value="public">Public example or portable prototype</option><option value="private">Private work in an approved tool</option></select></label><p id="brief-handoff" class="caption"></p>
+          <label for="brief-prompt">Prepared prompt<textarea id="brief-prompt" readonly rows="16" placeholder="Complete the brief, then choose Prepare prompt."></textarea></label>
+          <div class="actions"><button id="brief-copy-prompt" type="button" class="button primary">Copy prompt</button><button id="brief-copy-json" type="button" class="button secondary">Copy brief JSON</button><button id="brief-download" type="button" class="button secondary">Download brief JSON</button></div><p id="brief-copy-status" role="status" class="caption"></p>
+          <details id="brief-evidence"><summary>Sources, proposals, and review</summary><div id="brief-evidence-content"></div><p class="caption"><a href="#catalog?area=ux&id=ux.provenance.inspectable">Read source disclosure guidance →</a></p></details>
+          <details><summary>Reuse a saved brief</summary><p>Paste or select a design brief JSON file. A valid import replaces the fields. Invalid imports leave your work intact. Limit: 64 KiB, 50 unique constraints, and 100 facts with unique IDs. Fields have length limits; leading or trailing whitespace and duplicate JSON fields are rejected.</p><label for="brief-import">Brief JSON<textarea id="brief-import" rows="5" maxlength="65536" spellcheck="false"></textarea></label><button id="brief-import-button" type="button" class="button secondary">Import pasted brief</button><label for="brief-file">Or select a brief file<input id="brief-file" type="file" accept=".json,application/json" /></label><p id="brief-import-status" role="status" class="caption"></p><label for="brief-json">Brief JSON to copy<textarea id="brief-json" rows="5" readonly spellcheck="false"></textarea></label></details>
+        </aside>
+      </div>
+      <div class="speech-tools"><h2>How long will it take to say?</h2><p>Paste the spoken words, then choose your own pace. This estimate is words divided by pace; pauses, questions, and delivery can add time. The starting pace is an editable example, not a brand rule.</p><label for="speech-text">Words you plan to say<textarea id="speech-text" rows="4" maxlength="20000"></textarea></label><label for="speech-pace">Speaking pace (words per minute)<input id="speech-pace" type="number" min="60" max="240" value="140" step="1" aria-describedby="speech-estimate" /></label><p id="speech-estimate" role="status"></p></div>
+    </section>
+
+    <section id="playground" class="page" data-page hidden aria-labelledby="playground-title"><div class="page-heading"><p class="eyebrow">TRY AN INTERFACE</p><h1 id="playground-title" tabindex="-1">A useful app handles the in-between.</h1><p class="lede">Explore the same made-up task list with no content, a wait, a failure, a result, and longer content. These controls simulate states entirely in your browser.</p></div>
+      <fieldset class="state-choices"><legend>Choose a component state</legend><label><input type="radio" name="play-state" value="empty" checked /> Empty</label><label><input type="radio" name="play-state" value="loading" /> Loading</label><label><input type="radio" name="play-state" value="error" /> Error</label><label><input type="radio" name="play-state" value="success" /> Success</label><label><input type="radio" name="play-state" value="long-content" /> Long content</label></fieldset>
+      <div class="playground-layout"><article class="playground-demo" aria-labelledby="play-demo-title"><p class="eyebrow">OFFLINE SYNTHETIC WEB APP</p><h2 id="play-demo-title">My first-week tasks</h2><p id="play-state-status" role="status"></p><div id="play-content"></div><p id="play-action-status" role="status" class="caption"></p></article><aside class="lesson-panel"><h2>Try it with a keyboard</h2><p>Use Tab to reach the state choices, then arrow keys to switch between them. Focus stays on your choice as the preview updates. Tab again to reach the preview’s action.</p><p id="play-focus-note"></p><p>Actions update this synthetic example only. They do not create tasks or contact a service. Status is written in words and announced without moving focus.</p><div class="guide-links"><a href="#catalog?area=ui&id=ui.content.empty-state">Empty-state component →</a><a href="#catalog?area=ux&id=ux.error-recovery">Recovery guidance →</a><a href="#make/web-app">Design your web app →</a></div></aside></div>
     </section>
 
     <section id="examples" class="page" data-page hidden aria-labelledby="examples-title">
@@ -85,6 +122,6 @@
   </main>
   <footer class="site-footer"><p>Collibra design suite <span>· Practical guidance for the work you share</span></p><div><a href="#start">Help &amp; installation</a><a href="https://github.com/chadronbryant-collibra/collibra-design-pages">Source &amp; licenses ↗</a></div><p class="caption">Guidance and synthetic examples are CC BY 4.0; code is Apache-2.0. Collibra trademarks, restricted assets, and licensed fonts are excluded.</p></footer>
   <noscript><p class="noscript-message">Interactive examples need JavaScript. You can still <a href="https://github.com/chadronbryant-collibra/collibra-design-pages/blob/main/README.md">read installation instructions and the guidance in the public repository</a>.</p></noscript>
-  <script type="module" src="app.js?v=20261001-employee"></script>
+  <script type="module" src="app.js?v=20261013-create"></script>
 </body>
 </html>
