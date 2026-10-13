@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "reader": "A program lead deciding which synthetic request to review next",
+  "decision": "Choose a request or recover from a non-ready state",
+  "source": "Synthetic request fixture included in this example",
+  "output": "One offline, responsive web-app prototype",
+  "medium": "web-app",
+  "tone": "plainly useful",
+  "constraints": [
+    "No remote resources, network requests, storage, authentication, or backend claims",
+    "Expose loading, empty, error, ready, and long-content states"
+  ],
+  "facts": [
+    {
+      "id": "fact.synthetic.queue-count",
+      "text": "The ready-state fixture contains three synthetic requests.",
+      "state": "proposed",
+      "source": "Synthetic example fixture"
+    },
+    {
+      "id": "fact.synthetic.review-boundary",
+      "text": "Selecting a request changes only this in-memory prototype view.",
+      "state": "confirmed",
+      "source": "Prototype implementation"
+    }
+  ]
+}

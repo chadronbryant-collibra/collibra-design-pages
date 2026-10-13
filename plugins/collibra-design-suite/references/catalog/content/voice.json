@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "catalog_version": "0.6.0",
+  "catalog_version": "0.7.0",
   "area_id": "area.design.content",
   "status": "active",
   "title": "Collibra content and voice contract",
@@ -759,6 +759,54 @@
         "tabs that merely split a short linear narrative"
       ],
       "source": "visual.document-composition and Collibra content guidance",
+      "maturity": "defined"
+    },
+    {
+      "id": "medium.web-app",
+      "name": "Web app",
+      "reader_need": "Complete a task through clear screens, actions, and recoverable states.",
+      "structure": [
+        "state the reader job and primary journey",
+        "name screens, data, actions, and permissions",
+        "show empty, loading, error, success, and long-content states",
+        "separate a local prototype from a connected or deployed application"
+      ],
+      "tone_modes": [
+        "tone.action-oriented",
+        "tone.trust-building",
+        "tone.plainly-useful"
+      ],
+      "avoid": [
+        "a landing page presented as a working application",
+        "simulated sign-in presented as authentication",
+        "invented data connections or deployment receipts",
+        "styling before the task and state model are clear"
+      ],
+      "source": "Collibra creation practice, composed from the existing product UI, UX, accessibility, and evidence contracts; not an additional measured brand rule.",
+      "maturity": "defined"
+    },
+    {
+      "id": "medium.speech",
+      "name": "Speech and spoken update",
+      "reader_need": "Follow the point while listening and understand the requested action.",
+      "structure": [
+        "open with the point and why it matters to this audience",
+        "use spoken sentences and deliberate pause cues",
+        "preserve facts, sources, and uncertainty across written and spoken versions",
+        "estimate duration from a stated speaking pace and keep rehearsal notes separate"
+      ],
+      "tone_modes": [
+        "tone.aligned-purposeful",
+        "tone.confident-approachable",
+        "tone.inclusive-approachable"
+      ],
+      "avoid": [
+        "written jargon read aloud",
+        "an estimated duration presented as measured delivery",
+        "unrequested speaker notes in the audience copy",
+        "a local adaptation presented as official speech guidance"
+      ],
+      "source": "Local spoken-medium adaptation of the existing Collibra voice and reader-first content contracts; not an additional measured brand rule.",
       "maturity": "defined"
     },
     {
