@@ -16,6 +16,17 @@ jobs:
     runs-on: [self-hosted, linux, x64, jarvis-pr-ephemeral]
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify new publication identities
+        env:
+          METADATA_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if [[ -n "$METADATA_BASE" && "$METADATA_BASE" != 0000000000000000000000000000000000000000 ]]; then
+            python3 scripts/check_commit_metadata.py --base "$METADATA_BASE"
+          else
+            python3 scripts/check_commit_metadata.py
+          fi
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"

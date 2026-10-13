@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "tokens_version": "1.2.0",
+  "source": {
+    "path": "tokens/collibra.tokens.json",
+    "sha256": "2159cb72b6b7baff02a8e1e2b506c862203eaacd2ed732aa2f7a957966a973a8",
+    "encoding": "raw-file-bytes"
+  },
+  "boundary": "Implementation aliases, not additional brand tokens. No spacing scale, gradient stops, status palette, font files, or alternate theme is supplied.",
+  "styles": {
+    "color-heading": {
+      "value": "#002B40",
+      "tokenId": "brand.color.primary.navy",
+      "evidence": "MEASURED"
+    },
+    "color-body": {
+      "value": "#4B4B4B",
+      "tokenId": "brand.color.neutral.charcoal",
+      "evidence": "MEASURED"
+    },
+    "color-surface": {
+      "value": "#FFFFFF",
+      "tokenId": "brand.color.neutral.white",
+      "evidence": "MEASURED"
+    },
+    "color-muted-surface": {
+      "value": "#F0F2F3",
+      "tokenId": "brand.color.neutral.light_cloud",
+      "evidence": "MEASURED"
+    },
+    "color-dark-surface": {
+      "value": "#002B40",
+      "tokenId": "brand.color.primary.navy",
+      "evidence": "MEASURED"
+    },
+    "color-on-dark": {
+      "value": "#DFE6E8",
+      "tokenId": "brand.color.neutral.cloud",
+      "evidence": "MEASURED"
+    },
+    "color-action-fill": {
+      "value": "#72BF00",
+      "tokenId": "brand.color.primary.lime",
+      "evidence": "MEASURED"
+    },
+    "color-action-text": {
+      "value": "#002B40",
+      "tokenId": "brand.color.primary.navy",
+      "evidence": "MEASURED"
+    },
+    "color-link": {
+      "value": "#03755F",
+      "tokenId": "brand.color.accent.forest",
+      "evidence": "MEASURED"
+    },
+    "font-web": {
+      "value": "system-ui, -apple-system, Segoe UI, sans-serif",
+      "tokenId": "operational.type.web_font",
+      "evidence": "OPERATIONAL_FALLBACK"
+    },
+    "font-document": {
+      "value": "Arial",
+      "tokenId": "brand.type.family.presentation",
+      "evidence": "MEASURED"
+    },
+    "radius-control": {
+      "value": "4px",
+      "tokenId": "brand.radius.scale",
+      "evidence": "MEASURED"
+    }
+  }
+}

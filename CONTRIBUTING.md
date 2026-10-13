@@ -10,6 +10,12 @@ executable plugin scripts, subprocesses, credentials, analytics, trackers,
 remote runtime assets, or package dependencies. Add a meaningful behavior or
 boundary test with each contract change.
 
+Use GitHub no-reply author and committer identities for new public commits.
+Run `python scripts/check_commit_metadata.py --base <exact-base-commit>` before
+publication. The public validation workflow checks newly proposed commit
+metadata, and deployment checks the final publishing commit. Historical
+metadata requires its own scoped review; this process does not rewrite history.
+
 The release licenses are Apache-2.0 for code and CC BY 4.0 for guidance or
 synthetic examples. Collibra marks, logos, proprietary fonts, trade dress,
 and restricted assets are excluded.

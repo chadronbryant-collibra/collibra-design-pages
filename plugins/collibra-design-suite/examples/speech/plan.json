@@ -1,0 +1,7 @@
+{
+  "pace_wpm": 130,
+  "word_count": 54,
+  "estimated_duration_seconds": 25,
+  "estimate_method": "word_count divided by pace_wpm, multiplied by 60 and rounded to the nearest second",
+  "contract_status": "planning aid, not an official speech or approval contract"
+}

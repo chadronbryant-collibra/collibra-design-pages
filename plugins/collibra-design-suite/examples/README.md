@@ -15,6 +15,16 @@ content you are authorized to use.
 See `dashboard/WALKTHROUGH.md` for the complete creation and adjustment flow.
 Representative finished outputs also cover a `document/team-guide.md`,
 `slide-diagram/decision-flow.svg`, `ui-flow/recovery-flow.html`, and
-`content/refinement.md`. HTML examples use measured palette values and clearly
+`content/refinement.md`.
+
+The `web-app/` example is a runnable offline single-file prototype with a
+journey, screen and state model, keyboard path, responsive reflow, and visible
+loading, empty, error, ready, and long-content states. The `cross-medium/`
+example applies one portable brief to a dashboard summary, message, and spoken
+update while preserving fact IDs, state, and source. The `speech/` example
+shows pace and estimated-duration planning without claiming an official speech
+contract. Each example is synthetic and remains proposed.
+
+HTML examples use measured palette values and clearly
 labeled system-font and content-driven responsive fallbacks. Those fallbacks
 are operational accessibility choices, not new Collibra brand tokens.
