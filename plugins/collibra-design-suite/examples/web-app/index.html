@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Synthetic request review</title>
+  <style>
+    :root { color-scheme:light; --navy:#002B40; --ink:#4B4B4B; --surface:#FFFFFF; --soft:#F0F2F3; --forest:#03755F; --light-forest:#B6D8D1; --cloud:#DFE6E8; --focus:#002B40; }
+    * { box-sizing:border-box; }
+    body { margin:0; font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); background:var(--soft); }
+    header { color:var(--surface); background:var(--navy); }
+    header > div, main, footer { width:min(100% - 2rem,72rem); margin-inline:auto; padding-block:1.25rem; }
+    h1 { margin:.25rem 0; font-size:clamp(1.8rem,5vw,3rem); }
+    h2 { color:var(--navy); }
+    .eyebrow { font-size:.8rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+    .controls, .layout, .cards { display:grid; gap:1rem; }
+    .controls { grid-template-columns:minmax(12rem,24rem) auto; align-items:end; }
+    .layout { grid-template-columns:minmax(0,2fr) minmax(16rem,1fr); }
+    .cards { grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .panel, .card { background:var(--surface); border:1px solid var(--cloud); border-radius:4px; padding:1rem; }
+    .card[aria-current="true"] { border:3px solid var(--forest); }
+    label { display:block; font-weight:700; }
+    select, button { min-height:44px; font:inherit; border:2px solid var(--navy); border-radius:4px; padding:.55rem .75rem; }
+    select { width:100%; background:var(--surface); color:var(--ink); }
+    button { color:var(--surface); background:var(--navy); cursor:pointer; }
+    button:hover { background:var(--forest); border-color:var(--forest); }
+    :focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
+    .status { border-left:.45rem solid var(--forest); background:var(--light-forest); padding:1rem; }
+    .error { border-left-color:var(--navy); }
+    .long { max-height:15rem; overflow:auto; }
+    [hidden] { display:none; }
+    @media (max-width:48rem) { .controls, .layout, .cards { grid-template-columns:1fr; } header > div, main, footer { width:min(100% - 1.25rem,72rem); } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; scroll-behavior:auto!important; transition:none!important; } }
+  </style>
+</head>
+<body>
+  <header><div><div class="eyebrow">Synthetic example · proposed requests</div><h1>Choose the next request to review</h1><p>This offline prototype demonstrates the complete state model without saving or sending a selection.</p></div></header>
+  <main>
+    <section aria-labelledby="journey-title">
+      <h2 id="journey-title">Review queue</h2>
+      <p>Journey: inspect the queue, choose one request, and see the next safe action. Use the state control to inspect recovery behavior.</p>
+      <div class="controls">
+        <div><label for="state">Prototype state</label><select id="state"><option value="ready">Ready</option><option value="loading">Loading</option><option value="empty">Empty</option><option value="error">Error</option><option value="long">Long content</option></select></div>
+        <button id="apply" type="button">Show state</button>
+      </div>
+    </section>
+    <p id="announcement" class="status" role="status" aria-live="polite">Ready: 3 synthetic requests are available.</p>
+    <div class="layout">
+      <section class="panel" aria-labelledby="results-title">
+        <h2 id="results-title">Requests</h2>
+        <div id="loading" hidden><p>Loading synthetic requests…</p></div>
+        <div id="empty" hidden><p><strong>No requests are waiting.</strong></p><p>Change the state to Ready to continue the example.</p></div>
+        <div id="error" class="status error" hidden><p><strong>We could not load the synthetic requests.</strong></p><p>No work was lost. Change the state to Ready to try the local fixture again.</p></div>
+        <div id="ready" class="cards">
+          <article class="card" tabindex="0" data-name="Terms review"><h3>Terms review</h3><p>Confirm two proposed definitions.</p><button type="button" data-select="Terms review">Select terms review</button></article>
+          <article class="card" tabindex="0" data-name="Lineage decision"><h3>Lineage decision</h3><p>Assign an owner to a synthetic decision.</p><button type="button" data-select="Lineage decision">Select lineage decision</button></article>
+          <article class="card" tabindex="0" data-name="Access summary"><h3>Access summary</h3><p>Review a proposed audience summary.</p><button type="button" data-select="Access summary">Select access summary</button></article>
+        </div>
+        <div id="long" class="long" tabindex="0" aria-label="Long synthetic request details" hidden>
+          <h3>Long request details</h3>
+          <p>This named, keyboard-focusable region demonstrates safe overflow. A real request may contain context, evidence, constraints, alternatives, consequences, and unresolved questions that must remain readable without pushing the primary action off the page.</p>
+          <p>The content wraps inside the panel and the region scrolls vertically when needed. It contains no customer, tenant, or live product data. Its only purpose is to exercise the long-content layout and reading order.</p>
+          <p>Keep material conditions beside the decision they change. Do not reduce type size, hide evidence, or promote proposed content simply to make a dense request fit.</p>
+        </div>
+      </section>
+      <aside class="panel" aria-labelledby="selection-title"><h2 id="selection-title">Selection</h2><p id="selection">Nothing selected. Choose a request when the Ready state is visible.</p><p><strong>Effect:</strong> this selection exists only in page memory and disappears when the file closes or reloads.</p></aside>
+    </div>
+  </main>
+  <footer><p>Synthetic design-suite example. Generated and proposed content needs owner review. Source inspection is not rendered, browser, keyboard, or assistive-technology acceptance.</p></footer>
+  <script>
+    const names=['loading','empty','error','ready','long'];
+    const state=document.getElementById('state');
+    const announcement=document.getElementById('announcement');
+    const messages={loading:'Loading: the synthetic request fixture is being prepared.',empty:'Empty: no synthetic requests are waiting.',error:'Error: the synthetic fixture could not be shown. No work was lost.',ready:'Ready: 3 synthetic requests are available.',long:'Long content: request details are available in a scrollable named region.'};
+    function showState(){const selected=state.value;names.forEach(name=>document.getElementById(name).hidden=name!==selected);announcement.textContent=messages[selected];}
+    document.getElementById('apply').addEventListener('click',showState);
+    document.querySelectorAll('[data-select]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.card').forEach(card=>card.removeAttribute('aria-current'));button.closest('.card').setAttribute('aria-current','true');document.getElementById('selection').textContent=`Selected: ${button.dataset.select}. Review its proposed details before any durable action.`;}));
+  </script>
+</body>
+</html>

@@ -32,6 +32,9 @@ full public snapshot is in `references/catalog/`; the visual reference is the
 | Native guides and authoring | `catalog/content/guide-patterns.json` | Conditional team hub, initiative, and task-guide sections; ordered design, bundled Collibra refinement, and audience-ready review; audience and private content boundaries. |
 | Slides | `slides-contract.md` | Reader-first slide hierarchy, safe areas, accessibility, evidence, and translation to web, docs, and product. |
 | Registry | `catalog/registry/design-registry.json` | Metadata-only source labels, collection maturity, working-default options, and channel policy. |
+| Portable creation brief | `design-brief.schema.json` | Closed handoff for reader, decision, source, output, medium, optional tone and constraints, and fact-level state and provenance. |
+| Web-app creation | `web-app-playbook.md` | Journeys, screens, state model, semantic HTML, public offline prototypes, authorized private-tool routing, and acceptance checks. |
+| Review receipt | `review-receipt.schema.json` | Machine-readable separation of output states and checked or not-checked evidence. It is not approval. |
 
 ## Reader lenses
 

@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.2.1 - adoption documentation correction, 2026-10-13
+
+- Correct the supported Claude Desktop prerequisite to macOS 13+ or Windows
+  10+ and the current marketplace route to **Customize → Plugins → Add → Add
+  marketplace**, with dated links to the official instructions.
+- Preserve the 1.2.0 creation release history and runtime boundary. This patch
+  adds no Linux support, dependency, connector, hook, persistence, or tenant
+  capability.
+
+## 1.2.0 - creation experience, 2026-10-13
+
+- Add a dedicated web-app creation path, portable design brief, offline
+  proposal-review prototype, and explicit journey, screen, and state planning.
+- Add cross-medium fact-preserving examples, spoken-update timing, a separate
+  review receipt, and source-bound portable style exports.
+- Keep the five skills and dependency-free public boundary. Native delivery,
+  authentication, backend access, deployment, and durable memory remain
+  separate capabilities with their own authority and evidence.
+
 ## 1.1.0 - public release, 2026-09-24
 
 - Added the public-safe governed program-brand-extension contract so internal

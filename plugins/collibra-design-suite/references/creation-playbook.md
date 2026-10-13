@@ -3,11 +3,29 @@
 Use this reference for net-new surfaces. It supplements the catalog; it does
 not turn an open token or proposed rule into an approved default.
 
-## Minimum creation brief
+## Portable creation brief
 
-Capture five facts: reader, decision, medium, source material, and output. Ask
-no more than two questions. Safe defaults are a general internal reader,
-clearly labeled synthetic data, and an editable draft that needs owner review.
+Capture reader, decision, source material, output, and one supported medium
+from `design-brief.schema.json`. The closed JSON shape is shared by the public
+suite and an authorized private creation host; it carries facts and intent, not
+tool authority. Optional tone and constraints travel with the brief. Each fact
+keeps its stable ID, text, `confirmed` or `proposed` state, and source across
+outputs. Use trimmed, nonempty, non-NUL strings and keep every fact ID unique
+within the brief.
+
+Ask no more than two questions. Safe defaults are a general reader, clearly
+labeled synthetic data, and an editable draft that needs owner review. Return
+the brief as part of the requested output or pass it to the selected tool. Do
+not save, upload, or register it automatically.
+
+## Product truth and output style
+
+Keep durable product truth separate from per-output style. Facts, behavior,
+states, source meaning, and human decisions stay stable unless the user changes
+them. Tone, density, hierarchy, layout, pace, and visual treatment may change
+for the medium. A punchier message or shorter speech must not promote a
+proposed fact, erase its source, or imply a capability the product does not
+have.
 
 ## Artifact contract
 
@@ -26,6 +44,17 @@ Required checks:
 - useful reflow at narrow widths without clipped content or horizontal page
   scrolling; and
 - clear empty, loading, error, and proposed-data treatments when applicable.
+
+Read `web-app-playbook.md` for journeys, screen and state models, public versus
+private routes, and the complete web-app acceptance contract.
+
+## Spoken output
+
+For a speech or spoken update, preserve fact IDs and states in the private
+working handoff, apply `medium.speech`, then write for hearing rather than
+scanning. State the intended pace in words per minute and an estimated duration
+based on the actual word count. Treat the estimate as a planning aid. Do not
+invent an official speech format, delivery standard, or approval contract.
 
 ## Adjustment lanes
 

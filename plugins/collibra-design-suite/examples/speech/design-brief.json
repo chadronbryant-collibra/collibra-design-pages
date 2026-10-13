@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "reader": "A mixed audience hearing a short synthetic status update",
+  "decision": "Understand the proposed next step without treating synthetic values as results",
+  "source": "Synthetic speech fixture",
+  "output": "A short spoken update with an explicit pace and duration estimate",
+  "medium": "speech",
+  "tone": "trust-building",
+  "constraints": ["No official speech format or approval claim", "Estimate duration from the actual word count"],
+  "facts": [
+    {"id": "fact.synthetic.sessions", "text": "Three review sessions are proposed for the example.", "state": "proposed", "source": "Synthetic speech fixture"},
+    {"id": "fact.synthetic.no-results", "text": "The example contains no measured program results.", "state": "confirmed", "source": "Example boundary"}
+  ]
+}

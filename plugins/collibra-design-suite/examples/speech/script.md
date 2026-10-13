@@ -1,0 +1,1 @@
+We are proposing three review sessions for this synthetic example. The first would clarify the decision. The second would test the draft with its intended readers. The third would confirm the next action. These are proposed sessions, not commitments, and this example contains no measured program results. An accountable owner decides what happens next.
