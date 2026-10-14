@@ -6,7 +6,7 @@ description: >-
   when the user wants a new audience-ready surface rather than guidance or
   review; keep generated, proposed, reviewed, and confirmed content distinct.
 metadata:
-  version: "1.2.1"
+  version: "1.2.2"
 ---
 
 # Collibra creation
