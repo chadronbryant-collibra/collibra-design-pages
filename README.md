@@ -1,102 +1,124 @@
 # Collibra design suite
 
-This repository hosts the public Collibra design atlas and the
-`collibra-design-suite` 1.2 release.
+Make the work you share easier to follow. The design suite brings Collibra's
+voice, visual style, and accessibility guidance to decks, documents, messages,
+dashboards, speeches, and web apps. You bring the facts and the purpose.
 
-Want to see what it does first? [Open the design suite](https://chadronbryant-collibra.github.io/collibra-design-pages/).
-Start with a web app, deck, document, speech, message, or dashboard. The synthetic
-examples let you compare approaches, change the audience, and copy a prompt
-for your own work. Short brand lessons explain color, type, voice, and
-accessibility; a paginated library holds the detailed guidance.
+[Explore the design suite](https://chadronbryant-collibra.github.io/collibra-design-pages/)
+to see the guidance in practice. Browse without installing anything, or add
+the Claude plugin to help you create and adjust your own work.
 
-You can use the site as a reference without installing anything. The examples
-illustrate design choices, not ready-to-send native templates. Use your
-approved assets and authoring tools, and review the final output.
+## Start with your task
 
-## Design a web app
+| You want to… | Start here |
+| --- | --- |
+| Turn an idea into a brief | [Make something](https://chadronbryant-collibra.github.io/collibra-design-pages/#make/web-app) |
+| See what a clearer deck or guide looks like | [Try examples](https://chadronbryant-collibra.github.io/collibra-design-pages/#examples/deck) |
+| Choose color, type, tone, or accessible layouts | [Learn the brand](https://chadronbryant-collibra.github.io/collibra-design-pages/#brand) |
+| Find a specific rule | [Browse the guidance library](https://chadronbryant-collibra.github.io/collibra-design-pages/#catalog) |
+| Create, refine, simplify, or review work in Claude | [Install the plugin](#use-it-in-claude) |
 
-Choose **Make something → Design a web app** on the site, describe the reader
-and task, then copy the tailored prompt into Claude. You can explicitly export
-and reuse your brief. The page makes no AI calls and stores no input.
+The examples use made-up content to show design choices. For a finished deck
+or document, use your approved assets and authoring tools, then review the
+output before sharing it.
 
-Try the component-state playground to see empty, loading, error, success, and
-long-content behavior. The plugin includes a complete offline web-app example,
-cross-medium outputs, speech timing, and a separate review receipt.
+## Use it in Claude
 
-Web output is a self-contained prototype. Real sign-in, databases, connectors,
-native documents, and deployment require suitable tools and separate authority.
-The plugin does not install those capabilities or a persistent memory service.
-
-## Install in Claude Desktop
-
-Prerequisites: an already installed Claude Desktop app on macOS 13+ or Windows
-10+, a paid Claude plan, and an organization policy that permits personal
-plugins. This supported package path does not extend to Linux.
+You'll need an installed Claude Desktop app on macOS 13+ or Windows 10+, a
+paid Claude plan, and permission to use personal plugins under your
+organization's policy. Linux is outside this package's supported path.
 
 1. Open **Customize → Plugins → Add → Add marketplace**.
 2. Add `chadronbryant-collibra/collibra-design-pages`.
 3. Select and install **Collibra design suite**.
-4. Start a new Chat or Cowork session and ask Claude to design, create, refine,
-   simplify, or review a surface.
+4. Start a new Chat or Cowork session and describe what you're making, who
+   it's for, and what needs to stay true.
 
-These prerequisites and steps were verified 2026-10-13 against the official
-[Claude Desktop installation requirements](https://support.claude.com/en/articles/10065433-install-claude-desktop)
-and [plugin marketplace instructions](https://support.claude.com/en/articles/13837440-use-plugins-in-claude).
+Try: “Use collibra-create to turn this outline into a five-slide team update.
+Keep the facts, lead with the takeaway, and suggest a visual for each slide.”
 
-The personal-plugin route requires no administrator password, operating-system
-elevation, system-directory write, environment-variable change, terminal
-command, connector authorization, or Claude organization-admin role. It does
-not bypass an organization's policy.
+Personal-plugin installation needs no terminal command or administrator
+password when your organization permits it. It does not bypass policy or
+connect to company systems. Requirements and steps were checked on 13 October
+2026 against Claude's [Desktop requirements](https://support.claude.com/en/articles/10065433-install-claude-desktop)
+and [plugin instructions](https://support.claude.com/en/articles/13837440-use-plugins-in-claude).
 
-## Claude Code alternative
-
-Desktop installation is the primary supported path. In Claude Code, add this
-marketplace and install the suite with:
+In Claude Code, add the same public marketplace and install the suite:
 
 ```text
 /plugin marketplace add chadronbryant-collibra/collibra-design-pages
 /plugin install collibra-design-suite@collibra-design
 ```
 
-Start a new session if skill discovery does not refresh immediately.
+Start a new session if the skills don't appear immediately.
 
-## What it includes
+## Five ways to ask for help
 
-- `collibra-design`: choose and explain the smallest useful contract.
-- `collibra-create`: create and adjust an Artifact, dashboard, page, document
-  structure, deck outline, diagram, UI flow, web app, speech, or data story.
-- `collibra-refine`: produce audience-ready copy.
-- `collibra-simplify`: reduce technical complexity without losing meaning.
-- `collibra-review`: return ranked findings without silently editing.
+| Skill | What it helps you do |
+| --- | --- |
+| `collibra-design` | Choose guidance for your reader, task, and format. |
+| `collibra-create` | Create and adjust a page, dashboard, deck outline, document structure, diagram, UI flow, web app, speech, or data story. |
+| `collibra-refine` | Make copy clearer and ready for its audience. |
+| `collibra-simplify` | Explain technical ideas in plain language while keeping their meaning. |
+| `collibra-review` | Find and prioritize improvements before you share the work. |
 
-The plugin is offline and dependency-free. It contains no hooks, agents, MCP
-servers, connectors, executable plugin scripts, subprocesses, credentials,
-analytics, or tracking. Synthetic Artifact examples may use self-contained
-HTML, CSS, and JavaScript with no remote assets. In Cowork, files are written
-only when requested and only to the connected folder in scope.
+See the [plugin guide](plugins/collibra-design-suite/README.md) for prompts and
+limits, or try the [worked examples](plugins/collibra-design-suite/examples/README.md).
+The [changelog](plugins/collibra-design-suite/CHANGELOG.md) records package changes;
+[releases](https://github.com/chadronbryant-collibra/collibra-design-pages/releases)
+hold versioned downloads.
 
-## Manage the plugin
+## How this repository fits together
 
-Use **Customize → Plugins** to enable, disable, update, or uninstall the suite.
-If a skill is not visible, confirm the plugin is enabled, start a new session,
-and check whether personal plugins are allowed by your organization. Report
-general problems through GitHub issues without including work-owned data,
-tenant details, prompts, credentials, or private files.
+This repository holds the public site and Claude package. The site files stay
+at the root so GitHub Pages can serve them directly.
 
-See `SECURITY.md` for private security reporting and `SUPPORT.md` for the
-supported boundary.
+| Location | What you'll find |
+| --- | --- |
+| [index.html](index.html), [app.js](app.js), [styles.css](styles.css) | Site layout, interactions, and styling. |
+| [data/](data/) | Public guidance used by the site. |
+| [plugins/collibra-design-suite/](plugins/collibra-design-suite/) | The installable package: five skills, reference guidance, and synthetic examples. |
+| [.claude-plugin/marketplace.json](.claude-plugin/marketplace.json) | The public marketplace entry that points to the package. |
+| [scripts/](scripts/) and [tests/](tests/) | Package building, publication checks, and boundary tests. |
+| [.github/](.github/) | Ownership, issue and PR templates, validation, release, and Pages workflows. |
+| [PUBLIC-PROVENANCE.json](PUBLIC-PROVENANCE.json) | Source revision and file hashes for the reviewed export. |
 
-User-provided content stays in the active Claude conversation or, after an
-explicit file request in Cowork, the connected folder the user selected. The
-plugin itself stores no content and performs no analytics or network calls.
+If you're proposing a change, start with [Contributing](CONTRIBUTING.md).
 
-Source tests, package validation, browser checks, and client acceptance are
-separate evidence. The earlier owner-waived standard-user Claude Desktop
-acceptance is not promoted to a passing receipt: no new real-device Chat,
-Cowork, update, or uninstall acceptance is claimed by these files.
+## What to expect
+
+The brief builder makes no AI calls. What you type stays in the current page
+until you reload or close it; copying or downloading happens only when you
+choose it. The site stores no input and uses no analytics.
+
+The plugin contains guidance and examples, with no connectors, credentials,
+hooks, agents, MCP servers, executable plugin scripts, subprocesses, external
+packages, tracking, or remote runtime assets. HTML examples run offline.
+Prompts you give Claude follow your account's terms and organization policy.
+In Cowork, file writes require your request and stay in the connected folder
+in scope.
+
+Web output is a prototype. Real sign-in, databases, connectors, native
+slides or documents, and deployment need suitable tools and separate authority.
+The suite adds no persistent memory service and does not approve or publish
+your work.
+
+Source and package checks are separate from real-device acceptance. The
+owner waived standard-user Claude Desktop acceptance for the earlier release;
+these files claim no new Chat, Cowork, update, or uninstall acceptance receipt.
+
+## Get help
+
+Manage the suite under **Customize → Plugins**. If a skill is missing, confirm
+the plugin is enabled, start a new session, and check whether your organization
+allows personal plugins.
+
+Use [Support](SUPPORT.md) to report a general problem with made-up reproduction
+material. Use the private route in [Security](SECURITY.md) for vulnerabilities.
 
 ## License
 
-Code is Apache-2.0 and guidance and synthetic examples are CC BY 4.0. Collibra
+Code is Apache-2.0; guidance and synthetic examples are CC BY 4.0. Collibra
 trademarks, logos, proprietary fonts, trade dress, and restricted assets are
-excluded from both grants. See `LICENSE.md`, `NOTICE`, and `LICENSES/`.
+excluded from both grants. See [LICENSE.md](LICENSE.md), [NOTICE](NOTICE), and
+[LICENSES/](LICENSES/).
