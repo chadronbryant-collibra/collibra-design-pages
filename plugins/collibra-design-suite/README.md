@@ -1,8 +1,6 @@
-# Collibra design suite 1.2
+# Collibra design suite
 
-- **Status:** public release
-- **Version:** `1.2.1`
-- **Source:** the merged private `collibra-design` release branch
+Version `1.2.2`. See the [changelog](CHANGELOG.md) for package changes.
 
 The Collibra design suite helps people make content and experiences easier to
 understand, use, and trust. It brings the reader-first design contract into
@@ -42,12 +40,12 @@ The site adds a guided brief builder and component-state playground. Inputs
 remain in the current page until you explicitly copy or download them. No
 plugin memory backend, automatic capture, or hidden persistence is added.
 
-## Five skill lanes
+## Choose the help you need
 
 | Skill | Use it when |
 |---|---|
 | `collibra-design` | You are building or structuring a product, page, flow, document, deck, data surface, or AI experience. |
-| `collibra-create` | You want Claude to create and iteratively adjust an Artifact, dashboard, page, document structure, deck outline, diagram, UI flow, or data story. |
+| `collibra-create` | You want Claude to create and iteratively adjust an Artifact, dashboard, page, document structure, deck outline, diagram, UI flow, web app, speech, or data story. |
 | `collibra-refine` | You say “refine this,” “tone this,” “humanize this,” or ask for a clearer email, prompt, UI copy, or brief. |
 | `collibra-simplify` | You explicitly ask for plain English, less technical language, or a simpler explanation. |
 | `collibra-review` | You ask for a design, content, accessibility, or pre-ship review. |
@@ -63,10 +61,10 @@ private source repository.
 
 ## Claude Desktop installation
 
-The accountable owner approved public publication and in-place remediation
-on 2026-09-17. A paid-plan user can install the release in
-Claude Desktop through **Customize → Plugins → Add → Add marketplace**, add
-the public GitHub repository, and select this suite.
+In Claude Desktop, open **Customize → Plugins → Add → Add marketplace**.
+Add `chadronbryant-collibra/collibra-design-pages`, install **Collibra design
+suite**, and start a new Chat or Cowork session. You’ll need a paid plan and
+permission to use personal plugins under your organization’s policy.
 
 Verified 2026-10-13 against the official
 [Claude Desktop installation requirements](https://support.claude.com/en/articles/10065433-install-claude-desktop)
@@ -95,13 +93,31 @@ measured palette values plus explicitly labeled operational accessibility
 fallbacks; those fallbacks are not new brand tokens. See `LICENSE.md`, `NOTICE`,
 and `LICENSES/`.
 
-This Claude package intentionally has no `.codex-plugin` manifest. The private
-`collibra-plugins` repository remains canonical for the paired Codex adapter
-and installed-client parity.
+## Find your way around the package
 
-For the private Claude Code marketplace, install with `/plugin install` after
-adding the approved marketplace. For Codex, use `codex plugin add` with the
-approved local marketplace entry. These CLI routes do not prove Claude Desktop
-installation. The accountable owner waived real-device Claude Desktop and
-rendered human acceptance for 1.0, so those checks are not claimed as passing
-release evidence.
+| Location | Use it for |
+| --- | --- |
+| [skills/](skills/) | The five sets of instructions Claude uses for your task. |
+| [references/contract-index.md](references/contract-index.md) | Find the guidance behind a design choice. |
+| [references/catalog/](references/catalog/) | Browse the bundled guidance offline. |
+| [examples/README.md](examples/README.md) | Try a prompt and compare worked outputs with made-up content. |
+| [references/design-brief.schema.json](references/design-brief.schema.json) | Reuse a brief across formats. |
+| [references/review-receipt.schema.json](references/review-receipt.schema.json) | Record what was checked and what remains unverified. |
+
+## Claude Code and help
+
+Add the public marketplace, then install the suite:
+
+```text
+/plugin marketplace add chadronbryant-collibra/collibra-design-pages
+/plugin install collibra-design-suite@collibra-design
+```
+
+Start a new session if the skills don't appear. This public package supports
+Claude; it contains no Codex manifest.
+
+See the repository's [support guide](https://github.com/chadronbryant-collibra/collibra-design-pages/blob/main/SUPPORT.md)
+for general problems and [security policy](https://github.com/chadronbryant-collibra/collibra-design-pages/blob/main/SECURITY.md)
+for private reporting. Use synthetic reproduction material in public issues.
+The earlier owner waiver of real-device Desktop and rendered human acceptance
+is not a passing test receipt.

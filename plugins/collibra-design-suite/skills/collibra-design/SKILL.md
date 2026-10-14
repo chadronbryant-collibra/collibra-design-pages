@@ -8,7 +8,7 @@ description: >-
   boundary; do not use for a prose-only rewrite when no design decision is
   needed.
 metadata:
-  version: "1.2.1"
+  version: "1.2.2"
 ---
 
 # Collibra design
