@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.2 - clearer repository and package guidance, 2026-10-14
+
+- Lead with the reader’s task and add maps for the public repository and plugin.
+- Make contribution and support steps easier to follow in the site’s voice.
+- Replace private installation directions with the public Claude Code route.
+- Keep the skills, runtime behavior, and acceptance limits unchanged.
+
 ## 1.2.1 - adoption documentation correction, 2026-10-13
 
 - Correct the supported Claude Desktop prerequisite to macOS 13+ or Windows

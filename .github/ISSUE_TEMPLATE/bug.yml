@@ -9,21 +9,21 @@ body:
   - type: input
     id: version
     attributes:
-      label: Plugin version
-      placeholder: 1.0.0-rc.4
+      label: Plugin version or site
+      placeholder: "For example: 1.2.1 (or site only)"
     validations:
       required: true
   - type: dropdown
     id: surface
     attributes:
       label: Surface
-      options: [Claude Desktop Chat, Claude Desktop Cowork, Claude Code, Documentation]
+      options: [Claude Desktop Chat, Claude Desktop Cowork, Claude Code, Design suite website, Documentation]
     validations:
       required: true
   - type: textarea
     id: steps
     attributes:
-      label: Synthetic reproduction
+      label: Steps to reproduce with made-up content
       description: Use synthetic content and include the expected and observed result.
     validations:
       required: true
