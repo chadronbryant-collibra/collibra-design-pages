@@ -28,3 +28,7 @@ contract. Each example is synthetic and remains proposed.
 HTML examples use measured palette values and clearly
 labeled system-font and content-driven responsive fallbacks. Those fallbacks
 are operational accessibility choices, not new Collibra brand tokens.
+
+## Write an SOP or guide
+
+Use [the fictional workshop guide](document/sop-example.md) with `collibra-sop`. The [Claude setup walkthrough](../references/claude-setup.md) includes new-guide interviews, existing-source revisions, Quick Tasks, Slides and Sheets prompts.

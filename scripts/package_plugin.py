@@ -14,7 +14,7 @@ from pathlib import Path
 
 REQUIRED_SKILLS = {
     "collibra-create", "collibra-design", "collibra-refine",
-    "collibra-review", "collibra-simplify",
+    "collibra-review", "collibra-simplify", "collibra-sop",
 }
 ROOT_FILES = {"CHANGELOG.md", "LICENSE.md", "NOTICE", "README.md", "SBOM.spdx.json"}
 EXACT_FILES = {
@@ -131,13 +131,36 @@ def package(plugin: Path, output: Path) -> str:
     return digest
 
 
+def package_sop(plugin: Path, output: Path) -> str:
+    """Make a self-contained skill upload, using the same reviewed plugin bytes."""
+    validate(plugin)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    sources = {
+        "collibra-sop/SKILL.md": plugin / "skills/collibra-sop/SKILL.md",
+        "collibra-sop/LICENSE.txt": plugin / "LICENSES/CC-BY-4.0.txt",
+    }
+    with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_STORED) as archive:
+        for name, source in sorted(sources.items()):
+            info = zipfile.ZipInfo(name, date_time=(1980, 1, 1, 0, 0, 0))
+            info.compress_type = zipfile.ZIP_STORED
+            info.create_system = 3
+            info.external_attr = 0o100644 << 16
+            archive.writestr(info, source.read_bytes())
+    return hashlib.sha256(output.read_bytes()).hexdigest()
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--plugin", type=Path, default=Path("plugins/collibra-design-suite"))
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--sop-output", type=Path, help="also build a standalone SOP skill ZIP")
     args = parser.parse_args()
+    if args.sop_output and args.sop_output.resolve() == args.output.resolve():
+        parser.error("plugin and skill outputs must differ")
     try:
         package(args.plugin, args.output)
+        if args.sop_output:
+            print(json.dumps({"skill": "collibra-sop", "sha256": package_sop(args.plugin, args.sop_output)}))
     except (OSError, PackageError, zipfile.BadZipFile) as error:
         print(f"ERROR: {error}", file=sys.stderr)
         return 1

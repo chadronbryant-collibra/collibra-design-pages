@@ -2,8 +2,8 @@
   "spdxVersion": "SPDX-2.3",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "name": "collibra-design-suite-1.2.2",
-  "documentNamespace": "https://github.com/chadronbryant-collibra/collibra-design-pages/sbom/1.2.2",
+  "name": "collibra-design-suite-1.4.0",
+  "documentNamespace": "https://github.com/chadronbryant-collibra/collibra-design-pages/sbom/1.4.0",
   "creationInfo": {
     "created": "2026-09-11T00:00:00Z",
     "creators": [
@@ -14,7 +14,7 @@
     {
       "name": "collibra-design-suite",
       "SPDXID": "SPDXRef-Package",
-      "versionInfo": "1.2.2",
+      "versionInfo": "1.4.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": true,
       "licenseConcluded": "NOASSERTION",
@@ -29,7 +29,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "9325ede6950c8923a733b26d5dead28d401100156c7f55424b12802368f24324"
+          "checksumValue": "608b0a1922a459600923c1ff7a7a1517e402aff26e160353375113d6002bd77d"
         }
       ]
     },
@@ -39,7 +39,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "2fcf8a030f73e7459489da7fd6f4d5f0f979a7b2bb9d22e362051d576619c95e"
+          "checksumValue": "68c1f744ae5a2cd17c7d6e2d386c8b013b3ad0b6605b50e3ac3e46c27807fa4a"
         }
       ]
     },
@@ -89,7 +89,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "cb71fa800f13fc71fbeaea1de3c56c08024bd732194c50998124c6873c8a6643"
+          "checksumValue": "69f2e0b6f2f902598cce6a516dc8c0c8022b1571bb54538ccd245e347eea8dfb"
         }
       ]
     },
@@ -99,7 +99,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "230c5c21950901c921a43512e1e7fdbb74f28450ea3c94f5b0334b0218d8c315"
+          "checksumValue": "c5e3dbbe9973bebac9a037eb64dc664120424363c9296561bba08a10362ff9da"
         }
       ]
     },
@@ -180,6 +180,16 @@
         {
           "algorithm": "SHA256",
           "checksumValue": "c6f207000d4473324eb125007ce5d30d92278329586caf5c7d57792a115e4d0e"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-72e45ca4a481d98a",
+      "fileName": "./examples/document/sop-example.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a2713c02f2ec8ff3eb5b5037c213d489cfb1c3a3bda675123c697fd3134718a2"
         }
       ]
     },
@@ -309,7 +319,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "22de12de7f52d4cf3d5bda448d57e5d5253754197d781d15751bfc9915ca3a5e"
+          "checksumValue": "762b71f3965485f16d0ecb8707e82cbb481202036c619778da6ce8c714585379"
         }
       ]
     },
@@ -410,6 +420,16 @@
         {
           "algorithm": "SHA256",
           "checksumValue": "d8135b86f8f44c69880cd47c91a51886f7048522e5763ae133b4db2f191b23c0"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-32978d08dc21dbf5",
+      "fileName": "./references/claude-setup.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "cd0980f0344245ec275ecc704c97a9545d25a8a850596f452184a8f098cbec35"
         }
       ]
     },
@@ -519,7 +539,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "36167ab83d4ad58184f13f5d902bce3eadc8e421a66543e03d43f28a4f637aed"
+          "checksumValue": "aeb8a6ea5ef764b5b9e9a7d84749f2385113ec813fee2ec7c75fd955467c78e4"
         }
       ]
     },
@@ -529,7 +549,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "2ce5bd461eeaba388ff3b4e3c9d2e5b2c12c5e2055a07c331fde135b84a11744"
+          "checksumValue": "8b30cb9683c43f3e6257d3a4c0ec02e06b1bbfa511ccbcfb5266376c67a8f81f"
         }
       ]
     },
@@ -539,7 +559,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "67411dd811a2c7495cdd936e37191cd0c0b1d5c3a6229bab2e7fbe7df8c16c5b"
+          "checksumValue": "376e8b2e7bd1a5594ff8d9a83f6ffd96a64a8305cd5d219157747f6b020e5dd6"
         }
       ]
     },
@@ -549,7 +569,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "d2e5cfc21e76adcb60919dade5befabdb2ed69507c682fd964faa811e3bb4916"
+          "checksumValue": "5945a7bbe2362a072ebb4087b8cd26003bb350ed4bd827a113e214db995120db"
         }
       ]
     },
@@ -559,7 +579,17 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "8b238a8ceeae2ed75edcf7b533024f867be4e9c05b5dede844b9e5043d883a26"
+          "checksumValue": "0f06405db25717d79e4b07ff371889cef68f68658bde6dd8bb8b2e53d5d52e4d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-0c0b6704a1c586c4",
+      "fileName": "./skills/collibra-sop/SKILL.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "475a7b4d071a7838969d91797d381d1e16f57895629d93f34a043dfb87dd944f"
         }
       ]
     }

@@ -24,38 +24,28 @@ output before sharing it.
 
 ## Use it in Claude
 
-You'll need an installed Claude Desktop app on macOS 13+ or Windows 10+, a
-paid Claude plan, and permission to use personal plugins under your
-organization's policy. Linux is outside this package's supported path.
+Start with the [Claude setup walkthrough](https://chadronbryant-collibra.github.io/collibra-design-pages/#start): install the suite, connect your Google tools, and try a guide with made-up content.
 
-1. Open **Customize → Plugins → Add → Add marketplace**.
-2. Add `chadronbryant-collibra/collibra-design-pages`.
-3. Select and install **Collibra design suite**.
-4. Start a new Chat or Cowork session and describe what you're making, who
-   it's for, and what needs to stay true.
+Download [collibra-design-suite.zip](https://github.com/chadronbryant-collibra/collibra-design-pages/releases/latest/download/collibra-design-suite.zip) from the latest release. In Claude, open **Customize → Plugins** and use the custom-plugin upload option. Enable the suite and start a new conversation. Paid plans and organization permission are required for plugins. If your organization provides the suite, use its supplied entry.
 
-Try: “Use collibra-create to turn this outline into a five-slide team update.
-Keep the facts, lead with the takeaway, and suggest a visual for each slide.”
+For SOP writing alone, download [collibra-sop.zip](https://github.com/chadronbryant-collibra/collibra-design-pages/releases/latest/download/collibra-sop.zip). Open **Customize → Skills → + → Create skill → Upload a skill**, upload the ZIP and enable it. Skills require code execution and file creation to be enabled under your account or organization policy. Choose the full plugin or the standalone SOP skill; you do not need both.
 
-Personal-plugin installation needs no terminal command or administrator
-password when your organization permits it. It does not bypass policy or
-connect to company systems. Requirements and steps were checked on 13 October
-2026 against Claude's [Desktop requirements](https://support.claude.com/en/articles/10065433-install-claude-desktop)
-and [plugin instructions](https://support.claude.com/en/articles/13837440-use-plugins-in-claude).
+The [complete setup guide](https://github.com/chadronbryant-collibra/collibra-design-pages/blob/main/plugins/collibra-design-suite/references/claude-setup.md) includes Google Docs, Slides and Sheets examples. The suite adds no connectors or account access by itself.
 
-In Claude Code, add the same public marketplace and install the suite:
+In Claude Code, the public marketplace remains an alternative:
 
 ```text
 /plugin marketplace add chadronbryant-collibra/collibra-design-pages
 /plugin install collibra-design-suite@collibra-design
 ```
 
-Start a new session if the skills don't appear immediately.
+See [Claude plugin instructions](https://support.claude.com/en/articles/13837440-use-plugins-in-claude) and [skill instructions](https://support.claude.com/en/articles/12512180-use-skills-in-claude) for current menus and organization options.
 
-## Five ways to ask for help
+## Six ways to ask for help
 
 | Skill | What it helps you do |
 | --- | --- |
+| `collibra-sop` | Create or revise an SOP, employee guide, or Quick Task from sources or guided questions. |
 | `collibra-design` | Choose guidance for your reader, task, and format. |
 | `collibra-create` | Create and adjust a page, dashboard, deck outline, document structure, diagram, UI flow, web app, speech, or data story. |
 | `collibra-refine` | Make copy clearer and ready for its audience. |
@@ -77,7 +67,7 @@ at the root so GitHub Pages can serve them directly.
 | --- | --- |
 | [index.html](index.html), [app.js](app.js), [styles.css](styles.css) | Site layout, interactions, and styling. |
 | [data/](data/) | Public guidance used by the site. |
-| [plugins/collibra-design-suite/](plugins/collibra-design-suite/) | The installable package: five skills, reference guidance, and synthetic examples. |
+| [plugins/collibra-design-suite/](plugins/collibra-design-suite/) | The installable package: six skills, reference guidance, and synthetic examples. |
 | [.claude-plugin/marketplace.json](.claude-plugin/marketplace.json) | The public marketplace entry that points to the package. |
 | [scripts/](scripts/) and [tests/](tests/) | Package building, publication checks, and boundary tests. |
 | [.github/](.github/) | Ownership, issue and PR templates, validation, release, and Pages workflows. |

@@ -7,7 +7,7 @@ description: >-
   and important limits; do not compress the answer into fragments or strip
   away useful nuance.
 metadata:
-  version: "1.2.2"
+  version: "1.4.0"
 ---
 
 # Collibra plain-language simplification
