@@ -254,6 +254,7 @@ function renderHome() {
     nav.append(link(t.name, `#examples/${t.id}`));
   });
   const skills = [
+    ["sop", "Write a useful procedure", "Build a guide from your source or a few process questions.", "Help me draft an internal SOP. Preserve its conditions and keep questions in the chat."],
     ["design", "Find the right guidance", "Choose the smallest useful set of design rules for your task.", "Which guidance should I use for a team onboarding guide?"],
     ["create", "Make a first version", "Build an Artifact, an outline, or a structure you can adjust.", "Make a dashboard from this synthetic data. Label its limits."],
     ["refine", "Make the writing ready", "Shape a draft for the audience. Keep its facts and meaning.", "Refine this announcement for colleagues new to the project."],

@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.4.0 - SOP writing and Claude setup, 2026-10-20
+
+- Add collibra-sop for guided interviews, source-preserving revisions, audience-specific guides and optional linked Quick Tasks.
+- Add a Claude setup walkthrough and synthetic SOP, Docs, Slides and Sheets prompts.
+- Offer the SOP skill as a separate uploadable ZIP as well as part of the six-skill plugin.
+- Carry forward 1.3.0 author-voice guidance into the public release.
+- Keep internal sources, restricted assets and connector credentials outside the package. Native invocation and teammate acceptance remain separate from package validation.
+
+## 1.3.0 - author voice and plain status words, 2026-10-19
+
+- Bundle content catalog 0.8.0. Author-sent content starts with the content
+  and leaves out document announcements, handling notes written as body
+  prose, provenance-only sections and recipient-named headings.
+- Add `content.style.plain-status`, which reports verification state in
+  plain words instead of confidence ratings or evidence-class labels.
+- Keep the five skills, runtime behavior and public boundary unchanged.
+
 ## 1.2.2 - clearer repository and package guidance, 2026-10-14
 
 - Lead with the reader’s task and add maps for the public repository and plugin.

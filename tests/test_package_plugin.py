@@ -5,6 +5,7 @@ import importlib.util
 import shutil
 import tempfile
 import unittest
+import zipfile
 from pathlib import Path
 
 SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "package_plugin.py"
@@ -34,6 +35,18 @@ class PublicPackageTests(unittest.TestCase):
         package_plugin.package(self.plugin, second)
         self.assertEqual(hashlib.sha256(first.read_bytes()).digest(),
                          hashlib.sha256(second.read_bytes()).digest())
+
+    def test_standalone_skill_is_self_contained_and_repeatable(self) -> None:
+        first, second = self.root / "sop.zip", self.root / "sop-again.zip"
+        self.assertEqual(package_plugin.package_sop(self.plugin, first),
+                         package_plugin.package_sop(self.plugin, second))
+        with zipfile.ZipFile(first) as archive:
+            self.assertEqual(set(archive.namelist()),
+                             {"collibra-sop/SKILL.md", "collibra-sop/LICENSE.txt"})
+            raw = archive.read("collibra-sop/SKILL.md")
+            self.assertEqual(raw, (self.plugin / "skills/collibra-sop/SKILL.md").read_bytes())
+            self.assertNotIn(b"../../", raw)
+            self.assertNotIn(b"docs.google.com/", raw)
 
     def test_forbidden_hook_and_binary_are_rejected(self) -> None:
         hooks = self.plugin / "hooks"

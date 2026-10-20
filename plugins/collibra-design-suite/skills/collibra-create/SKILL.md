@@ -6,7 +6,7 @@ description: >-
   when the user wants a new audience-ready surface rather than guidance or
   review; keep generated, proposed, reviewed, and confirmed content distinct.
 metadata:
-  version: "1.2.2"
+  version: "1.4.0"
 ---
 
 # Collibra creation
@@ -15,6 +15,10 @@ Create the smallest complete surface that helps the intended reader act. Read
 `../../references/contract-index.md`, `../../references/creation-playbook.md`,
 and only the catalog slices relevant to the requested medium. For a web app,
 also read `../../references/web-app-playbook.md`.
+
+For an SOP, employee/manager task guide or linked Quick Task, use the bundled
+`collibra-sop` skill for the procedure workflow and apply the relevant design
+guidance here.
 
 ## Frame the result
 

@@ -1,11 +1,12 @@
 # Collibra design suite
 
-Version `1.2.2`. See the [changelog](CHANGELOG.md) for package changes.
+Version `1.4.0`. See the [changelog](CHANGELOG.md) for package changes.
 
 The Collibra design suite helps people make content and experiences easier to
 understand, use, and trust. It brings the reader-first design contract into
-Claude for five jobs:
+Claude for six jobs:
 
+- write or revise an SOP or guide from sources or guided questions;
 - choose the right design, audience, medium, and accessibility guidance;
 - create and adjust an Artifact, dashboard, page, document structure, deck
   outline, diagram, UI flow, web app, speech, or data story;
@@ -44,6 +45,7 @@ plugin memory backend, automatic capture, or hidden persistence is added.
 
 | Skill | Use it when |
 |---|---|
+| `collibra-sop` | Create or revise an SOP, employee guide, or Quick Task from sources or guided questions. |
 | `collibra-design` | You are building or structuring a product, page, flow, document, deck, data surface, or AI experience. |
 | `collibra-create` | You want Claude to create and iteratively adjust an Artifact, dashboard, page, document structure, deck outline, diagram, UI flow, web app, speech, or data story. |
 | `collibra-refine` | You say “refine this,” “tone this,” “humanize this,” or ask for a clearer email, prompt, UI copy, or brief. |
@@ -59,30 +61,24 @@ contract into an approved standard. The registry snapshot is descriptive; it
 does not connect to Drive, enable an Apps Script deployment, or change the
 private source repository.
 
-## Claude Desktop installation
+## Use it in Claude
 
-In Claude Desktop, open **Customize → Plugins → Add → Add marketplace**.
-Add `chadronbryant-collibra/collibra-design-pages`, install **Collibra design
-suite**, and start a new Chat or Cowork session. You’ll need a paid plan and
-permission to use personal plugins under your organization’s policy.
+Start with the [Claude setup walkthrough](https://chadronbryant-collibra.github.io/collibra-design-pages/#start): install the suite, connect your Google tools, and try a guide with made-up content.
 
-Verified 2026-10-13 against the official
-[Claude Desktop installation requirements](https://support.claude.com/en/articles/10065433-install-claude-desktop)
-and [plugin marketplace instructions](https://support.claude.com/en/articles/13837440-use-plugins-in-claude):
-this supported path requires an already installed Claude Desktop app on macOS
-13+ or Windows 10+. This package does not extend support to Linux.
+Download [collibra-design-suite.zip](https://github.com/chadronbryant-collibra/collibra-design-pages/releases/latest/download/collibra-design-suite.zip) from the latest release. In Claude, open **Customize → Plugins** and use the custom-plugin upload option. Enable the suite and start a new conversation. Paid plans and organization permission are required for plugins. If your organization provides the suite, use its supplied entry.
 
-That route requires no operating-system elevation or Claude organization-admin
-role when personal plugins are permitted. Organization policy can disable
-personal plugins and is not something this package bypasses. An already
-installed supported Claude Desktop app is a prerequisite.
+For SOP writing alone, download [collibra-sop.zip](https://github.com/chadronbryant-collibra/collibra-design-pages/releases/latest/download/collibra-sop.zip). Open **Customize → Skills → + → Create skill → Upload a skill**, upload the ZIP and enable it. Skills require code execution and file creation to be enabled under your account or organization policy. Choose the full plugin or the standalone SOP skill; you do not need both.
 
-The package has no hooks, agents, MCP servers, connectors, credentials,
-subprocesses, external packages, or remote runtime assets. In Cowork it writes
-only when the user requests a file and only into the connected folder in scope.
+The [complete setup guide](https://github.com/chadronbryant-collibra/collibra-design-pages/blob/main/plugins/collibra-design-suite/references/claude-setup.md) includes Google Docs, Slides and Sheets examples. The suite adds no connectors or account access by itself.
 
-See `examples/README.md` for copy-ready synthetic examples and
-`examples/dashboard/WALKTHROUGH.md` for the complete Artifact flow.
+In Claude Code, the public marketplace remains an alternative:
+
+```text
+/plugin marketplace add chadronbryant-collibra/collibra-design-pages
+/plugin install collibra-design-suite@collibra-design
+```
+
+See [Claude plugin instructions](https://support.claude.com/en/articles/13837440-use-plugins-in-claude) and [skill instructions](https://support.claude.com/en/articles/12512180-use-skills-in-claude) for current menus and organization options.
 
 ## License and brand boundary
 
@@ -97,7 +93,7 @@ and `LICENSES/`.
 
 | Location | Use it for |
 | --- | --- |
-| [skills/](skills/) | The five sets of instructions Claude uses for your task. |
+| [skills/](skills/) | The six sets of instructions Claude uses for your task. |
 | [references/contract-index.md](references/contract-index.md) | Find the guidance behind a design choice. |
 | [references/catalog/](references/catalog/) | Browse the bundled guidance offline. |
 | [examples/README.md](examples/README.md) | Try a prompt and compare worked outputs with made-up content. |

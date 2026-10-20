@@ -29,18 +29,19 @@ jobs:
           if manifest["version"] != version:
               raise SystemExit(f"tag {version} does not match manifest {manifest['version']}")
           PY
-          python scripts/package_plugin.py --output collibra-design-suite.zip
+          python scripts/package_plugin.py --output collibra-design-suite.zip --sop-output collibra-sop.zip
           python - <<'PY'
           import hashlib
           from pathlib import Path
-          output = Path("collibra-design-suite.zip")
-          digest = hashlib.sha256(output.read_bytes()).hexdigest()
-          Path("SHA256SUMS").write_text(f"{digest}  {output.name}\n", encoding="utf-8", newline="\n")
+          rows = [f"{hashlib.sha256(Path(name).read_bytes()).hexdigest()}  {name}\n"
+                  for name in ("collibra-design-suite.zip", "collibra-sop.zip")]
+          Path("SHA256SUMS").write_text("".join(rows), encoding="utf-8", newline="\n")
           PY
       - uses: actions/attest-build-provenance@v2
         with:
           subject-path: |
             collibra-design-suite.zip
+            collibra-sop.zip
             SHA256SUMS
       - name: Create GitHub release
         env:
@@ -50,4 +51,4 @@ jobs:
           if [[ "$GITHUB_REF_NAME" == *-rc.* ]]; then
             release_args+=(--prerelease)
           fi
-          gh release create "$GITHUB_REF_NAME" collibra-design-suite.zip SHA256SUMS "${release_args[@]}"
+          gh release create "$GITHUB_REF_NAME" collibra-design-suite.zip collibra-sop.zip SHA256SUMS "${release_args[@]}"

@@ -8,7 +8,7 @@ description: >-
   boundary; do not use for a prose-only rewrite when no design decision is
   needed.
 metadata:
-  version: "1.2.2"
+  version: "1.4.0"
 ---
 
 # Collibra design
@@ -18,6 +18,10 @@ task and the meaning they need, then choose only the contracts that help them
 act. Read `../../references/contract-index.md` first. Read the relevant
 bundled catalog under `../../references/catalog/` when a concrete component,
 pattern, visual capability, or content rule matters.
+
+For an SOP, employee/manager task guide or linked Quick Task, use the bundled
+`collibra-sop` skill for the procedure workflow and apply the relevant design
+guidance here.
 
 ## Route the request
 

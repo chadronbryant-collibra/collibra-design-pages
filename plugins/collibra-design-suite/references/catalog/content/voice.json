@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "catalog_version": "0.7.0",
+  "catalog_version": "0.8.0",
   "area_id": "area.design.content",
   "status": "active",
   "title": "Collibra content and voice contract",
@@ -130,10 +130,18 @@
     {
       "id": "content.style.audience-ready",
       "name": "Write for the audience, not the authoring session",
-      "rule": "Use we for the team's work and I for the author's personal observations. Keep useful facts, decisions, instructions, and genuine credit; keep drafting commentary and assistant conversation out of the published content.",
+      "rule": "Use we for the team's work and I for the author's personal observations and decisions. When the author is the sender, write as the author would and start with the content, not a description of the document. Keep useful facts, decisions, instructions, and genuine credit; keep drafting commentary and assistant conversation out of the published content.",
       "use_when": "A page, deck, board, guide, or message is ready for its intended audience.",
-      "avoid": "Author-review prompts, narration about who asked for the draft, placeholder examples, and explanations of how the assistant produced it.",
-      "source": "content/guide-patterns.json#visibility"
+      "avoid": "Author-review prompts, narration about who asked for the draft, placeholder examples, explanations of how the assistant produced it, openers that announce the document or its occasion, handling notes written as body prose instead of a title or classification label, sections that only list sources or evidence classes, and headings addressed to the recipient by name where a topic heading says the same thing.",
+      "source": "content/guide-patterns.json#visibility; content/PROVENANCE.md#owner-voice-review-2026-10-19"
+    },
+    {
+      "id": "content.style.plain-status",
+      "name": "Say what is proven in plain status words",
+      "rule": "Describe how far a claim has been checked in words the reader can act on, such as seen in the running system, confirmed, documented but not tested, not tested yet, open, or unknown. Use only the status the source supports and keep it beside the claim.",
+      "use_when": "Findings, reviews, briefs, and status updates report evidence or verification state.",
+      "avoid": "High, medium, or low confidence ratings, percentages without a stated method, and evidence-class labels in audience copy.",
+      "source": "content/PROVENANCE.md#owner-voice-review-2026-10-19"
     },
     {
       "id": "content.style.reading-order",
@@ -247,7 +255,7 @@
     {
       "id": "content.gate.evidence",
       "question": "Does every material claim have an appropriate source or an explicit uncertainty label?",
-      "failure_action": "Add the source, narrow the claim, or label it proposed, open, partial, or unknown.",
+      "failure_action": "Add the source, narrow the claim, or label it proposed, open, partial, or unknown. Use plain status words rather than a probability rating.",
       "source": "Collibra content guidance · non-negotiables"
     },
     {
@@ -270,7 +278,7 @@
     },
     {
       "id": "content.gate.audience-ready",
-      "question": "Can this audience use the artifact as it stands, without seeing private drafting notes, invented examples, or an assistant speaking on the author's behalf?",
+      "question": "Can this audience use the artifact as it stands, without seeing private drafting notes, invented examples, framing that describes the document from outside, or an assistant speaking on the author's behalf?",
       "failure_action": "Move author-review material to a private record, resolve or remove placeholders, and review the actual audience view. Preserve required disclosures, source attribution, and real uncertainty.",
       "source": "content/guide-patterns.json#authoring_sequence"
     },
