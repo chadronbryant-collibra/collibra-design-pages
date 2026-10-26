@@ -1,6 +1,6 @@
 # Collibra design suite
 
-Version `1.4.1`. See the [changelog](CHANGELOG.md) for package changes.
+Version `1.4.2`. See the [changelog](CHANGELOG.md) for package changes.
 
 The Collibra design suite helps people make content and experiences easier to
 understand, use, and trust. It brings the reader-first design contract into

@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.4.2 — 2026-10-26
+
+- Add a manually controlled homepage carousel for a slide deck, document,
+  humanized speech and dashboard, with keyboard navigation and example data.
+- Expand SOP coaching from source or example through section drafting, native
+  Google authoring, screenshot placement, revision and reader review.
+- Distinguish connector capabilities, unseen images and native readback, and
+  provide useful fallback steps without making private images public.
+
 ## 1.4.1 - document examples and clearer setup, 2026-10-26
 
 - Add complete printable internal SOP, employee-guide and Quick Task examples with example data.
