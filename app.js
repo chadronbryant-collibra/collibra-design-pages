@@ -55,8 +55,6 @@ function initShowcase() {
     if (focus) choices[active].focus();
   }
   choices.forEach((button, i) => button.addEventListener("click", () => show(i)));
-  $("#showcase-prev").addEventListener("click", () => show(active - 1));
-  $("#showcase-next").addEventListener("click", () => show(active + 1));
   $("#showcase-choices").addEventListener("keydown", event => {
     const index = choices.indexOf(event.target); if (index < 0) return;
     const next = {ArrowRight: index + 1, ArrowLeft: index - 1, Home: 0, End: panels.length - 1}[event.key];
