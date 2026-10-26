@@ -41,6 +41,30 @@ function initDocuments() {
   });
 }
 
+function initShowcase() {
+  const panels = [...document.querySelectorAll(".showcase-panel")];
+  const choices = [...document.querySelectorAll("#showcase-choices button")];
+  const names = ["Slide deck", "Document", "Humanized speech", "Dashboard"];
+  let active = 0;
+  function show(index, focus = false) {
+    active = (index + panels.length) % panels.length;
+    panels.forEach((panel, i) => { panel.hidden = i !== active; panel.inert = i !== active; panel.setAttribute("aria-hidden", String(i !== active)); });
+    choices.forEach((button, i) => button.setAttribute("aria-pressed", String(i === active)));
+    textAt("#showcase-position", `${active + 1} / ${panels.length}`);
+    textAt("#showcase-status", `${names[active]} · ${active + 1} of ${panels.length}`);
+    if (focus) choices[active].focus();
+  }
+  choices.forEach((button, i) => button.addEventListener("click", () => show(i)));
+  $("#showcase-prev").addEventListener("click", () => show(active - 1));
+  $("#showcase-next").addEventListener("click", () => show(active + 1));
+  $("#showcase-choices").addEventListener("keydown", event => {
+    const index = choices.indexOf(event.target); if (index < 0) return;
+    const next = {ArrowRight: index + 1, ArrowLeft: index - 1, Home: 0, End: panels.length - 1}[event.key];
+    if (next !== undefined) { event.preventDefault(); show(next, true); }
+  });
+  // Manual navigation only: no timers, auto-advance or focus stealing.
+}
+
 export function parseRoute(hash) {
   const [path, query = ""] = hash.replace(/^#/, "").split("?");
   const [rawPage, item] = path.split("/");
@@ -312,12 +336,12 @@ function renderExample() {
   const preview = $("#example-preview"); preview.replaceChildren();
   const sample = node("article", before ? "rough-draft" : `sample-${task.id === "deck" ? "slide" : task.id}`);
   if (before) {
-    sample.append(node("p", "eyebrow", "example ROUGH DRAFT"), node("h3", null, task.id === "dashboard" ? "Project metrics" : "Onboarding process update"));
+    sample.append(node("p", "eyebrow", "EXAMPLE ROUGH DRAFT"), node("h3", null, task.id === "dashboard" ? "Project metrics" : "Onboarding process update"));
     sample.append(node("p", null, task.id === "dashboard" ? "Guide 24. Buddy 18. Questions 12. The figures are provided for informational purposes relating to the various onboarding workstreams." : "As part of our ongoing efforts regarding the onboarding experience, an onboarding guide and buddy arrangement are being considered for use. There are a number of steps and considerations that relate to the provision of information and the handling of questions in connection with this process."));
     sample.append(node("p", null, audience === "leaders" ? "A pilot with one team is proposed. Feedback would be reviewed before a decision on expansion." : "New joiners can find the guide, meet their buddy, and ask a question."));
     textAt("#example-caption", "The source idea is here, but the reader has to work to find the point. The before/after pair is illustrative, not measured research.");
   } else {
-    sample.append(node("p", "eyebrow", task.id === "dashboard" ? "example DATA · EXAMPLE SNAPSHOT" : "example EXAMPLE · NOT A LIVE PROGRAM"));
+    sample.append(node("p", "eyebrow", task.id === "dashboard" ? "EXAMPLE DATA · SNAPSHOT" : "EXAMPLE DATA · ILLUSTRATIVE PROGRAM"));
     if (task.id === "deck") {
       sample.append(node("h3", null, facts.headline));
       const flow = node("div", "sequence"); facts.steps.forEach((s, i) => flow.append(node("span", null, `${i + 1}. ${s}`))); sample.append(flow, node("p", null, facts.action));
@@ -451,7 +475,7 @@ function route(focus = false) {
 }
 
 async function load() {
-  initBuilder(); initPlayground(); initDocuments();
+  initBuilder(); initPlayground(); initDocuments(); initShowcase();
   route();
   window.addEventListener("hashchange", () => route(true));
   $(".skip-link").addEventListener("click", e => { e.preventDefault(); $("#main").focus(); });

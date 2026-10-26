@@ -88,6 +88,33 @@ For a shorter companion:
 > prerequisites, decisions and exceptions and link back to the main SOP. Tell
 > me which sections it depends on. Do not publish it.
 
+## Adapt an example into your own guide
+
+> Use collibra-sop with this example structure:
+> https://chadronbryant-collibra.github.io/collibra-design-pages/examples/documents/internal-sop.html
+> Help me adapt it to [process] for [reader and region]. Ask for the current
+> source, draft a useful first section, and keep its decisions and exceptions.
+> Use the example's structure, not its example roles or policy. Continue with
+> me until we have a separate editable Google Doc and a clear owner handoff.
+
+## Improve screenshots and layout
+
+> Review this Google Doc: [URL]. Work on a separate native copy if your tools
+> support it. Map its tabs, actions and existing masked screenshots before
+> editing. Keep each image next to the action it explains, with a useful caption
+> and consistent readable sizing. Suggest an image only where it helps the
+> reader complete a step. Ask me for that specific masked image, or finish the
+> supported text if I do not have one. Tell me which pages or images you could
+> actually inspect and give precise placement instructions for anything the
+> connector cannot insert. Keep open questions in this chat.
+
+Drive text extraction does not show embedded images. Native copying, image
+insertion and layout checks depend on the tools available in the conversation;
+ask Claude to check those capabilities instead of assuming they are all present.
+Keep private screenshots private. Google access does not require making their
+image URLs public. Check the connected account and the Google pane account if
+an accessible file does not appear.
+
 ## Try Slides and Sheets too
 
 **Slides:**
