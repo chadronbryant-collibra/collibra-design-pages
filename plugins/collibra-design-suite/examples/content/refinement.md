@@ -17,4 +17,4 @@ workflow to record the decision and supporting evidence.
 - Preserves the Friday deadline without inventing a date.
 - Does not claim that the workflow or evidence has been confirmed.
 
-Status: synthetic example · proposed copy
+Status: example · proposed copy

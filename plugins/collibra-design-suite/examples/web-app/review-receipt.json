@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "artifact": "Synthetic offline request-review prototype",
+  "artifact": "example offline request-review prototype",
   "states": {
     "generated": ["Single-file HTML, embedded CSS, and embedded JavaScript"],
-    "proposed": ["Synthetic requests and their next actions"],
+    "proposed": ["Example requests and their next actions"],
     "reviewed": ["Source structure and automated creation-experience tests"],
     "confirmed": ["No remote resources, network calls, storage, authentication, or backend implementation"]
   },

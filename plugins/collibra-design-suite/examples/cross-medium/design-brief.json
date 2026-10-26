@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "reader": "A program lead reviewing synthetic readiness",
+  "reader": "A program lead reviewing example readiness",
   "decision": "Choose whether to assign owners to unresolved decisions",
-  "source": "Synthetic cross-medium fixture",
+  "source": "example cross-medium fixture",
   "output": "A dashboard summary, short message, and spoken update",
   "medium": "data-story",
   "tone": "action-oriented",
   "constraints": ["Preserve each fact ID, state, and source in every output"],
   "facts": [
-    {"id": "fact.synthetic.domains", "text": "12 of 16 domains have been reviewed.", "state": "proposed", "source": "Synthetic cross-medium fixture"},
-    {"id": "fact.synthetic.decisions", "text": "4 decisions are awaiting an owner.", "state": "proposed", "source": "Synthetic cross-medium fixture"},
-    {"id": "fact.synthetic.boundary", "text": "All values are illustrative rather than measured results.", "state": "confirmed", "source": "Example boundary"}
+    {"id": "fact.example.domains", "text": "12 of 16 domains have been reviewed.", "state": "proposed", "source": "example cross-medium fixture"},
+    {"id": "fact.example.decisions", "text": "4 decisions are awaiting an owner.", "state": "proposed", "source": "example cross-medium fixture"},
+    {"id": "fact.example.boundary", "text": "All values are illustrative rather than measured results.", "state": "confirmed", "source": "Example boundary"}
   ]
 }

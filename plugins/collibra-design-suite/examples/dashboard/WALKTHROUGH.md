@@ -4,7 +4,7 @@
 
 > Use `collibra-create` to create a single-file, offline executive dashboard
 > Artifact from `data.json`. The reader is a program lead deciding where to
-> intervene this week. Treat every metric as synthetic and proposed.
+> intervene this week. Treat every metric as example and proposed.
 
 The first result should lead with the decision, summarize the three metrics,
 show workstream status with text as well as color, and state the data boundary.
@@ -28,5 +28,5 @@ contrast, final focus appearance, or real screen-reader output.
 ## Final output
 
 Save the accepted Artifact as `index.html`. Keep CSS and JavaScript inline,
-make no network requests, and retain the synthetic/proposed label. The example
+make no network requests, and retain the example/proposed label. The example
 file is an editable reference, not proof of a Collibra product implementation.

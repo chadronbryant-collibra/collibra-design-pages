@@ -22,6 +22,10 @@ The examples use made-up content to show design choices. For a finished deck
 or document, use your approved assets and authoring tools, then review the
 output before sharing it.
 
+## See the document examples
+
+[Browse the complete documents](https://chadronbryant-collibra.github.io/collibra-design-pages/#documents/internal-sop): an internal SOP, an employee guide and a linked Quick Task. They use example data and open without a GitHub account or Drive access. Open a document to read or print it, then adapt its prompt for your own process.
+
 ## Use it in Claude
 
 Start with the [Claude setup walkthrough](https://chadronbryant-collibra.github.io/collibra-design-pages/#start): install the suite, connect your Google tools, and try a guide with made-up content.
@@ -67,7 +71,7 @@ at the root so GitHub Pages can serve them directly.
 | --- | --- |
 | [index.html](index.html), [app.js](app.js), [styles.css](styles.css) | Site layout, interactions, and styling. |
 | [data/](data/) | Public guidance used by the site. |
-| [plugins/collibra-design-suite/](plugins/collibra-design-suite/) | The installable package: six skills, reference guidance, and synthetic examples. |
+| [plugins/collibra-design-suite/](plugins/collibra-design-suite/) | The installable package: six skills, reference guidance, and example examples. |
 | [.claude-plugin/marketplace.json](.claude-plugin/marketplace.json) | The public marketplace entry that points to the package. |
 | [scripts/](scripts/) and [tests/](tests/) | Package building, publication checks, and boundary tests. |
 | [.github/](.github/) | Ownership, issue and PR templates, validation, release, and Pages workflows. |
@@ -108,7 +112,7 @@ material. Use the private route in [Security](SECURITY.md) for vulnerabilities.
 
 ## License
 
-Code is Apache-2.0; guidance and synthetic examples are CC BY 4.0. Collibra
+Code is Apache-2.0; guidance and example examples are CC BY 4.0. Collibra
 trademarks, logos, proprietary fonts, trade dress, and restricted assets are
 excluded from both grants. See [LICENSE.md](LICENSE.md), [NOTICE](NOTICE), and
 [LICENSES/](LICENSES/).
