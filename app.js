@@ -63,11 +63,57 @@ function initShowcase() {
   // Manual navigation only: no timers, auto-advance or focus stealing.
 }
 
+export const WORKSPACE_STEPS = [
+  {id:"ready", label:"Your accounts", title:"Use your work accounts", intro:"Keep this guide open alongside Claude so you can follow the steps at your own pace.", actions:["Open Claude with the account you use for Collibra work.","Check that your Google session uses your Collibra work account too. If you have several accounts, take a moment to choose the right one.","Use a practice file and example data for your first task."], result:"You’re ready when you know which Claude and Google accounts you’ll use.", help:"If you’re unsure which Claude organization to use, check with the person helping you get started. Keep work connections with your work account."},
+  {id:"find", label:"Find the connectors", title:"Find the four Google connectors", intro:"Start in Claude. You’ll set up each connector you need.", actions:["Open Customize → Connectors.","Look for Google Drive, Google Docs, Google Slides and Google Sheets. Use the + button to browse the directory if you need to find them.","Open a connector to see what it can do. Start with Google Drive, then work through the other three."], result:"You’re ready when you can see the Google connectors available to your account.", help:"If a connector is missing or restricted, ask your Claude organization owner or use your usual internal support route. A missing entry may be an organization setting; you don’t need to create a custom connector."},
+  {id:"connect", label:"Connect Google", title:"Connect with your work Google account", intro:"Check the account before continuing through Google’s sign-in screens.", actions:["Open the connector and select Connect or Install, whichever Claude offers.","Choose your Collibra Google account when Google asks you to sign in. Review the access being requested before continuing.","Return to Claude and repeat for the other Google connectors you need. If a connection is already available, continue with the remaining ones."], result:"You’re ready when Claude shows the connections are available for your account.", help:"If access needs approval, use your usual internal support route. If a connection fails, note the connector name and error message. Keep document contents and sign-in details out of the support screenshot."},
+  {id:"enable", label:"Use them in a chat", title:"Turn on the tools for your conversation", intro:"Now open the Claude chat where you want to work.", actions:["Open the + menu below the chat and choose Connectors.","Enable Google Drive and the Docs, Slides or Sheets tools you need for this conversation.","Tell Claude which Google format you want, or paste the exact link to a practice file."], result:"You’re ready when the relevant Google tools are enabled in the chat.", help:"If Claude returns a downloadable file, ask explicitly for a Google Doc, Google Slides deck or Google Sheet. Check the relevant connector is enabled in this conversation."},
+  {id:"try", label:"Try a small task", title:"Try one file with example data", intro:"Choose a practice task below. Copy the prompt into Claude and follow the permission prompts it shows.", actions:["Start with Google Docs, or choose the format you plan to use first.","For the Drive reading task, replace the bracketed link with a practice file you can already open in Google.","Open the returned file card or link and compare the result with your request."], result:"You’re ready when you can open the Google file and see the requested content.", help:"If the file pane doesn’t open, select Open in Google. If Google asks you to sign in, use the same work account you connected. If a write response is interrupted, check for the file before creating it again."},
+  {id:"check", label:"Check the result", title:"Finish with a quick check", intro:"A successful practice task gives you a useful starting point for your own work.", actions:["Check the file title, content and Google link. For a new file, confirm it is in the location you intended.","Try one small change in the same file, then open it again to check the change is there.","When you’re comfortable, return to the SOP examples and start a separate draft from a source you’re allowed to use."], result:"Your final check: the right account, the right file and the result you expected.", help:"Google file permissions still apply. Ask the file owner for access if you can’t open a source. Drive text extraction doesn’t show embedded images, so check screenshots visually when adapting a guide. Some editing features may depend on the tools your organization makes available."},
+];
+// Add only reviewed, public-safe screenshot files. Missing images render no placeholder.
+export const WORKSPACE_SCREENSHOTS = {};
+const WORKSPACE_PROMPTS = {
+  docs:"Create a new Google Doc called Connector practice. Add the heading Team workshop and three bullets: Choose a date; Agree the agenda; Confirm the room. Use example data and return the Google Doc link.",
+  slides:"Create a new Google Slides deck called Connector practice. Make two slides: Team workshop, with the points Date, Agenda and Room; then Next steps, with the point Confirm the plan. Use example data and return the Google Slides link.",
+  sheets:"Create a new Google Sheet called Connector practice. Add columns Task and Status, with rows Agenda / Draft and Room / Check needed. Use example data and return the Google Sheet link.",
+  drive:"Read this practice Google file: [paste the exact file link]. Tell me its title and first heading. Keep the file unchanged.",
+};
+function workspaceStep() { return WORKSPACE_STEPS.find(s => s.id === state.route.item) || WORKSPACE_STEPS[0]; }
+function renderWorkspace() {
+  const step = workspaceStep(); const index = WORKSPACE_STEPS.indexOf(step);
+  textAt("#workspace-position", `STEP ${index + 1} OF ${WORKSPACE_STEPS.length}`);
+  textAt("#workspace-step-title", step.title); textAt("#workspace-intro", step.intro);
+  const actions = $("#workspace-actions"); actions.replaceChildren(); step.actions.forEach(t => actions.append(node("li", null, t)));
+  textAt("#workspace-result", step.result); textAt("#workspace-help-text", step.help); $("#workspace-help").open = false;
+  $("#workspace-steps").querySelectorAll("a").forEach(a => { if (a.hash === `#google-workspace/${step.id}`) a.setAttribute("aria-current", "step"); else a.removeAttribute("aria-current"); });
+  $("#workspace-back").href = index ? `#google-workspace/${WORKSPACE_STEPS[index - 1].id}` : "#start";
+  $("#workspace-back").textContent = index ? "Previous" : "Back to setup";
+  $("#workspace-next").href = index < WORKSPACE_STEPS.length - 1 ? `#google-workspace/${WORKSPACE_STEPS[index + 1].id}` : "#documents/internal-sop";
+  $("#workspace-next").textContent = index < WORKSPACE_STEPS.length - 1 ? "Next step →" : "Explore the SOP examples →";
+  $("#workspace-tools").hidden = step.id !== "find"; $("#workspace-practice").hidden = step.id !== "try";
+  const shot = WORKSPACE_SCREENSHOTS[step.id]; $("#workspace-figure").hidden = !shot;
+  if (shot) {
+    const url = new URL(shot.src, document.baseURI); $("#workspace-image").src = url.href; $("#workspace-image").alt = shot.alt;
+    $("#workspace-image-link").href = url.href; $("#workspace-image-link").setAttribute("aria-label", "Open the setup screenshot at full size"); textAt("#workspace-caption", shot.caption);
+  }
+}
+function initWorkspace() {
+  WORKSPACE_STEPS.forEach((step, index) => { const li = node("li"); li.append(link(`${index + 1}. ${step.label}`, `#google-workspace/${step.id}`)); $("#workspace-steps").append(li); });
+  $("#workspace-tool").addEventListener("change", () => { $("#workspace-prompt").value = WORKSPACE_PROMPTS[$("#workspace-tool").value]; textAt("#workspace-copy-status", ""); });
+  $("#workspace-prompt").value = WORKSPACE_PROMPTS.docs;
+  $("#workspace-copy").addEventListener("click", async () => {
+    const prompt = $("#workspace-prompt");
+    try { await navigator.clipboard.writeText(prompt.value); textAt("#workspace-copy-status", "Prompt copied. Paste it into your Claude chat."); }
+    catch { prompt.focus(); prompt.select(); textAt("#workspace-copy-status", "The prompt is selected. Use your browser’s Copy command."); }
+  });
+}
+
 export function parseRoute(hash) {
   const [path, query = ""] = hash.replace(/^#/, "").split("?");
   const [rawPage, item] = path.split("/");
   const aliases = { overview: "home", "system-map": "home", foundations: "brand", voices: "brand", adoption: "start", principles: "brand" };
-  const page = aliases[rawPage] || (["home", "make", "playground", "documents", "examples", "brand", "catalog", "start"].includes(rawPage) ? rawPage : "home");
+  const page = aliases[rawPage] || (["home", "make", "playground", "documents", "examples", "brand", "catalog", "start", "google-workspace"].includes(rawPage) ? rawPage : "home");
   const params = new URLSearchParams(query);
   const area = ["foundations", "content", "visual", "ui", "ux"].includes(params.get("area")) ? params.get("area") : "all";
   const number = Number(params.get("page"));
@@ -448,9 +494,10 @@ function renderDetail() {
 function route(focus = false) {
   const next = parseRoute(location.hash); const prior = state.route; state.route = next;
   document.querySelectorAll("[data-page]").forEach(e => { e.hidden = e.id !== next.page; });
-  document.querySelectorAll(".site-nav a").forEach(a => { if (parseRoute(a.hash).page === next.page) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
-  document.title = `Collibra design suite | ${{home: "Make it clear", documents: "Document examples", make: "Make something", playground: "Try interface states", examples: "Try examples", brand: "Learn the brand", catalog: "Guidance library", start: "Use in Claude"}[next.page]}`;
+  document.querySelectorAll(".site-nav a").forEach(a => { if (parseRoute(a.hash).page === (next.page === "google-workspace" ? "start" : next.page)) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  document.title = `Collibra design suite | ${{home: "Make it clear", documents: "Document examples", make: "Make something", playground: "Try interface states", examples: "Try examples", brand: "Learn the brand", catalog: "Guidance library", start: "Use in Claude", "google-workspace": "Google Workspace setup"}[next.page]}`;
   if (next.page === "documents") renderDocuments();
+  if (next.page === "google-workspace") renderWorkspace();
   if (state.ready) {
     if (next.page === "examples") renderExample();
     if (next.page === "brand") renderBrand();
@@ -469,11 +516,14 @@ function route(focus = false) {
       renderCatalog(); renderDetail();
     }
   }
-  if (focus && (prior?.page !== next.page || prior?.item !== next.item)) { $(`#${next.page}-title`)?.focus(); window.scrollTo({ top: 0, behavior: "instant" }); }
+  if (focus && (prior?.page !== next.page || prior?.item !== next.item)) {
+    if (next.page === "google-workspace" && prior?.page === next.page) { $("#workspace-step-title").focus(); $("#workspace-step-title").scrollIntoView({block: "start", behavior: "instant"}); }
+    else { $(`#${next.page}-title`)?.focus(); window.scrollTo({ top: 0, behavior: "instant" }); }
+  }
 }
 
 async function load() {
-  initBuilder(); initPlayground(); initDocuments(); initShowcase();
+  initBuilder(); initPlayground(); initDocuments(); initShowcase(); initWorkspace();
   route();
   window.addEventListener("hashchange", () => route(true));
   $(".skip-link").addEventListener("click", e => { e.preventDefault(); $("#main").focus(); });

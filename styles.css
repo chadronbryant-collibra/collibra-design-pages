@@ -368,3 +368,40 @@ input[type="file"] { display: block; width: 100%; max-width: 100%; min-height: 4
 .showcase-bars { margin: 1rem 0; }
 .showcase-bars > div { margin-bottom: .6rem; }
 .showcase-dashboard .caption { font-size: .75rem; line-height: 1.4; }
+
+/* Setup stays focused on the current action; screenshots appear only when supplied. */
+.workspace-heading { max-width: 52rem; padding: 1.75rem 0 .75rem; }
+.workspace-heading > .eyebrow { margin-top: 1.25rem; }
+.workspace-heading h1 { font-size: clamp(2.3rem,4vw,3.6rem); line-height: 1.1; }
+.workspace-layout { display: grid; grid-template-columns: 15rem minmax(0,1fr); gap: 3rem; align-items: start; margin-bottom: 3rem; }
+.workspace-steps { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--cloud); }
+.workspace-steps a { display: block; padding: .9rem .75rem; color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--cloud); }
+.workspace-steps a[aria-current="step"] { border-left: 3px solid var(--forest); background: var(--pale); font-weight: 650; }
+.workspace-step { max-width: 48rem; min-width: 0; }
+.workspace-step h2 { margin-top: 0; font-size: 1.8rem; }
+.workspace-actions { padding-left: 1.4rem; margin: 1.5rem 0; }
+.workspace-actions li { margin-bottom: 1rem; padding-left: .25rem; }
+.workspace-actions li::marker { color: var(--forest); font-weight: 650; }
+.workspace-result { border-left: 3px solid var(--forest); padding: .75rem 1rem; background: var(--pale); }
+.workspace-navigation { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+#workspace-tools { margin: 1.5rem 0; }
+#workspace-tools dl { margin: 0; }
+#workspace-tools dl > div { display: grid; grid-template-columns: 9rem minmax(0,1fr); gap: 1rem; padding: .6rem 0; border-bottom: 1px solid var(--cloud); }
+#workspace-tools dt { font-weight: 650; color: var(--navy); }
+#workspace-tools dd { margin: 0; }
+#workspace-practice { margin-top: 1.5rem; }
+#workspace-practice label { display: block; font-weight: 650; margin: 1rem 0 .5rem; }
+#workspace-practice select { max-width: 100%; min-height: 44px; }
+#workspace-practice textarea { min-height: 8rem; }
+#workspace-copy { margin-top: .8rem; }
+#workspace-figure { margin: 1.5rem 0; }
+#workspace-image { display: block; max-width: 100%; height: auto; border: 1px solid var(--cloud); }
+#workspace-caption { font-size: .85rem; margin-top: .6rem; }
+@media(max-width:850px) {
+ .workspace-layout { grid-template-columns: minmax(0,1fr); gap: 1.5rem; }
+ .workspace-steps { display: flex; flex-wrap: wrap; gap: .4rem; border: 0; }
+ .workspace-steps a { border: 1px solid var(--cloud); padding: .65rem; min-height: 44px; font-size: .85rem; }
+ #workspace-tools dl > div { grid-template-columns: minmax(0,1fr); gap: .2rem; }
+}
+
+#main:has([id="google-workspace"]:not([hidden])) > #load-status { display: none; }
