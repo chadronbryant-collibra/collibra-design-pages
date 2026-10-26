@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.1 - document examples and clearer setup, 2026-10-26
+
+- Add complete printable internal SOP, employee-guide and Quick Task examples with example data.
+- Lead the public page with document previews and a simpler setup path.
+- Use public same-site links for example documents and readable setup instructions.
+- Replace technical example labels in current reader copy with example data.
+- Preserve the six-skill workflow, account permissions and no-connector package boundary.
+
 ## 1.4.0 - SOP writing and Claude setup, 2026-10-20
 
 - Add collibra-sop for guided interviews, source-preserving revisions, audience-specific guides and optional linked Quick Tasks.

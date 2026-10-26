@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Synthetic request review</title>
+  <title>example request review</title>
   <style>
     :root { color-scheme:light; --navy:#002B40; --ink:#4B4B4B; --surface:#FFFFFF; --soft:#F0F2F3; --forest:#03755F; --light-forest:#B6D8D1; --cloud:#DFE6E8; --focus:#002B40; }
     * { box-sizing:border-box; }
@@ -34,7 +34,7 @@
   </style>
 </head>
 <body>
-  <header><div><div class="eyebrow">Synthetic example · proposed requests</div><h1>Choose the next request to review</h1><p>This offline prototype demonstrates the complete state model without saving or sending a selection.</p></div></header>
+  <header><div><div class="eyebrow">example · proposed requests</div><h1>Choose the next request to review</h1><p>This offline prototype demonstrates the complete state model without saving or sending a selection.</p></div></header>
   <main>
     <section aria-labelledby="journey-title">
       <h2 id="journey-title">Review queue</h2>
@@ -44,19 +44,19 @@
         <button id="apply" type="button">Show state</button>
       </div>
     </section>
-    <p id="announcement" class="status" role="status" aria-live="polite">Ready: 3 synthetic requests are available.</p>
+    <p id="announcement" class="status" role="status" aria-live="polite">Ready: 3 example requests are available.</p>
     <div class="layout">
       <section class="panel" aria-labelledby="results-title">
         <h2 id="results-title">Requests</h2>
-        <div id="loading" hidden><p>Loading synthetic requests…</p></div>
+        <div id="loading" hidden><p>Loading example requests…</p></div>
         <div id="empty" hidden><p><strong>No requests are waiting.</strong></p><p>Change the state to Ready to continue the example.</p></div>
-        <div id="error" class="status error" hidden><p><strong>We could not load the synthetic requests.</strong></p><p>No work was lost. Change the state to Ready to try the local fixture again.</p></div>
+        <div id="error" class="status error" hidden><p><strong>We could not load the example requests.</strong></p><p>No work was lost. Change the state to Ready to try the local fixture again.</p></div>
         <div id="ready" class="cards">
           <article class="card" tabindex="0" data-name="Terms review"><h3>Terms review</h3><p>Confirm two proposed definitions.</p><button type="button" data-select="Terms review">Select terms review</button></article>
-          <article class="card" tabindex="0" data-name="Lineage decision"><h3>Lineage decision</h3><p>Assign an owner to a synthetic decision.</p><button type="button" data-select="Lineage decision">Select lineage decision</button></article>
+          <article class="card" tabindex="0" data-name="Lineage decision"><h3>Lineage decision</h3><p>Assign an owner to a example decision.</p><button type="button" data-select="Lineage decision">Select lineage decision</button></article>
           <article class="card" tabindex="0" data-name="Access summary"><h3>Access summary</h3><p>Review a proposed audience summary.</p><button type="button" data-select="Access summary">Select access summary</button></article>
         </div>
-        <div id="long" class="long" tabindex="0" aria-label="Long synthetic request details" hidden>
+        <div id="long" class="long" tabindex="0" aria-label="Long example request details" hidden>
           <h3>Long request details</h3>
           <p>This named, keyboard-focusable region demonstrates safe overflow. A real request may contain context, evidence, constraints, alternatives, consequences, and unresolved questions that must remain readable without pushing the primary action off the page.</p>
           <p>The content wraps inside the panel and the region scrolls vertically when needed. It contains no customer, tenant, or live product data. Its only purpose is to exercise the long-content layout and reading order.</p>
@@ -66,12 +66,12 @@
       <aside class="panel" aria-labelledby="selection-title"><h2 id="selection-title">Selection</h2><p id="selection">Nothing selected. Choose a request when the Ready state is visible.</p><p><strong>Effect:</strong> this selection exists only in page memory and disappears when the file closes or reloads.</p></aside>
     </div>
   </main>
-  <footer><p>Synthetic design-suite example. Generated and proposed content needs owner review. Source inspection is not rendered, browser, keyboard, or assistive-technology acceptance.</p></footer>
+  <footer><p>example design-suite example. Generated and proposed content needs owner review. Source inspection is not rendered, browser, keyboard, or assistive-technology acceptance.</p></footer>
   <script>
     const names=['loading','empty','error','ready','long'];
     const state=document.getElementById('state');
     const announcement=document.getElementById('announcement');
-    const messages={loading:'Loading: the synthetic request fixture is being prepared.',empty:'Empty: no synthetic requests are waiting.',error:'Error: the synthetic fixture could not be shown. No work was lost.',ready:'Ready: 3 synthetic requests are available.',long:'Long content: request details are available in a scrollable named region.'};
+    const messages={loading:'Loading: the example request fixture is being prepared.',empty:'Empty: no example requests are waiting.',error:'Error: the example fixture could not be shown. No work was lost.',ready:'Ready: 3 example requests are available.',long:'Long content: request details are available in a scrollable named region.'};
     function showState(){const selected=state.value;names.forEach(name=>document.getElementById(name).hidden=name!==selected);announcement.textContent=messages[selected];}
     document.getElementById('apply').addEventListener('click',showState);
     document.querySelectorAll('[data-select]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.card').forEach(card=>card.removeAttribute('aria-current'));button.closest('.card').setAttribute('aria-current','true');document.getElementById('selection').textContent=`Selected: ${button.dataset.select}. Review its proposed details before any durable action.`;}));

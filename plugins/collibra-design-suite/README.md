@@ -1,6 +1,6 @@
 # Collibra design suite
 
-Version `1.4.0`. See the [changelog](CHANGELOG.md) for package changes.
+Version `1.4.1`. See the [changelog](CHANGELOG.md) for package changes.
 
 The Collibra design suite helps people make content and experiences easier to
 understand, use, and trust. It brings the reader-first design contract into
@@ -26,7 +26,7 @@ policy without receiving local paths or licensed asset files.
 
 ## Design a web app
 
-Ask: "Design a web app for my team to review proposals. Use synthetic data,
+Ask: "Design a web app for my team to review proposals. Use example data,
 make the main task clear, and include empty, loading, error, and success states."
 Claude starts with the reader and journey, then returns an editable offline
 prototype or a plan appropriate to the tools available. It does not provision
@@ -61,6 +61,10 @@ contract into an approved standard. The registry snapshot is descriptive; it
 does not connect to Drive, enable an Apps Script deployment, or change the
 private source repository.
 
+## See the document examples
+
+[Browse the complete documents](https://chadronbryant-collibra.github.io/collibra-design-pages/#documents/internal-sop): an internal SOP, an employee guide and a linked Quick Task. They use example data and open without a GitHub account or Drive access. Open a document to read or print it, then adapt its prompt for your own process.
+
 ## Use it in Claude
 
 Start with the [Claude setup walkthrough](https://chadronbryant-collibra.github.io/collibra-design-pages/#start): install the suite, connect your Google tools, and try a guide with made-up content.
@@ -82,7 +86,7 @@ See [Claude plugin instructions](https://support.claude.com/en/articles/13837440
 
 ## License and brand boundary
 
-Code is Apache-2.0 and guidance and synthetic examples are CC BY 4.0. Collibra
+Code is Apache-2.0 and guidance and examples are CC BY 4.0. Collibra
 trademarks, logos, proprietary fonts, trade dress, and restricted brand or
 media assets are excluded from those grants. The standalone examples use
 measured palette values plus explicitly labeled operational accessibility
@@ -114,6 +118,6 @@ Claude; it contains no Codex manifest.
 
 See the repository's [support guide](https://github.com/chadronbryant-collibra/collibra-design-pages/blob/main/SUPPORT.md)
 for general problems and [security policy](https://github.com/chadronbryant-collibra/collibra-design-pages/blob/main/SECURITY.md)
-for private reporting. Use synthetic reproduction material in public issues.
+for private reporting. Use example reproduction material in public issues.
 The earlier owner waiver of real-device Desktop and rendered human acceptance
 is not a passing test receipt.

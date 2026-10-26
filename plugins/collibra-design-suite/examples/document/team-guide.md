@@ -1,6 +1,6 @@
 # Resolve a data-definition question
 
-Status: synthetic example · proposed content
+Status: example · proposed content
 
 ## What this guide helps you do
 
@@ -22,7 +22,7 @@ term and a shared decision is needed.
 
 ## Example decision record
 
-| Field | Synthetic example |
+| Field | example |
 | --- | --- |
 | Term | Active customer |
 | Proposed definition | An organization with a current paid agreement |

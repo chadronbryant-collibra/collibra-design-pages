@@ -2,10 +2,10 @@
 
 ## Spoken copy
 
-We have reviewed 12 of 16 domains in this synthetic example. Four decisions still need an owner. The useful next step is to review those decisions and assign ownership where the evidence supports it. Every value here is illustrative, not a measured result.
+We have reviewed 12 of 16 domains in this example scenario. Four decisions still need an owner. The useful next step is to review those decisions and assign ownership where the evidence supports it. Every value here is illustrative, not a measured result.
 
 ## Working fact handoff
 
-- `fact.synthetic.domains`, proposed, Synthetic cross-medium fixture
-- `fact.synthetic.decisions`, proposed, Synthetic cross-medium fixture
-- `fact.synthetic.boundary`, confirmed, Example boundary
+- `fact.example.domains`, proposed, example cross-medium fixture
+- `fact.example.decisions`, proposed, example cross-medium fixture
+- `fact.example.boundary`, confirmed, Example boundary

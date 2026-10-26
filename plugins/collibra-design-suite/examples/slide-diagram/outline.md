@@ -1,6 +1,6 @@
 # Decision-flow slide outline
 
-Status: synthetic example · proposed structure
+Status: example · proposed structure
 
 Reader question: Where does a proposed definition become an approved one?
 

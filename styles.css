@@ -258,3 +258,61 @@ input[type="file"] { display: block; width: 100%; max-width: 100%; min-height: 4
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
 }
+
+/* Document-first layout. Values here are composition choices for this site. */
+.site-nav { flex-wrap: wrap; justify-content: flex-end; gap: .5rem 1.25rem; }
+.site-nav a { min-height: 44px; display: inline-flex; align-items: center; }
+.hero { align-items: start; gap: 4rem; padding: 3.5rem 0; }
+.hero h1 { font-size: clamp(2.8rem, 5vw, 4.5rem); line-height: 1.08; }
+.hero .actions { gap: .8rem; }
+.access-note { font-size: .85rem; color: var(--ink); margin-top: 1.5rem; max-width: 42rem; }
+.document-teaser { padding: 1.3rem; display: block; }
+.teaser-paper { background: var(--white); border: 1px solid var(--cloud); padding: 2rem; font-family: Arial,sans-serif; }
+.teaser-paper h2 { font-size: 2rem; margin: .8rem 0 1rem; }
+.teaser-paper h3 { font-size: 1rem; margin: 1.4rem 0 .5rem; }
+.teaser-paper p, .teaser-paper li { font-size: .85rem; }
+.teaser-paper ol { padding-left: 1.2rem; margin: .5rem 0 1rem; }
+.teaser-result { border-left: 3px solid var(--forest); padding-left: .8rem; margin-bottom: 0; }
+.getting-started { list-style: none; display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; padding: 1.8rem 0; margin: 0 0 3rem; border-top: 1px solid var(--cloud); border-bottom: 1px solid var(--cloud); }
+.getting-started li { display: flex; gap: 1rem; }
+.getting-started span { color: var(--forest); font-family: var(--font-mono); font-size: .8rem; }
+.getting-started h2 { font-size: 1.15rem; margin: 0 0 .5rem; }
+.getting-started p { font-size: .9rem; margin: 0; }
+.document-layout { display: grid; grid-template-columns: minmax(0,1.8fr) minmax(0,1fr); gap: 2.5rem; align-items: start; }
+.document-reader { border: 1px solid var(--cloud); background: var(--pale); padding: 1rem; }
+.document-reader-bar { display: flex; gap: 1rem; align-items: center; justify-content: space-between; font-size: .8rem; margin: 0 0 1rem; }
+.document-reader iframe { display: block; width: 100%; height: 56rem; border: 1px solid var(--cloud); background: var(--white); }
+.document-reader > .caption { margin: .8rem 0 0; }
+.document-context h2 { font-size: 1.8rem; margin-top: 0; }
+.document-context h3 { font-size: 1.1rem; margin-top: 1.8rem; }
+.document-context ul { padding-left: 1.2rem; }
+.document-context li { margin-bottom: .8rem; }
+.document-prompt { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--cloud); }
+.document-prompt textarea { min-height: 18rem; }
+.document-prompt .button { margin-top: 1rem; }
+.setup-steps { list-style: none; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); padding: 0; margin: 1rem 0 2.5rem; gap: 2rem; counter-reset: setup; }
+.setup-steps > li { padding-top: 1.5rem; border-top: 3px solid var(--forest); }
+.setup-steps h2 { font-size: 1.5rem; min-height: 3.5rem; }
+.setup-downloads { display: flex; flex-direction: column; gap: .65rem; align-items: stretch; margin: 1.4rem 0; }
+.setup-example { background: var(--pale); padding: 1rem; border-left: 3px solid var(--forest); }
+.setup-help { padding: 1.5rem 0; border-top: 1px solid var(--cloud); }
+.setup-help h2 { font-size: 1.5rem; }
+.setup-help > p { max-width: 58rem; }
+.skill-disclosure { margin: 1.5rem 0; }
+.skill-disclosure .skill-cards { margin-top: 1.5rem; }
+@media(max-width:1100px) { .hero { gap: 2rem; } .site-nav { justify-content: flex-start; } }
+@media(max-width:760px) {
+ .site-nav { overflow: visible; flex-wrap: wrap; gap: .25rem 1rem; padding: 0; }
+ .hero { grid-template-columns: minmax(0,1fr); padding: 2.5rem 0; gap: 2rem; }
+ .hero h1 { font-size: clamp(2.8rem,10vw,3.8rem); }
+ .hero .actions > .button { flex: 1 1 auto; }
+ .teaser-paper { padding: 1.5rem; }
+ .getting-started, .setup-steps, .document-layout { grid-template-columns: minmax(0,1fr); }
+ .getting-started { gap: 1.5rem; }
+ .setup-steps { gap: 1.6rem; }
+ .setup-steps h2 { min-height: 0; }
+ .document-reader { padding: .65rem; }
+ .document-reader-bar { flex-wrap: wrap; }
+ .document-reader iframe { height: 42rem; }
+ .document-context { padding-top: .5rem; }
+}

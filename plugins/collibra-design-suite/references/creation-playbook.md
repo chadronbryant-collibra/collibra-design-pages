@@ -14,7 +14,7 @@ outputs. Use trimmed, nonempty, non-NUL strings and keep every fact ID unique
 within the brief.
 
 Ask no more than two questions. Safe defaults are a general reader, clearly
-labeled synthetic data, and an editable draft that needs owner review. Return
+labeled example data, and an editable draft that needs owner review. Return
 the brief as part of the requested output or pass it to the selected tool. Do
 not save, upload, or register it automatically.
 
@@ -72,7 +72,7 @@ invent an official speech format, delivery standard, or approval contract.
 
 ## Completion states
 
-- `generated`: produced by Claude from supplied or synthetic input;
+- `generated`: produced by Claude from supplied or example input;
 - `proposed`: plausible content or behavior awaiting an owner decision;
 - `reviewed`: checked against named contracts or inspected evidence; and
 - `confirmed`: explicitly supplied or accepted by an accountable person.
