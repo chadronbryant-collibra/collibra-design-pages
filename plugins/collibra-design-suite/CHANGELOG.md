@@ -1,5 +1,60 @@
 # Changelog
 
+## 1.5.0 · 2026-10-28
+
+- Simplify Claude setup and add a copy-ready setup prompt.
+- Apply relevant skills by default and check brand sources every 60 days on use.
+- Include the current reader authoring, native guide and presentation composition guidance. Proposed recipes retain their maturity and native checks.
+
+
+## 1.5.0-rc.7 · 2026-10-28
+
+- Add mission-preserving intent selection, semantic same-content auditions,
+  and catalog search metadata for task, UI, platform, trust and release visuals.
+- Preserve reader-first rc.6 work and existing native contracts. This private
+  candidate records source/package evidence only; installation, native output
+  and human acceptance remain separate.
+
+## 1.5.0-rc.6 - private reader-authoring candidate, 2026-10-28
+
+- Require Design, bundled refinement and audience-ready review consistently.
+- Add reader-driven native Docs, Sheets and Slides guidance and a portable
+  six-check review record. Keep material constraints beside the relevant action,
+  preserve requested structure and add notes only when requested.
+- Source/package candidate only; no client installation or public release claim.
+
+## 1.5.0-rc.5 - integrated native guide recipes, 2026-10-26
+
+- Combine six proposed native guide compositions with the current presentation
+  stories, document examples, carousel and connector-aware SOP coaching.
+- Preserve all earlier candidate and public version records while rebuilding
+  the integrated private snapshot under a new immutable version.
+- Keep the 1.4.2 public-release contract separate. This candidate is not an
+  installation, publication or native acceptance receipt.
+
+## 1.5.0-rc.4 — 2026-10-26
+
+- Reconcile the public carousel and SOP-coaching changes into private development
+  while retaining the presentation candidate and its publication boundary.
+- Public v1.4.2 uses its reviewed stable source branch; this private candidate is
+  not the public release payload.
+
+## 1.5.0-rc.3 - integrated private presentation candidate, 2026-10-26
+
+- Preserve the released 1.4.1 document examples, public links, setup guidance and reader copy alongside the presentation contracts.
+- Rebuild the private snapshot after the landed source merge; retain both the 1.4.1 and earlier rc.2 immutable ledger entries.
+- Keep the six skills, Collibra brand values and native geometry unchanged. The separate rc.1 native-guide composition candidate remains excluded.
+- This candidate does not inherit public 1.4.1 release authority or claim installation, native rendering or human acceptance.
+
+## 1.5.0-rc.2 - private presentation candidate, 2026-10-26
+
+- Add purpose-specific stories for executive decisions, solution proposals, go-to-market decks and outcome/dependency roadmaps, reusing existing visual grammars.
+- Bundle a closed source-plan schema with fact state and coverage, proposal acceptance traces, composition alternatives and roadmap dependencies.
+- Route creation and review through separate narrative, composition and rendered-critique passes.
+- Keep the native template, type roles, geometry, brand values and six-skill footprint unchanged.
+- Build from released 1.4.0 plus this presentation increment; the separate 1.5.0-rc.1 native-guide composition changes are not included.
+- This is a private package candidate. It does not inherit the 1.4.0 public-release contract or claim native rendering, client invocation or human acceptance.
+
 ## 1.4.2 — 2026-10-26
 
 - Add a manually controlled homepage carousel for a slide deck, document,
@@ -16,6 +71,16 @@
 - Use public same-site links for example documents and readable setup instructions.
 - Replace technical example labels in current reader copy with example data.
 - Preserve the six-skill workflow, account permissions and no-connector package boundary.
+
+## 1.5.0-rc.1 - native guide recipes, 2026-10-26
+
+- Add six proposed visual guide recipes selected by reader question, with
+  condition preservation, readable native structures and consumer-owned layout.
+- Route guide design and review through the native authoring and rendered
+  review boundaries. Document current Docs chip, dropdown, table, drawing and
+  building-block capabilities without claiming connector invocation.
+- This is an unpublished, uninstalled private candidate. Existing public
+  release authority and the immutable 1.4.0 record remain unchanged.
 
 ## 1.4.0 - SOP writing and Claude setup, 2026-10-20
 

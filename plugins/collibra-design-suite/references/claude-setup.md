@@ -35,21 +35,21 @@ that it is enabled in the same account and open a new conversation.
 
 ## Connect your Google tools
 
-In **Customize → Connectors**, find Google Drive, Google Docs, Google Slides and
-Google Sheets. Connect using your work Google account and review the consent
-screen. Drive handles discovery and file management; the other three connectors
-provide native authoring. Check that the tools are enabled under the chat's
-**+ → Connectors** menu. An organization owner may need to enable them first.
+In Home or Code, click **Customize → Connectors**. Search **Google**.
+Choose Google Drive, Docs, Slides or Sheets, click **Connect** and sign in
+with your work Google account. Repeat for the tools you need.
 
-Paste the exact file link, or explicitly ask for a **Google Doc**, **Google
-Slides deck** or **Google Sheet**. Without Google in the request, Claude may
-return a downloadable file. Use “Open in Google” if the live pane is unavailable.
-Your existing Google permissions still apply.
+[See the clicks](https://chadronbryant-collibra.github.io/collibra-design-pages/#google-workspace/ready).
 
-Embedded document images are not visible through text extraction. Check
-screenshots and masking yourself. Slides has limitations, including adding
-charts; verify the actual result instead of assuming every editor feature is
-supported. [Google connector help](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors).
+## Use the suite
+
+Tell Claude what you’re making, who it’s for and which source to use. Relevant
+skills apply by default. For example: “Turn this process into a guide for
+managers. Create a new Google Doc.” You can also name a skill directly.
+
+The suite checks brand source freshness before brand-dependent work. If the
+last successful review is missing or at least 60 days old, it uses your
+connected work Drive to review current sources. See [brand refresh](brand-refresh.md).
 
 ## Try a guided SOP
 

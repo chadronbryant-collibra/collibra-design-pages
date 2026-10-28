@@ -1,6 +1,11 @@
 # Collibra design suite
 
-Version `1.4.2`. See the [changelog](CHANGELOG.md) for package changes.
+Version `1.5.0`. See the [changelog](CHANGELOG.md) for package changes.
+
+Use the suite for Collibra design, guides, decks and writing. Relevant skills
+apply without being named. The source review check refreshes brand guidance
+when its last successful review is missing or at least 60 days old. See
+[brand refresh](references/brand-refresh.md).
 
 The Collibra design suite helps people make content and experiences easier to
 understand, use, and trust. It brings the reader-first design contract into

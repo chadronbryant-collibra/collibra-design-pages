@@ -292,7 +292,7 @@ input[type="file"] { display: block; width: 100%; max-width: 100%; min-height: 4
 .document-prompt .button { margin-top: 1rem; }
 .setup-steps { list-style: none; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); padding: 0; margin: 1rem 0 2.5rem; gap: 2rem; counter-reset: setup; }
 .setup-steps > li { padding-top: 1.5rem; border-top: 3px solid var(--forest); }
-.setup-steps h2 { font-size: 1.5rem; min-height: 3.5rem; }
+.setup-steps h2 { font-size: 1.5rem; min-height: 0; }
 .setup-downloads { display: flex; flex-direction: column; gap: .65rem; align-items: stretch; margin: 1.4rem 0; }
 .setup-example { background: var(--pale); padding: 1rem; border-left: 3px solid var(--forest); }
 .setup-help { padding: 1.5rem 0; border-top: 1px solid var(--cloud); }
@@ -373,17 +373,17 @@ input[type="file"] { display: block; width: 100%; max-width: 100%; min-height: 4
 .workspace-heading { max-width: 52rem; padding: 1.75rem 0 .75rem; }
 .workspace-heading > .eyebrow { margin-top: 1.25rem; }
 .workspace-heading h1 { font-size: clamp(2.3rem,4vw,3.6rem); line-height: 1.1; }
-.workspace-layout { display: grid; grid-template-columns: 15rem minmax(0,1fr); gap: 3rem; align-items: start; margin-bottom: 3rem; }
+.workspace-layout { display: grid; grid-template-columns: 15rem minmax(0,1fr); gap: 1.5rem; align-items: start; margin-bottom: 1.5rem; }
 .workspace-steps { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--cloud); }
 .workspace-steps a { display: block; padding: .9rem .75rem; color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--cloud); }
 .workspace-steps a[aria-current="step"] { border-left: 3px solid var(--forest); background: var(--pale); font-weight: 650; }
 .workspace-step { max-width: 48rem; min-width: 0; }
 .workspace-step h2 { margin-top: 0; font-size: 1.8rem; }
-.workspace-actions { padding-left: 1.4rem; margin: 1.5rem 0; }
+.workspace-actions { padding-left: 1.4rem; margin: .75rem 0; }
 .workspace-actions li { margin-bottom: 1rem; padding-left: .25rem; }
 .workspace-actions li::marker { color: var(--forest); font-weight: 650; }
 .workspace-result { border-left: 3px solid var(--forest); padding: .75rem 1rem; background: var(--pale); }
-.workspace-navigation { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+.workspace-navigation { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
 #workspace-tools { margin: 1.5rem 0; }
 #workspace-tools dl { margin: 0; }
 #workspace-tools dl > div { display: grid; grid-template-columns: 9rem minmax(0,1fr); gap: 1rem; padding: .6rem 0; border-bottom: 1px solid var(--cloud); }
@@ -405,3 +405,25 @@ input[type="file"] { display: block; width: 100%; max-width: 100%; min-height: 4
 }
 
 #main:has([id="google-workspace"]:not([hidden])) > #load-status { display: none; }
+
+/* A compact, account-free illustration based on the supplied Home and Code views. */
+.claude-preview { margin: 1rem 0; border: 1px solid var(--cloud); border-radius: .5rem; overflow: hidden; background: var(--pale); }
+.claude-preview-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; padding: .6rem .8rem; border-bottom: 1px solid var(--cloud); font-size: .85rem; }
+.claude-views { display: flex; gap: .25rem; }
+.claude-views button { background: var(--white); border: 1px solid var(--cloud); border-radius: .3rem; min-height: 44px; padding: .4rem .8rem; color: var(--navy); cursor: pointer; }
+.claude-views button[aria-pressed="true"] { background: var(--navy); color: var(--white); }
+.claude-preview-body { display: grid; grid-template-columns: 8rem minmax(0,1fr); }
+.claude-preview-body aside { padding: 1rem .5rem; border-right: 1px solid var(--cloud); }
+.claude-customize { display: flex; gap: .4rem; padding: .65rem .35rem; color: var(--navy); font-size: .85rem; }
+.claude-preview-content { padding: .75rem 1rem; background: var(--white); min-width: 0; }
+.claude-preview-content h3 { margin: 0 0 .6rem; }
+.claude-preview-tabs { display: flex; align-items: center; flex-wrap: wrap; gap: .8rem; font-size: .85rem; }
+.claude-connectors { padding: .7rem .4rem; color: var(--navy); }
+.claude-search { display: flex; gap: .7rem; padding: .6rem; margin: .6rem 0; border: 1px solid var(--cloud); border-radius: .3rem; color: var(--ink); text-decoration: none; }
+.claude-services a { display: flex; justify-content: space-between; gap: .5rem; padding: .7rem 0; border-bottom: 1px solid var(--cloud); color: var(--navy); font-size: .9rem; }
+.claude-connect-hint { margin: .6rem 0 0; font-size: .8rem; }
+.claude-preview figcaption { padding: .6rem .8rem; font-size: .85rem; }
+.claude-preview[data-step="ready"] .claude-customize, .claude-preview[data-step="find"] .claude-connectors, .claude-preview[data-step="connect"] .claude-search { background: var(--lime); color: var(--navy); font-weight: 650; }
+.install-prompt { max-width: 48rem; margin: 1rem 0; }
+.install-prompt textarea { display: block; width: 100%; margin: .75rem 0; }
+@media(max-width: 480px) { .claude-preview-body { grid-template-columns: minmax(0,1fr); } .claude-preview-body aside { border-right: 0; padding: .3rem .7rem; } }

@@ -7,10 +7,16 @@ description: >-
   return ranked, evidence-backed findings and do not silently redesign the
   artifact.
 metadata:
-  version: "1.4.2"
+  version: "1.5.0"
 ---
 
 # Collibra pre-ship review
+
+Apply this skill by default when its task matches relevant Collibra work; the
+user need not name it. Respect explicit user preferences and use only the
+smallest relevant guidance. Before brand-dependent work, follow
+`../../references/brand-refresh.md`, including its 60-day source review check.
+
 
 Use this as a review gate, not as an invisible rewrite. Read
 `../../references/contract-index.md`, the relevant bundled catalog, and
@@ -18,6 +24,17 @@ Use this as a review gate, not as an invisible rewrite. Read
 For a web app, also read `../../references/web-app-playbook.md`. When a
 machine-readable handoff is requested, use
 `../../references/review-receipt.schema.json`.
+
+For audience-facing Docs, Sheets and Slides, read `reader_authoring` in
+`../../references/catalog/content/guide-patterns.json`. Frame the reader's
+question and next action, then choose the main view and supporting detail.
+Use native features only when they help that task. Keep material conditions
+beside claims or actions and preserve requested structure, order and visibility.
+Add speaker notes only when requested. Preserve existing notes during edits.
+Complete the six checks in
+`../../references/catalog/content/authoring-review.schema.json` before a
+content-ready claim. Record missing native or rendered inspection as
+`not-checked` in the private handoff; a useful draft may still be delivered.
 
 ## Review in three passes
 
@@ -47,11 +64,22 @@ native autofit as high-priority findings. Recommend reflow, fewer simultaneous
 items, or complementary slides according to the contract; do not suggest a
 smaller role as the repair.
 
+For a deck, also use `../../references/presentation-playbook.md`. Read the title
+sequence and requested decision, check the purpose-specific narrative beats,
+source coverage and fact states, then inspect composition and rendered
+delivery. Distinguish a source storyboard or planned audition from inspected
+slide renders. A complete beat list does not establish that the argument works.
+
 For Google Docs, check `medium.google-doc` and
 `visual.document-composition`. Confirm that the opening answers the reader's
 question, headings form a useful scan path, panels and visuals have a content
 role, tabs represent distinct durable tasks, and exported pages preserve
 readability, links, alt text, contrast, and page breaks.
+For native visual recipes, also apply `native_visuals` in the guide-pattern
+catalog: inspect all visible text against the minimum font floor, preserve
+material conditions beside actions, and distinguish editable native structures
+from image or UI-only substitutes. Proposed recipes need actual rendered
+review in the consuming surface before any acceptance claim.
 
 For visual claims, say whether you inspected a rendered surface, screenshot,
 live page, or only source code. Do not claim contrast, focus, responsive
@@ -78,3 +106,15 @@ Do not edit the artifact in review mode. If the user explicitly asks for
 `fix`, apply only the accepted blocking fixes after presenting the review and
 then report what changed. If the artifact is not available, say what cannot be
 reviewed and give the narrowest next request needed to continue.
+
+## Preserve mission and visual meaning
+
+For new decks or substantial composition redesigns, follow the mission and
+`visual_reasoning` workflow in `../../references/presentation-playbook.md` and
+`../../references/catalog/visual/composition-intents.json`. Preserve WHY,
+WHAT and ASK; label a pilot as an example. Select from the available library
+by semantic relationship and content fit before choosing a shell. Compare
+same-content composition auditions and inspect representative renders before
+a visual-selection claim. Review what the encoding explains, including task
+states, hosting, trust crossings or release conditions where relevant. A
+catalog name, clean geometry or shorter prose cannot establish visual meaning.

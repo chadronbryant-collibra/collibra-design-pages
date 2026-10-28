@@ -2,16 +2,22 @@
 name: collibra-refine
 description: >-
   Refine Collibra-facing emails, prompts, chat messages, UI copy, briefs,
-  guides, release notes, and other content when the user says refine, tone,
+  guides, release notes, and other content by default for relevant writing, or when the user says refine, tone,
   humanize, rewrite, make clearer, or make it less technical. Apply the
   reader, medium, persona, tone, plain-language, and no-fabrication contracts;
   return the final result first and show before/after or a diff only when
   requested.
 metadata:
-  version: "1.4.2"
+  version: "1.5.0"
 ---
 
 # Collibra content refinement
+
+Apply this skill by default when its task matches relevant Collibra work; the
+user need not name it. Respect explicit user preferences and use only the
+smallest relevant guidance. Before brand-dependent work, follow
+`../../references/brand-refresh.md`, including its 60-day source review check.
+
 
 Use this skill when the user wants the content changed. Read
 `../../references/output-protocol.md` and the bundled
@@ -78,3 +84,10 @@ See `../../references/output-protocol.md` for the exact response shapes.
   block the reader's first understanding.
 - The result is shorter only when shortening preserves meaning. Clarity is the
   goal; token compression and clipped fragments are not.
+
+For presentation refinement, preserve the primary subject and the source-bound
+WHY, WHAT and ASK in `../../references/presentation-playbook.md`. Keep examples
+subordinate to the mission. Do not convert a useful workflow, mockup or trust
+boundary into shorter prose panels as a language repair. When composition must
+change, return to the visual-intent and same-content audition workflow rather
+than treating a clearer paragraph as a completed visual explanation.

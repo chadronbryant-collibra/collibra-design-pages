@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "artifact": "Synthetic access-request guide",
+  "medium": "google-doc",
+  "reader": "Employee requesting access",
+  "reader_question": "How do I request access and what can delay approval?",
+  "next_step": "Submit the access request after checking eligibility.",
+  "main_view": "Opening answer, eligibility condition, numbered request steps, and support link.",
+  "supporting_detail": [
+    "Linked policy and source details after the request steps."
+  ],
+  "material_constraints": [
+    {
+      "statement": "Approval is required before access is granted.",
+      "placement": "adjacent"
+    }
+  ],
+  "preserve_requested_structure": true,
+  "notes_requested": false,
+  "notes_added": 0,
+  "native_features": [
+    {
+      "feature": "Native headings and numbered list",
+      "purpose": "Support scanning and sequential completion.",
+      "outcome": "applied"
+    },
+    {
+      "feature": "Native tabs",
+      "purpose": "One short sequential task does not need another navigation layer.",
+      "outcome": "not-needed"
+    }
+  ],
+  "checks": [
+    {
+      "id": "reader-intent",
+      "status": "not-checked",
+      "method": "Planned: inspect the native guide and exported pages before recording a result.",
+      "artifact_ref": ""
+    },
+    {
+      "id": "structure-and-density",
+      "status": "not-checked",
+      "method": "Planned: inspect the native guide and exported pages before recording a result.",
+      "artifact_ref": ""
+    },
+    {
+      "id": "native-features",
+      "status": "not-checked",
+      "method": "Planned: inspect the native guide and exported pages before recording a result.",
+      "artifact_ref": ""
+    },
+    {
+      "id": "constraints-and-evidence",
+      "status": "not-checked",
+      "method": "Planned: inspect the native guide and exported pages before recording a result.",
+      "artifact_ref": ""
+    },
+    {
+      "id": "requested-structure-and-notes",
+      "status": "not-checked",
+      "method": "Planned: inspect the native guide and exported pages before recording a result.",
+      "artifact_ref": ""
+    },
+    {
+      "id": "native-and-rendered-view",
+      "status": "not-checked",
+      "method": "Planned: inspect the native guide and exported pages before recording a result.",
+      "artifact_ref": ""
+    }
+  ],
+  "content_ready": false,
+  "approval": false
+}

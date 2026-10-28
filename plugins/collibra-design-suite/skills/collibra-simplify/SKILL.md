@@ -7,10 +7,16 @@ description: >-
   and important limits; do not compress the answer into fragments or strip
   away useful nuance.
 metadata:
-  version: "1.4.2"
+  version: "1.5.0"
 ---
 
 # Collibra plain-language simplification
+
+Apply this skill by default when its task matches relevant Collibra work; the
+user need not name it. Respect explicit user preferences and use only the
+smallest relevant guidance. Before brand-dependent work, follow
+`../../references/brand-refresh.md`, including its 60-day source review check.
+
 
 Use this as the explicit simplification lane inside the design suite. It is
 informed by the suite's plain-English and reader-first contracts, not by a

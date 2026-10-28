@@ -8,10 +8,16 @@ description: >-
   boundary; do not use for a prose-only rewrite when no design decision is
   needed.
 metadata:
-  version: "1.4.2"
+  version: "1.5.0"
 ---
 
 # Collibra design
+
+Apply this skill by default when its task matches relevant Collibra work; the
+user need not name it. Respect explicit user preferences and use only the
+smallest relevant guidance. Before brand-dependent work, follow
+`../../references/brand-refresh.md`, including its 60-day source review check.
+
 
 Use the design suite as a practical decision layer. Start with the person's
 task and the meaning they need, then choose only the contracts that help them
@@ -22,6 +28,17 @@ pattern, visual capability, or content rule matters.
 For an SOP, employee/manager task guide or linked Quick Task, use the bundled
 `collibra-sop` skill for the procedure workflow and apply the relevant design
 guidance here.
+
+For audience-facing Docs, Sheets and Slides, read `reader_authoring` in
+`../../references/catalog/content/guide-patterns.json`. Frame the reader's
+question and next action, then choose the main view and supporting detail.
+Use native features only when they help that task. Keep material conditions
+beside claims or actions and preserve requested structure, order and visibility.
+Add speaker notes only when requested. Preserve existing notes during edits.
+Complete the six checks in
+`../../references/catalog/content/authoring-review.schema.json` before a
+content-ready claim. Record missing native or rendered inspection as
+`not-checked` in the private handoff; a useful draft may still be delivered.
 
 ## Route the request
 
@@ -79,10 +96,15 @@ Apply Design, then the bundled Collibra refinement contract, then an audience-re
 `collibra-refine` in embedded mode. An internal refinement skill may add a
 separate review when available, but public completion never depends on it.
 
+For a visually structured native guide, read `native_visuals` in that catalog.
+Choose a recipe from the reader's question, preserve its conditions, and keep
+the proposed recipe maturity separate from live native capability and actual
+rendered review. The consumer owns geometry and connector execution.
+
 Keep the artifact ready for its audience. Put drafting choices and review
 findings in the private handoff, not in published copy or off-canvas content.
-Use native speaker notes or a separate facilitator area for useful delivery
-prompts, remembering that collaborators may see them.
+Use native speaker notes or facilitator prompts only when requested, remembering
+that collaborators may see them. Preserve existing notes during edits.
 
 ## Make the contract usable
 
@@ -108,3 +130,15 @@ Separate what was observed from what was inferred. Never invent a source,
 brand rule, accessibility result, product behavior, owner, date, or completion
 state. A visual review requires a rendered surface, screenshot, or inspectable
 artifact; otherwise say what could not be assessed.
+
+## Preserve mission and visual meaning
+
+For new decks or substantial composition redesigns, follow the mission and
+`visual_reasoning` workflow in `../../references/presentation-playbook.md` and
+`../../references/catalog/visual/composition-intents.json`. Preserve WHY,
+WHAT and ASK; label a pilot as an example. Select from the available library
+by semantic relationship and content fit before choosing a shell. Compare
+same-content composition auditions and inspect representative renders before
+a visual-selection claim. Review what the encoding explains, including task
+states, hosting, trust crossings or release conditions where relevant. A
+catalog name, clean geometry or shorter prose cannot establish visual meaning.

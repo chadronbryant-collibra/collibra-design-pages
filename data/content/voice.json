@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "catalog_version": "0.8.0",
+  "catalog_version": "0.9.0",
   "area_id": "area.design.content",
   "status": "active",
   "title": "Collibra content and voice contract",
@@ -767,6 +767,30 @@
         "tabs that merely split a short linear narrative"
       ],
       "source": "visual.document-composition and Collibra content guidance",
+      "maturity": "defined"
+    },
+    {
+      "id": "medium.google-sheet",
+      "name": "Google Sheet for review",
+      "reader_need": "Understand the current state, compare meaningful options and use the right values or next action without reading the entire source ledger.",
+      "structure": [
+        "start with the useful entry view for the reader decision",
+        "group detail into clearly named tabs only when it supports a distinct task",
+        "use formulas, filters, frozen headers, validation and charts only for a task they improve",
+        "keep units, definitions, freshness and material constraints beside the relevant values"
+      ],
+      "tone_modes": [
+        "tone.trust-building",
+        "tone.plainly-useful"
+      ],
+      "avoid": [
+        "one paragraph per cell",
+        "generic tab names without a reader task",
+        "color-only status",
+        "source detail that buries the decision",
+        "unverified formulas or implied freshness"
+      ],
+      "source": "content/guide-patterns.json#reader_authoring; consumer-owned authoring guidance, not a new measured brand rule.",
       "maturity": "defined"
     },
     {

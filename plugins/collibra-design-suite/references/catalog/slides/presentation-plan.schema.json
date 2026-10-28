@@ -1,0 +1,838 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "collibra-design/slides/presentation-plan/v1",
+  "title": "Collibra source-bound presentation plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "purpose",
+    "delivery_mode",
+    "reader",
+    "decision",
+    "facts",
+    "slides",
+    "appendix",
+    "omissions",
+    "workstreams",
+    "dependencies",
+    "requirements"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "collibra-design/slides/presentation-plan/v1"
+    },
+    "purpose": {
+      "enum": [
+        "executive_decision",
+        "solution_proposal",
+        "go_to_market",
+        "outcome_roadmap"
+      ]
+    },
+    "delivery_mode": {
+      "enum": [
+        "live",
+        "self_reading"
+      ]
+    },
+    "reader": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+    },
+    "decision": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+    },
+    "facts": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "text",
+          "state",
+          "source",
+          "decision_critical"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+          },
+          "state": {
+            "enum": [
+              "confirmed",
+              "proposed",
+              "synthetic"
+            ]
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+          },
+          "decision_critical": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "slides": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 40,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "headline",
+          "reader_question",
+          "beats",
+          "grammar_id",
+          "focus",
+          "evidence",
+          "audition"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+          },
+          "headline": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+          },
+          "reader_question": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+          },
+          "beats": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 6,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "beat_id",
+                "message"
+              ],
+              "properties": {
+                "beat_id": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+                },
+                "message": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 2000,
+                  "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+                }
+              }
+            }
+          },
+          "grammar_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+          },
+          "focus": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+          },
+          "evidence": {
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 30,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "fact_id",
+                "display_state"
+              ],
+              "properties": {
+                "fact_id": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+                },
+                "display_state": {
+                  "enum": [
+                    "confirmed",
+                    "proposed",
+                    "synthetic"
+                  ]
+                }
+              }
+            }
+          },
+          "audition": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "candidates",
+                  "selected_grammar_id",
+                  "selection_reason",
+                  "evidence_level",
+                  "inspection_reference"
+                ],
+                "properties": {
+                  "candidates": {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 4,
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "grammar_id",
+                        "reading_path",
+                        "rationale",
+                        "tradeoff"
+                      ],
+                      "properties": {
+                        "grammar_id": {
+                          "type": "string",
+                          "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+                        },
+                        "reading_path": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 2000,
+                          "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+                        },
+                        "rationale": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 2000,
+                          "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+                        },
+                        "tradeoff": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 2000,
+                          "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+                        }
+                      }
+                    }
+                  },
+                  "selected_grammar_id": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+                  },
+                  "selection_reason": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2000,
+                    "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+                  },
+                  "evidence_level": {
+                    "enum": [
+                      "source_only",
+                      "rendered_preview"
+                    ]
+                  },
+                  "inspection_reference": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2000,
+                    "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "appendix": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "fact_id",
+          "reason"
+        ],
+        "properties": {
+          "fact_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+          }
+        }
+      }
+    },
+    "omissions": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "fact_id",
+          "reason"
+        ],
+        "properties": {
+          "fact_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+          }
+        }
+      }
+    },
+    "workstreams": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "outcome",
+          "owner_role",
+          "timing_state",
+          "timing_basis",
+          "exit_criteria"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+          },
+          "outcome": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+          },
+          "owner_role": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+          },
+          "timing_state": {
+            "enum": [
+              "committed",
+              "forecast",
+              "exploratory"
+            ]
+          },
+          "timing_basis": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+          },
+          "exit_criteria": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+          }
+        }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 60,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "prerequisite_id",
+          "dependent_id",
+          "condition"
+        ],
+        "properties": {
+          "prerequisite_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+          },
+          "dependent_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+          },
+          "condition": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+          }
+        }
+      }
+    },
+    "requirements": {
+      "type": "array",
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "need",
+          "solution",
+          "acceptance",
+          "fact_ids"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+          },
+          "need": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+          },
+          "solution": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+          },
+          "acceptance": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+          },
+          "fact_ids": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 30,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+            }
+          }
+        }
+      }
+    },
+    "visual_reasoning": {
+      "$ref": "#/$defs/visual_reasoning"
+    }
+  },
+  "$comment": "Unique IDs, source coverage, fact-state fidelity, beat coverage, audition semantics, and dependency integrity are cross-record checks in validate_story.py. Never resolve remote schemas or fetch source pointers. Optional visual_reasoning is a closed compatible extension. New or substantially redesigned decks require it through --require-visual-reasoning. Structural checks cannot attest semantic truth or rendered quality.",
+  "$defs": {
+    "visual_reasoning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mission",
+        "framing",
+        "compositions"
+      ],
+      "properties": {
+        "mission": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "subject_id",
+            "label",
+            "statement",
+            "why_fact_ids",
+            "what_fact_ids",
+            "ask_fact_ids",
+            "examples"
+          ],
+          "properties": {
+            "subject_id": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000,
+              "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+            },
+            "statement": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000,
+              "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+            },
+            "why_fact_ids": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 30,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+              },
+              "uniqueItems": true
+            },
+            "what_fact_ids": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 30,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+              },
+              "uniqueItems": true
+            },
+            "ask_fact_ids": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 30,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+              },
+              "uniqueItems": true
+            },
+            "examples": {
+              "type": "array",
+              "minItems": 0,
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "label"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+                  },
+                  "label": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2000,
+                    "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "framing": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "why",
+            "what",
+            "ask"
+          ],
+          "properties": {
+            "why": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 30,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+              },
+              "uniqueItems": true
+            },
+            "what": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 30,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+              },
+              "uniqueItems": true
+            },
+            "ask": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 30,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+              },
+              "uniqueItems": true
+            }
+          }
+        },
+        "compositions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 40,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "slide_id",
+              "subject_id",
+              "intent_id",
+              "visual_claim",
+              "candidates",
+              "selected_candidate_id",
+              "selection_reason",
+              "evidence_level",
+              "inspection_reference"
+            ],
+            "properties": {
+              "slide_id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+              },
+              "subject_id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+              },
+              "intent_id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+              },
+              "visual_claim": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+              },
+              "candidates": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 4,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "id",
+                    "grammar_id",
+                    "catalog_source",
+                    "catalog_entry_id",
+                    "availability",
+                    "encoding",
+                    "reading_path",
+                    "tradeoff",
+                    "media",
+                    "editability"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+                    },
+                    "grammar_id": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+                    },
+                    "catalog_source": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2000,
+                      "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+                    },
+                    "catalog_entry_id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2000,
+                      "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+                    },
+                    "availability": {
+                      "enum": [
+                        "verified",
+                        "unverified",
+                        "unsupported"
+                      ]
+                    },
+                    "encoding": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "entities",
+                        "relations"
+                      ],
+                      "properties": {
+                        "entities": {
+                          "type": "array",
+                          "minItems": 2,
+                          "maxItems": 30,
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                              "id",
+                              "role",
+                              "label"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+                              },
+                              "role": {
+                                "type": "string",
+                                "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+                              },
+                              "label": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 2000,
+                                "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+                              }
+                            }
+                          }
+                        },
+                        "relations": {
+                          "type": "array",
+                          "minItems": 1,
+                          "maxItems": 60,
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                              "from",
+                              "to",
+                              "kind",
+                              "meaning",
+                              "fact_ids"
+                            ],
+                            "properties": {
+                              "from": {
+                                "type": "string",
+                                "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+                              },
+                              "to": {
+                                "type": "string",
+                                "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+                              },
+                              "kind": {
+                                "enum": [
+                                  "action",
+                                  "boundary",
+                                  "cause_effect",
+                                  "comparison",
+                                  "connection",
+                                  "containment",
+                                  "deny",
+                                  "emphasis",
+                                  "gate",
+                                  "handoff",
+                                  "sequence",
+                                  "state",
+                                  "transition"
+                                ]
+                              },
+                              "meaning": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 2000,
+                                "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+                              },
+                              "fact_ids": {
+                                "type": "array",
+                                "minItems": 1,
+                                "maxItems": 30,
+                                "items": {
+                                  "type": "string",
+                                  "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+                                },
+                                "uniqueItems": true
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "reading_path": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2000,
+                      "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+                    },
+                    "tradeoff": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2000,
+                      "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+                    },
+                    "media": {
+                      "enum": [
+                        "native",
+                        "mixed",
+                        "image"
+                      ]
+                    },
+                    "editability": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2000,
+                      "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+                    }
+                  }
+                }
+              },
+              "selected_candidate_id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_-]{0,63}$(?![\\s\\S])"
+              },
+              "selection_reason": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+              },
+              "evidence_level": {
+                "enum": [
+                  "source_only",
+                  "rendered_preview"
+                ]
+              },
+              "inspection_reference": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)[^\\u0000]+$"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

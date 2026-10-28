@@ -6,10 +6,16 @@ description: >-
   when the user wants a new audience-ready surface rather than guidance or
   review; keep generated, proposed, reviewed, and confirmed content distinct.
 metadata:
-  version: "1.4.2"
+  version: "1.5.0"
 ---
 
 # Collibra creation
+
+Apply this skill by default when its task matches relevant Collibra work; the
+user need not name it. Respect explicit user preferences and use only the
+smallest relevant guidance. Before brand-dependent work, follow
+`../../references/brand-refresh.md`, including its 60-day source review check.
+
 
 Create the smallest complete surface that helps the intended reader act. Read
 `../../references/contract-index.md`, `../../references/creation-playbook.md`,
@@ -19,6 +25,17 @@ also read `../../references/web-app-playbook.md`.
 For an SOP, employee/manager task guide or linked Quick Task, use the bundled
 `collibra-sop` skill for the procedure workflow and apply the relevant design
 guidance here.
+
+For audience-facing Docs, Sheets and Slides, read `reader_authoring` in
+`../../references/catalog/content/guide-patterns.json`. Frame the reader's
+question and next action, then choose the main view and supporting detail.
+Use native features only when they help that task. Keep material conditions
+beside claims or actions and preserve requested structure, order and visibility.
+Add speaker notes only when requested. Preserve existing notes during edits.
+Complete the six checks in
+`../../references/catalog/content/authoring-review.schema.json` before a
+content-ready claim. Record missing native or rendered inspection as
+`not-checked` in the private handoff; a useful draft may still be delivered.
 
 ## Frame the result
 
@@ -35,6 +52,13 @@ and state visible, preserve supplied facts, and never invent evidence,
 metrics, owners, dates, links, or brand approvals. Mark proposed data clearly.
 
 ## Build by medium
+
+For a presentation, first read `../../references/presentation-playbook.md`
+and choose the appropriate purpose in
+`../../references/catalog/slides/presentation-story.json`. Build a source-bound
+storyboard before drawing. Keep narrative, composition, and rendered critique
+as separate passes. Use existing visual grammars and the intent workflow below; keep representative
+rendered auditions distinct from source-only alternatives.
 
 - In Claude Chat, return a self-contained Artifact. For a web Artifact, use one
   portable HTML file with embedded CSS and JavaScript, no external packages,
@@ -73,9 +97,22 @@ line: audience, hierarchy, density, tone, visualization, layout, evidence,
 accessibility, or responsive behavior. Apply requested adjustments directly;
 do not restart discovery unless the goal changed.
 
-Finish with an optional `collibra-review` pass. Distinguish what was generated,
+Finish with Design, bundled Collibra refinement, then the required audience-ready
+`collibra-review` pass. Distinguish what was generated,
 proposed, reviewed, and confirmed. Do not claim visual or runtime validation
 unless the rendered result or meaningful test evidence was inspected. When a
 machine-readable handoff helps, use
 `../../references/review-receipt.schema.json`; the receipt records evidence
 and states, not approval.
+
+## Preserve mission and visual meaning
+
+For new decks or substantial composition redesigns, follow the mission and
+`visual_reasoning` workflow in `../../references/presentation-playbook.md` and
+`../../references/catalog/visual/composition-intents.json`. Preserve WHY,
+WHAT and ASK; label a pilot as an example. Select from the available library
+by semantic relationship and content fit before choosing a shell. Compare
+same-content composition auditions and inspect representative renders before
+a visual-selection claim. Review what the encoding explains, including task
+states, hosting, trust crossings or release conditions where relevant. A
+catalog name, clean geometry or shorter prose cannot establish visual meaning.
