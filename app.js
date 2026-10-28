@@ -104,7 +104,7 @@ function initWorkspace() {
   $("#install-copy").addEventListener("click", async () => {
     const prompt = $("#install-prompt");
     try { await navigator.clipboard.writeText(prompt.value); textAt("#install-status", "Copied. Paste into Claude Desktop."); }
-    catch { prompt.focus(); prompt.select(); textAt("#install-status", "Text selected. Use Copy, then paste into Claude Desktop."); }
+    catch { $("#install-preview").open = true; prompt.focus(); prompt.select(); textAt("#install-status", "Text selected. Use Copy, then paste into Claude Desktop."); }
   });
   WORKSPACE_STEPS.forEach((step, index) => { const li = node("li"); li.append(link(`${index + 1}. ${step.label}`, `#google-workspace/${step.id}`)); $("#workspace-steps").append(li); });
   $("#workspace-tool").addEventListener("change", () => { $("#workspace-prompt").value = WORKSPACE_PROMPTS[$("#workspace-tool").value]; textAt("#workspace-copy-status", ""); });

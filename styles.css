@@ -427,3 +427,13 @@ input[type="file"] { display: block; width: 100%; max-width: 100%; min-height: 4
 .install-prompt { max-width: 48rem; margin: 1rem 0; }
 .install-prompt textarea { display: block; width: 100%; margin: .75rem 0; }
 @media(max-width: 480px) { .claude-preview-body { grid-template-columns: minmax(0,1fr); } .claude-preview-body aside { border-right: 0; padding: .3rem .7rem; } }
+
+#start .page-heading { padding: 2rem 0 .5rem; }
+#start .setup-steps { margin: .5rem 0 1.25rem; gap: 1.5rem; }
+#start .setup-steps > li { padding-top: 1rem; }
+#start .setup-help { padding: 0; border: 0; }
+#start .skill-disclosure { margin: 0; }
+#start .install-prompt h2 { font-size: 1.6rem; }
+#start .install-prompt > p { margin-bottom: .5rem; }
+#start .install-prompt > details { margin-top: .75rem; }
+#google-workspace .workspace-heading h1 { font-size: clamp(2rem,4vw,3rem); margin: .5rem 0 1rem; }
