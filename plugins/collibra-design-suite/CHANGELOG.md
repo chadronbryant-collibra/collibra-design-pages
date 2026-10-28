@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.1 · 2026-10-28
+
+- Link the official brand sources, native Slides template and presentation guide.
+- Use those stable links first during the 60-day check. Collibra SSO restrictions
+  are expected; source sharing stays unchanged and no restricted assets are bundled.
+
+
 ## 1.5.0 · 2026-10-28
 
 - Simplify Claude setup and add a copy-ready setup prompt.

@@ -4,6 +4,9 @@ Use this reader-facing summary when a request involves slides or a deck. The
 native template, object ids, and document-delivery mechanics remain owned by
 the consuming slide system.
 
+Start a new deck from a fresh copy of the [official Slides template](https://docs.google.com/presentation/d/1Lo33hhkPpoxmZzyU7qD5t0q6klj13sKtJdpv43BSa2s/edit). Read the [presentation best practices](https://docs.google.com/presentation/d/1PtgNOtL07v9mrZ2crkJoXLIGFlq77Ru3hRIFven6BYY/edit). Both use your Collibra sign-in. Keep the originals unchanged.
+
+
 - State the conclusion or question the room needs to hold before the detail.
 - Give only the context that helps the audience decide, understand, or
   remember.

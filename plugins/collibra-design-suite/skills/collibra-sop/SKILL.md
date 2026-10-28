@@ -9,7 +9,7 @@ description: >-
   Use for procedure writing, not executing the HR process or changing policy.
 license: CC-BY-4.0
 metadata:
-  version: "1.5.0"
+  version: "1.5.1"
 ---
 
 # Write a useful SOP or guide
@@ -20,8 +20,14 @@ smallest relevant guidance. Use this 60-day source review check before brand-dep
 successful review is missing, in the future or at least 60 days old, use the
 connected work Drive account to find and read current official Brand Guidelines,
 Brand Toolkit and Content Style Guide, plus the People team voice guide when
-relevant. Prefer verified private file/folder IDs; otherwise confirm exact-title
-search results. Compare the relevant content and keep a private task record of
+relevant. Use these official links first (Collibra sign-in required):
+- [Brand guidelines](https://drive.google.com/file/d/1nOG2dfxYUdslym05d9yZ-jL030pwJz_d/view)
+- [Brand toolkit](https://drive.google.com/drive/folders/10GbbrGuTTPe3qEWvbmxtyUTcORAkkdXH)
+- [Content style guide](https://docs.google.com/document/d/1AsPXnuqxjo1necd2_P44JkYogMgwe2SP/edit)
+- [People team voice guide](https://docs.google.com/document/d/1l_HIgggiDgnr_GfJZaOsa_-G_oHgnfrgl04qfM2zxME/edit)
+
+Keep their sharing settings intact; no public copy is needed. If a link moves,
+confirm the authoritative replacement with an exact-title search. Compare the relevant content and keep a private task record of
 source ID, revision, date and changes. Mark success only after reading the source.
 If access fails, use the bundled guidance where safe and tell the user its
 freshness is unverified. Do not invent rules, copy restricted assets into public
