@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "catalog_version": "0.6.0",
+  "catalog_version": "0.7.0",
   "area_id": "area.design.visual",
   "status": "active",
   "title": "Collibra visual capability catalog",
@@ -410,7 +410,7 @@
       "name": "Reader-first document composition",
       "maturity": "defined",
       "purpose": "Give branded documents a recognizable reading path without turning every paragraph into decoration or forcing one layout onto every audience.",
-      "contract": "Begin with the answer, outcome, or decision the reader needs. Use token-backed navy headings, readable neutral body text, a light base, restrained supporting panels, forest links, and lime only as a safe accent or fill. Use cards for real groupings, tables for real comparisons, numbered lists for sequences, and diagrams or images only when they explain a relationship or example faster than prose. Keep paragraph rhythm open, preserve a readable type floor, and let the document consumer own exact type sizes and spacing until an approved Docs scale exists. Use native tabs only for distinct, durable reader tasks; preserve the complete tab tree when adapting an existing document. Verify the final native document and exported pages, including alt text, link behavior, contrast, page breaks, and non-color meaning.",
+      "contract": "Begin with the answer, outcome, or decision the reader needs. Use token-backed navy headings, readable neutral body text, a light base, restrained supporting panels, forest links, and lime only as a safe accent or fill. Use cards for real groupings, tables for real comparisons, numbered lists for sequences, and diagrams or images only when they explain a relationship or example faster than prose. Keep paragraph rhythm open, preserve a readable type floor, and let the document consumer own exact type sizes and spacing until an approved Docs scale exists. Use native tabs only for distinct, durable reader tasks; preserve the complete tab tree when adapting an existing document. Verify the final native document and exported pages, including alt text, link behavior, contrast, page breaks, and non-color meaning. For Docs, Sheets and Slides also apply content/guide-patterns.json#reader_authoring: choose the primary view by reader intent, use native features proportionally, preserve requested structure, retain decision-changing conditions beside the claim or action, and complete the recorded audience review. Add speaker notes only when requested.",
       "token_refs": [
         "brand.color.primary.navy",
         "brand.color.primary.lime",

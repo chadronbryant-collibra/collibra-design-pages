@@ -9,16 +9,42 @@ description: >-
   Use for procedure writing, not executing the HR process or changing policy.
 license: CC-BY-4.0
 metadata:
-  version: "1.4.2"
+  version: "1.5.0"
 ---
 
 # Write a useful SOP or guide
+
+Apply this skill by default when its task matches relevant Collibra work; the
+user need not name it. Respect explicit user preferences and use only the
+smallest relevant guidance. Use this 60-day source review check before brand-dependent work: if the last
+successful review is missing, in the future or at least 60 days old, use the
+connected work Drive account to find and read current official Brand Guidelines,
+Brand Toolkit and Content Style Guide, plus the People team voice guide when
+relevant. Prefer verified private file/folder IDs; otherwise confirm exact-title
+search results. Compare the relevant content and keep a private task record of
+source ID, revision, date and changes. Mark success only after reading the source.
+If access fails, use the bundled guidance where safe and tell the user its
+freshness is unverified. Do not invent rules, copy restricted assets into public
+outputs, change installed caches or capture memory implicitly.
+
 
 Help the person document how the work actually happens. Start with their source
 or ask a few questions. Return a useful draft and the smallest set of questions
 needed to finish it. This skill is self-contained and adds no connectors or
 access to company systems. When the Design Suite is available, use its content
 and document guidance without making installation a prerequisite.
+
+For audience-facing work, frame the reader’s question and next action, then
+choose the main view and supporting detail. Use native features only when they
+help that task. Keep conditions beside the relevant action. Preserve requested
+structure, order, visibility and existing notes; add speaker notes only when
+requested.
+
+Before calling the content ready, check reader intent, structure and density,
+native feature choices, conditions and source evidence, requested structure and
+notes, and the native/rendered reader view. Keep pass, fail or not-checked and
+concrete evidence for each check in the private handoff. A useful draft may be
+delivered with an unchecked visual stage, without claiming it was inspected.
 
 ## Choose the reader and starting point
 

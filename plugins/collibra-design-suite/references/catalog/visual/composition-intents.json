@@ -1,0 +1,207 @@
+{
+  "$schema": "collibra-design/visual/composition-intents/v1",
+  "contract_version": "1.0.0",
+  "status": "defined",
+  "boundary": "Semantic authoring metadata, not new native templates or a renderer. Consumer libraries own exact IDs, geometry, availability and output evidence.",
+  "selection_order": [
+    "Preserve the mission, audience, outcome and decision request before selecting a workload example.",
+    "Translate the reader question into a semantic relationship using these intents, then search the available consumer catalog by meaning and required data.",
+    "Inspect matching library entries and capability requirements across the available catalog; shortlist by relationship and content fit, not familiar names or palette. Do not claim exhaustive inspection without evidence.",
+    "Compare meaningfully different compositions using the same mission, claim, content and fact states. Render the representative alternatives when making a visual choice.",
+    "Use cards, tables, text, images or mixed media when their encoding answers the question. A shorter sentence or more shapes does not by itself create a visual explanation."
+  ],
+  "intents": [
+    {
+      "id": "explain_why",
+      "reader_question": "Why does this foundation change the outcome?",
+      "grammar_options": [
+        "evidence_chain",
+        "comparison_split",
+        "journey_spine"
+      ],
+      "required_relation_kinds": [
+        "cause_effect"
+      ],
+      "semantic_roles": [
+        "problem",
+        "mechanism",
+        "outcome"
+      ],
+      "encoding": "Encode the problem, the mechanism that changes it, and the resulting outcome; label proposed causal links as hypotheses.",
+      "catalog_search_terms": [
+        "before after",
+        "friction outcome",
+        "causal chain"
+      ],
+      "failure_signal": "A service inventory with a Why column leaves the causal explanation to the prose."
+    },
+    {
+      "id": "task_storyboard",
+      "reader_question": "What will a person do and what changes at each handoff?",
+      "grammar_options": [
+        "journey_spine",
+        "swimlane_handoff"
+      ],
+      "required_relation_kinds": [
+        "sequence",
+        "handoff"
+      ],
+      "semantic_roles": [
+        "actor",
+        "task",
+        "result"
+      ],
+      "encoding": "Show successive task states, the artifact being acted on, and who receives the result.",
+      "catalog_search_terms": [
+        "storyboard",
+        "user journey",
+        "review handoff"
+      ],
+      "failure_signal": "Numbered headings without task state or an observable result are an outline."
+    },
+    {
+      "id": "interface_walkthrough",
+      "reader_question": "What will the person see, choose and receive?",
+      "grammar_options": [
+        "journey_spine",
+        "collage_mosaic"
+      ],
+      "required_relation_kinds": [
+        "action",
+        "state"
+      ],
+      "semantic_roles": [
+        "screen",
+        "control",
+        "result"
+      ],
+      "encoding": "Use a plausible UI mockup or permitted screenshot with a specific control, interaction and resulting state.",
+      "catalog_search_terms": [
+        "product mockup",
+        "screen flow",
+        "UI walkthrough"
+      ],
+      "failure_signal": "Decorative browser chrome around paragraphs is not an interface explanation."
+    },
+    {
+      "id": "platform_cutaway",
+      "reader_question": "What is hosted, what connects, and where does ownership change?",
+      "grammar_options": [
+        "network_hub",
+        "hierarchy_tree",
+        "swimlane_handoff"
+      ],
+      "required_relation_kinds": [
+        "containment",
+        "connection"
+      ],
+      "semantic_roles": [
+        "runtime",
+        "tool",
+        "connection",
+        "owner"
+      ],
+      "encoding": "Nest hosted components inside their runtime; connect external systems across labeled ownership or permission boundaries.",
+      "catalog_search_terms": [
+        "platform architecture",
+        "connected cutaway",
+        "hosting tools agents connections"
+      ],
+      "failure_signal": "A hub surrounded by service names does not establish hosting, direction or permission."
+    },
+    {
+      "id": "trust_boundary",
+      "reader_question": "Where is a request checked, denied or allowed?",
+      "grammar_options": [
+        "swimlane_handoff",
+        "evidence_chain",
+        "network_hub"
+      ],
+      "required_relation_kinds": [
+        "boundary",
+        "deny"
+      ],
+      "semantic_roles": [
+        "caller",
+        "check",
+        "resource"
+      ],
+      "encoding": "Show the caller, the check at the crossing, the allowed destination and a denied branch; label unresolved identity choices.",
+      "catalog_search_terms": [
+        "access boundary",
+        "identity permission",
+        "allow deny"
+      ],
+      "failure_signal": "A lock icon or security service list cannot explain an access decision."
+    },
+    {
+      "id": "release_path",
+      "reader_question": "What permits movement into a live environment?",
+      "grammar_options": [
+        "state_ladder",
+        "phase_chevrons",
+        "swimlane_handoff"
+      ],
+      "required_relation_kinds": [
+        "transition",
+        "gate"
+      ],
+      "semantic_roles": [
+        "environment",
+        "gate",
+        "owner"
+      ],
+      "encoding": "Connect environments with promotion conditions, an accountable handoff and a failure or rollback path where supported.",
+      "catalog_search_terms": [
+        "dev staging production",
+        "promotion gate",
+        "rollback release"
+      ],
+      "failure_signal": "Three environment names styled as metrics omit the release decision."
+    },
+    {
+      "id": "exact_comparison",
+      "reader_question": "Which option meets which criterion?",
+      "grammar_options": [
+        "data_table_lens",
+        "comparison_split"
+      ],
+      "required_relation_kinds": [
+        "comparison"
+      ],
+      "semantic_roles": [
+        "option",
+        "criterion"
+      ],
+      "encoding": "Align equivalent fields against explicit criteria; retain units, unknowns and meaningful differences.",
+      "catalog_search_terms": [
+        "decision table",
+        "option matrix",
+        "precise comparison"
+      ],
+      "failure_signal": "Replacing useful comparable fields with arbitrary pictures makes the decision harder."
+    },
+    {
+      "id": "single_conclusion",
+      "reader_question": "What one point or request must stay visible?",
+      "grammar_options": [
+        "thesis_field",
+        "narrative_rail"
+      ],
+      "required_relation_kinds": [
+        "emphasis"
+      ],
+      "semantic_roles": [
+        "conclusion",
+        "support"
+      ],
+      "encoding": "Use a clear statement with a bounded evidence anchor or explicit request; text can be the right visual anchor.",
+      "catalog_search_terms": [
+        "opening thesis",
+        "decision ask",
+        "conclusion"
+      ],
+      "failure_signal": "A cover for an illustrative workload can displace the proposal mission."
+    }
+  ]
+}

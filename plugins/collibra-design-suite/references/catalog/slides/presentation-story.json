@@ -1,0 +1,306 @@
+{
+  "$schema": "collibra-design/slides/presentation-story/v1",
+  "contract_version": "1.1.0",
+  "status": "defined",
+  "boundary": "Source and narrative planning contract. Native rendering, delivery, and human acceptance remain consumer-owned.",
+  "plan_schema": "presentation-plan.schema.json",
+  "grammar_source": "visual/slide-grammar-suite.json",
+  "purposes": [
+    {
+      "id": "executive_decision",
+      "name": "Executive decision",
+      "reader_question": "What decision can this room make, on which evidence and conditions?",
+      "required_beats": [
+        {
+          "id": "recommendation",
+          "job": "State the recommendation or the learning decision when evidence is insufficient.",
+          "grammar_options": [
+            "thesis_field",
+            "narrative_rail"
+          ]
+        },
+        {
+          "id": "stakes",
+          "job": "Name the outcome at risk and why the decision matters now.",
+          "grammar_options": [
+            "metric_beacon",
+            "evidence_chain"
+          ]
+        },
+        {
+          "id": "options_tradeoffs",
+          "job": "Compare feasible options, including the current course, against explicit criteria.",
+          "grammar_options": [
+            "comparison_split",
+            "data_table_lens"
+          ]
+        },
+        {
+          "id": "evidence",
+          "job": "Show the evidence, scope, missingness, and what it supports.",
+          "grammar_options": [
+            "chart_plot",
+            "evidence_chain"
+          ]
+        },
+        {
+          "id": "risk_conditions",
+          "job": "Name downside, dependencies, uncertainty, and conditions that would change the recommendation.",
+          "grammar_options": [
+            "network_hub",
+            "data_table_lens"
+          ]
+        },
+        {
+          "id": "decision_request",
+          "job": "Name the requested decision, accountable role, next action, and unresolved condition.",
+          "grammar_options": [
+            "thesis_field",
+            "narrative_rail"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "solution_proposal",
+      "name": "Solution proposal",
+      "reader_question": "Can a recipient assess the proposed solution, delivery boundary, and acceptance?",
+      "required_beats": [
+        {
+          "id": "context_outcome",
+          "job": "Connect the recipient problem to an observable desired outcome.",
+          "grammar_options": [
+            "thesis_field",
+            "journey_spine"
+          ]
+        },
+        {
+          "id": "requirements_scope",
+          "job": "State in-scope needs, exclusions, constraints, interfaces, and unresolved discovery.",
+          "grammar_options": [
+            "data_table_lens",
+            "comparison_split"
+          ]
+        },
+        {
+          "id": "proposed_solution",
+          "job": "Explain how the solution works and why it addresses the requirements.",
+          "grammar_options": [
+            "evidence_chain",
+            "swimlane_handoff"
+          ]
+        },
+        {
+          "id": "delivery_dependencies",
+          "job": "Show work, handoffs, owner roles, prerequisites, and dependencies.",
+          "grammar_options": [
+            "swimlane_handoff",
+            "network_hub"
+          ]
+        },
+        {
+          "id": "commercial_assumptions",
+          "job": "Distinguish estimate from quote, included scope from exclusions, and unknown cost, effort, licensing or support terms.",
+          "grammar_options": [
+            "data_table_lens",
+            "comparison_split"
+          ]
+        },
+        {
+          "id": "acceptance_handoff",
+          "job": "Give verifiable acceptance criteria, decision gates, operating/support ownership, and the exact next step.",
+          "grammar_options": [
+            "state_ladder",
+            "narrative_rail"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "go_to_market",
+      "name": "Go to market",
+      "reader_question": "Why should this audience choose this offer, and what can they do next?",
+      "required_beats": [
+        {
+          "id": "audience_problem",
+          "job": "Identify the intended segment, situation, and unmet task without inventing research.",
+          "grammar_options": [
+            "journey_spine",
+            "thesis_field"
+          ]
+        },
+        {
+          "id": "value_promise",
+          "job": "State a specific outcome the offer is intended to help deliver.",
+          "grammar_options": [
+            "thesis_field",
+            "metric_beacon"
+          ]
+        },
+        {
+          "id": "differentiated_mechanism",
+          "job": "Explain the mechanism and meaningful alternative comparison.",
+          "grammar_options": [
+            "comparison_split",
+            "evidence_chain"
+          ]
+        },
+        {
+          "id": "proof",
+          "job": "Earn confidence with attributable evidence; separate demonstrated results from targets or hypotheses.",
+          "grammar_options": [
+            "chart_plot",
+            "evidence_chain"
+          ]
+        },
+        {
+          "id": "offer_constraints",
+          "job": "Name availability, eligibility, scope, limitations, and unresolved commercial or legal claims.",
+          "grammar_options": [
+            "data_table_lens",
+            "narrative_rail"
+          ]
+        },
+        {
+          "id": "next_action",
+          "job": "Give one audience-appropriate next step and say what happens after it.",
+          "grammar_options": [
+            "thesis_field",
+            "journey_spine"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "outcome_roadmap",
+      "name": "Outcome and dependency roadmap",
+      "reader_question": "How does the work connect to outcomes, sequencing constraints, and decisions?",
+      "required_beats": [
+        {
+          "id": "outcome",
+          "job": "Name the outcome and the reader decision the roadmap supports.",
+          "grammar_options": [
+            "thesis_field",
+            "narrative_rail"
+          ]
+        },
+        {
+          "id": "baseline_target",
+          "job": "Separate observed baseline, desired target, measure, and evidence gap.",
+          "grammar_options": [
+            "metric_beacon",
+            "chart_plot"
+          ]
+        },
+        {
+          "id": "workstreams",
+          "job": "Connect each workstream to the outcome rather than listing activity alone.",
+          "grammar_options": [
+            "swimlane_handoff",
+            "hierarchy_tree"
+          ]
+        },
+        {
+          "id": "dependencies",
+          "job": "Expose prerequisites, dependency direction, and accountable owner roles.",
+          "grammar_options": [
+            "network_hub",
+            "swimlane_handoff"
+          ]
+        },
+        {
+          "id": "sequence_confidence",
+          "job": "Distinguish commitment, forecast, and exploration with conditions rather than false date precision.",
+          "grammar_options": [
+            "phase_chevrons",
+            "state_ladder"
+          ]
+        },
+        {
+          "id": "decisions",
+          "job": "Name the gates, decision owners, and evidence that permits the next step.",
+          "grammar_options": [
+            "state_ladder",
+            "narrative_rail"
+          ]
+        }
+      ]
+    }
+  ],
+  "delivery_modes": {
+    "live": "Present a short claim-and-proof sequence; retain complete decision-critical conditions on the visible slide and move supporting lookup detail to an appendix.",
+    "self_reading": "Make the narrative, evidence interpretation, constraints, and next action understandable without a presenter; add complementary pages before reducing type."
+  },
+  "authoring_passes": [
+    "source_and_narrative",
+    "art_direction_and_composition",
+    "rendered_critique_and_delivery"
+  ],
+  "audition": {
+    "trigger": "Use when two materially different compositions could answer the same reader question, or a representative dense slide fails hierarchy review. Do not require auditions for every page.",
+    "minimum_candidates": 2,
+    "same_input": "Candidates share headline, reader question, evidence fact IDs and states. Change arrangement, hierarchy and grammar, not the facts.",
+    "meaningful_difference": "Use distinct existing grammar IDs and state the reading-path difference and evidence-fit tradeoff. Color swaps and renamed card grids are not alternatives.",
+    "selection": "Record why one candidate fits the evidence and reader task; render candidates before claiming visual selection. A source-only selection remains planned.",
+    "criteria": [
+      "reader_task_fit",
+      "evidence_integrity",
+      "reading_path",
+      "density_and_legibility",
+      "native_editability",
+      "sequence_rhythm"
+    ]
+  },
+  "critique": {
+    "passes": [
+      "title_sequence_and_ask",
+      "claim_source_state_and_scope",
+      "visual_hierarchy_and_rhythm",
+      "geometry_type_contrast_reading_order",
+      "native_export_and_delivery"
+    ],
+    "evidence_levels": [
+      "source_only",
+      "rendered_preview",
+      "native_readback",
+      "human_acceptance"
+    ],
+    "rule": "Report only inspected evidence. A valid story plan proves neither a persuasive argument nor a rendered or accepted deck."
+  },
+  "roadmap": {
+    "dependency_direction": "prerequisite_to_dependent",
+    "cycles": "reject",
+    "unknown_owner_or_timing": "Use an explicit unknown with the required decision; never invent a named owner, date, or commitment.",
+    "timing_states": [
+      "committed",
+      "forecast",
+      "exploratory"
+    ]
+  },
+  "provenance": [
+    {
+      "source": "slides/collibra-slides-2026.json",
+      "relationship": "Preserves template inheritance, native editability, geometry and type roles."
+    },
+    {
+      "source": "visual/slide-grammar-suite.json",
+      "relationship": "Reuses existing reader-question grammars; adds no decorative templates."
+    },
+    {
+      "source": "docs/research/presentation-evolution-2026-10-26.md",
+      "relationship": "Pinned public concept review; original implementation with no copied code, text, assets or runtime dependency."
+    }
+  ],
+  "proposal_traceability": {
+    "requirement": "Link each recipient need to the proposed solution, observable acceptance and source fact IDs.",
+    "boundary": "Coverage is a source-plan declaration; a human checks that the proposal actually satisfies the need. Unknown requirements or acceptance decisions remain explicit."
+  },
+  "visual_reasoning": {
+    "catalog": "visual/composition-intents.json",
+    "plan_field": "visual_reasoning",
+    "new_authoring": "Required for new decks and substantial composition redesigns. Validate with --require-visual-reasoning. Legacy source plans remain valid but do not prove the intent checks.",
+    "mission": "Keep subject and WHY/WHAT/ASK visible in main-story framing. Examples support the mission and cannot become the opening or closing subject without owner direction.",
+    "audition": "Each composition compares semantic encodings under inherited slide content, question and fact states. Compare relationship structure, not palette or surface shape.",
+    "evidence": "Source declarations are not rendered evidence. Inspect candidate renders and final native output separately; human acceptance stays unproved."
+  }
+}

@@ -1,6 +1,6 @@
 {
   "$schema": "collibra-design/content/guide-patterns/v1",
-  "catalog_version": "0.2.5",
+  "catalog_version": "0.4.0",
   "title": "Team and partner guide patterns",
   "maturity": "defined",
   "source": "Team authoring guidance",
@@ -32,7 +32,7 @@
     },
     "presenter_notes": {
       "in_audience_body": false,
-      "content": "Speaking prompts and additional context belong in presenter notes. Treat native speaker notes as accessible to deck collaborators; keep private editorial review elsewhere."
+      "content": "Add useful delivery prompts only when the user requests speaker notes. Preserve existing notes during edits. Speaker notes are visible to collaborators; do not store private editorial review or tool diagnostics there."
     },
     "facilitation_notes": {
       "in_audience_body": false,
@@ -187,5 +187,160 @@
         }
       ]
     }
-  ]
+  ],
+  "native_visuals": {
+    "maturity": "proposed",
+    "boundary": "Reusable composition recipes, not a native renderer, approved template or proof of live Docs support. The consuming surface owns geometry, typography mapping, permissions, runtime capability and actual rendered review.",
+    "minimum_font_pt": 11,
+    "layout_ownership": "Apply the document or template typography and requested paragraph spacing to every heading, label, list and table cell. Keep all visible text at or above the minimum; expand or split content instead of shrinking it. Widths, padding, page breaks and spacing values belong to the consumer, not a shared brand scale.",
+    "rendered_review_required": true,
+    "review": "Inspect the actual rendered audience view and native readback. Check reading order, overflow, contrast, links, editable structure and page or tab navigation. Preserve material conditions, authorization limits, uncertainties and recovery steps beside the claim or action they qualify. Source checks and local previews do not establish tenant invocation or human acceptance.",
+    "selection": "Start with the reader question. Alternate ordinary prose, lists, restrained shaded paragraphs and genuinely comparative tables. Omit decorative containers and empty fields; a guide does not need every recipe.",
+    "native_api_boundary": [
+      "Native table text, cell fills and borders, paragraph shading and borders, descriptive links and named headings can remain editable. The Docs API requires table creation and cell population in separate batches with an intervening structure read; never guess cell offsets.",
+      "Person, date and resource chips and dropdown definitions or selections have native Docs API requests. Use chips for verified entities and dropdowns for maintained choices, not decorative labels. The current connector must expose their native properties before editing; preserve opaque controls.",
+      "Heading and tab links can use IDs from readback; existing bookmark links can also be authored. The Docs API has no bookmark creation request. A named range does not establish bookmark identity.",
+      "The current Docs API does not create editable drawing shapes or register native custom building blocks. Use a supported UI or native exemplar when those semantics matter. An inserted image is not an editable drawing or a linked source. Composing chip and table ingredients does not prove native building-block parity."
+    ],
+    "sources": [
+      {
+        "id": "docs.requests",
+        "url": "https://developers.google.com/workspace/docs/api/reference/rest/v1/documents/request",
+        "checked": "2026-10-26",
+        "use": "Native request availability; no renderer or installed-connector claim."
+      },
+      {
+        "id": "docs.tables",
+        "url": "https://developers.google.com/workspace/docs/api/how-tos/tables",
+        "checked": "2026-10-26",
+        "use": "Separate table insertion and cell population; native table structure."
+      },
+      {
+        "id": "docs.tabs",
+        "url": "https://developers.google.com/workspace/docs/api/how-tos/tabs",
+        "checked": "2026-10-26",
+        "use": "Tab-aware native content and internal heading or bookmark links."
+      },
+      {
+        "id": "docs.dropdowns",
+        "url": "https://developers.google.com/workspace/docs/api/how-tos/dropdowns",
+        "checked": "2026-10-26",
+        "use": "Native dropdown definitions and selected instances."
+      },
+      {
+        "id": "docs.drawings",
+        "url": "https://support.google.com/docs/answer/179740",
+        "checked": "2026-10-26",
+        "use": "UI-created editable or linked drawings; distinct from API images."
+      },
+      {
+        "id": "docs.building-blocks",
+        "url": "https://support.google.com/docs/answer/13584759",
+        "checked": "2026-10-26",
+        "use": "Eligible-account UI custom building blocks; distinct from ordinary composed content."
+      }
+    ],
+    "compositions": [
+      {
+        "id": "guide.visual.role-chooser",
+        "name": "Role chooser",
+        "maturity": "proposed",
+        "reader_question": "Where should I start for my role?",
+        "use_when": "Readers need different entry points into the same guide.",
+        "native_structure": "A short list of role labels and descriptive heading or tab links. Use a small comparison table only when readers need to compare role responsibilities.",
+        "preserve_conditions": "Explain relevant access or role limits beside each route. Do not imply a role grants access, and do not use person chips for fictional roles.",
+        "source_ids": [
+          "docs.tabs",
+          "docs.requests"
+        ]
+      },
+      {
+        "id": "guide.visual.prompt-boundary",
+        "name": "Prompt and boundary card",
+        "maturity": "proposed",
+        "reader_question": "What can I ask, and what must I keep within scope?",
+        "use_when": "A useful example needs a visible input, permission or data boundary.",
+        "native_structure": "A shaded paragraph containing a short example prompt, followed immediately by the boundary in ordinary editable text. Use a native paragraph border for emphasis rather than a drawing text box.",
+        "preserve_conditions": "Keep the allowed source, purpose and authorization limit next to the example. An example prompt does not grant access or activate an integration.",
+        "source_ids": [
+          "docs.requests"
+        ]
+      },
+      {
+        "id": "guide.visual.follow-up-comparison",
+        "name": "Before and complete follow-up",
+        "maturity": "proposed",
+        "reader_question": "What extra detail makes this request useful?",
+        "use_when": "Two short versions help the reader complete a request.",
+        "native_structure": "Two labeled paragraphs for a short linear comparison, or a two-column native table when side-by-side reading helps. Show the incomplete request, then the complete follow-up with the missing audience, source, scope or desired result.",
+        "preserve_conditions": "Retain every material qualification in the complete version. Label invented examples as examples; a more complete prompt does not create approval or prove the requested outcome.",
+        "source_ids": [
+          "docs.requests",
+          "docs.tables"
+        ]
+      },
+      {
+        "id": "guide.visual.field-source-scope",
+        "name": "Field, source and scope matrix",
+        "maturity": "proposed",
+        "reader_question": "Which source supports this field, and what is its allowed scope?",
+        "use_when": "Several fields have different sources, refresh states or permitted uses.",
+        "native_structure": "A native table with field, source and scope columns; use short descriptive links and explicit unknown values. Add a resource chip only when its verified destination is useful to maintainers.",
+        "preserve_conditions": "Keep source freshness, missing evidence and usage limits on the relevant row. Source presence does not prove accuracy, permission or availability. Do not populate illustrative rows with real sensitive data.",
+        "source_ids": [
+          "docs.requests",
+          "docs.tables"
+        ]
+      },
+      {
+        "id": "guide.visual.security-layers-gaps",
+        "name": "Security layers and gaps",
+        "maturity": "proposed",
+        "reader_question": "Which controls apply, and where is a decision or safeguard still missing?",
+        "use_when": "Readers must distinguish controls, responsibilities and unresolved gaps before acting.",
+        "native_structure": "A native numbered list of layers, each with control, evidence and gap in plain text; a compact table is an alternative for parallel comparison. Use an optional dropdown only for a maintained decision state with agreed choices.",
+        "preserve_conditions": "State missing or unverified controls beside the affected action. Ordering is a reading aid, not proof of defense in depth. Do not hide gaps behind color, a positive status or a secondary link, and do not invent a control or approver.",
+        "source_ids": [
+          "docs.requests",
+          "docs.tables",
+          "docs.dropdowns"
+        ]
+      },
+      {
+        "id": "guide.visual.evidence-detail",
+        "name": "Evidence behind the detail",
+        "maturity": "proposed",
+        "reader_question": "What supports this answer, and where can I inspect the detail?",
+        "use_when": "A short answer needs a traceable source without overwhelming its reading path.",
+        "native_structure": "Lead with the useful answer and a descriptive source link. Put longer supporting material in a clearly labeled detail section or existing native tab; use native heading links to return. Keep editorial review in the private record.",
+        "preserve_conditions": "Keep material uncertainty, consent, limitations and required disclosures beside the answer. Secondary detail stays accessible to the intended audience; a collapsed section or separate tab is not a privacy boundary.",
+        "source_ids": [
+          "docs.tabs",
+          "docs.requests"
+        ]
+      }
+    ]
+  },
+  "reader_authoring": {
+    "boundary": "Apply to audience-facing Docs, Sheets and Slides. Preserve user-owned structure, order and visibility unless the requested change authorizes restructuring. This contract does not retrofit existing assets or establish process-owner acceptance.",
+    "intent": "Before choosing sections or native objects, name the reader, the question they need answered, the decision or task, and the useful next step. Use that intent to choose a primary reading path; a complete source inventory is supporting material unless inventory is the reader task.",
+    "information_architecture": "Open with the useful answer or outcome and group the remaining content by reader questions or decisions. Use descriptive navigation. Layer supporting detail only when it improves scanning or return use; a short linear answer needs no dashboard, table of contents, appendix or extra tab.",
+    "density": "Choose prose, a sequence, comparison, figure or table for its meaning. Tables organize repeated records or real comparisons; they are not the default container for every explanation. Reduce simultaneous detail, reflow or split a long story before reducing readable type. Keep supported facts and material conditions intact.",
+    "evidence": "Keep source links and uncertainty near claims when they affect interpretation. Keep prerequisites, scope limits, dependencies, risks and approval conditions in the main view or beside the affected action. Put detailed provenance and audit records in a linked reference or source tab when useful; put tool diagnostics and authoring review receipts in the private working record. Moving a material caveat to a source tab does not preserve its meaning.",
+    "notes": "Add speaker or facilitator notes only when the user requests them. Preserve existing notes and the requested structure during edits. Notes are collaborator-visible delivery material, not private evidence storage.",
+    "native_features": {
+      "google-doc": "Use native heading styles, links and ordered lists for scanning and steps. Use native tables for comparisons and images with text alternatives when they explain a relationship faster. Use native tabs only for distinct durable tasks. Verify the complete tab tree, links, list continuity, spacing and exported page breaks.",
+      "google-sheet": "Give the review audience a useful entry view with the decision, current state or comparison. Keep detailed source rows in a clearly named supporting tab when useful. Use typed values, formulas, filters, frozen headers, validation, conditional formatting or charts only when the task needs them and the active tool supports them. Keep units, definitions, source freshness and decision-changing constraints visible. Inspect formulas, ranges and the actual visible sheet; do not turn each paragraph into a cell.",
+      "google-slides": "Build the source-bound story before selecting native layouts. Give each slide one useful reader question or message and choose a visual grammar that explains it. Keep editable native objects when practical, meaningful constraints beside the claim, and readable type roles. Inspect slide renders and native readback for hierarchy, density, geometry and completeness. Preserve order and visibility unless changes are authorized."
+    },
+    "acceptance": "Complete Design, bundled refinement and audience-ready review. For native Docs, Sheets and Slides use authoring-review.schema.json to record reader intent, structure and density, proportional native features, constraints and evidence placement, requested structure and notes, and native plus rendered inspection. A missing or failed check means content is not ready. A valid receipt is an attestation, not proof that a review ran, human acceptance or publication authority. If native or rendered evidence is unavailable, deliver the useful draft and report the missing check in the private handoff.",
+    "review_checks": {
+      "reader-intent": "The opening answers the named reader question and makes the useful next step clear.",
+      "structure-and-density": "The main view supports scanning and the actual decision; supporting detail is layered proportionally without hiding meaning or shrinking type.",
+      "native-features": "Inspect the chosen native features and explain their task value. A justified decision to omit a feature is valid; more features are not a quality target.",
+      "constraints-and-evidence": "Check source-linked facts and meaningful uncertainty. Material conditions remain in the main view or beside their claim or action; private process evidence stays in the working record.",
+      "requested-structure-and-notes": "Check the final structure, order and visibility against the request, preserve existing notes, and verify that new notes were requested.",
+      "native-and-rendered-view": "Read back the native artifact and inspect the rendered audience view for completeness, readability, links, hierarchy, accessible meaning, overflow and page or slide breaks where applicable."
+    }
+  }
 }

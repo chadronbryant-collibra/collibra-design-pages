@@ -78,3 +78,17 @@ invent an official speech format, delivery standard, or approval contract.
 - `confirmed`: explicitly supplied or accepted by an accountable person.
 
 Never silently promote one state to another.
+
+## Native Docs, Sheets and Slides
+
+Apply `reader_authoring` in `catalog/content/guide-patterns.json` before
+composition. Keep one useful main view and supporting detail proportional to
+the reader's task. A table, tab, chart or diagram needs a reason; a short linear
+answer needs no extra navigation. Preserve meaningful constraints and the
+user's requested structure. Add notes only when requested.
+
+Complete Design, bundled refinement and audience-ready review. Record the six
+native-authoring checks using `catalog/content/authoring-review.schema.json`.
+Use `not-checked` with the reason when native or rendered review is unavailable.
+A valid record alone does not establish content readiness, human acceptance or
+publication authority. Keep the receipt in the private handoff.

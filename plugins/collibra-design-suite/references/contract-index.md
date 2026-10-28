@@ -25,6 +25,8 @@ full public snapshot is in `references/catalog/`; the visual reference is the
 | Visual | `catalog/visual/visual.json` | Composition, type, imagery, icons, data, motion, surfaces, accessibility, and cross-medium translation. |
 | Diagram and workflow theming | `catalog/visual/diagram-theme-suite.json` | Token-backed semantic shapes, connectors, workflow roles, non-color cues, accessibility, and consumer boundaries. |
 | Slide visual grammars | `catalog/visual/slide-grammar-suite.json` | Reader-question grammars, shell roles, visual rhythm, cross-medium translation, accessibility cues, and evidence contracts for varied deck composition. |
+| Composition intent | `catalog/visual/composition-intents.json` and `presentation-playbook.md` | Mission preservation, catalog search by meaning, WHY/WHAT/ASK, same-content auditions, semantic encodings, mockups and native editability. |
+| Presentation story | `presentation-playbook.md` and `catalog/slides/presentation-story.json` | Source-bound executive decisions, solution proposals, go-to-market stories, outcome/dependency roadmaps, meaningful composition auditions, and layered critique. The closed handoff is `catalog/slides/presentation-plan.schema.json`. |
 | Shape-label safe insets | `catalog/slides/shape-label-safe-insets.json` | Versioned native-shape inset ratios for keeping measured glyph bounds inside visible semantic silhouettes. |
 | Slide type-role usage | `catalog/slides/type-role-usage.json` | Semantic jobs for every slide type role plus the fail-closed reflow, reduction, and split policy for dense content. |
 | Slide layout geometry | `catalog/slides/layout-geometry.json` | Strict finite layout-resolution records for semantic stacks, sized components, governed zones, equal gaps, surface-aware layering, labels, leaders, obstacles, and fail-closed fit resolution. |
@@ -34,6 +36,7 @@ full public snapshot is in `references/catalog/`; the visual reference is the
 | Registry | `catalog/registry/design-registry.json` | Metadata-only source labels, collection maturity, working-default options, and channel policy. |
 | Portable creation brief | `design-brief.schema.json` | Closed handoff for reader, decision, source, output, medium, optional tone and constraints, and fact-level state and provenance. |
 | Web-app creation | `web-app-playbook.md` | Journeys, screens, state model, semantic HTML, public offline prototypes, authorized private-tool routing, and acceptance checks. |
+| Native authoring acceptance | `catalog/content/guide-patterns.json#reader_authoring` and `catalog/content/authoring-review.schema.json` | Reader intent, information architecture, proportional native features, material constraints and evidence, preserved structure, requested notes, and six explicit inspection checks. |
 | Review receipt | `review-receipt.schema.json` | Machine-readable separation of output states and checked or not-checked evidence. It is not approval. |
 
 ## Reader lenses

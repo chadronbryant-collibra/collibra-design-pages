@@ -2,8 +2,8 @@
   "spdxVersion": "SPDX-2.3",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "name": "collibra-design-suite-1.4.2",
-  "documentNamespace": "https://github.com/chadronbryant-collibra/collibra-design-pages/sbom/1.4.2",
+  "name": "collibra-design-suite-1.5.0",
+  "documentNamespace": "https://github.com/chadronbryant-collibra/collibra-design-pages/sbom/1.5.0",
   "creationInfo": {
     "created": "2026-09-11T00:00:00Z",
     "creators": [
@@ -14,7 +14,7 @@
     {
       "name": "collibra-design-suite",
       "SPDXID": "SPDXRef-Package",
-      "versionInfo": "1.4.2",
+      "versionInfo": "1.5.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": true,
       "licenseConcluded": "NOASSERTION",
@@ -29,7 +29,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "a3bdeb0a2681511925983ff863d1e61f75b4ee421f5f0ba921c8d5397710cbba"
+          "checksumValue": "2e01379070aa9a6e6152f5904b99af0ebb6b04696fc0c04291c3d011a55945b9"
         }
       ]
     },
@@ -39,7 +39,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "8407673be94efdc2bb8cdb5a4759c076cfb9bedf6ed1f621c3d1248cad3a01c3"
+          "checksumValue": "614d34798091ccb341b7858933708c6a7a6d4f3e90d37a72509ac41a3f29bb04"
         }
       ]
     },
@@ -89,7 +89,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "92588f3210ca1e66ac40b9381f68c317d7e9306b6c1a77fc358da5aadc3e3459"
+          "checksumValue": "ab49c5bb305566dac877064065515125114c8de11c4043c0bd70514aca096247"
         }
       ]
     },
@@ -180,6 +180,16 @@
         {
           "algorithm": "SHA256",
           "checksumValue": "89d2264a13a0f8b1b2992407b0dd8ce1b05c3e2e86ba881dd0830dddc285babc"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-00bf54c9f08de0de",
+      "fileName": "./examples/document/authoring-review.json",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a355ee48b90cacfd4ed3ef666ae3c1e6c2217e8ff194ddae4bdb19355ed79c34"
         }
       ]
     },
@@ -324,12 +334,32 @@
       ]
     },
     {
+      "SPDXID": "SPDXRef-File-977fe77d4e3e0373",
+      "fileName": "./references/brand-refresh.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0940967010c2505f27df0bc3f1b77e67514ab80c4d8f6706bf4f75cdf7e6e40a"
+        }
+      ]
+    },
+    {
       "SPDXID": "SPDXRef-File-bd8310107f8adabd",
       "fileName": "./references/catalog/README.md",
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "308edad9b17371aa2130a3932064b97f02cbf242323b72c58112e201c395fb3a"
+          "checksumValue": "e0770960acd0ef0032377e34a83c45adbb4e4c04b1ab41e7b38cb5be7ac70fb3"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-9f43dd2fc0edd375",
+      "fileName": "./references/catalog/content/authoring-review.schema.json",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "415ca72c0f7d791b79c8d97a8667b7d8d92aa9e11ad64b6234a2a77ce61da1d6"
         }
       ]
     },
@@ -339,7 +369,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "a349f852b47397f0122f38b0940c4acdf29793ca28807c4d511a22fd501a7a0f"
+          "checksumValue": "70acab98d960cdce8aa3e159a965a4695d0d4a0b644d36d863b809e00b3d0231"
         }
       ]
     },
@@ -349,7 +379,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "762b71f3965485f16d0ecb8707e82cbb481202036c619778da6ce8c714585379"
+          "checksumValue": "b741304205fc3c3c028f81d60fa45b92788c9530b8d39d2f7ad1fa9fde823bac"
         }
       ]
     },
@@ -370,6 +400,26 @@
         {
           "algorithm": "SHA256",
           "checksumValue": "7b01ae1792c72726d731564a12b9c88004ad442bec5ff70f7d2c950a5675cf77"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-cb66faf114f5282e",
+      "fileName": "./references/catalog/slides/presentation-plan.schema.json",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "61c4ccb7f685baf4b83c65ee61df883644c4cdf0de24117e747b7208d9c68786"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-fce6446bafdb311c",
+      "fileName": "./references/catalog/slides/presentation-story.json",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "621c0d2c930430b3529174388954acab778b1b7e5a7e9685e1d6aea92575ad02"
         }
       ]
     },
@@ -424,6 +474,16 @@
       ]
     },
     {
+      "SPDXID": "SPDXRef-File-87a30d74e65794b0",
+      "fileName": "./references/catalog/visual/composition-intents.json",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6b14aa6b02dbcef398d0720d3bc0787a7ed71f88e18dc93665a8ee551175babc"
+        }
+      ]
+    },
+    {
       "SPDXID": "SPDXRef-File-cc6be6903a4d4cc4",
       "fileName": "./references/catalog/visual/diagram-theme-suite.json",
       "checksums": [
@@ -449,7 +509,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "d8135b86f8f44c69880cd47c91a51886f7048522e5763ae133b4db2f191b23c0"
+          "checksumValue": "40f12ed746c92669c53171bbb68ea77b14fbb8944076f8b0db50f1de5e6ed316"
         }
       ]
     },
@@ -459,7 +519,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "8e56829c80f1973dfb276b537feb9ccb7fe0f8ec7d0875819a2fe625806927e3"
+          "checksumValue": "a511f3d31f02edb51927dc8b82bd5d263ea4191ea71cf0b5627b26c30046eb09"
         }
       ]
     },
@@ -469,7 +529,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "c13f8f6def8d338de429276811e894b6017f29707d07d77a42403e9d35e8a7cc"
+          "checksumValue": "6596a14cd7049d29813614689aa8d9165feb2dbb769484653ca300703da67808"
         }
       ]
     },
@@ -479,7 +539,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "42dca4e3224310c19d1ee3f32f1c99c879a4e9e4f7234231fe10fae9aadafb64"
+          "checksumValue": "6b931a187052e6117f41ff72256ed250f3d2aee8ff1fac65e5e4c8c8cbd1d68d"
         }
       ]
     },
@@ -500,6 +560,16 @@
         {
           "algorithm": "SHA256",
           "checksumValue": "890b46528b4c4492cf23e89a1605e469e80c00edbe76f499b12ac9e189722c0f"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-3fb8a8df963786c8",
+      "fileName": "./references/presentation-playbook.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0113e0a09b560404b0e548055aa658c42bf20e7f34425f5ce9b40f756a664e38"
         }
       ]
     },
@@ -569,7 +639,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "0a257adf3d55af7075279b7c0f80eaa014660faaeaaa29d9a29a55342806b2e4"
+          "checksumValue": "0d1fddbbd0d4d5fc1f6452d56cdea18f283ce7234b8a98d338404d4923623f3f"
         }
       ]
     },
@@ -579,7 +649,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "7cda94adb3668122754432fe45294d4791bd3fc78242009d1579382fe69c6f58"
+          "checksumValue": "333ae5adedcddf70282540ca2c0e1e3c937f5d521ea63813315b57cb079b6370"
         }
       ]
     },
@@ -589,7 +659,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "9a478f35442c7990b9ab85d5bf52d8660e38aa681179c732877d86e31176adf8"
+          "checksumValue": "5b40ee0378053df0dcc1f898cb5569ef2185616e5a63379ecebd727493251372"
         }
       ]
     },
@@ -599,7 +669,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "39bdcff30523e28ac3f5195358e4d6f0137421b7b56f672c3c842201fea6d8a3"
+          "checksumValue": "2a787b5ff1f4dfe8ec536b170f2c9a92af0dc4fa835aa88007e3fb0e40b7c853"
         }
       ]
     },
@@ -609,7 +679,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "6d84ed04ae5f30fe1b7796dfbb130c004dd2cdfd74ed2224b3bcb7b80eabeeeb"
+          "checksumValue": "eadae66df6928d4b8a39370e37f000affc763a7add0f843720936d2e388666c1"
         }
       ]
     },
@@ -619,7 +689,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "ca719588152bb014996230e866a75a0697fcea2de76a9cc670834849b90bf3d3"
+          "checksumValue": "353e0715c054cb9ee588b1367e5c5ffc6c4ef1b18ff0051a25d0af8933fd3fdd"
         }
       ]
     }
