@@ -1,6 +1,6 @@
 # Collibra design suite
 
-Version `1.5.0`. See the [changelog](CHANGELOG.md) for package changes.
+Version `1.5.1`. See the [changelog](CHANGELOG.md) for package changes.
 
 Use the suite for Collibra design, guides, decks and writing. Relevant skills
 apply without being named. The source review check refreshes brand guidance
@@ -24,7 +24,8 @@ changes`, `show the diff`, or `show the checks` when you want the reasoning
 trail as well.
 
 The [public design atlas](https://chadronbryant-collibra.github.io/collibra-design-pages/)
-is the visual reference. The bundled `references/catalog/` snapshot keeps the
+is the visual reference. Official brand resources and the Slides template are
+linked in [brand refresh](references/brand-refresh.md); use your Collibra sign-in. The bundled `references/catalog/` snapshot keeps the
 plugin useful when the atlas is not available. It includes a metadata-only
 registry snapshot so the package can explain source maturity and channel
 policy without receiving local paths or licensed asset files.

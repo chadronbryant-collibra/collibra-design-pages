@@ -16,16 +16,16 @@ not establish a successful source review. This is an on-use check, not a
 background schedule.
 
 1. Use the user’s connected work Google Drive account. Confirm its identity.
-2. Resolve the official Brand Guidelines, Brand Toolkit, Content Style Guide
-   and, for People Solutions work, Voice of the People team guide. Prefer
-   stable file or folder IDs supplied by the user or an existing private
-   source binding. If no binding is available, search these exact titles and
-   confirm the authoritative result. Never guess an ID or choose the newest
-   matching filename as authority by itself.
+2. Open the verified official source links below first. For slides, also check
+   the native template and presentation best practices. For People Solutions
+   writing, include the People team voice guide. Reuse these stable file/folder
+   IDs on later reviews. If a link has moved, use an existing private binding
+   or exact-title search and confirm the authoritative replacement. Never guess
+   an ID or choose the newest matching filename as authority by itself.
 3. Read current metadata and the relevant content. For toolkit folders, list
    the current assets, then fetch only what the task needs. Compare the
    source revision and rules with the bundled guidance. Keep source documents,
-   licensed fonts, private Drive identifiers and downloaded assets private.
+   licensed fonts, non-published private identifiers and downloaded assets private.
 4. Keep a local or task-scoped review record: source ID/link, revision or
    modified time, review date, rules checked, changes found and unresolved
    conflicts. Set the successful review date only after the relevant source
@@ -41,9 +41,22 @@ where safe. Tell the user briefly that its freshness could not be checked and
 ask for the specific current source only when the task depends on it. Do not
 claim a refresh, invent rules or change the successful-review date.
 
-## Private source binding
+## Official sources
 
-A team can keep a private source register with the stable source names above,
-Drive file/folder IDs, successful review dates and revisions. Reuse those IDs
-on the next check. The public suite intentionally carries the lookup procedure
-and source titles rather than tenant identifiers or copies of restricted files.
+These resources are for internal Collibra use. Open them with your Collibra
+Google account; SSO or a request for existing access is expected. Keep their
+sharing settings intact. A restricted link is not a broken resource and does
+not need a public copy. Make a fresh copy of the Slides template for a new deck;
+never write into the original template.
+
+- [Brand guidelines](https://drive.google.com/file/d/1nOG2dfxYUdslym05d9yZ-jL030pwJz_d/view)
+- [Brand toolkit](https://drive.google.com/drive/folders/10GbbrGuTTPe3qEWvbmxtyUTcORAkkdXH)
+- [Content style guide](https://docs.google.com/document/d/1AsPXnuqxjo1necd2_P44JkYogMgwe2SP/edit)
+- [People team voice guide](https://docs.google.com/document/d/1l_HIgggiDgnr_GfJZaOsa_-G_oHgnfrgl04qfM2zxME/edit)
+- [Slides template 2026 [make a copy]](https://docs.google.com/presentation/d/1Lo33hhkPpoxmZzyU7qD5t0q6klj13sKtJdpv43BSa2s/edit)
+- [Presentation best practices](https://docs.google.com/presentation/d/1PtgNOtL07v9mrZ2crkJoXLIGFlq77Ru3hRIFven6BYY/edit)
+
+The owner authorized distributing these source links for internal use on
+28 October 2026. The linked source documents, decks, fonts and media remain
+under their own access and licensing terms; none are bundled in this plugin.
+Local review receipts and additional private source bindings stay private.

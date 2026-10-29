@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import importlib.util
+import re
 import shutil
 import tempfile
 import unittest
@@ -46,7 +47,15 @@ class PublicPackageTests(unittest.TestCase):
             raw = archive.read("collibra-sop/SKILL.md")
             self.assertEqual(raw, (self.plugin / "skills/collibra-sop/SKILL.md").read_bytes())
             self.assertNotIn(b"../../", raw)
-            self.assertNotIn(b"docs.google.com/", raw)
+            # Owner-approved source links may require Collibra sign-in.
+            # Keep the SOP standalone and permit only these verified resources.
+            links = set(re.findall(rb"https://(?:docs|drive)\.google\.com/[^)\s]+", raw))
+            self.assertEqual(links, {
+                b"https://drive.google.com/file/d/1nOG2dfxYUdslym05d9yZ-jL030pwJz_d/view",
+                b"https://drive.google.com/drive/folders/10GbbrGuTTPe3qEWvbmxtyUTcORAkkdXH",
+                b"https://docs.google.com/document/d/1AsPXnuqxjo1necd2_P44JkYogMgwe2SP/edit",
+                b"https://docs.google.com/document/d/1l_HIgggiDgnr_GfJZaOsa_-G_oHgnfrgl04qfM2zxME/edit",
+            })
 
     def test_forbidden_hook_and_binary_are_rejected(self) -> None:
         hooks = self.plugin / "hooks"

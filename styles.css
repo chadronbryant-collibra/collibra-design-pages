@@ -429,7 +429,7 @@ input[type="file"] { display: block; width: 100%; max-width: 100%; min-height: 4
 @media(max-width: 480px) { .claude-preview-body { grid-template-columns: minmax(0,1fr); } .claude-preview-body aside { border-right: 0; padding: .3rem .7rem; } }
 
 #start .page-heading { padding: 2rem 0 .5rem; }
-#start .setup-steps { margin: .5rem 0 1.25rem; gap: 1.5rem; }
+#start .setup-steps { margin: .5rem 0 .75rem; gap: 1.5rem; }
 #start .setup-steps > li { padding-top: 1rem; }
 #start .setup-help { padding: 0; border: 0; }
 #start .skill-disclosure { margin: 0; }
@@ -437,3 +437,7 @@ input[type="file"] { display: block; width: 100%; max-width: 100%; min-height: 4
 #start .install-prompt > p { margin-bottom: .5rem; }
 #start .install-prompt > details { margin-top: .75rem; }
 #google-workspace .workspace-heading h1 { font-size: clamp(2rem,4vw,3rem); margin: .5rem 0 1rem; }
+
+#start .setup-steps > li > .button + p { margin-top: .75rem; }
+#start .setup-steps > li > details { padding-bottom: 0; }
+#start .install-prompt { margin-top: 0; }

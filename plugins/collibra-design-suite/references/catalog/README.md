@@ -7,5 +7,5 @@ guidance, native guide patterns, and the metadata-only registry snapshot.
 The slide summary lives at `../slides-contract.md`; the public-safe,
 machine-readable shape-label inset, type-role, layout-geometry,
 presentation-story and source-plan contracts live under `slides/`.
-Native template identifiers and
+Native object identifiers and
 delivery mechanics remain consumer-owned.
