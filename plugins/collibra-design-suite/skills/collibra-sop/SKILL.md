@@ -9,7 +9,7 @@ description: >-
   Use for procedure writing, not executing the HR process or changing policy.
 license: CC-BY-4.0
 metadata:
-  version: "1.5.1"
+  version: "1.6.0"
 ---
 
 # Write a useful SOP or guide

@@ -441,3 +441,23 @@ input[type="file"] { display: block; width: 100%; max-width: 100%; min-height: 4
 #start .setup-steps > li > .button + p { margin-top: .75rem; }
 #start .setup-steps > li > details { padding-bottom: 0; }
 #start .install-prompt { margin-top: 0; }
+
+.org-layout { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(16rem, 1fr); gap: 2rem; align-items: start; }
+.org-preview { background: var(--pale); border: 1px solid var(--cloud); border-radius: .75rem; padding: 1rem; }
+.org-preview svg { width: 100%; height: auto; display: block; }
+.org-card { fill: var(--white); stroke: var(--forest); stroke-width: 1.5; }
+.org-card--open { stroke-dasharray: 5 3; }
+.org-card-title { fill: var(--navy); font: 600 13px system-ui, sans-serif; }
+.org-card-sub { fill: var(--ink); font: 11px system-ui, sans-serif; }
+.org-section-label { fill: var(--ink); font: 13px system-ui, sans-serif; }
+.org-edge { fill: none; stroke: var(--forest); stroke-width: 2; }
+.org-edge--advisory { stroke-dasharray: 5 4; }
+.org-section { fill: var(--white); stroke: var(--forest); stroke-dasharray: 5 3; }
+#org-addons label { display: block; margin: .5rem 0; }
+#org-addons input { width: auto; }
+@media (max-width: 760px) { .org-layout { grid-template-columns: 1fr; } }
+
+.org-layout .lesson-panel > label { display: grid; gap: .4rem; margin-block: 1rem; }
+.org-layout select { width: 100%; min-width: 0; }
+.org-layout fieldset { min-width: 0; }
+.org-layout #org-addons label { display: block; }

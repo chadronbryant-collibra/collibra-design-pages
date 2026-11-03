@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.6.0 · 2026-11-03
+
+Add org charts: five layout families, current and planned scenarios, enrichment,
+legends, insights and drilldowns. Bundle local Python validation, geometry and
+PPTX binding helpers. Final editable decks require an available native writer
+and an authorized template. Enterprise connections remain deployment-specific.
+
+
 ## 1.5.1 · 2026-10-28
 
 - Link the official brand sources, native Slides template and presentation guide.

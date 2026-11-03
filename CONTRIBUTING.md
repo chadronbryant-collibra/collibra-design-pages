@@ -28,8 +28,11 @@ For more detail, see the bundled [voice guidance](plugins/collibra-design-suite/
    people information, private source evidence, restricted assets, credentials,
    work-owned prompts, and internal paths out of the change.
 2. Preserve the plugin's skills-and-references boundary: no hooks, agents,
-   MCP servers, connectors, executable plugin scripts, subprocesses,
+   MCP servers, connectors, automatically executed plugin scripts, subprocesses,
    credentials, analytics, trackers, remote runtime assets, or dependencies.
+   The org-chart skill permits only its four allowlisted, explicitly invoked
+   local Python helpers and two synthetic inputs. They have no network,
+   connector or subprocess effects. Do not add arbitrary scripts or assets.
 3. Add a meaningful behavior or boundary test when a contract changes. For
    copy edits, check the meaning, links, and reading order.
 4. Run the checks below from the repository root. Put build output outside

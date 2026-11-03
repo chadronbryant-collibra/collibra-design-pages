@@ -6,7 +6,7 @@ description: >-
   when the user wants a new audience-ready surface rather than guidance or
   review; keep generated, proposed, reviewed, and confirmed content distinct.
 metadata:
-  version: "1.5.1"
+  version: "1.6.0"
 ---
 
 # Collibra creation
@@ -116,3 +116,9 @@ same-content composition auditions and inspect representative renders before
 a visual-selection claim. Review what the encoding explains, including task
 states, hosting, trust crossings or release conditions where relevant. A
 catalog name, clean geometry or shorter prose cannot establish visual meaning.
+
+## Org charts
+
+For current, planned or mixed org charts use the bundled `collibra-org-charts`
+skill and `../../references/org-charts.md`. It includes scenario, normalization,
+five-family geometry and native connector workflows.

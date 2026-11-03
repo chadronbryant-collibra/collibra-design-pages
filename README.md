@@ -49,6 +49,7 @@ See [Claude plugin instructions](https://support.claude.com/en/articles/13837440
 
 | Skill | What it helps you do |
 | --- | --- |
+| `collibra-org-charts` | Build editable current, planned or mixed org charts with layout choices, scenarios, legends and drilldowns. |
 | `collibra-sop` | Create or revise an SOP, employee guide, or Quick Task from sources or guided questions. |
 | `collibra-design` | Choose guidance for your reader, task, and format. |
 | `collibra-create` | Create and adjust a page, dashboard, deck outline, document structure, diagram, UI flow, web app, speech, or data story. |
@@ -71,7 +72,7 @@ at the root so GitHub Pages can serve them directly.
 | --- | --- |
 | [index.html](index.html), [app.js](app.js), [styles.css](styles.css) | Site layout, interactions, and styling. |
 | [data/](data/) | Public guidance used by the site. |
-| [plugins/collibra-design-suite/](plugins/collibra-design-suite/) | The installable package: six skills, reference guidance, and example examples. |
+| [plugins/collibra-design-suite/](plugins/collibra-design-suite/) | The installable package: seven skills, reference guidance, and example examples. |
 | [.claude-plugin/marketplace.json](.claude-plugin/marketplace.json) | The public marketplace entry that points to the package. |
 | [scripts/](scripts/) and [tests/](tests/) | Package building, publication checks, and boundary tests. |
 | [.github/](.github/) | Ownership, issue and PR templates, validation, release, and Pages workflows. |
@@ -116,3 +117,12 @@ Code is Apache-2.0; guidance and example examples are CC BY 4.0. Collibra
 trademarks, logos, proprietary fonts, trade dress, and restricted assets are
 excluded from both grants. See [LICENSE.md](LICENSE.md), [NOTICE](NOTICE), and
 [LICENSES/](LICENSES/).
+
+## Create an org chart
+
+Ask: “Build an editable org chart from my approved roster. Recommend a layout,
+show current versus planned roles, and keep the reporting lines attached.”
+Choose among five layout families, simple or enriched cards, legends, insights
+and section views. A native writer and authorized template are required for
+the final deck. The bundled Python helpers validate and plan locally; they do
+not connect to an HR system.

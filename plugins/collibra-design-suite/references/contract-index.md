@@ -32,6 +32,7 @@ full public snapshot is in `references/catalog/`; the visual reference is the
 | Slide layout geometry | `catalog/slides/layout-geometry.json` | Strict finite layout-resolution records for semantic stacks, sized components, governed zones, equal gaps, surface-aware layering, labels, leaders, obstacles, and fail-closed fit resolution. |
 | Content | `catalog/content/voice.json` | Voice pillars, personas, tone modes, medium guidance, terminology, UI copy, plain language, and human review. |
 | Native guides and authoring | `catalog/content/guide-patterns.json` | Conditional team hub, initiative, and task-guide sections; ordered design, bundled Collibra refinement, and audience-ready review; audience and private content boundaries. |
+| Org charts | `org-charts.md` and `collibra-org-charts` | Five layout families, current/planned scenarios, enrichment, legends, drilldowns, deterministic helpers and native connector acceptance. |
 | Slides | `slides-contract.md` | Reader-first slide hierarchy, safe areas, accessibility, evidence, and translation to web, docs, and product. |
 | Registry | `catalog/registry/design-registry.json` | Metadata-only source labels, collection maturity, working-default options, and channel policy. |
 | Portable creation brief | `design-brief.schema.json` | Closed handoff for reader, decision, source, output, medium, optional tone and constraints, and fact-level state and provenance. |
