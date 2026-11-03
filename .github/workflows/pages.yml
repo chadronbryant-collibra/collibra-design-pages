@@ -6,6 +6,13 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Reviewed release to publish
+        required: true
+        type: choice
+        default: v1.6.0
+        options: [v1.6.0]
 
 permissions:
   contents: read
@@ -17,6 +24,8 @@ concurrency:
 jobs:
   validate:
     name: Validate public plugin surface
+    outputs:
+      publication_sha: ${{ steps.publication.outputs.sha }}
     runs-on: [self-hosted, linux, x64, jarvis-pr-ephemeral]
     steps:
       - name: Checkout public artifact
@@ -24,7 +33,19 @@ jobs:
         with:
           fetch-depth: 0
           # Scan authored commits, not GitHub's temporary merge identity.
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.release_tag || github.event.pull_request.head.sha || github.sha }}
+      - name: Bind the reviewed publication commit
+        id: publication
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: |
+          publication_sha="$(git rev-parse HEAD)"
+          if [[ "$EVENT_NAME" == workflow_dispatch ]]; then
+            test "$RELEASE_TAG" = v1.6.0
+            test "$publication_sha" = baa93092cd5a0298e1050029556780c6f2711ba9
+          fi
+          printf 'sha=%s\n' "$publication_sha" >> "$GITHUB_OUTPUT"
       - name: Verify new publication identities
         env:
           METADATA_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
@@ -54,6 +75,8 @@ jobs:
     steps:
       - name: Checkout public artifact
         uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.validate.outputs.publication_sha }}
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload Pages artifact
