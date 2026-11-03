@@ -59,7 +59,8 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 Check the affected page's reading order, keyboard access, and narrow layout.
 A local preview is separate from a live Pages deployment. Pages deployment
-uses the manual workflow on `main`; merging a PR runs validation without
+uses the manual workflow on `main` with the reviewed release tag. The workflow
+binds validation and upload to that tag's exact immutable commit; merging a PR runs validation without
 deploying the site. Version tags drive package releases.
 
 ## License

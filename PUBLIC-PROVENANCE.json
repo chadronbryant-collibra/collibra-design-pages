@@ -1,6 +1,6 @@
 {
   "$schema": "collibra-design/public-candidate-provenance/v1",
-  "sourceCommit": "e13c55df54a2625d3b930f75cb7420b5f4ad2f8e",
+  "sourceCommit": "052d30eebecd7f759f2dd31feeda495c18097112",
   "sanitizerVersion": "1.0.0",
   "contractVersion": "1.6.0",
   "allowlistVersion": "1.0.5",
@@ -45,7 +45,7 @@
     },
     {
       "path": ".github/workflows/pages.yml",
-      "sha256": "8cb46e824c4f0fc931ec9b594b1867b793fe9d414d0dd85b9b31a68f34e275db",
+      "sha256": "e13c543b25777fc535022d118e7ce8d39f01d53069a2d74fa4cc045ff45074a6",
       "sourceId": "repository-controls"
     },
     {
@@ -70,7 +70,7 @@
     },
     {
       "path": "CONTRIBUTING.md",
-      "sha256": "939de0c5d7e317d1384cd6fb6479b531fd670445e30260e13553e7a6e440cc8b",
+      "sha256": "27b40f9504317c5cd0becbbc3d9a05cf776a34ca80a85a325b8a80529f1953e0",
       "sourceId": "repository-controls"
     },
     {
