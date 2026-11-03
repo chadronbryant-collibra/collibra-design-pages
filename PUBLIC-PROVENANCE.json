@@ -1,11 +1,11 @@
 {
   "$schema": "collibra-design/public-candidate-provenance/v1",
-  "sourceCommit": "4f4df3ed048f3f69ce1ff5e9191130860b649000",
+  "sourceCommit": "f1eeb323919e4dfa45cb071f320a7e6d482797d6",
   "sanitizerVersion": "1.0.0",
-  "contractVersion": "1.5.1",
-  "allowlistVersion": "1.0.4",
-  "allowlistSha256": "6deb43f4f37415f64a05d75c218567a6d0672ea41e24b93ad5a994d2080de1fa",
-  "provenanceRegistryVersion": "1.0.3",
+  "contractVersion": "1.6.0",
+  "allowlistVersion": "1.0.5",
+  "allowlistSha256": "3197c00396a7ab01e24d0feaa7c399703b9f427a272ec8e4581817e1942a9ee0",
+  "provenanceRegistryVersion": "1.0.4",
   "publicationMode": "in-place-remediation",
   "privatePathsIncluded": false,
   "self": {
@@ -15,7 +15,7 @@
   "files": [
     {
       "path": ".claude-plugin/marketplace.json",
-      "sha256": "7cd87fab11986ba2b46d57e64d900b3ec4d1c97ac5d79cc3fcd31c4a82fa9731",
+      "sha256": "71e7f362e48c8ac38aa8b6403f5488b284711d3ad3e4d14827d43c3fd83ad5f3",
       "sourceId": "marketplace-manifest"
     },
     {
@@ -70,7 +70,7 @@
     },
     {
       "path": "CONTRIBUTING.md",
-      "sha256": "f719338b4f5911a1249178a3d856041d8fc16ce5de137d719958fd1395934531",
+      "sha256": "939de0c5d7e317d1384cd6fb6479b531fd670445e30260e13553e7a6e440cc8b",
       "sourceId": "repository-controls"
     },
     {
@@ -95,7 +95,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "6501ded2c1357b9aadd6258f9ca8ef92b0301e4cc065ba1f9cf2affff20bb339",
+      "sha256": "7fc591449f0ab0fef9297fc389c5ff194a31c81e82c27781419ecceb91d00a5e",
       "sourceId": "repository-controls"
     },
     {
@@ -110,7 +110,7 @@
     },
     {
       "path": "app.js",
-      "sha256": "0462f2630e223e5bd53320c685d0d8e3ea5133c864c6980a7dc1c75efb5d71b5",
+      "sha256": "22cf873b716372e7a46d83ce721dfdfd7efe98330a938fc0fb44bab85cfb9bef",
       "sourceId": "design-atlas"
     },
     {
@@ -180,17 +180,17 @@
     },
     {
       "path": "index.html",
-      "sha256": "b4a32e1a11769005a17101d7cb1e9603305bf07800a74e1b82e51f8d0b823cdf",
+      "sha256": "8bfd6a29fde179f98115a4d35959ed88a5ccd20400d132650ecb98039b4d238e",
       "sourceId": "design-atlas"
     },
     {
       "path": "plugins/collibra-design-suite/.claude-plugin/plugin.json",
-      "sha256": "35e062a737b3ceb70b4ec7af4cfff233d39fdf25d7076f09d04102b4ce0c13cb",
+      "sha256": "597446dc2a8b842b6031b555674cbd691f9e1612e94d0ebbbf36a58d0e3c1bb4",
       "sourceId": "design-suite-package"
     },
     {
       "path": "plugins/collibra-design-suite/CHANGELOG.md",
-      "sha256": "2e02a386ae0855e25d72251ce3293d2d791136d702e77aa6778f83ce2167a8ba",
+      "sha256": "0e4e3f083fa04568945d5fee880c79e64fa2cd3824fa3523b589cd05cb9318bb",
       "sourceId": "design-suite-package"
     },
     {
@@ -215,12 +215,12 @@
     },
     {
       "path": "plugins/collibra-design-suite/README.md",
-      "sha256": "3e8a763bb4227c5ecd337493226ad040335eb59f0892917e9b1220ed5daea65c",
+      "sha256": "7168f52209d6b4c3e9218b84451a57e04901f7a6179e9baa962dc2172eeb2a42",
       "sourceId": "design-suite-package"
     },
     {
       "path": "plugins/collibra-design-suite/SBOM.spdx.json",
-      "sha256": "4d8ee9a9b90ddd496910ef256890ce6c8167e09cfba32a06c4c74db27e3caf5d",
+      "sha256": "b82d1c61db7169dbdde11c4a2d07d234ab5b0139afa699e84c1cd9b9a4b23cbf",
       "sourceId": "design-suite-package"
     },
     {
@@ -440,7 +440,7 @@
     },
     {
       "path": "plugins/collibra-design-suite/references/contract-index.md",
-      "sha256": "6596a14cd7049d29813614689aa8d9165feb2dbb769484653ca300703da67808",
+      "sha256": "f79dd7e7d3f5bd8be79ba22ba789d4f29316be4e732bff38be576a21bf21992d",
       "sourceId": "design-suite-package"
     },
     {
@@ -451,6 +451,11 @@
     {
       "path": "plugins/collibra-design-suite/references/design-brief.schema.json",
       "sha256": "5f1e5852f9059f12e5c45e5d0d306b02c33d6fb39a4d0320d87c1415f9526aa8",
+      "sourceId": "design-suite-package"
+    },
+    {
+      "path": "plugins/collibra-design-suite/references/org-charts.md",
+      "sha256": "8253c7488b4d26c3e6981644f76e51c821c07158a0c7e7139db3aacc47d9db82",
       "sourceId": "design-suite-package"
     },
     {
@@ -495,32 +500,67 @@
     },
     {
       "path": "plugins/collibra-design-suite/skills/collibra-create/SKILL.md",
-      "sha256": "94507d1f1f291735a43d84b89a29d4ffcafdf27fb9d0481b8a6283540318d39e",
+      "sha256": "c8a01bc0318bf0f9fc9e62ecbde4e37af71ed6179e4375bae06579a2be43f373",
       "sourceId": "design-suite-package"
     },
     {
       "path": "plugins/collibra-design-suite/skills/collibra-design/SKILL.md",
-      "sha256": "2bdd5e980c5dc1ede47da7a735c9055ed1c5129996229a286387161f17801195",
+      "sha256": "4ddcc512713423fce100f1e534f1a07774d3854c7b8e447f37ce0cedb462e2e6",
+      "sourceId": "design-suite-package"
+    },
+    {
+      "path": "plugins/collibra-design-suite/skills/collibra-org-charts/SKILL.md",
+      "sha256": "b5668303b3a746a86345727eb4935fd4db17a013d643ca34ba09605c1fc5303f",
+      "sourceId": "design-suite-package"
+    },
+    {
+      "path": "plugins/collibra-design-suite/skills/collibra-org-charts/examples/synthetic-roster.csv",
+      "sha256": "9a04788a41ad2f077f923c848ac2cab533a2bec0c7d70f772a8eba77ae2aa4fc",
+      "sourceId": "design-suite-package"
+    },
+    {
+      "path": "plugins/collibra-design-suite/skills/collibra-org-charts/examples/synthetic-scenario.json",
+      "sha256": "376fb73725dac27807fb3f5044d42f091f60daf9485f7cebdd4be291b728c8ad",
+      "sourceId": "design-suite-package"
+    },
+    {
+      "path": "plugins/collibra-design-suite/skills/collibra-org-charts/scripts/apply_org_chart_scenario.py",
+      "sha256": "03e7be669a5a2ad6c3a83d910eeb8fdde498448c70ed5c76e1d16993f71e4e09",
+      "sourceId": "design-suite-package"
+    },
+    {
+      "path": "plugins/collibra-design-suite/skills/collibra-org-charts/scripts/bind_pptx_connectors.py",
+      "sha256": "b470ebf0be9dbbbcd6aff217634659249852bba727d131ed66638b6e54e13300",
+      "sourceId": "design-suite-package"
+    },
+    {
+      "path": "plugins/collibra-design-suite/skills/collibra-org-charts/scripts/normalize_org_chart.py",
+      "sha256": "4f5bd001e202d2113025fbbd536dee735d3ef8e8f27ac606ccc50e00dd2a954d",
+      "sourceId": "design-suite-package"
+    },
+    {
+      "path": "plugins/collibra-design-suite/skills/collibra-org-charts/scripts/org_chart_geometry.py",
+      "sha256": "958418e10eaa8e84793c1163ef7a51b5aade15a522f98227b27e2a883ef8b1d5",
       "sourceId": "design-suite-package"
     },
     {
       "path": "plugins/collibra-design-suite/skills/collibra-refine/SKILL.md",
-      "sha256": "b16db098c68577eab4bb884a996d219af5915942b3ba9299b9522bdbf5842d53",
+      "sha256": "45229880132bf91ead2284a61526313ae0a25d811d3c0ad3308867f206c0d2b1",
       "sourceId": "design-suite-package"
     },
     {
       "path": "plugins/collibra-design-suite/skills/collibra-review/SKILL.md",
-      "sha256": "137fb4b5aff8684a97851109d882c5d98e0b1f3f251408725ac1c93602321e56",
+      "sha256": "44575c5f376821fc2c9b78d6bc8163086b75cf85889e0282e8bf2f901c99be40",
       "sourceId": "design-suite-package"
     },
     {
       "path": "plugins/collibra-design-suite/skills/collibra-simplify/SKILL.md",
-      "sha256": "b6d9fc1ae9c9acb70d5d28a49331a75428639008fe1338ab02d3a1d76caae671",
+      "sha256": "c9fa6d9accc5c197829daba3792ee82bded0a75196a322aa5e86a6b9581cee99",
       "sourceId": "design-suite-package"
     },
     {
       "path": "plugins/collibra-design-suite/skills/collibra-sop/SKILL.md",
-      "sha256": "011986a171c13913186aba5d1eb7735e2e875f5d0231370d5a97b644107d4a81",
+      "sha256": "8bd672369a9e3375759aab65e0e0325a491a4755d3c44d50594df387ef604a5d",
       "sourceId": "design-suite-package"
     },
     {
@@ -530,12 +570,12 @@
     },
     {
       "path": "scripts/package_plugin.py",
-      "sha256": "f2e16027a8d2f2e67eac318a4920e1cf1b843434fadc8c2da2581c63e08e9c2f",
+      "sha256": "d57d4c4a6b331da58502e5941463052ca183d988daa33158f1061efd2fcb4c1f",
       "sourceId": "repository-controls"
     },
     {
       "path": "styles.css",
-      "sha256": "bbe0600502e0f2bacff2d0421f6063f6086155af3b5ae04a30576c6fef2b5ae3",
+      "sha256": "fc6e2d7e81e4db325b615dbc6db874e7b8c865e6370b6e55d1d7ca3b26e39d64",
       "sourceId": "design-atlas"
     },
     {

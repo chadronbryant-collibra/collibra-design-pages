@@ -120,7 +120,7 @@ export function parseRoute(hash) {
   const [path, query = ""] = hash.replace(/^#/, "").split("?");
   const [rawPage, item] = path.split("/");
   const aliases = { overview: "home", "system-map": "home", foundations: "brand", voices: "brand", adoption: "start", principles: "brand" };
-  const page = aliases[rawPage] || (["home", "make", "playground", "documents", "examples", "brand", "catalog", "start", "google-workspace"].includes(rawPage) ? rawPage : "home");
+  const page = aliases[rawPage] || (["home", "make", "playground", "org-charts", "documents", "examples", "brand", "catalog", "start", "google-workspace"].includes(rawPage) ? rawPage : "home");
   const params = new URLSearchParams(query);
   const area = ["foundations", "content", "visual", "ui", "ux"].includes(params.get("area")) ? params.get("area") : "all";
   const number = Number(params.get("page"));
@@ -362,6 +362,7 @@ function renderHome() {
     nav.append(link(t.name, `#examples/${t.id}`));
   });
   const skills = [
+    ["org-charts", "Map the organization", "Build current and planned org charts with readable layouts and attached lines.", "Build an editable org chart from my approved roster. Recommend a layout and show planned roles."],
     ["sop", "Write a useful procedure", "Build a guide from your source or a few process questions.", "Help me draft an internal SOP. Preserve its conditions and keep questions in the chat."],
     ["design", "Find the right guidance", "Choose the smallest useful set of design rules for your task.", "Which guidance should I use for a team onboarding guide?"],
     ["create", "Make a first version", "Build an Artifact, an outline, or a structure you can adjust.", "Make a dashboard from this example data. Label its limits."],
@@ -502,7 +503,8 @@ function route(focus = false) {
   const next = parseRoute(location.hash); const prior = state.route; state.route = next;
   document.querySelectorAll("[data-page]").forEach(e => { e.hidden = e.id !== next.page; });
   document.querySelectorAll(".site-nav a").forEach(a => { if (parseRoute(a.hash).page === (next.page === "google-workspace" ? "start" : next.page)) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
-  document.title = `Collibra design suite | ${{home: "Make it clear", documents: "Document examples", make: "Make something", playground: "Try interface states", examples: "Try examples", brand: "Learn the brand", catalog: "Guidance library", start: "Use in Claude", "google-workspace": "Google Workspace setup"}[next.page]}`;
+  document.title = `Collibra design suite | ${{home: "Make it clear", "org-charts": "Org charts", documents: "Document examples", make: "Make something", playground: "Try interface states", examples: "Try examples", brand: "Learn the brand", catalog: "Guidance library", start: "Use in Claude", "google-workspace": "Google Workspace setup"}[next.page]}`;
+  if (next.page === "org-charts") renderOrgCharts();
   if (next.page === "documents") renderDocuments();
   if (next.page === "google-workspace") renderWorkspace();
   if (state.ready) {
@@ -530,7 +532,7 @@ function route(focus = false) {
 }
 
 async function load() {
-  initBuilder(); initPlayground(); initDocuments(); initShowcase(); initWorkspace();
+  initOrgCharts(); initBuilder(); initPlayground(); initDocuments(); initShowcase(); initWorkspace();
   route();
   window.addEventListener("hashchange", () => route(true));
   $(".skip-link").addEventListener("click", e => { e.preventDefault(); $("#main").focus(); });
@@ -548,4 +550,64 @@ async function load() {
     $("#example-prompt").value = state.generatedPrompt; textAt("#copy-status", "Prompt reset to the current example and audience.");
   });
 }
+
+
+const ORG_LAYOUTS = [
+  {id: "compact_hierarchy", name: "Compact hierarchy", use: "One leader and a team: make direct reporting easy to follow.", limit: "Often 6–26 positions and 3–6 branches. Split before labels become crowded."},
+  {id: "leadership_bands", name: "Leadership bands", use: "Show the leadership layer for an executive or onboarding conversation.", limit: "Often 4–14 leaders. This view intentionally leaves out detailed contributor rosters."},
+  {id: "functional_columns", name: "Functional columns", use: "Compare functions with uneven reporting depth in clear vertical lanes.", limit: "Often 12–40 positions in 4–6 functions. Use continuation pages for deeper branches."},
+  {id: "matrix_relationships", name: "Matrix relationships", use: "Keep direct reporting visible while explaining a few advisory or matrix links.", limit: "Often 6–24 positions. Beyond eight secondary links, use a companion relationship table."},
+  {id: "enterprise_overview", name: "Overview + drilldowns", use: "Orient readers to the whole organization, then open readable team sections.", limit: "Roughly 35–500 positions across pages. An overview is not a complete reference map."}
+];
+function initOrgCharts() {
+  ORG_LAYOUTS.forEach(layout => $("#org-layout-nav").append(link(layout.name, `#org-charts/${layout.id}`)));
+  ["#org-scenario", "#org-detail", "#org-addons"].forEach(id => $(id).addEventListener("change", updateOrgPrompt));
+  $("#org-copy").addEventListener("click", async () => {
+    const prompt = $("#org-prompt");
+    try { await navigator.clipboard.writeText(prompt.value); textAt("#org-copy-status", "Prompt copied."); }
+    catch { prompt.focus(); prompt.select(); textAt("#org-copy-status", "The prompt is selected. Use your browser’s Copy command."); }
+  });
+}
+function orgSelection() { return ORG_LAYOUTS.find(l => l.id === state.route?.item) || ORG_LAYOUTS[0]; }
+function updateOrgPrompt() {
+  const layout = orgSelection();
+  const addons = [...$("#org-addons").querySelectorAll("input:checked")].map(i => i.value);
+  $("#org-prompt").value = `Use collibra-org-charts from the Collibra Design suite. Build an editable org chart for [audience and team] as of [date], from [authorized roster or source].
+
+View: ${$("#org-scenario").value}. Layout: ${layout.name}. Detail: ${$("#org-detail").selectedOptions[0].textContent}. Optional additions: ${addons.join("; ") || "none"}.
+
+Keep current facts separate from proposed changes. Validate stable position IDs, managers, cycles and completeness. Preserve unknowns. Use only supplied and audience-approved metadata. Recommend readable sections if this layout does not fit.
+
+Use a native template I may use and an available Google Slides or PowerPoint writer. Keep cards and reporting lines native and editable; verify attached endpoints and reconcile totals. Without a writer, return validated data and geometry and state that no deck was created. Ask only for missing facts that affect scope, relationships, privacy or output.`;
+  textAt("#org-copy-status", "");
+}
+function renderOrgCharts() {
+  const layout = orgSelection();
+  textAt("#org-layout-name", layout.name); textAt("#org-layout-use", layout.use); textAt("#org-layout-limit", layout.limit);
+  $("#org-layout-nav").querySelectorAll("a").forEach(a => { if (a.hash === `#org-charts/${layout.id}`) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  const ns = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(ns, "svg"); svg.setAttribute("viewBox", "0 0 640 400"); svg.setAttribute("role", "img"); svg.setAttribute("aria-labelledby", "org-svg-title org-svg-desc");
+  function shape(tag, attrs, text) { const e = document.createElementNS(ns, tag); Object.entries(attrs).forEach(([k,v]) => e.setAttribute(k,String(v))); if (text) e.textContent=text; svg.append(e); return e; }
+  shape("title", {id:"org-svg-title"}, layout.name + " illustrative layout");
+  shape("desc", {id:"org-svg-desc"}, layout.use + " Solid lines show direct reporting; dashed lines show advisory links. All roles are made up.");
+  function edge(x,y,xx,yy,dotted=false) { shape("path",{d:`M ${x} ${y} V ${(y+yy)/2} H ${xx} V ${yy}`,class:dotted?"org-edge org-edge--advisory":"org-edge"}); }
+  function card(x,y,title,sub="Example role",kind="") { shape("rect",{x,y,width:140,height:54,rx:6,class:`org-card ${kind}`});shape("text",{x:x+70,y:y+22,"text-anchor":"middle",class:"org-card-title"},title);shape("text",{x:x+70,y:y+40,"text-anchor":"middle",class:"org-card-sub"},sub); }
+  if (layout.id === "leadership_bands") {
+    [120,320,520].forEach(x=>edge(320,84,x,175)); card(250,30,"Team leader"); [50,250,450].forEach((x,i)=>card(x,175,["Customer leader","Product leader","People leader"][i]));
+    shape("text",{x:320,y:300,"text-anchor":"middle",class:"org-section-label"},"Leadership view · contributors shown in team sections");
+  } else if (layout.id === "functional_columns") {
+    [120,320,520].forEach((x,i)=>{edge(320,74,x,135);edge(x,189,x,265);}); card(250,20,"Team leader");
+    [50,250,450].forEach((x,i)=>{card(x,135,["Customer","Product","Operations"][i],"Function leader");card(x,265,"Team role");});
+  } else if (layout.id === "enterprise_overview") {
+    [120,320,520].forEach(x=>edge(320,79,x,140));card(250,25,"Organization");[50,250,450].forEach((x,i)=>{card(x,140,["Customer","Product","Operations"][i],"Section overview");shape("rect",{x,y:245,width:140,height:100,rx:6,class:"org-section"});shape("text",{x:x+70,y:280,"text-anchor":"middle",class:"org-card-title"},`Section ${i+1}`);shape("text",{x:x+70,y:305,"text-anchor":"middle",class:"org-card-sub"},"Readable team page");});
+  } else {
+    [120,320,520].forEach(x=>edge(320,79,x,150));[120,520].forEach(x=>edge(x,204,x,280));
+    if(layout.id === "matrix_relationships")edge(190,177,450,280,true);
+    card(250,25,"Team leader");[50,250,450].forEach((x,i)=>card(x,150,["Customer lead","Product lead","Operations lead"][i]));card(50,280,"Team role");card(450,280,"Open position","Open", "org-card--open");
+  }
+  $("#org-preview").replaceChildren(svg);
+  textAt("#org-caption", `${layout.name} · layout illustration, not a generated deck. Solid = direct reporting; dashed = advisory; “Open” = unfilled position.`);
+  updateOrgPrompt();
+}
+
 if (typeof document !== "undefined") load().catch(() => { textAt("#load-status", "The guidance couldn’t load. Reload the page, or use the installation and reference links below. Examples are unavailable until the source data loads."); $("#load-status").append(link(" Open the public reference repository.", "https://github.com/chadronbryant-collibra/collibra-design-pages")); });

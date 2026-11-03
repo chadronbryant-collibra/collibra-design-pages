@@ -1,6 +1,6 @@
 # Collibra design suite
 
-Version `1.5.1`. See the [changelog](CHANGELOG.md) for package changes.
+Version `1.6.0`. See the [changelog](CHANGELOG.md) for package changes.
 
 Use the suite for Collibra design, guides, decks and writing. Relevant skills
 apply without being named. The source review check refreshes brand guidance
@@ -9,7 +9,7 @@ when its last successful review is missing or at least 60 days old. See
 
 The Collibra design suite helps people make content and experiences easier to
 understand, use, and trust. It brings the reader-first design contract into
-Claude for six jobs:
+Claude for seven jobs:
 
 - write or revise an SOP or guide from sources or guided questions;
 - choose the right design, audience, medium, and accessibility guidance;
@@ -51,6 +51,7 @@ plugin memory backend, automatic capture, or hidden persistence is added.
 
 | Skill | Use it when |
 |---|---|
+| `collibra-org-charts` | Build editable current, planned or mixed org charts with layout choices, scenarios, legends and drilldowns. |
 | `collibra-sop` | Create or revise an SOP, employee guide, or Quick Task from sources or guided questions. |
 | `collibra-design` | You are building or structuring a product, page, flow, document, deck, data surface, or AI experience. |
 | `collibra-create` | You want Claude to create and iteratively adjust an Artifact, dashboard, page, document structure, deck outline, diagram, UI flow, web app, speech, or data story. |
@@ -103,7 +104,7 @@ and `LICENSES/`.
 
 | Location | Use it for |
 | --- | --- |
-| [skills/](skills/) | The six sets of instructions Claude uses for your task. |
+| [skills/](skills/) | The seven sets of instructions Claude uses for your task. |
 | [references/contract-index.md](references/contract-index.md) | Find the guidance behind a design choice. |
 | [references/catalog/](references/catalog/) | Browse the bundled guidance offline. |
 | [examples/README.md](examples/README.md) | Try a prompt and compare worked outputs with made-up content. |
@@ -127,3 +128,12 @@ for general problems and [security policy](https://github.com/chadronbryant-coll
 for private reporting. Use example reproduction material in public issues.
 The earlier owner waiver of real-device Desktop and rendered human acceptance
 is not a passing test receipt.
+
+## Create an org chart
+
+Ask: “Build an editable org chart from my approved roster. Recommend a layout,
+show current versus planned roles, and keep the reporting lines attached.”
+Choose among five layout families, simple or enriched cards, legends, insights
+and section views. A native writer and authorized template are required for
+the final deck. The bundled Python helpers validate and plan locally; they do
+not connect to an HR system.

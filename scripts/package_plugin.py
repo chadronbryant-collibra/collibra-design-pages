@@ -14,7 +14,7 @@ from pathlib import Path
 
 REQUIRED_SKILLS = {
     "collibra-create", "collibra-design", "collibra-refine",
-    "collibra-review", "collibra-simplify", "collibra-sop",
+    "collibra-review", "collibra-simplify", "collibra-sop", "collibra-org-charts",
 }
 ROOT_FILES = {"CHANGELOG.md", "LICENSE.md", "NOTICE", "README.md", "SBOM.spdx.json"}
 EXACT_FILES = {
@@ -58,6 +58,8 @@ def portable_path_errors(values: list[str]) -> list[str]:
 
 def allowed(relative: Path) -> bool:
     value = relative.as_posix()
+    if value in {'skills/collibra-org-charts/scripts/org_chart_geometry.py', 'skills/collibra-org-charts/scripts/normalize_org_chart.py', 'skills/collibra-org-charts/scripts/apply_org_chart_scenario.py', 'skills/collibra-org-charts/scripts/bind_pptx_connectors.py', 'skills/collibra-org-charts/examples/synthetic-scenario.json', 'skills/collibra-org-charts/examples/synthetic-roster.csv'}:
+        return True
     if value in EXACT_FILES:
         return True
     if len(relative.parts) == 1:

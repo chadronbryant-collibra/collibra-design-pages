@@ -2,8 +2,8 @@
   "spdxVersion": "SPDX-2.3",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "name": "collibra-design-suite-1.5.1",
-  "documentNamespace": "https://github.com/chadronbryant-collibra/collibra-design-pages/sbom/1.5.1",
+  "name": "collibra-design-suite-1.6.0",
+  "documentNamespace": "https://github.com/chadronbryant-collibra/collibra-design-pages/sbom/1.6.0",
   "creationInfo": {
     "created": "2026-09-11T00:00:00Z",
     "creators": [
@@ -14,7 +14,7 @@
     {
       "name": "collibra-design-suite",
       "SPDXID": "SPDXRef-Package",
-      "versionInfo": "1.5.1",
+      "versionInfo": "1.6.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": true,
       "licenseConcluded": "NOASSERTION",
@@ -29,7 +29,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "35e062a737b3ceb70b4ec7af4cfff233d39fdf25d7076f09d04102b4ce0c13cb"
+          "checksumValue": "597446dc2a8b842b6031b555674cbd691f9e1612e94d0ebbbf36a58d0e3c1bb4"
         }
       ]
     },
@@ -39,7 +39,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "2e02a386ae0855e25d72251ce3293d2d791136d702e77aa6778f83ce2167a8ba"
+          "checksumValue": "0e4e3f083fa04568945d5fee880c79e64fa2cd3824fa3523b589cd05cb9318bb"
         }
       ]
     },
@@ -89,7 +89,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "3e8a763bb4227c5ecd337493226ad040335eb59f0892917e9b1220ed5daea65c"
+          "checksumValue": "7168f52209d6b4c3e9218b84451a57e04901f7a6179e9baa962dc2172eeb2a42"
         }
       ]
     },
@@ -529,7 +529,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "6596a14cd7049d29813614689aa8d9165feb2dbb769484653ca300703da67808"
+          "checksumValue": "f79dd7e7d3f5bd8be79ba22ba789d4f29316be4e732bff38be576a21bf21992d"
         }
       ]
     },
@@ -550,6 +550,16 @@
         {
           "algorithm": "SHA256",
           "checksumValue": "5f1e5852f9059f12e5c45e5d0d306b02c33d6fb39a4d0320d87c1415f9526aa8"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-2b8d6f51d07ca069",
+      "fileName": "./references/org-charts.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8253c7488b4d26c3e6981644f76e51c821c07158a0c7e7139db3aacc47d9db82"
         }
       ]
     },
@@ -639,7 +649,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "94507d1f1f291735a43d84b89a29d4ffcafdf27fb9d0481b8a6283540318d39e"
+          "checksumValue": "c8a01bc0318bf0f9fc9e62ecbde4e37af71ed6179e4375bae06579a2be43f373"
         }
       ]
     },
@@ -649,7 +659,77 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "2bdd5e980c5dc1ede47da7a735c9055ed1c5129996229a286387161f17801195"
+          "checksumValue": "4ddcc512713423fce100f1e534f1a07774d3854c7b8e447f37ce0cedb462e2e6"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-dbd8e972284af0bc",
+      "fileName": "./skills/collibra-org-charts/SKILL.md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b5668303b3a746a86345727eb4935fd4db17a013d643ca34ba09605c1fc5303f"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-acdf3ebd5ec25a99",
+      "fileName": "./skills/collibra-org-charts/examples/synthetic-roster.csv",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9a04788a41ad2f077f923c848ac2cab533a2bec0c7d70f772a8eba77ae2aa4fc"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-d7b0d81fe50680fd",
+      "fileName": "./skills/collibra-org-charts/examples/synthetic-scenario.json",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "376fb73725dac27807fb3f5044d42f091f60daf9485f7cebdd4be291b728c8ad"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-151009e4a2399df7",
+      "fileName": "./skills/collibra-org-charts/scripts/apply_org_chart_scenario.py",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "03e7be669a5a2ad6c3a83d910eeb8fdde498448c70ed5c76e1d16993f71e4e09"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-cab8b2537b7fc623",
+      "fileName": "./skills/collibra-org-charts/scripts/bind_pptx_connectors.py",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b470ebf0be9dbbbcd6aff217634659249852bba727d131ed66638b6e54e13300"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-fef9661293c2d866",
+      "fileName": "./skills/collibra-org-charts/scripts/normalize_org_chart.py",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4f5bd001e202d2113025fbbd536dee735d3ef8e8f27ac606ccc50e00dd2a954d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-f5bc1a28430c76a9",
+      "fileName": "./skills/collibra-org-charts/scripts/org_chart_geometry.py",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "958418e10eaa8e84793c1163ef7a51b5aade15a522f98227b27e2a883ef8b1d5"
         }
       ]
     },
@@ -659,7 +739,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "b16db098c68577eab4bb884a996d219af5915942b3ba9299b9522bdbf5842d53"
+          "checksumValue": "45229880132bf91ead2284a61526313ae0a25d811d3c0ad3308867f206c0d2b1"
         }
       ]
     },
@@ -669,7 +749,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "137fb4b5aff8684a97851109d882c5d98e0b1f3f251408725ac1c93602321e56"
+          "checksumValue": "44575c5f376821fc2c9b78d6bc8163086b75cf85889e0282e8bf2f901c99be40"
         }
       ]
     },
@@ -679,7 +759,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "b6d9fc1ae9c9acb70d5d28a49331a75428639008fe1338ab02d3a1d76caae671"
+          "checksumValue": "c9fa6d9accc5c197829daba3792ee82bded0a75196a322aa5e86a6b9581cee99"
         }
       ]
     },
@@ -689,7 +769,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "011986a171c13913186aba5d1eb7735e2e875f5d0231370d5a97b644107d4a81"
+          "checksumValue": "8bd672369a9e3375759aab65e0e0325a491a4755d3c44d50594df387ef604a5d"
         }
       ]
     }
