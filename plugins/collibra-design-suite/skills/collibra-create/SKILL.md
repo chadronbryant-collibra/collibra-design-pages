@@ -6,7 +6,7 @@ description: >-
   when the user wants a new audience-ready surface rather than guidance or
   review; keep generated, proposed, reviewed, and confirmed content distinct.
 metadata:
-  version: "1.6.0"
+  version: "1.7.0"
 ---
 
 # Collibra creation
@@ -119,6 +119,6 @@ catalog name, clean geometry or shorter prose cannot establish visual meaning.
 
 ## Org charts
 
-For current, planned or mixed org charts use the bundled `collibra-org-charts`
-skill and `../../references/org-charts.md`. It includes scenario, normalization,
-five-family geometry and native connector workflows.
+To build a current, planned or mixed org chart, use the separate `orgchart`
+plugin (`/orgchart`). This suite no longer bundles an org chart skill. Use
+`../../references/org-charts.md` for the layout families and design rules.

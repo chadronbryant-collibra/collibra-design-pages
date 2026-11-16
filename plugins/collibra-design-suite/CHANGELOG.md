@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.7.0 · 2026-11-12
+
+Remove the bundled `collibra-org-charts` skill and its helpers. Org charts are now
+built with the separate Org Chart Creator plugin (`orgchart`), so people see one
+org chart skill. The layout guide and the atlas gallery stay.
+
+
 ## 1.6.0 · 2026-11-03
 
 Add org charts: five layout families, current and planned scenarios, enrichment,

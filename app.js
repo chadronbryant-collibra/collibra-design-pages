@@ -572,7 +572,7 @@ function orgSelection() { return ORG_LAYOUTS.find(l => l.id === state.route?.ite
 function updateOrgPrompt() {
   const layout = orgSelection();
   const addons = [...$("#org-addons").querySelectorAll("input:checked")].map(i => i.value);
-  $("#org-prompt").value = `Use collibra-org-charts from the Collibra Design suite. Build an editable org chart for [audience and team] as of [date], from [authorized roster or source].
+  $("#org-prompt").value = `Use /orgchart (the Org Chart Creator plugin). Build an editable org chart for [audience and team] as of [date], from [authorized roster or source].
 
 View: ${$("#org-scenario").value}. Layout: ${layout.name}. Detail: ${$("#org-detail").selectedOptions[0].textContent}. Optional additions: ${addons.join("; ") || "none"}.
 
