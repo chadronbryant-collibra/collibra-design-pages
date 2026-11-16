@@ -49,7 +49,6 @@ See [Claude plugin instructions](https://support.claude.com/en/articles/13837440
 
 | Skill | What it helps you do |
 | --- | --- |
-| `collibra-org-charts` | Build editable current, planned or mixed org charts with layout choices, scenarios, legends and drilldowns. |
 | `collibra-sop` | Create or revise an SOP, employee guide, or Quick Task from sources or guided questions. |
 | `collibra-design` | Choose guidance for your reader, task, and format. |
 | `collibra-create` | Create and adjust a page, dashboard, deck outline, document structure, diagram, UI flow, web app, speech, or data story. |
@@ -123,6 +122,6 @@ excluded from both grants. See [LICENSE.md](LICENSE.md), [NOTICE](NOTICE), and
 Ask: “Build an editable org chart from my approved roster. Recommend a layout,
 show current versus planned roles, and keep the reporting lines attached.”
 Choose among five layout families, simple or enriched cards, legends, insights
-and section views. A native writer and authorized template are required for
-the final deck. The bundled Python helpers validate and plan locally; they do
-not connect to an HR system.
+and section views. Since 1.7.0 the deck is built by the separate Org Chart
+Creator plugin ([`orgchart`](https://github.com/chadronbryant-collibra/orgchart));
+this suite no longer bundles an org chart skill or helpers.

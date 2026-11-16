@@ -1,5 +1,8 @@
 # Org chart capability guide
 
+Build org charts with the separate Org Chart Creator plugin (`orgchart`,
+`/orgchart`). This guide keeps the layout families and design rules it follows.
+
 ## Choose by the reader's question
 
 | Family | Best use | Typical planning range, not a capacity guarantee |

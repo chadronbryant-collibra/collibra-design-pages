@@ -1,6 +1,6 @@
 # Collibra design suite
 
-Version `1.6.0`. See the [changelog](CHANGELOG.md) for package changes.
+Version `1.7.0`. See the [changelog](CHANGELOG.md) for package changes.
 
 Use the suite for Collibra design, guides, decks and writing. Relevant skills
 apply without being named. The source review check refreshes brand guidance
@@ -51,7 +51,6 @@ plugin memory backend, automatic capture, or hidden persistence is added.
 
 | Skill | Use it when |
 |---|---|
-| `collibra-org-charts` | Build editable current, planned or mixed org charts with layout choices, scenarios, legends and drilldowns. |
 | `collibra-sop` | Create or revise an SOP, employee guide, or Quick Task from sources or guided questions. |
 | `collibra-design` | You are building or structuring a product, page, flow, document, deck, data surface, or AI experience. |
 | `collibra-create` | You want Claude to create and iteratively adjust an Artifact, dashboard, page, document structure, deck outline, diagram, UI flow, web app, speech, or data story. |
@@ -134,6 +133,6 @@ is not a passing test receipt.
 Ask: “Build an editable org chart from my approved roster. Recommend a layout,
 show current versus planned roles, and keep the reporting lines attached.”
 Choose among five layout families, simple or enriched cards, legends, insights
-and section views. A native writer and authorized template are required for
-the final deck. The bundled Python helpers validate and plan locally; they do
-not connect to an HR system.
+and section views. Since 1.7.0 the deck is built by the separate Org Chart
+Creator plugin ([`orgchart`](https://github.com/chadronbryant-collibra/orgchart));
+this suite no longer bundles an org chart skill or helpers.
