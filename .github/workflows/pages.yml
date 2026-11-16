@@ -11,8 +11,8 @@ on:
         description: Reviewed release to publish
         required: true
         type: choice
-        default: v1.6.0
-        options: [v1.6.0]
+        default: v1.7.0
+        options: [v1.7.0]
 
 permissions:
   contents: read
@@ -42,8 +42,8 @@ jobs:
         run: |
           publication_sha="$(git rev-parse HEAD)"
           if [[ "$EVENT_NAME" == workflow_dispatch ]]; then
-            test "$RELEASE_TAG" = v1.6.0
-            test "$publication_sha" = baa93092cd5a0298e1050029556780c6f2711ba9
+            test "$RELEASE_TAG" = v1.7.0
+            test "$publication_sha" = 51c5207f532cd54826aac249b22aa92098b0fa9a
           fi
           printf 'sha=%s\n' "$publication_sha" >> "$GITHUB_OUTPUT"
       - name: Verify new publication identities
